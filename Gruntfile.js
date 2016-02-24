@@ -21,10 +21,6 @@ module.exports = function (grunt) {
             build: {
                 files: [
                     {
-                        src: 'src/css/main.css',
-                        dest: 'build/css/main.css'
-                    },
-                    {
                         src: 'node_modules/react/dist/react-with-addons.js',
                         dest: VENDOR_TARGET + 'react.js'
                     },
@@ -51,6 +47,12 @@ module.exports = function (grunt) {
                         cwd: 'src/js',
                         src: '**/*.js',
                         dest: 'build/js'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'src/css',
+                        src: '**/*.css',
+                        dest: 'build/css'
                     },
                     {
                         src: 'src/index.html',

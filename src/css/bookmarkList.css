@@ -1,0 +1,7 @@
+.bookmarkBase {
+    border: 1px solid black;
+    display: inline-block;
+    width: 300px;
+    height: 180px;
+    margin: 26px;
+}
