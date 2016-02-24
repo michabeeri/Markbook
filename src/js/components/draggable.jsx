@@ -6,9 +6,14 @@ define([], function () {
                 dragged: false
             };
         },
-        onDragStart: function (event) {
+        onDragStart: function () {
             this.setState({
                 dragged: true
+            });
+        },
+        onDragEnd: function () {
+            this.setState({
+                dragged: false
             });
         }
     };
