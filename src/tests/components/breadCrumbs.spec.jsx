@@ -6,15 +6,25 @@ define(['react', 'reactDOM', 'components/breadcrumbs/breadCrumbs'],
 
         describe('Bread Crumbs', function () {
 
+            var breadCrumbs;
+
+            function renderBreadCrumbs(items) {
+                breadCrumbs = TestUtils.renderIntoDocument(<BreadCrumbs items={items}/>);
+            }
+
+            function getItemElements() {
+                return TestUtils.scryRenderedDOMComponentsWithTag(breadCrumbs, 'span');
+            }
+
             it('should render root level correctly', function () {
-                var breadCrumbs = TestUtils.renderIntoDocument(<BreadCrumbs items={['All Bookmarks']}/>);
-                var root = TestUtils.scryRenderedDOMComponentsWithTag(breadCrumbs, 'span')[0];
+                renderBreadCrumbs(['All Bookmarks']);
+                var root = getItemElements()[0];
                 expect(root.innerHTML).toBe('All Bookmarks');
             });
 
             it('should render two levels correctly', function () {
-                var breadCrumbs = TestUtils.renderIntoDocument(<BreadCrumbs items={['All Bookmarks', 'Current Group']}/>);
-                var items = TestUtils.scryRenderedDOMComponentsWithTag(breadCrumbs, 'span');
+                renderBreadCrumbs(['All Bookmarks', 'Current Group']);
+                var items = getItemElements();
                 var root = items[0];
                 var current = items[1];
 
@@ -23,8 +33,8 @@ define(['react', 'reactDOM', 'components/breadcrumbs/breadCrumbs'],
             });
 
             it('should render three levels correctly', function () {
-                var breadCrumbs = TestUtils.renderIntoDocument(<BreadCrumbs items={['All Bookmarks', 'Parent Group', 'Current Group']}/>);
-                var items = TestUtils.scryRenderedDOMComponentsWithTag(breadCrumbs, 'span');
+                renderBreadCrumbs(['All Bookmarks', 'Parent Group', 'Current Group']);
+                var items = getItemElements();
                 var root = items[0];
                 var parent = items[1];
                 var current = items[2];
