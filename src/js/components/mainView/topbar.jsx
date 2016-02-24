@@ -1,11 +1,11 @@
-define(['lodash', 'react'],
-    function (_, React) {
+define(['react'],
+    function (React) {
         'use strict';
 
         return React.createClass({
             displayName: 'TopBar',
             componentWillMount: function () {
-                if (_.isUndefined(this.props.username) || !this.props.username) {
+                if (!this.props.username) {
                     throw new Error('Failed to create the top bar because the username is missing.');
                 }
             },
