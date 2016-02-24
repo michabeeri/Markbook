@@ -1,5 +1,5 @@
-define(['react', 'components/mainView/topbar'],
-    function (React, TopBar) {
+define(['react', 'components/mainView/topbar', 'components/constants'],
+    function (React, TopBar, Constants) {
         'use strict';
 
         var testUtils = React.addons.TestUtils;
@@ -20,9 +20,11 @@ define(['react', 'components/mainView/topbar'],
             });
 
             it('should show the name of the app', function () {
+                var appNameNode;
                 expect(function () {
-                    testUtils.findRenderedDOMComponentWithClass(topBar, 'top-bar-name');
+                    appNameNode = testUtils.findRenderedDOMComponentWithClass(topBar, 'top-bar-name');
                 }).not.toThrowError();
+                expect(appNameNode.innerHTML).toEqual(Constants.APP_NAME);
 
             });
 
