@@ -13,7 +13,7 @@ define(['react'],
                 return (
                     <header className='top-bar'>
                         <div className='logo-section'>
-                            <img className='top-bar-logo' src='img/logo.jpg' alt='app logo' width='30' height='30'/>
+                            <img className='top-bar-logo' src='img/logo.jpg' alt='app logo' width='40' height='40'/>
                             <span className='top-bar-name'>MarkBook</span>
                         </div>
                         <div className='logout-section'>

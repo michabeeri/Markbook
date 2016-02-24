@@ -1,6 +1,18 @@
-.main {
+html {
   font: 62.5%/1.35 'Helvetica Neue Regular', 'Helvetica Neue';
   font-weight: 200;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+.main {
   max-width: 900px;
   margin: auto;
   color: #333333;
