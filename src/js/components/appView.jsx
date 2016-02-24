@@ -1,10 +1,10 @@
-define(['react'], function (React) {
+define(['react', 'components/mainView/mainView'], function (React, MainView) {
     'use strict';
     return React.createClass({
         displayName: 'AppView',
         getInitialState: function () {
             return {
-                items: []
+                items: this.props.items
             };
         },
         addItem: function () {
@@ -12,7 +12,7 @@ define(['react'], function (React) {
         },
         render: function () {
             return (
-                <div>MainApp</div>
+                <MainView items={this.state.items}/>
             );
         }
     });
