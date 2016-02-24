@@ -13,7 +13,7 @@ define(['react', 'components/mainView/topbar'], function (React, TopBar) {
         render: function () {
             return (
                 <div className='main'>
-                    <TopBar username='yaela@wix.com'/>
+                    <TopBar username='user@wix.com'/>
                 </div>
             );
         }

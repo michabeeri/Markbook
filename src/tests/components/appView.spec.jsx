@@ -16,7 +16,13 @@ define(['react', 'reactDOM', 'components/appView'],
                 expect(appView.constructor.displayName).toBe('AppView');
             });
 
-            xit('should be able to add item', function () {
+            it('should render the topbar component', function () {
+                expect(function () {
+                    TestUtils.findRenderedDOMComponentWithClass(appView, 'top-bar');
+                }).not.toThrowError();
+            });
+
+            it('should be able to add item', function () {
                 var item = {};
                 appView.addItem(item);
                 expect(appView.state.items).toEqual(jasmine.arrayContaining([item]));
