@@ -6,8 +6,17 @@ define(['react', 'reactDOM', 'components/AppView'],
 
         describe('App View', function () {
 
+            var appView;
+
+            beforeEach(function () {
+                appView = TestUtils.renderIntoDocument(<AppView items={[]}/>);
+            });
+
+            it('should render with correct display name', function () {
+                expect(appView.constructor.displayName).toBe('AppView');
+            });
+
             it('should be able to add item', function () {
-                var appView = TestUtils.renderIntoDocument(<AppView items={[]}/>);
                 var item = {};
                 appView.addItem(item);
                 expect(appView.state.items).toEqual(jasmine.arrayContaining([item]));
