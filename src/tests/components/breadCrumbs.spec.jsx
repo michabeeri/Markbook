@@ -21,5 +21,17 @@ define(['react', 'reactDOM', 'components/breadcrumbs/breadCrumbs'],
                 expect(root.innerHTML).toBe('All Bookmarks');
                 expect(current.innerHTML).toBe('Current Group');
             });
+
+            it('should render three levels correctly', function () {
+                var breadCrumbs = TestUtils.renderIntoDocument(<BreadCrumbs items={['All Bookmarks', 'Parent Group', 'Current Group']}/>);
+                var items = TestUtils.scryRenderedDOMComponentsWithTag(breadCrumbs, 'span');
+                var root = items[0];
+                var parent = items[1];
+                var current = items[2];
+
+                expect(root.innerHTML).toBe('All Bookmarks');
+                expect(parent.innerHTML).toBe('Parent Group');
+                expect(current.innerHTML).toBe('Current Group');
+            });
         });
     });
