@@ -6,8 +6,11 @@ define(['react', 'reactDOM', 'components/AppView'],
 
         describe('App View', function () {
 
-            it('should return true if user name and password match', function () {
-
+            it('should be able to add item', function () {
+                var appView = TestUtils.renderIntoDocument(<AppView items={[]}/>);
+                var item = {};
+                appView.addItem(item);
+                expect(appView.state.items).toEqual(jasmine.arrayContaining([item]));
             });
         });
     });
