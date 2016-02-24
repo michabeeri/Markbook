@@ -1,4 +1,4 @@
-define(['react'], function (React) {
+define(['react', 'components/mainView/topbar'], function (React, TopBar) {
     'use strict';
     return React.createClass({
         displayName: 'AppView',
@@ -12,7 +12,9 @@ define(['react'], function (React) {
         },
         render: function () {
             return (
-                <div>MainApp</div>
+                <div className='main'>
+                    <TopBar username='yaela@wix.com'/>
+                </div>
             );
         }
     });

@@ -4,5 +4,5 @@ define([],
 
     return {
         APP_NAME: 'Markbook'
-    }
+    };
 });

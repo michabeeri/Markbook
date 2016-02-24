@@ -21,7 +21,7 @@ requirejs.config({
     }
 });
 
-requirejs(['lodash', 'react', 'reactDOM', 'components/AppView'],
+requirejs(['lodash', 'react', 'reactDOM', 'components/appView'],
     function (_, React, ReactDOM, AppView) {
         'use strict';
         var mountPoint = document.getElementById('app');

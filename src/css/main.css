@@ -1,1 +1,40 @@
+.main {
+  font-family: 'Helvetica Neue Regular', 'Helvetica Neue';
+  font-weight: 200;
+  max-width: 900px;
+  margin: auto;
+  color: #333333;
+}
 
+.top-bar {
+  border: 1px solid;
+  display: flex;
+  justify-content: space-between;
+  line-height: 40px;
+  font-size: 14px;
+}
+
+.logo-section,
+.logout-section {
+  display: flex;
+  align-items: center;
+  height: 44px;
+}
+
+.top-bar-name,
+.top-bar-logo {
+  padding: 5px 5px;
+}
+
+.top-bar-name {
+  font-size: 20px;
+}
+
+.top-bar-username,
+.logout-btn {
+  padding: 3px 21px;
+}
+
+.logout-btn {
+  border-left: 1px solid;
+}
