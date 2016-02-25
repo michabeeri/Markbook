@@ -5,9 +5,13 @@ define(['react', 'components/constants'],
         return React.createClass({
             displayName: 'TopBar',
             componentWillMount: function () {
-                if (!this.props.username) {
-                    throw new Error('Failed to create the top bar because the username is missing.');
+                this.username = this.props.username;
+                if (!this.username) {
+                    this.username = '';
                 }
+            },
+            onClick: function () {
+                this.props.onLogout();
             },
             render: function () {
                 return (
@@ -17,8 +21,8 @@ define(['react', 'components/constants'],
                             <span className='top-bar-name'>{Constants.APP_NAME}</span>
                         </div>
                         <div className='logout-section'>
-                            <span className='top-bar-username'>{this.props.username}</span>
-                            <span className='logout-btn'>Log out</span>
+                            <span className='top-bar-username'>{this.username}</span>
+                            <span className='logout-btn' onClick={this.onClick}>Log out</span>
                         </div>
                     </header>
                 );
