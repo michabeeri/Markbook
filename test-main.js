@@ -14,7 +14,8 @@ requirejs.config({
         reactDOM: 'vendor/react-dom',
         router: 'https://cdnjs.cloudflare.com/ajax/libs/react-router/2.0.0/ReactRouter',
         components: 'js/components',
-        mixins: 'js/mixins'
+        mixins: 'js/mixins',
+        constants: 'js/constants'
     },
     map: {
         '*': {
