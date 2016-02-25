@@ -4,7 +4,8 @@ define(['react', 'components/mainView/topbar'], function (React, TopBar) {
         displayName: 'AppView',
         getInitialState: function () {
             return {
-                items: []
+                items: [],
+                username: 'user@wix.com'
             };
         },
         addItem: function () {
@@ -13,7 +14,7 @@ define(['react', 'components/mainView/topbar'], function (React, TopBar) {
         render: function () {
             return (
                 <div className='main'>
-                    <TopBar username='user@wix.com'/>
+                    <TopBar username={this.state.username}/>
                 </div>
             );
         }
