@@ -1,8 +1,8 @@
 define([],
     function () {
-    'use strict';
+        'use strict';
 
-    return {
-        APP_NAME: 'Markbook'
-    }
-});
+        return {
+            APP_NAME: 'Markbook'
+        };
+    });
