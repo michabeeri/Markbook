@@ -1,4 +1,4 @@
-define(['react', 'reactDOM', 'components/AppView'],
+define(['react', 'reactDOM', 'components/appView'],
     function (React, ReactDOM, AppView) {
         'use strict';
 
@@ -14,6 +14,12 @@ define(['react', 'reactDOM', 'components/AppView'],
 
             it('should render with correct display name', function () {
                 expect(appView.constructor.displayName).toBe('AppView');
+            });
+
+            it('should render the topbar component', function () {
+                expect(function () {
+                    TestUtils.findRenderedDOMComponentWithClass(appView, 'top-bar');
+                }).not.toThrowError();
             });
 
             it('should be able to add item', function () {

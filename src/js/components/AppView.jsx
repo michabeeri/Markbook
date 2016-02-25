@@ -1,10 +1,11 @@
-define(['react'], function (React) {
+define(['react', 'components/mainView/topbar'], function (React, TopBar) {
     'use strict';
     return React.createClass({
         displayName: 'AppView',
         getInitialState: function () {
             return {
-                items: []
+                items: [],
+                username: 'user@wix.com'
             };
         },
         addItem: function () {
@@ -12,7 +13,9 @@ define(['react'], function (React) {
         },
         render: function () {
             return (
-                <div>MainApp</div>
+                <div className='main'>
+                    <TopBar username={this.state.username}/>
+                </div>
             );
         }
     });
