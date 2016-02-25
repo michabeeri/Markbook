@@ -1,4 +1,4 @@
-define(['react', 'components/mainView/topbar', 'components/constants'],
+define(['react', 'components/mainView/topbar', 'constants'],
     function (React, TopBar, Constants) {
         'use strict';
 

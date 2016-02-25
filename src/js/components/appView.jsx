@@ -1,10 +1,12 @@
-define(['react', 'components/mainView/topbar'], function (React, TopBar) {
+
+define(['react', 'components/mainView/mainView', 'components/mainView/topbar'], function (React, MainView, TopBar) {
+
     'use strict';
     return React.createClass({
         displayName: 'AppView',
         getInitialState: function () {
             return {
-                items: [],
+                items: this.props.items,
                 username: 'user@wix.com'
             };
         },
@@ -15,6 +17,7 @@ define(['react', 'components/mainView/topbar'], function (React, TopBar) {
             return (
                 <div className='main'>
                     <TopBar username={this.state.username}/>
+                    <MainView items={this.state.items}/>
                 </div>
             );
         }

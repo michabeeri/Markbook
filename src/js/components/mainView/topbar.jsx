@@ -1,4 +1,4 @@
-define(['react', 'components/constants'],
+define(['react', 'constants'],
     function (React, Constants) {
         'use strict';
 
