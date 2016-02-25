@@ -7,11 +7,11 @@ define(['react', 'mixins/draggable'],
         var MyComp = React.createClass({
             mixins: [draggable],
             render: function() {
-                return <div className={'className' + getClasses()} onDragStart={this.onDragStart}></div>;
+                return <div className={'classNames ' + this.getDragClass()} onDragStart={this.onDragStart}></div>;
             }
         })
 
-        fdescribe('Draggable item', function () {
+        describe('Draggable item', function () {
 
             it('should receive dragged className on drag start', function () {
                 var comp = TestUtils.renderIntoDocument(<MyComp/>);
@@ -24,8 +24,5 @@ define(['react', 'mixins/draggable'],
                 TestUtils.Simulate.dragEnd(comp.getDOMNode());
                 expect(comp.getDOMNode().classList.contains('dragged')).toBe(false);
             });
-
-            it('')
-
         });
     });

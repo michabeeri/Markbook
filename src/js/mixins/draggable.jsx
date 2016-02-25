@@ -15,6 +15,9 @@ define([], function () {
             this.setState({
                 dragged: false
             });
+        },
+        getDragClass: function () {
+            return this.state.dragged ? 'dragged' : '';
         }
     };
 });
