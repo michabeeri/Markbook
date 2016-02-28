@@ -12,7 +12,8 @@ define(['react', 'components/dropdown/dropdown'],
                 data = {
                     input: 'f',
                     items: [{title: 'Bookmarks', groupType: 'bookmark', lines: ['name1', 'name2', 'name3']},
-                        {title: 'tags', groupType: 'tag', lines: ['tag1', 'tag2', 'tag3']}]
+                        {title: 'Tags', groupType: 'tag', lines: ['tag1', 'tag2', 'tag3']},
+                        {title: 'Random', groupType: 'random', lines: []}]
                 };
                 callback = function () {};
             });
@@ -28,6 +29,11 @@ define(['react', 'components/dropdown/dropdown'],
                 it('should have the same number of list items as lines given', function () {
                     dropdown = TestUtils.renderIntoDocument(<Dropdown data={data} onLineClick={callback}/>);
                     expect(dropdown.refs.group0.children.length).toBe(data.items[0].lines.length);
+                });
+
+                it('should have one list item if no lines are given', function() {
+                    dropdown = TestUtils.renderIntoDocument(<Dropdown data={data} onLineClick={callback}/>);
+                    expect(dropdown.refs.group2.children.length).toBe(1);
                 });
             });
 
