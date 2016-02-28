@@ -12,7 +12,7 @@ define([],
             APP_NAME: 'Markbook',
 
             eModalType: eModalType,
-            
+
             // Action types
             ADD_BOOKMARK: 'ADD_BOOKMARK',
             REMOVE_BOOKMARK: 'REMOVE_BOOKMARK'
