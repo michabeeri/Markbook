@@ -4,15 +4,6 @@ define(['react', 'constants'],
 
         return React.createClass({
             displayName: 'TopBar',
-            componentWillMount: function () {
-                this.username = this.props.username;
-                if (!this.username) {
-                    this.username = '';
-                }
-            },
-            onClick: function () {
-                this.props.onLogout();
-            },
             render: function () {
                 return (
                     <header className='top-bar'>
@@ -21,8 +12,8 @@ define(['react', 'constants'],
                             <span className='top-bar-name'>{Constants.APP_NAME}</span>
                         </div>
                         <div className='logout-section'>
-                            <span className='top-bar-username'>{this.username}</span>
-                            <span className='logout-btn' onClick={this.onClick}>Log out</span>
+                            <span className='top-bar-username'>{this.props.username || ''}</span>
+                            <span className='logout-btn' onClick={this.props.onLogout()}>Log out</span>
                         </div>
                     </header>
                 );
