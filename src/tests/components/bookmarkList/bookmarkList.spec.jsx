@@ -32,7 +32,7 @@ define(['react', 'reactDOM', 'components/bookmarkList/bookmarkList', 'components
                         children: Array(4).fill({})
                     }
                 ];
-                bookmarkList = TestUtils.renderIntoDocument(<BookmarkList bookmarks={bookmarkListItemsData}/>);
+                bookmarkList = TestUtils.renderIntoDocument(<BookmarkList state={{bookmarks: bookmarkListItemsData}}/>);
             });
 
             it('should populate items list', function () {
