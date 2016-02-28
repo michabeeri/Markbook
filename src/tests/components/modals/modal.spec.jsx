@@ -27,7 +27,7 @@ define([ 'React', 'reactDOM', 'components/modals/Modal'],
             });
 
             it('should call close callback when close X is clicked', function () {
-                var constructor = TestUtils.renderIntoDocument( <Modal className="modalDialog opened" onClose={modalOwnerMock.closeCallback}/>);
+                var constructor = TestUtils.renderIntoDocument( <Modal className="modalDialog opened" closeModal={modalOwnerMock.closeCallback}/>);
                 var domNode = ReactDOM.findDOMNode(constructor);
                 var closingElement = domNode.querySelector('#modalCloser');
                 TestUtils.Simulate.click(closingElement);

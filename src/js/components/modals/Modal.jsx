@@ -5,19 +5,15 @@ define(['react'],
         return React.createClass({
             displayName: 'Modal',
             propTypes: {
-                className: React.PropTypes.string,
-                onClose: React.PropTypes.func,
+                className: React.PropTypes.string.isRequired,
+                onClose: React.PropTypes.func.isRequired,
                 children: React.PropTypes.node.isRequired
-            },
-            close: function () {
-                document.body.style.overflow = null;
-                this.props.onClose();
             },
             render: function () {
                 return (
                     <div className={this.props.className}>
                         <div>
-                            <i className='fa fa-times modalCloser' id='modalCloser' onClick={this.close}></i>
+                            <i className='fa fa-times modalCloser' id='modalCloser' onClick={this.props.closeModal}></i>
                             {this.props.children}
                         </div>
                     </div>

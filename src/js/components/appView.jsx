@@ -1,5 +1,5 @@
-define(['react', 'components/mainView/mainView', 'components/mainView/topbar-rdx', 'components/modals/AddBookmarkModal'],
-    function (React, MainView, TopBar, AddBookmarkModal) {
+define(['react', 'components/mainView/mainView', 'components/mainView/topbar-rdx'],
+    function (React, MainView, TopBar) {
 
         'use strict';
         return React.createClass({
@@ -9,7 +9,6 @@ define(['react', 'components/mainView/mainView', 'components/mainView/topbar-rdx
                     <div className='main'>
                         <TopBar/>
                         <MainView/>
-                        <AddBookmarkModal/>
                     </div>
                 );
             }
