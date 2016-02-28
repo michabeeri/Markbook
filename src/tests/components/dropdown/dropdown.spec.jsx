@@ -4,25 +4,50 @@ define(['react', 'components/dropdown/dropdown'],
 
         var TestUtils = React.addons.TestUtils;
 
-        describe('Dropdown', function () {
+        fdescribe('Dropdown', function () {
 
-            var items, dropdown;
+            var data, dropdown, callback;
 
             beforeEach(function () {
-                items = [{title: 'bookmarks', groupType: 'bookMark', lines: ['name1', 'name2', 'name3']}, {title: 'tags', groupType: 'tag', lines: ['tag1', 'tag2', 'tag3']}];
-                dropdown = TestUtils.renderIntoDocument(<Dropdown items={items}/>);
+                data = {
+                    input: 'f',
+                    items: [{title: 'Bookmarks', groupType: 'bookmark', lines: ['name1', 'name2', 'name3']},
+                        {title: 'tags', groupType: 'tag', lines: ['tag1', 'tag2', 'tag3']}]
+                };
+                callback = function () {};
             });
 
-            //describe('Nested dropdown list', function () {
-            //    it('should render nested list with title', function () {
-            //
-            //    });
-            //});
+            describe('Dropdown list', function () {
+                it('should have the same number of list items as items elements', function () {
+                    dropdown = TestUtils.renderIntoDocument(<Dropdown data={data} onLineClick={callback}/>);
+                    expect(dropdown.refs.dropdownList.children.length).toBe(2);
+                });
+            });
+
+            describe('Nested dropdown list', function () {
+                it('should have the same number of list items as lines given', function () {
+                    dropdown = TestUtils.renderIntoDocument(<Dropdown data={data} onLineClick={callback}/>);
+                    expect(dropdown.refs.group0.children.length).toBe(3);
+                });
+            });
 
             describe('Nested dropdown item', function () {
-                fit('should have a valid type', function () {
-                    console.log('data', dropdown.refs.line0.dataset);
+                it('should have a valid type', function () {
+                    dropdown = TestUtils.renderIntoDocument(<Dropdown data={data} onLineClick={callback}/>);
+                    expect(dropdown.refs.bookmark0.dataset.type).toEqual('bookmark');
                 });
+
+                it('should call onclick callback from parent with valid arguments', function () {
+                    var props = {
+                        data: data,
+                        onLineClick: callback
+                    };
+                    spyOn(props, 'onLineClick');
+                    var comp = React.createElement(Dropdown, props);
+                    dropdown = TestUtils.renderIntoDocument(comp);
+                    TestUtils.Simulate.click(dropdown.refs.bookmark0);
+                    expect(props.onLineClick).toHaveBeenCalledWith('bookmark', 'name1');
+                })
             });
 
         });
