@@ -4,6 +4,9 @@ define(['react', 'constants'],
 
         return React.createClass({
             displayName: 'TopBar',
+            onLogout: function () {
+                this.props.dispatch({type: 'LOGOUT'});
+            },
             render: function () {
                 return (
                     <header className='top-bar'>
