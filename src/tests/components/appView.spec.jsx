@@ -1,5 +1,5 @@
 
-define(['react', 'reactDOM', 'reduxTestUtils', 'components/appView'],
+define(['react', 'reactDOM', 'reduxTestUtils', 'components/appView-rdx'],
     function (React, ReactDOM, ReduxTestUtils, AppView) {
 
         'use strict';
@@ -14,10 +14,6 @@ define(['react', 'reactDOM', 'reduxTestUtils', 'components/appView'],
 
                 appView = ReduxTestUtils.renderInProvider(AppView);
 
-            });
-
-            it('should render with correct display name', function () {
-                expect(appView.constructor.displayName).toBe('AppView');
             });
 
             it('should render the topbar component', function () {

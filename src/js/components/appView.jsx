@@ -7,8 +7,8 @@ define(['react', 'components/mainView/mainView', 'components/mainView/topbar-rdx
             render: function () {
                 return (
                     <div className='main'>
-                        <TopBar/>
-                        <MainView/>
+                        <TopBar username={this.props.username}/>
+                        <MainView bookmarks={this.props.bookmarks}/>
                     </div>
                 );
             }
