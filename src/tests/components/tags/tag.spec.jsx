@@ -1,5 +1,6 @@
 define(['React', 'reactDOM', 'components/tags/tag'],
     function (React, ReactDOM, Tag) {
+        'use strict';
 
         var ReactTestUtils = React.addons.TestUtils;
 
