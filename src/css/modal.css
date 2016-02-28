@@ -12,18 +12,18 @@
     transition: opacity 400ms ease-in;
 }
 
-.modal.closed {
+.modal-closed {
     opacity: 0;
     pointer-events: none;
 }
 
 
-.modal.opened  {
+.modal-opened  {
     opacity:1;
     pointer-events: auto;
 }
 
-.modal > div {
+.modal-content  {
     width: 400px;
     position: relative;
     margin: 10% auto;
