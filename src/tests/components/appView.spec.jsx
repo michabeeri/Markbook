@@ -25,12 +25,6 @@ define(['react', 'reactDOM', 'components/appView', 'components/mainView/mainView
                 }).not.toThrowError();
             });
 
-            it('should be able to add item', function () {
-                var itemData = {};
-                appView.addItem(itemData);
-                expect(appView.state.itemData).toEqual(jasmine.arrayContaining([itemData]));
-            });
-
             it('should propogate items state to MainView', function () {
                 expect(TestUtils.findRenderedComponentWithType(appView, MainView).props.items).toBe(bookmarkListItemsData);
             });
