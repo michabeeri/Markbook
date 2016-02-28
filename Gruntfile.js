@@ -37,6 +37,18 @@ module.exports = function (grunt) {
                         dest: VENDOR_TARGET + 'lodash.js'
                     },
                     {
+                        src: 'node_modules/redux/dist/redux.js',
+                        dest: VENDOR_TARGET + 'redux.js'
+                    },
+                    {
+                        src: 'node_modules/react-redux/dist/react-redux.js',
+                        dest: VENDOR_TARGET + 'react-redux.js'
+                    },
+                    {
+                        src: 'node_modules/node-uuid/uuid.js',
+                        dest: VENDOR_TARGET + 'uuid.js'
+                    },
+                    {
                         expand: true,
                         cwd: 'src/img/',
                         src: '**/*',
@@ -103,6 +115,13 @@ module.exports = function (grunt) {
                         src: ['**/*.spec.jsx'],
                         dest: 'build/tests/',
                         ext: '.spec.js'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'src/tests/',
+                        src: ['**/*.js'],
+                        dest: 'build/tests/',
+                        ext: '.js'
                     }
                 ]
             }
@@ -180,7 +199,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('lint', ['eslint']);
     grunt.registerTask('compile', ['babel']);
-    grunt.registerTask('test', ['karma:unit']);
+    grunt.registerTask('test', ['karma:debug']);
     grunt.registerTask('build', ['lint', 'clean:build', 'compile', 'copy:build']);
     grunt.registerTask('default', ['build', 'test']);
 };
