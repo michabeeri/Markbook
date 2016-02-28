@@ -6,7 +6,7 @@ define(['react'],
             displayName: 'Modal',
             propTypes: {
                 className: React.PropTypes.string.isRequired,
-                onClose: React.PropTypes.func.isRequired,
+                closeModal: React.PropTypes.func.isRequired,
                 children: React.PropTypes.node.isRequired
             },
             render: function () {

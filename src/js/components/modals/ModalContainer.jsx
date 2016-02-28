@@ -1,11 +1,11 @@
-define(['react', 'components/modals/AddBookmarkModal', 'constants'],
-    function (React, AddBookmarkModal, constants) {
+define(['react', 'components/modals/AddBookmarkModal', 'constants', 'lodash'],
+    function (React, AddBookmarkModal, constants, _) {
         'use strict';
 
         return React.createClass({
             displayName: 'Modal container',
             propTypes: {
-                classNameAddBookmark: React.PropTypes.string.isRequired,
+                openedModal: React.PropTypes.oneOf(_.values(constants.eModalType)),
                 closeModal: React.PropTypes.func.isRequired
             },
             render: function () {
@@ -23,7 +23,7 @@ define(['react', 'components/modals/AddBookmarkModal', 'constants'],
                 document.body.style.overflow = (this.props.openedModal !== constants.eModalType.NONE) ? 'hidden' : 'none';
 
                 return (
-                    <div>
+                    <div >
                         <AddBookmarkModal classNameAddBookmark={classNameAddBookmark} closeModal={this.props.closeModal}/>
                     </div>
                 );
