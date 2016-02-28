@@ -18,16 +18,16 @@ define(['react', 'components/dropdown/dropdown'],
             });
 
             describe('Dropdown list', function () {
-                it('should have the same number of list items as items elements', function () {
+                it('should have the same number of lists as items elements', function () {
                     dropdown = TestUtils.renderIntoDocument(<Dropdown data={data} onLineClick={callback}/>);
-                    expect(dropdown.refs.dropdownList.children.length).toBe(2);
+                    expect(dropdown.refs.dropdownList.children.length).toBe(data.items.length);
                 });
             });
 
             describe('Nested dropdown list', function () {
                 it('should have the same number of list items as lines given', function () {
                     dropdown = TestUtils.renderIntoDocument(<Dropdown data={data} onLineClick={callback}/>);
-                    expect(dropdown.refs.group0.children.length).toBe(3);
+                    expect(dropdown.refs.group0.children.length).toBe(data.items[0].lines.length);
                 });
             });
 
