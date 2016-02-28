@@ -3,7 +3,11 @@ define(['reactRedux', 'components/mainView/topbar'],
         'use strict';
 
         return ReactRedux.connect(
-            null,
+            function (state) {
+                return {
+                    username: state.username
+                };
+            },
             function (dispatch) {
                 return {
                     onLogout: function () {

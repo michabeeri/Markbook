@@ -1,14 +1,13 @@
-define(['reactRedux', 'components/appView'],
-    function (ReactRedux, AppView) {
+define(['reactRedux', 'components/mainView/mainView'],
+    function (ReactRedux, MainView) {
         'use strict';
 
         return ReactRedux.connect(
             function (state) {
                 return {
-                    username: state.username,
                     bookmarks: state.bookmarks
                 };
             },
             null
-        )(AppView);
+        )(MainView);
     });

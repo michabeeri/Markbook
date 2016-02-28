@@ -1,4 +1,4 @@
-define(['react', 'components/mainView/mainView', 'components/mainView/topbar-rdx'],
+define(['react', 'components/mainView/mainView-rdx', 'components/mainView/topbar-rdx'],
     function (React, MainView, TopBar) {
 
         'use strict';
@@ -7,8 +7,8 @@ define(['react', 'components/mainView/mainView', 'components/mainView/topbar-rdx
             render: function () {
                 return (
                     <div className='main'>
-                        <TopBar username={this.props.username}/>
-                        <MainView bookmarks={this.props.bookmarks}/>
+                        <TopBar/>
+                        <MainView/>
                     </div>
                 );
             }

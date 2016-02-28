@@ -1,5 +1,5 @@
 
-define(['react', 'reactDOM', 'reduxTestUtils', 'components/appView-rdx'],
+define(['react', 'reactDOM', 'reduxTestUtils', 'components/appView'],
     function (React, ReactDOM, ReduxTestUtils, AppView) {
 
         'use strict';

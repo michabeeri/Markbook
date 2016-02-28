@@ -5,7 +5,6 @@ define(['lodash', 'react', 'reactRedux', 'components/bookmarkList/bookmarkGroup'
         'use strict';
 
         return React.createClass({
-
             displayName: 'BookmarkList',
             render: function () {
                 return (
