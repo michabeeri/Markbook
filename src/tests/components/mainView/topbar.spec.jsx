@@ -14,12 +14,12 @@ define(['react', 'components/mainView/topbar', 'constants'],
             });
 
             it('should show the logo of the app', function () {
-                var logoNode = testUtils.findRenderedDOMComponentWithClass(topBar, 'top-bar-logo');
+                var logoNode = testUtils.findRenderedDOMComponentWithClass(topBar, 'logo-img');
                 expect(logoNode).toBeTruthy();
             });
 
             it('should show the name of the app', function () {
-                var appNameNode = testUtils.findRenderedDOMComponentWithClass(topBar, 'top-bar-name');
+                var appNameNode = testUtils.findRenderedDOMComponentWithClass(topBar, 'logo-name');
                 expect(appNameNode).toBeTruthy();
                 expect(appNameNode.innerHTML).toEqual(Constants.APP_NAME);
 
@@ -33,7 +33,7 @@ define(['react', 'components/mainView/topbar', 'constants'],
             });
 
             it('should show a log out button', function () {
-                var logoutNode = testUtils.findRenderedDOMComponentWithClass(topBar, 'logout-btn');
+                var logoutNode = testUtils.findRenderedDOMComponentWithClass(topBar, 'btn-logout');
                 expect(logoutNode).toBeTruthy();
                 expect(logoutNode.innerHTML).toEqual('Log out');
             });
@@ -47,7 +47,7 @@ define(['react', 'components/mainView/topbar', 'constants'],
             it('should call onLogout when clicking the logout button', function () {
                 var onLogoutSpy = jasmine.createSpy('onLogoutSpy');
                 topBar = testUtils.renderIntoDocument(<TopBar username={username} onLogout={onLogoutSpy} />);
-                var logoutNode = testUtils.findRenderedDOMComponentWithClass(topBar, 'logout-btn');
+                var logoutNode = testUtils.findRenderedDOMComponentWithClass(topBar, 'btn-logout');
 
                 testUtils.Simulate.click(logoutNode);
 

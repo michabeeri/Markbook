@@ -6,27 +6,25 @@
   font-size: 14px;
 }
 
-.logo-section,
-.logout-section {
+.top-bar-section {
   display: flex;
   align-items: center;
   height: 44px;
 }
 
-.top-bar-name,
-.top-bar-logo {
+.logo {
   padding: 5px 5px;
 }
 
-.top-bar-name {
+.logo-name {
   font-size: 20px;
 }
 
 .top-bar-username,
-.logout-btn {
+.btn-logout {
   padding: 3px 21px;
 }
 
-.logout-btn {
+.btn-logout {
   border-left: 1px solid;
 }
