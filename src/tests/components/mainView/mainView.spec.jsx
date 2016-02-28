@@ -2,7 +2,7 @@ define(['react', 'reactDOM', 'reduxTestUtils', 'components/mainView/mainView'],
     function (React, ReactDOM, ReduxTestUtils, MainView) {
         'use strict';
 
-        describe('Main View', function () {
+        xdescribe('Main View', function () {
 
             var mainView;
 

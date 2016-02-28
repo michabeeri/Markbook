@@ -1,6 +1,6 @@
 
-define(['lodash', 'react', 'reactRedux', 'components/bookmarkList/bookmarkGroup', 'components/bookmarkList/bookmark'],
-    function (_, React, ReactRedux, BookmarkGroup, Bookmark) {
+define(['lodash', 'react', 'components/bookmarkList/bookmarkGroup', 'components/bookmarkList/bookmark'],
+    function (_, React, BookmarkGroup, Bookmark) {
 
         'use strict';
 
@@ -9,7 +9,7 @@ define(['lodash', 'react', 'reactRedux', 'components/bookmarkList/bookmarkGroup'
             render: function () {
                 return (
                     <div>
-                        {_.map(this.props.bookmarks, function (bm) {
+                        {_.map(this.props.state.bookmarks, function (bm) {
                             if (bm.children) {
                                 return <BookmarkGroup key={bm.id} bookmarkData={bm}/>;
                             }
@@ -19,5 +19,4 @@ define(['lodash', 'react', 'reactRedux', 'components/bookmarkList/bookmarkGroup'
                 );
             }
         });
-
     });
