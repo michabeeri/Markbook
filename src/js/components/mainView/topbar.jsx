@@ -4,8 +4,9 @@ define(['react', 'constants'],
 
         return React.createClass({
             displayName: 'TopBar',
-            onLogout: function () {
-                this.props.dispatch({type: 'LOGOUT'});
+            propTypes: {
+                username: React.PropTypes.string.isRequired,
+                onLogout: React.PropTypes.func.isRequired
             },
             render: function () {
                 return (
