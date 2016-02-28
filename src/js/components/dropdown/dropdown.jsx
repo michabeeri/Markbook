@@ -12,27 +12,34 @@ define(['react'], function (React) {
             var line = event.target;
             this.props.onLineClick(line.dataset.type, line.dataset.value);
         },
-        renderItems: function () {
+        renderGroup: function () {
             var self = this;
             return this.props.data.items.map(function (filteredGroup, groupIndex) {
                 return (
                     <li><span>{filteredGroup.title}</span>
                         <ul ref={'group' + groupIndex}>
-                            {filteredGroup.lines.map(function (line, itemIndex) {
-                                return <li onClick={self.onClick}
-                                           data-value={line}
-                                           data-type={filteredGroup.groupType}
-                                           ref={filteredGroup.groupType + itemIndex}>
-                                    {line}
-                                </li>;
-                            })}
+                            {self.renderGroupLines(filteredGroup)}
                         </ul>
                     </li>);
             });
         },
+        renderGroupLines: function (filteredGroup) {
+            var self = this;
+            if (filteredGroup.lines.length > 0) {
+                return (filteredGroup.lines.map(function (line, itemIndex) {
+                    return (<li onClick={self.onClick}
+                                data-value={line}
+                                data-type={filteredGroup.groupType}
+                                ref={filteredGroup.groupType + itemIndex}>
+                        {line}
+                    </li>);
+                }));
+            }
+            return <li ref={filteredGroup.groupType + 0}>{'No Matches'}</li>;
+        },
         render: function () {
             return (
-                <ul ref="dropdownList">{this.renderItems()}</ul>
+                <ul ref="dropdownList">{this.renderGroup()}</ul>
             );
         }
     });
