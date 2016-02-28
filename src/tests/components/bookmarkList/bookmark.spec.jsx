@@ -7,14 +7,14 @@ define(['react', 'reactDOM', 'components/bookmarkList/bookmark'],
         describe('Bookmark', function () {
 
             var bookmark,
-                itemData;
+                bookmarkData;
 
             beforeEach(function () {
-                itemData = {
+                bookmarkData = {
                         title: 'Fargo Season 2',
                         date: new Date(2015, 10, 18)
                     };
-                bookmark = TestUtils.renderIntoDocument(<Bookmark itemData={itemData}/>);
+                bookmark = TestUtils.renderIntoDocument(<Bookmark bookmarkData={bookmarkData}/>);
             });
 
             it('should render title in h1 tag', function () {

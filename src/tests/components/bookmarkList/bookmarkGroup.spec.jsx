@@ -7,14 +7,14 @@ define(['react', 'reactDOM', 'components/bookmarkList/bookmarkGroup'],
         describe('Bookmark', function () {
 
             var bookmarkGroup,
-                itemData;
+                bookmarkData;
 
             beforeEach(function () {
-                itemData = {
+                bookmarkData = {
                     title: 'Fargo Season 2',
                     children: Array(4).fill({})
                 };
-                bookmarkGroup = TestUtils.renderIntoDocument(<BookmarkGroup itemData={itemData}/>);
+                bookmarkGroup = TestUtils.renderIntoDocument(<BookmarkGroup bookmarkData={bookmarkData}/>);
             });
 
             it('should render title in h1 tag', function () {

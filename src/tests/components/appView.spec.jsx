@@ -1,5 +1,6 @@
-define(['react', 'reactDOM', 'components/appView', 'components/mainView/mainView'],
-    function (React, ReactDOM, AppView, MainView) {
+
+define(['react', 'reactDOM', 'reduxTestUtils', 'components/appView'],
+    function (React, ReactDOM, ReduxTestUtils, AppView) {
 
         'use strict';
 
@@ -7,16 +8,12 @@ define(['react', 'reactDOM', 'components/appView', 'components/mainView/mainView
 
         describe('App View', function () {
 
-            var appView,
-                bookmarkListItemsData;
+            var appView;
 
             beforeEach(function () {
-                bookmarkListItemsData = [];
-                appView = TestUtils.renderIntoDocument(<AppView items={bookmarkListItemsData}/>);
-            });
 
-            it('should render with correct display name', function () {
-                expect(appView.constructor.displayName).toBe('AppView');
+                appView = ReduxTestUtils.renderInProvider(AppView);
+
             });
 
             it('should render the topbar component', function () {
@@ -25,8 +22,5 @@ define(['react', 'reactDOM', 'components/appView', 'components/mainView/mainView
                 }).not.toThrowError();
             });
 
-            it('should propogate items state to MainView', function () {
-                expect(TestUtils.findRenderedComponentWithType(appView, MainView).props.items).toBe(bookmarkListItemsData);
-            });
         });
     });
