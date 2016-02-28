@@ -13,7 +13,7 @@ define(['react', 'constants'],
                         </div>
                         <div className='logout-section'>
                             <span className='top-bar-username'>{this.props.username || ''}</span>
-                            <span className='logout-btn' onClick={this.props.onLogout()}>Log out</span>
+                            <span className='logout-btn' onClick={this.props.onLogout}>Log out</span>
                         </div>
                     </header>
                 );
