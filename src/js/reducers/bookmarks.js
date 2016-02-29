@@ -66,7 +66,7 @@ define(['lodash', 'constants'], function (_, Constants) {
                 // should implement smarter logic here:
                 // delete group if last item removed
                 // open modal to ask before deleting group
-                return _.reject(state, {id: '0000'});
+                return _.reject(state, {id: action.id});
 
 
             default:
