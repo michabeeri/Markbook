@@ -11,12 +11,45 @@ define(['lodash',
             renderItem: function (item) {
                 return <span
                     className='title-small'
-                    onClick={this.onItemClick.bind(this, item.id)} key={item.id}>{item.title + ' > '}</span>;
+                    onClick={this.onItemClick.bind(this, item.id)}>{item.title + ' > '}</span>;
+            },
+            isPathOnChildGroupLevel: function () {
+                return this.isPathLevelDeeperThan(1);
+            },
+            shouldFoldParentItems: function () {
+                return this.isPathLevelDeeperThan(2);
+            },
+            isPathLevelDeeperThan: function (level) {
+                var itemsWithoutRoot = this.props.items.slice(1);
+                return itemsWithoutRoot.length > level;
             },
             render: function () {
+                var items = this.props.items,
+                    foldedItem = null,
+                    parentItem = null,
+                    currentItem = null;
+
+                var rootItem = this.renderItem(items[0]);
+
+                if (this.isPathOnChildGroupLevel()) {
+                    parentItem = this.renderItem(items[items.length - 2]);
+                    currentItem = this.renderItem(items[items.length - 1]);
+                }
+
+                if (this.shouldFoldParentItems()) {
+                    var foldedItemData = {
+                        id: this.props.items[this.props.items.length - 3].id,
+                        title: '...'
+                    };
+                    foldedItem = this.renderItem(foldedItemData);
+                }
+
                 return (
                     <nav>
-                        {_.map(this.props.items, this.renderItem)}
+                        {rootItem}
+                        {foldedItem}
+                        {parentItem}
+                        {currentItem}
                     </nav>
                 );
             }

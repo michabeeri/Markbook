@@ -3,7 +3,7 @@ define(['lodash', 'constants'], function (_, Constants) {
 
     var initialState = [
         {
-            id: '0000',
+            id: 'root',
             title: 'All Bookmarks'
         },
         {
@@ -13,6 +13,14 @@ define(['lodash', 'constants'], function (_, Constants) {
         {
             id: '0002',
             title: 'Gaspar'
+        },
+        {
+            id: '0003',
+            title: 'bread'
+        },
+        {
+            id: '0004',
+            title: 'wallpaper'
         }
     ];
 
