@@ -27,14 +27,6 @@ define(['React', 'components/tags/tagsContainer'],
                     tags.addTag(tag);
                     expect(props.addTag).toHaveBeenCalledWith(tag);
                 });
-
-                it('should update state when a new tag is added', function () {
-                    var instance = React.createElement(TagsContainer, props);
-                    var tags = ReactTestUtils.renderIntoDocument(instance);
-                    tags.addTag(tag);
-                    expect(tags.state.tags).toContain(tag);
-                });
-
             });
 
             describe('removeTag', function () {
@@ -45,13 +37,6 @@ define(['React', 'components/tags/tagsContainer'],
                     var tags = ReactTestUtils.renderIntoDocument(instance);
                     tags.removeTag(tag);
                     expect(props.removeTag).toHaveBeenCalledWith(tag);
-                });
-
-                it('should update state when a tag is removed', function () {
-                    var instance = React.createElement(TagsContainer, props);
-                    var tags = ReactTestUtils.renderIntoDocument(instance);
-                    tags.removeTag('tag1');
-                    expect(tags.state.tags).not.toContain('tag1');
                 });
             });
         })
