@@ -12,8 +12,8 @@ define(['react'],
             render: function () {
                 return (
                     <div className={this.props.className}>
-                        <div>
-                            <i className='fa fa-times modalCloser' id='modalCloser' onClick={this.props.closeModal}></i>
+                        <div className="modal-content ">
+                            <i className='fa fa-times btn-close' id='modalCloser' onClick={this.props.closeModal}></i>
                             {this.props.children}
                         </div>
                     </div>
