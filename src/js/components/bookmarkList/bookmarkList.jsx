@@ -6,9 +6,9 @@ define(['lodash', 'react', 'components/bookmarkList/bookmarkGroup', 'components/
         return React.createClass({
             displayName: 'BookmarkList',
             getInitialState: function () {
-              return {
-                  dragged: null
-              }
+                return {
+                    dragged: null
+                };
             },
             onView: function () {
                 window.open('http://www.google.com');
