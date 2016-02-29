@@ -24,14 +24,14 @@ requirejs.config({
     }
 });
 
-requirejs(['react', 'reactDOM', 'redux', 'reactRedux', 'components/appView', 'reducers/user'],
-    function (React, ReactDOM, Redux, ReactRedux, AppView, userReducer) {
+requirejs(['react', 'reactDOM', 'redux', 'reactRedux', 'components/appView', 'reducers/app'],
+    function (React, ReactDOM, Redux, ReactRedux, AppView, appReducer) {
         'use strict';
 
         var Provider = ReactRedux.Provider;
 
         ReactDOM.render(
-            <Provider store={Redux.createStore(userReducer)}>
+            <Provider store={Redux.createStore(appReducer)}>
                 <AppView />
             </Provider>,
             document.getElementById('app')

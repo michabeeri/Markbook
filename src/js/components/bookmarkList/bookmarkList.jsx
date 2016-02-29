@@ -32,10 +32,25 @@ define(['lodash', 'react', 'components/bookmarkList/bookmarkGroup', 'components/
                     onClick={this.dispatchActionGenerator(ActionProvider.toggleBookmarkSelection(bm.id, true))}
                     onDoubleClick={this.dispatchActionGenerator(ActionProvider.openBookmarkGroup(bm.id))}/>);
             },
+            getFilteredBookmarks: function () {
+                var filter = this.props.state.filter;
+
+                function titleCondition(bm) {
+                    return !filter || !filter.title || bm.title.indexOf(filter.title) !== -1;
+                }
+
+                function tagCondition() {
+                    return !filter || !filter.tag;
+                }
+
+                return _.filter(this.props.state.bookmarks, function (bm) {
+                    return titleCondition(bm) && tagCondition(bm);
+                });
+            },
             render: function () {
                 return (
                     <div className='bookmark-list-container grid'>
-                        {_.map(this.props.state.bookmarks, function (bm) {
+                        {_.map(this.getFilteredBookmarks(), function (bm) {
                             if (bm.children) {
                                 return this.createGroup(bm);
                             }

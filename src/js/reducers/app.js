@@ -1,4 +1,4 @@
-define(['redux', 'reducers/bookmarks', 'reducers/userInfo', 'reducers/filterReducer'], function (Redux, bookmarksReducer, userInfoReducer, filterReducer) {
+define(['redux', 'reducers/bookmarks', 'reducers/userInfo', 'reducers/filter'], function (Redux, bookmarksReducer, userInfoReducer, filterReducer) {
     'use strict';
 
     return Redux.combineReducers({
