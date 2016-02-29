@@ -22,7 +22,7 @@ define(['react', 'components/bookmarkList/bookmarkList', 'components/modals/Moda
             return (
                 <div>
                     <BookmarkList {...this.props}/>
-                    <ModalContainer closeModal={this.closeModal} openedModal={this.state.openedModal}/>
+                    <ModalContainer dispatch={this.props.dispatch} closeModal={this.closeModal} openedModal={this.state.openedModal}/>
                     <i className="fa fa-plus-circle fa-3x" onClick={this.openAddBookMarkModal}></i>
                 </div>
             );

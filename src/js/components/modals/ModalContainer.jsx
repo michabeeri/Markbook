@@ -6,7 +6,8 @@ define(['react', 'components/modals/AddBookmarkModal', 'constants', 'lodash'],
             displayName: 'Modal container',
             propTypes: {
                 openedModal: React.PropTypes.oneOf(_.values(constants.eModalType)),
-                closeModal: React.PropTypes.func.isRequired
+                closeModal: React.PropTypes.func.isRequired,
+                dispatch: React.PropTypes.func.isRequired
             },
             render: function () {
                 var classNameAddBookmark = 'modal modal-closed';
@@ -25,7 +26,7 @@ define(['react', 'components/modals/AddBookmarkModal', 'constants', 'lodash'],
 
                 return (
                     <div>
-                        <AddBookmarkModal classNameAddBookmark={classNameAddBookmark} closeModal={this.props.closeModal}/>
+                        <AddBookmarkModal dispatch={this.props.dispatch} classNameAddBookmark={classNameAddBookmark} closeModal={this.props.closeModal}/>
                     </div>
                 );
             }
