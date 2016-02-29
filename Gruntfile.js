@@ -97,7 +97,7 @@ module.exports = function (grunt) {
         },
         babel: {
             options: {
-                sourceMap: false,
+                sourceMap: true,
                 blacklist: ['strict']
             },
             main: {
