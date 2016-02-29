@@ -62,14 +62,26 @@ html {
   border: 1px solid;
 }
 
+.border-no-top {
+  border-width: 0 1px 1px 1px;
+  border-style: solid;
+}
+
+.border-bottom {
+  border-width: 0 0 1px 0;
+  border-style: solid;
+}
+
 .input {
   border-color: #6b6b6b;
+  border: 1px solid;
   color: #6b6b6b;
   font-size: 14px;
+  font-weight: 200;
   text-align: left;
   height: 30px;
   width: 220px;
-  padding: 1px 0px 1px 0px;
+  padding: 5px;
 }
 
 .input-long {

@@ -13,7 +13,7 @@ define(['react', 'constants', 'actionProviders/actions'],
             },
             render: function () {
                 return (
-                    <header className='top-bar'>
+                    <header className='top-bar border-bottom'>
                         <div className='top-bar-section'>
                             <img className='logo logo-img' src='img/logo.jpg' alt='app logo' width='40' height='40'/>
                             <span className='logo logo-name'>{Constants.APP_NAME}</span>

@@ -1,19 +1,18 @@
-define(['react', 'constants', 'actionProviders/actions'],
-    function (React, Constants, UserInfoActionProvider) {
+define(['react', 'components/toolbar/bookmarksSearch'],
+    function (React, BookmarksSearch) {
         'use strict';
 
         return React.createClass({
-            displayName: 'TopBar',
+            displayName: 'ToolBar',
             propTypes: {
                 state: React.PropTypes.object.isRequired,
                 dispatch: React.PropTypes.func.isRequired
             },
-            onLogout: function () {
-                this.props.dispatch(UserInfoActionProvider.logout());
-            },
             render: function () {
                 return (
-                    <div></div>
+                    <div className='toolbar'>
+                        <BookmarksSearch dispatch={this.props.dispatch} items={this.props.state.bookmarks} />
+                    </div>
                 );
             }
         });
