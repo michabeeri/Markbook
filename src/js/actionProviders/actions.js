@@ -34,6 +34,18 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 type: Constants.REMOVE_BOOKMARK,
                 id: id
             };
+        },
+        logout: function () {
+            return {
+                type: Constants.LOGOUT
+            };
+        },
+        setFilter: function (tag, title) {
+            return {
+                type: Constants.SET_FILTER,
+                tag: tag,
+                title: title
+            };
         }
     };
 });

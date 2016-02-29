@@ -18,7 +18,13 @@ define([],
             OPEN_BOOKMARK_GROUP: 'OPEN_BOOKMARK_GROUP',
             EDIT_BOOKMARK: 'EDIT_BOOKMARK',
             TOGGLE_BOOKMARK_SELECTION: 'TOGGLE_BOOKMARK_SELECTION',
-            REMOVE_BOOKMARK: 'REMOVE_BOOKMARK'
+            REMOVE_BOOKMARK: 'REMOVE_BOOKMARK',
+
+            // user info action types
+            LOGOUT: 'LOGOUT',
+
+            // filter
+            SET_FILTER: 'SET_FILTER'
 
         };
     });

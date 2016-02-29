@@ -1,6 +1,6 @@
 
-define(['lodash', 'react', 'components/bookmarkList/bookmarkGroup', 'components/bookmarkList/bookmark', 'actionProviders/bookmarks'],
-    function (_, React, BookmarkGroup, Bookmark, BookmarkActionProvider) {
+define(['lodash', 'react', 'components/bookmarkList/bookmarkGroup', 'components/bookmarkList/bookmark', 'actionProviders/actions'],
+    function (_, React, BookmarkGroup, Bookmark, ActionProvider) {
 
         'use strict';
 
@@ -17,20 +17,20 @@ define(['lodash', 'react', 'components/bookmarkList/bookmarkGroup', 'components/
                     key={bm.id}
                     bookmarkData={bm}
                     onView={this.onView}
-                    onEdit={this.dispatchActionGenerator(BookmarkActionProvider.editBookmark(bm.id))}
-                    onDelete={this.dispatchActionGenerator(BookmarkActionProvider.removeBookmark(bm.id))}
-                    onClick={this.dispatchActionGenerator(BookmarkActionProvider.toggleBookmarkSelection(bm.id, true))}
+                    onEdit={this.dispatchActionGenerator(ActionProvider.editBookmark(bm.id))}
+                    onDelete={this.dispatchActionGenerator(ActionProvider.removeBookmark(bm.id))}
+                    onClick={this.dispatchActionGenerator(ActionProvider.toggleBookmarkSelection(bm.id, true))}
                     onDoubleClick={this.onView}/>);
             },
             createGroup: function (bm) {
                 return (<BookmarkGroup
                     key={bm.id}
                     bookmarkData={bm}
-                    onOpen={this.dispatchActionGenerator(BookmarkActionProvider.openBookmarkGroup(bm.id))}
-                    onEdit={this.dispatchActionGenerator(BookmarkActionProvider.editBookmark(bm.id))}
-                    onDelete={this.dispatchActionGenerator(BookmarkActionProvider.removeBookmark(bm.id))}
-                    onClick={this.dispatchActionGenerator(BookmarkActionProvider.toggleBookmarkSelection(bm.id, true))}
-                    onDoubleClick={this.dispatchActionGenerator(BookmarkActionProvider.openBookmarkGroup(bm.id))}/>);
+                    onOpen={this.dispatchActionGenerator(ActionProvider.openBookmarkGroup(bm.id))}
+                    onEdit={this.dispatchActionGenerator(ActionProvider.editBookmark(bm.id))}
+                    onDelete={this.dispatchActionGenerator(ActionProvider.removeBookmark(bm.id))}
+                    onClick={this.dispatchActionGenerator(ActionProvider.toggleBookmarkSelection(bm.id, true))}
+                    onDoubleClick={this.dispatchActionGenerator(ActionProvider.openBookmarkGroup(bm.id))}/>);
             },
             render: function () {
                 return (

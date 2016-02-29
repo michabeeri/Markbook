@@ -1,5 +1,5 @@
-define(['react', 'constants'],
-    function (React, Constants) {
+define(['react', 'constants', 'actionProviders/actions'],
+    function (React, Constants, ActionProvider) {
         'use strict';
 
         return React.createClass({
@@ -9,7 +9,7 @@ define(['react', 'constants'],
                 dispatch: React.PropTypes.func.isRequired
             },
             onLogout: function () {
-                this.props.dispatch({type: 'LOGOUT'});
+                this.props.dispatch(ActionProvider.logout());
             },
             render: function () {
                 return (
@@ -19,7 +19,7 @@ define(['react', 'constants'],
                             <span className='logo logo-name'>{Constants.APP_NAME}</span>
                         </div>
                         <div className='btn-group top-bar-section'>
-                            <span className='top-bar-username'>{this.props.state.username || ''}</span>
+                            <span className='top-bar-username'>{this.props.state.userInfo.username || ''}</span>
                             <span className='btn btn-logout' onClick={this.onLogout}>Log out</span>
                         </div>
                     </header>

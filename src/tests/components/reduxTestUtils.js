@@ -8,7 +8,9 @@ define(['react', 'reactDOM', 'redux', 'reactRedux'],
 
         function getInitialState() {
             return {
-                username: 'user@wix.com',
+                userInfo: {
+                    username: 'user@wix.com'
+                },
                 bookmarks: [
                     {
                         title: 'Fargo Season 2',
