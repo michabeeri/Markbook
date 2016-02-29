@@ -2,12 +2,13 @@ define(['uuid', 'constants'], function (uuid, Constants) {
     'use strict';
 
     return {
-        addBookmark: function (title, url) {
+        addBookmark: function (title, url, tags) {
             return {
                 type: Constants.ADD_BOOKMARK,
                 id: uuid.v4(),
                 title: title,
                 url: url,
+                tags: tags,
                 date: new Date()
             };
         },

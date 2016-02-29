@@ -1,5 +1,5 @@
-define(['react', 'components/modals/Modal', 'actionProviders/actions'],
-    function (React, Modal, actions) {
+define(['react', 'components/modals/Modal', 'actionProviders/actions', 'components/tags/tagsContainer'],
+    function (React, Modal, actions, TagsContainer) {
         'use strict';
 
         var LinkedStateMixin = React.addons.LinkedStateMixin;
@@ -20,7 +20,7 @@ define(['react', 'components/modals/Modal', 'actionProviders/actions'],
                 };
             },
             addBookmark: function () {
-                this.props.dispatch(actions.addBookmark(this.state.bookmarkName, this.state.bookmarkUrl));
+                this.props.dispatch(actions.addBookmark(this.state.bookmarkName, this.state.bookmarkUrl, this.state.tags));
                 this.props.closeModal();
             },
             addTag: function (tag) {
