@@ -8,32 +8,18 @@ define(['React', 'lodash', 'components/tags/tagInput', 'components/tags/tagsList
                 addTag: React.PropTypes.func.isRequired,
                 removeTag: React.PropTypes.func.isRequired
             },
-            getInitialState: function () {
-                return {
-                    tags: this.props.tags
-                };
-            },
-            addTag: function (tag) {
-                this.state.tags.push(tag);
-                this.setState({
-                    tags: this.state.tags
-                });
 
+            addTag: function (tag) {
                 this.props.addTag(tag);
             },
             removeTag: function (tag) {
-                _.pull(this.state.tags, tag);
-                this.setState({
-                    tags: this.state.tags
-                });
-
                 this.props.removeTag(tag);
             },
             render: function () {
                 return (
                     <div>
-                        <TagInput addTag={this.addTag}/>
-                        <TagsList tags={this.state.tags} removeTag={this.removeTag}/>
+                        <TagInput addTag={this.addTag} tags={['naama', 'nam', 'na']}/>
+                        <TagsList tags={this.props.tags} removeTag={this.removeTag}/>
                     </div>
                 );
             }

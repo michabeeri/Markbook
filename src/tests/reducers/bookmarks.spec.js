@@ -23,9 +23,9 @@ define(['lodash', 'constants', 'reducers/bookmarks'],
                 expect(_.find(newState, {id: '0000'})).toBeUndefined();
             });
 
-            it('should toggle bookmark selection (without clearing)', function () {
+            it('should toggle bookmark selection with multi-select', function () {
                 var initialState = [{id: '1111', selected: true}, {id: '0000'}];
-                var action = {type: constants.TOGGLE_BOOKMARK_SELECTION, id: '0000'};
+                var action = {type: constants.TOGGLE_BOOKMARK_SELECTION, id: '0000', isMultiSelect: true};
                 var newState = bookmarks(initialState, action);
                 expect(_.find(newState, {id: '0000'}).selected).toBeTruthy();
                 expect(_.find(newState, {id: '1111'}).selected).toBeTruthy();
@@ -34,9 +34,9 @@ define(['lodash', 'constants', 'reducers/bookmarks'],
                 expect(_.find(newState, {id: '1111'}).selected).toBeTruthy();
             });
 
-            it('should toggle bookmark selection and clear other selection', function () {
+            it('should toggle bookmark selection without multi-select', function () {
                 var initialState = [{id: '1111', selected: true}, {id: '0000'}];
-                var action = {type: constants.TOGGLE_BOOKMARK_SELECTION, id: '0000', clearOtherSelection: true};
+                var action = {type: constants.TOGGLE_BOOKMARK_SELECTION, id: '0000'};
                 var newState = bookmarks(initialState, action);
                 expect(_.find(newState, {id: '0000'}).selected).toBeTruthy();
                 expect(_.find(newState, {id: '1111'}).selected).toBeFalsy();

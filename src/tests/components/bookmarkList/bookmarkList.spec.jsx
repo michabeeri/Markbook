@@ -41,6 +41,16 @@ define(['react', 'reactDOM', 'constants', 'components/bookmarkList/bookmarkList'
                 expect(TestUtils.scryRenderedComponentsWithType(bookmarkList, BookmarkGroup).length).toBe(1);
             });
 
+            it('should filter bookmarks', function () {
+                bookmarkList = TestUtils.renderIntoDocument(<BookmarkList
+                    state={{
+                        bookmarks: bookmarkListItemsData,
+                        filter: {title: 'Fargo', tag: ''}
+                        }}
+                    dispatch={mockDispatcher}/>);
+                expect(TestUtils.scryRenderedComponentsWithType(bookmarkList, Bookmark).length).toBe(2);
+            });
+
             it('should pass onOpen callback to child groups', function () {
                 mockDispatcher = function (action) {
                     expect(action.type).toBe(Constants.OPEN_BOOKMARK_GROUP);

@@ -13,6 +13,15 @@
   position: relative;
 }
 
+.bookmark-base h1,
+.bookmark-base h2,
+.bookmark-base button {
+  user-select: none; /* CSS3 (little to no support) */
+  -ms-user-select: none; /* IE 10+ */
+  -moz-user-select: none; /* Gecko (Firefox) */
+  -webkit-user-select: none;
+}
+
 .bookmark-base.selected {
   box-shadow: inset 0 0 2px #00336C, 0 0 2px #00336C;
 }
