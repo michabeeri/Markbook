@@ -10,12 +10,12 @@ define(['react', 'components/modals/AddBookmarkModal', 'constants', 'lodash'],
                 dispatch: React.PropTypes.func.isRequired
             },
             render: function () {
-                var classNameAddBookmark = 'modal modal-closed';
+                var renderedComp;
 
                 switch (this.props.openedModal) {
                     case constants.eModalType.MODAL_ADD_BOOKMARK:
                     {
-                        classNameAddBookmark = 'modal modal-opened';
+                        renderedComp = <AddBookmarkModal dispatch={this.props.dispatch} classNameAddBookmark='modal modal-opened' closeModal={this.props.closeModal}/>;
                         break;
                     }
                 }
@@ -25,8 +25,9 @@ define(['react', 'components/modals/AddBookmarkModal', 'constants', 'lodash'],
                 document.body.style.overflow = (this.props.openedModal !== constants.eModalType.NONE) ? 'hidden' : 'none';
 
                 return (
+
                     <div>
-                        <AddBookmarkModal dispatch={this.props.dispatch} classNameAddBookmark={classNameAddBookmark} closeModal={this.props.closeModal}/>
+                        {renderedComp}
                     </div>
                 );
             }
