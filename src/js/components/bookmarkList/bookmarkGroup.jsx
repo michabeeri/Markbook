@@ -4,8 +4,8 @@ define(['react', 'mixins/draggable'], function (React, draggable) {
         mixins: [draggable],
         displayName: 'BookmarkGroup',
         render: function () {
-            var classString = 'bookmark-base grid' + (this.props.bookmarkData.selected ? ' selected' : '')
-                + (this.props.dragClass ? 'dragged' : '');
+            var classString = 'bookmark-base grid' + (this.props.bookmarkData.selected ? ' selected' : '') +
+                (this.props.dragClass ? 'dragged' : '');
             return (
                 <div className={classString}
                      draggable='true' onDragStart={this.onDragStart} onDragEnd={this.onDragEnd} onDragOver={this.onDragOver}
