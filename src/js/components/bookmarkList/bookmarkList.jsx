@@ -5,6 +5,11 @@ define(['lodash', 'react', 'components/bookmarkList/bookmarkGroup', 'components/
 
         return React.createClass({
             displayName: 'BookmarkList',
+            getInitialState: function () {
+                return {
+                    dragged: null
+                };
+            },
             onView: function () {
                 window.open('http://www.google.com');
             },
@@ -19,24 +24,42 @@ define(['lodash', 'react', 'components/bookmarkList/bookmarkGroup', 'components/
                 }.bind(this);
             },
             createSingle: function (bm) {
+                var dragged = false;
+                if (bm.id === this.state.dragged) {
+                    dragged = true;
+                }
                 return (<Bookmark
                     key={bm.id}
+                    dataId={'bm' + bm.id}
                     bookmarkData={bm}
                     onView={this.onView}
                     onEdit={this.dispatchActionGenerator(ActionProvider.editBookmark(bm.id))}
                     onDelete={this.dispatchActionGenerator(ActionProvider.removeBookmark(bm.id))}
                     onClick={this.onClickActionGenerator(bm.id)}
-                    onDoubleClick={this.onView}/>);
+                    onDoubleClick={this.onView}
+                    dragClass={dragged}
+                    dragStart={this.setDragged}
+                    dragOver={this.dragReorder}
+                    dragEnd={this.setDragged}/>);
             },
             createGroup: function (bm) {
+                var dragged = false;
+                if (bm.id === this.state.dragged) {
+                    dragged = true;
+                }
                 return (<BookmarkGroup
                     key={bm.id}
+                    dataId={'bm' + bm.id}
                     bookmarkData={bm}
                     onOpen={this.dispatchActionGenerator(ActionProvider.openBookmarkGroup(bm.id))}
                     onEdit={this.dispatchActionGenerator(ActionProvider.editBookmark(bm.id))}
                     onDelete={this.dispatchActionGenerator(ActionProvider.removeBookmark(bm.id))}
                     onClick={this.onClickActionGenerator(bm.id)}
-                    onDoubleClick={this.dispatchActionGenerator(ActionProvider.openBookmarkGroup(bm.id))}/>);
+                    onDoubleClick={this.dispatchActionGenerator(ActionProvider.openBookmarkGroup(bm.id))}
+                    dragClass={dragged}
+                    dragStart={this.setDragged}
+                    dragOver={this.dragReorder}
+                    dragEnd={this.setDragged}/>);
             },
             getFilteredBookmarks: function () {
                 var filter = this.props.state.filter;
@@ -52,6 +75,14 @@ define(['lodash', 'react', 'components/bookmarkList/bookmarkGroup', 'components/
                 return _.filter(this.props.state.bookmarks, function (bm) {
                     return titleCondition(bm) && tagCondition(bm);
                 });
+            },
+            dragReorder: function () {
+                //TODO implementation of reorder
+            },
+            setDragged: function (draggedId) {
+                if (this.state.dragged !== draggedId) {
+                    this.setState({dragged: draggedId});
+                }
             },
             render: function () {
                 return (
