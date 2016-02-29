@@ -3,8 +3,9 @@ define(['react'], function (React) {
     return React.createClass({
         displayName: 'Bookmark',
         render: function () {
+            var classString = 'bookmark-base' + (this.props.bookmarkData.selected ? ' selected' : '');
             return (
-                <div className="bookmark-base">
+                <div className={classString} onClick={this.props.onClick} onDoubleClick={this.props.onDoubleClick}>
                     <h1 className='title-small'>{this.props.bookmarkData.title}</h1>
                     <h2 className='title-small footer'>{this.props.bookmarkData.date.toLocaleDateString('en-US')}</h2>
                     <button onClick={this.props.onView}>{'View'}</button>

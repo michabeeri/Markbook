@@ -18,7 +18,9 @@ define(['lodash', 'react', 'components/bookmarkList/bookmarkGroup', 'components/
                     bookmarkData={bm}
                     onView={this.onView}
                     onEdit={this.dispatchActionGenerator(BookmarkActionProvider.editBookmark(bm.id))}
-                    onDelete={this.dispatchActionGenerator(BookmarkActionProvider.removeBookmark(bm.id))}/>);
+                    onDelete={this.dispatchActionGenerator(BookmarkActionProvider.removeBookmark(bm.id))}
+                    onClick={this.dispatchActionGenerator(BookmarkActionProvider.toggleBookmarkSelection(bm.id, true))}
+                    onDoubleClick={this.onView}/>);
             },
             createGroup: function (bm) {
                 return (<BookmarkGroup
@@ -26,7 +28,9 @@ define(['lodash', 'react', 'components/bookmarkList/bookmarkGroup', 'components/
                     bookmarkData={bm}
                     onOpen={this.dispatchActionGenerator(BookmarkActionProvider.openBookmarkGroup(bm.id))}
                     onEdit={this.dispatchActionGenerator(BookmarkActionProvider.editBookmark(bm.id))}
-                    onDelete={this.dispatchActionGenerator(BookmarkActionProvider.removeBookmark(bm.id))}/>);
+                    onDelete={this.dispatchActionGenerator(BookmarkActionProvider.removeBookmark(bm.id))}
+                    onClick={this.dispatchActionGenerator(BookmarkActionProvider.toggleBookmarkSelection(bm.id, true))}
+                    onDoubleClick={this.dispatchActionGenerator(BookmarkActionProvider.openBookmarkGroup(bm.id))}/>);
             },
             render: function () {
                 return (

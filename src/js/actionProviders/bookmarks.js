@@ -22,6 +22,13 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 id: id
             };
         },
+        toggleBookmarkSelection: function (id, clearOtherSelection) {
+            return {
+                type: Constants.TOGGLE_BOOKMARK_SELECTION,
+                id: id,
+                clearOtherSelection: clearOtherSelection
+            };
+        },
         removeBookmark: function (id) {
             return {
                 type: Constants.REMOVE_BOOKMARK,
