@@ -42,7 +42,21 @@ define(['lodash', 'constants'], function (_, Constants) {
                     title: action.title,
                     date: action.date
                 });
+
+            case Constants.OPEN_BOOKMARK_GROUP:
+                // drill into group
+                console.log('open ' + action.id);
+                return state;
+
+            case Constants.EDIT_BOOKMARK:
+                // open edit modal
+                console.log('edit ' + action.id);
+                return state;
+
             case Constants.REMOVE_BOOKMARK:
+                // should implement smarter logic here:
+                // delete group if last item removed
+                // open modal to ask before deleting group
                 return _.reject(state, function (bm) {
                     return bm.id && bm.id === action.id;
                 });
@@ -53,3 +67,38 @@ define(['lodash', 'constants'], function (_, Constants) {
         }
     };
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

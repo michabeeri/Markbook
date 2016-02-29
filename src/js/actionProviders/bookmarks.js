@@ -10,6 +10,18 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 date: date
             };
         },
+        openBookmarkGroup: function (id) {
+            return {
+                type: Constants.OPEN_BOOKMARK_GROUP,
+                id: id
+            };
+        },
+        editBookmark: function (id) {
+            return {
+                type: Constants.EDIT_BOOKMARK,
+                id: id
+            };
+        },
         removeBookmark: function (id) {
             return {
                 type: Constants.REMOVE_BOOKMARK,

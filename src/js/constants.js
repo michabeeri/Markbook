@@ -13,8 +13,10 @@ define([],
 
             eModalType: eModalType,
 
-            // Action types
+            // Bookmark action types
             ADD_BOOKMARK: 'ADD_BOOKMARK',
+            OPEN_BOOKMARK_GROUP: 'OPEN_BOOKMARK_GROUP',
+            EDIT_BOOKMARK: 'EDIT_BOOKMARK',
             REMOVE_BOOKMARK: 'REMOVE_BOOKMARK'
 
         };

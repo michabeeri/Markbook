@@ -4,7 +4,7 @@ define(['react', 'components/dropdown/dropdown'],
 
         var TestUtils = React.addons.TestUtils;
 
-        fdescribe('Dropdown', function () {
+        describe('Dropdown', function () {
 
             var data, dropdown, callback;
 
