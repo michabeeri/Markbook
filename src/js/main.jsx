@@ -26,6 +26,7 @@ requirejs.config({
 
 requirejs(['react', 'reactDOM', 'redux', 'reactRedux', 'components/appView', 'reducers/app'],
     function (React, ReactDOM, Redux, ReactRedux, AppView, appReducer) {
+
         'use strict';
 
         var Provider = ReactRedux.Provider;
