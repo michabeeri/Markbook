@@ -30,7 +30,7 @@ define(['lodash', 'react', 'components/bookmarkList/bookmarkGroup', 'components/
             },
             render: function () {
                 return (
-                    <div>
+                    <div className='bookmark-list-container grid'>
                         {_.map(this.props.state.bookmarks, function (bm) {
                             if (bm.children) {
                                 return this.createGroup(bm);
