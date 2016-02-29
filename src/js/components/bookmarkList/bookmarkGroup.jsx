@@ -3,7 +3,7 @@ define(['react'], function (React) {
     return React.createClass({
         displayName: 'BookmarkGroup',
         render: function () {
-            var classString = 'bookmark-base' + (this.props.bookmarkData.selected ? ' selected' : '');
+            var classString = 'bookmark-base grid' + (this.props.bookmarkData.selected ? ' selected' : '');
             return (
                 <div className={classString} onClick={this.props.onClick} onDoubleClick={this.props.onDoubleClick}>
                     <h1 className='title-small'>{this.props.bookmarkData.title}</h1>
