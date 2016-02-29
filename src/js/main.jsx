@@ -3,7 +3,10 @@ requirejs.config({
         lodash: '../vendor/lodash',
         react: '../vendor/react',
         reactDOM: '../vendor/react-dom',
-        router: 'https://cdnjs.cloudflare.com/ajax/libs/react-router/2.0.0/ReactRouter'
+        router: 'https://cdnjs.cloudflare.com/ajax/libs/react-router/2.0.0/ReactRouter',
+        redux: '../vendor/redux',
+        reactRedux: '../vendor/react-redux',
+        uuid: '../vendor/uuid'
     },
     map: {
         '*': {
@@ -21,10 +24,17 @@ requirejs.config({
     }
 });
 
-requirejs(['lodash', 'react', 'reactDOM', 'components/AppView'],
-    function (_, React, ReactDOM, AppView) {
+requirejs(['react', 'reactDOM', 'redux', 'reactRedux', 'components/appView', 'reducers/app'],
+    function (React, ReactDOM, Redux, ReactRedux, AppView, userReducer) {
         'use strict';
-        var mountPoint = document.getElementById('app');
-        ReactDOM.render(<AppView />, mountPoint);
+
+        var Provider = ReactRedux.Provider;
+
+        ReactDOM.render(
+            <Provider store={Redux.createStore(userReducer)}>
+                <AppView />
+            </Provider>,
+            document.getElementById('app')
+        );
     }
 );

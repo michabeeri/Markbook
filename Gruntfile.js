@@ -21,10 +21,6 @@ module.exports = function (grunt) {
             build: {
                 files: [
                     {
-                        src: 'src/css/main.css',
-                        dest: 'build/css/main.css'
-                    },
-                    {
                         src: 'node_modules/react/dist/react-with-addons.js',
                         dest: VENDOR_TARGET + 'react.js'
                     },
@@ -41,6 +37,18 @@ module.exports = function (grunt) {
                         dest: VENDOR_TARGET + 'lodash.js'
                     },
                     {
+                        src: 'node_modules/redux/dist/redux.js',
+                        dest: VENDOR_TARGET + 'redux.js'
+                    },
+                    {
+                        src: 'node_modules/react-redux/dist/react-redux.js',
+                        dest: VENDOR_TARGET + 'react-redux.js'
+                    },
+                    {
+                        src: 'node_modules/node-uuid/uuid.js',
+                        dest: VENDOR_TARGET + 'uuid.js'
+                    },
+                    {
                         expand: true,
                         cwd: 'src/img/',
                         src: '**/*',
@@ -51,6 +59,12 @@ module.exports = function (grunt) {
                         cwd: 'src/js',
                         src: '**/*.js',
                         dest: 'build/js'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'src/css',
+                        src: '**/*.css',
+                        dest: 'build/css'
                     },
                     {
                         src: 'src/index.html',
@@ -101,6 +115,13 @@ module.exports = function (grunt) {
                         src: ['**/*.spec.jsx'],
                         dest: 'build/tests/',
                         ext: '.spec.js'
+                    },
+                    {
+                        expand: true,
+                        cwd: 'src/tests/',
+                        src: ['**/*.js'],
+                        dest: 'build/tests/',
+                        ext: '.js'
                     }
                 ]
             }

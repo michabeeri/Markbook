@@ -12,8 +12,17 @@ requirejs.config({
         lodash: 'vendor/lodash',
         react: 'vendor/react',
         reactDOM: 'vendor/react-dom',
+        redux: 'vendor/redux',
+        reactRedux: 'vendor/react-redux',
+        uuid: 'vendor/uuid',
         router: 'https://cdnjs.cloudflare.com/ajax/libs/react-router/2.0.0/ReactRouter',
-        components: 'js/components'
+        components: 'js/components',
+        mixins: 'js/mixins',
+        constants: 'js/constants',
+        reducers: 'js/reducers',
+        actionProviders: 'js/actionProviders',
+        reduxTestUtils: 'tests/components/reduxTestUtils',
+        reduxUtils: 'js/reduxUtils'
     },
     map: {
         '*': {

@@ -1,0 +1,30 @@
+.top-bar {
+  border: 1px solid;
+  display: flex;
+  justify-content: space-between;
+  line-height: 40px;
+  font-size: 14px;
+}
+
+.top-bar-section {
+  display: flex;
+  align-items: center;
+  height: 44px;
+}
+
+.logo {
+  padding: 5px 5px;
+}
+
+.logo-name {
+  font-size: 20px;
+}
+
+.top-bar-username,
+.btn-logout {
+  padding: 3px 21px;
+}
+
+.btn-logout {
+  border-left: 1px solid;
+}
