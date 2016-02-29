@@ -38,8 +38,9 @@ define(['lodash', 'react', 'components/bookmarkList/bookmarkGroup', 'components/
                     onClick={this.onClickActionGenerator(bm.id)}
                     onDoubleClick={this.onView}
                     dragClass={dragged}
-                    onDragStart={this.setDragged}
-                    onDragOver={this.dragReorder}/>);
+                    dragStart={this.setDragged}
+                    dragOver={this.dragReorder}
+                    dragEnd={this.setDragged}/>);
             },
             createGroup: function (bm) {
                 var dragged = false;
@@ -56,8 +57,9 @@ define(['lodash', 'react', 'components/bookmarkList/bookmarkGroup', 'components/
                     onClick={this.onClickActionGenerator(bm.id)}
                     onDoubleClick={this.dispatchActionGenerator(ActionProvider.openBookmarkGroup(bm.id))}
                     dragClass={dragged}
-                    onDragStart={this.setDragged}
-                    onDragOver={this.dragReorder}/>);
+                    dragStart={this.setDragged}
+                    dragOver={this.dragReorder}
+                    dragEnd={this.setDragged}/>);
             },
             getFilteredBookmarks: function () {
                 var filter = this.props.state.filter;
@@ -74,17 +76,8 @@ define(['lodash', 'react', 'components/bookmarkList/bookmarkGroup', 'components/
                     return titleCondition(bm) && tagCondition(bm);
                 });
             },
-            dragReorder: function (draggedOverId) {
-                if (!this.state.dragged || this.state.dragged === draggedOverId) {
-                    return;
-                }
-                var indexDragged = _.findIndex(this.state.boxes, {key: this.state.dragged});
-                var indexDraggedOn = _.findIndex(this.state.boxes, {key: draggedOverId});
-                var newBoxes = this.state.boxes.slice();
-                newBoxes.splice(indexDraggedOn, 0, newBoxes.splice(indexDragged, 1)[0]);
-                this.setState({
-                    boxes: newBoxes
-                });
+            dragReorder: function () {
+                //TODO implementation of reorder
             },
             setDragged: function (draggedId) {
                 if (this.state.dragged !== draggedId) {

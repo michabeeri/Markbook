@@ -1,23 +1,18 @@
 define([], function () {
     'use strict';
     return {
-        getInitialState: function () {
-            return {
-                dragged: false
-            };
+        onDragStart: function (event) {
+            event.dataTransfer.effectAllowed = 'move';
+            setTimeout(function () {
+                this.props.dragStart(this.props.dataId);
+            }.bind(this), 50);
         },
-        onDragStart: function () {
-            this.setState({
-                dragged: true
-            });
+        onDragOver: function (event) {
+            event.preventDefault();
+            this.props.dragOver(this.props.dataId);
         },
         onDragEnd: function () {
-            this.setState({
-                dragged: false
-            });
-        },
-        getDragClass: function () {
-            return this.state.dragged ? 'dragged' : '';
+            this.props.dragEnd();
         }
     };
 });
