@@ -47,6 +47,12 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 tag: tag,
                 title: title
             };
+        },
+        navigateToPreviousGroup: function (id) {
+            return {
+                type: Constants.NAVIGATE_TO_PREVIOUS_GROUP,
+                id: id
+            };
         }
     };
 });

@@ -21,6 +21,7 @@ define(['lodash', 'react', 'components/bookmarkList/bookmarkGroup', 'components/
             createSingle: function (bm) {
                 return (<Bookmark
                     key={bm.id}
+                    dataId={'bm' + bm.id}
                     bookmarkData={bm}
                     onView={this.onView}
                     onEdit={this.dispatchActionGenerator(ActionProvider.editBookmark(bm.id))}
@@ -31,6 +32,7 @@ define(['lodash', 'react', 'components/bookmarkList/bookmarkGroup', 'components/
             createGroup: function (bm) {
                 return (<BookmarkGroup
                     key={bm.id}
+                    dataId={'bm' + bm.id}
                     bookmarkData={bm}
                     onOpen={this.dispatchActionGenerator(ActionProvider.openBookmarkGroup(bm.id))}
                     onEdit={this.dispatchActionGenerator(ActionProvider.editBookmark(bm.id))}
