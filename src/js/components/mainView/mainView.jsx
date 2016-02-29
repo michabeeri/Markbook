@@ -4,7 +4,7 @@ define(['react', 'components/bookmarkList/bookmarkList'], function (React, Bookm
         displayName: 'MainView',
         render: function () {
             return (
-                <BookmarkList bookmarks={this.props.bookmarks}/>
+                <BookmarkList {...this.props}/>
             );
         }
     });

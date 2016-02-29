@@ -24,7 +24,7 @@ requirejs.config({
     }
 });
 
-requirejs(['react', 'reactDOM', 'redux', 'reactRedux', 'components/appView', 'reducers/user'],
+requirejs(['react', 'reactDOM', 'redux', 'reactRedux', 'components/appView', 'reducers/app'],
     function (React, ReactDOM, Redux, ReactRedux, AppView, userReducer) {
         'use strict';
 
