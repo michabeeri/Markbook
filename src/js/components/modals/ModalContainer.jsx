@@ -9,21 +9,22 @@ define(['react', 'components/modals/AddBookmarkModal', 'constants', 'lodash'],
                 closeModal: React.PropTypes.func.isRequired
             },
             render: function () {
-                var classNameAddBookmark = 'modalDialog closed';
+                var classNameAddBookmark = 'modal modal-closed';
 
                 switch (this.props.openedModal) {
                     case constants.eModalType.MODAL_ADD_BOOKMARK:
                     {
-                        classNameAddBookmark = 'modalDialog opened';
+                        classNameAddBookmark = 'modal modal-opened';
                         break;
                     }
                 }
 
                 //prevent scrolling of web page when modal is opened
+                //TODO: change to component Overlay
                 document.body.style.overflow = (this.props.openedModal !== constants.eModalType.NONE) ? 'hidden' : 'none';
 
                 return (
-                    <div >
+                    <div>
                         <AddBookmarkModal classNameAddBookmark={classNameAddBookmark} closeModal={this.props.closeModal}/>
                     </div>
                 );
