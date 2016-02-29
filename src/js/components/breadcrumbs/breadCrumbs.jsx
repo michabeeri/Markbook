@@ -21,7 +21,7 @@ define(['lodash',
             },
             isPathLevelDeeperThan: function (level) {
                 var itemsWithoutRoot = this.props.items.slice(1);
-                return itemsWithoutRoot.length > level;
+                return itemsWithoutRoot.length >= level;
             },
             render: function () {
                 var items = this.props.items,
@@ -32,7 +32,10 @@ define(['lodash',
                 var rootItem = this.renderItem(items[0]);
 
                 if (this.isPathOnChildGroupLevel()) {
-                    parentItem = this.renderItem(items[items.length - 2]);
+                    var parentItemData = items[items.length - 2];
+                    if (parentItemData.id !== 'root') {
+                        parentItem = this.renderItem(parentItemData);
+                    }
                     currentItem = this.renderItem(items[items.length - 1]);
                 }
 

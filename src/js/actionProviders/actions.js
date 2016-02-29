@@ -12,12 +12,6 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 date: new Date()
             };
         },
-        openBookmarkGroup: function (id) {
-            return {
-                type: Constants.OPEN_BOOKMARK_GROUP,
-                id: id
-            };
-        },
         editBookmark: function (id) {
             return {
                 type: Constants.EDIT_BOOKMARK,
@@ -53,6 +47,13 @@ define(['uuid', 'constants'], function (uuid, Constants) {
             return {
                 type: Constants.NAVIGATE_TO_PREVIOUS_GROUP,
                 id: id
+            };
+        },
+        openBookmarkGroup: function (id, title) {
+            return {
+                type: Constants.OPEN_BOOKMARK_GROUP,
+                id: id,
+                title: title
             };
         }
     };

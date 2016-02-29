@@ -55,11 +55,6 @@ define(['lodash', 'uuid', 'constants'], function (_, uuid, Constants) {
                     date: action.date
                 });
 
-            case Constants.OPEN_BOOKMARK_GROUP:
-                // drill into group
-                console.log('open ' + action.id);
-                return state;
-
             case Constants.EDIT_BOOKMARK:
                 // open edit modal
                 console.log('edit ' + action.id);

@@ -5,22 +5,6 @@ define(['lodash', 'constants'], function (_, Constants) {
         {
             id: 'root',
             title: 'All Bookmarks'
-        },
-        {
-            id: '0001',
-            title: 'Fargo Season 2'
-        },
-        {
-            id: '0002',
-            title: 'Gaspar'
-        },
-        {
-            id: '0003',
-            title: 'bread'
-        },
-        {
-            id: '0004',
-            title: 'wallpaper'
         }
     ];
 
@@ -34,6 +18,11 @@ define(['lodash', 'constants'], function (_, Constants) {
             case Constants.NAVIGATE_TO_PREVIOUS_GROUP:
                 var index = _.findIndex(state, {id: action.id});
                 return state.slice(0, index + 1);
+            case Constants.OPEN_BOOKMARK_GROUP:
+                return state.concat({
+                    id: action.id,
+                    title: action.title
+                });
 
             default:
                 return state;
