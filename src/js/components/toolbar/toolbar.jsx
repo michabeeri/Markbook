@@ -1,4 +1,4 @@
-define(['react', 'constants', 'actionProviders/userInfo'],
+define(['react', 'constants', 'actionProviders/actions'],
     function (React, Constants, UserInfoActionProvider) {
         'use strict';
 

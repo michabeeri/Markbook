@@ -21,19 +21,19 @@ define([ 'React', 'reactDOM', 'components/modals/Modal'],
             });
 
             it('should open a modal', function () {
-                var reactComp = createDemoModalContainer("modalDialog opened");
+                var reactComp = createDemoModalContainer("modal modal-opened");
                 var domNode = ReactDOM.findDOMNode(reactComp);
-                expect([].slice.apply(domNode.classList)).toEqual(["modalDialog", "opened"]);
+                expect([].slice.apply(domNode.classList)).toEqual(["modal", "modal-opened"]);
             });
 
             it('should close a modal', function () {
-                var reactComp = createDemoModalContainer("modalDialog closed");
+                var reactComp = createDemoModalContainer("modal modal-closed");
                 var domNode = ReactDOM.findDOMNode(reactComp);
-                expect([].slice.apply(domNode.classList)).toEqual(["modalDialog", "closed"]);
+                expect([].slice.apply(domNode.classList)).toEqual(["modal", "modal-closed"]);
             });
 
             it('should call close callback when close X is clicked', function () {
-                var reactComp = createDemoModalContainer("modalDialog opened");
+                var reactComp = createDemoModalContainer("modal modal-opened");
                 var domNode = ReactDOM.findDOMNode(reactComp);
                 var closingElement = domNode.querySelector('#modalCloser');
                 TestUtils.Simulate.click(closingElement);
