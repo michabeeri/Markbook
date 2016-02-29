@@ -56,8 +56,10 @@ define(['lodash', 'constants'], function (_, Constants) {
                 return _.map(state, function (bm) {
                     if (bm.id === action.id) {
                         return Object.assign({}, bm, {selected: !bm.selected});
-                    } else if (action.clearOtherSelection) {
+
+                    } else if (!action.isMultiSelect) {
                         return Object.assign({}, bm, {selected: false});
+
                     }
                     return bm;
                 });

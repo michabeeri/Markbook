@@ -23,11 +23,11 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 id: id
             };
         },
-        toggleBookmarkSelection: function (id, clearOtherSelection) {
+        toggleBookmarkSelection: function (id, isMultiSelect) {
             return {
                 type: Constants.TOGGLE_BOOKMARK_SELECTION,
                 id: id,
-                clearOtherSelection: clearOtherSelection
+                isMultiSelect: isMultiSelect
             };
         },
         removeBookmark: function (id) {

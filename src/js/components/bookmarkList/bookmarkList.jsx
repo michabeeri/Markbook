@@ -1,4 +1,3 @@
-
 define(['lodash', 'react', 'components/bookmarkList/bookmarkGroup', 'components/bookmarkList/bookmark', 'actionProviders/actions'],
     function (_, React, BookmarkGroup, Bookmark, ActionProvider) {
 
@@ -9,8 +8,15 @@ define(['lodash', 'react', 'components/bookmarkList/bookmarkGroup', 'components/
             onView: function () {
                 window.open('http://www.google.com');
             },
+            onClickActionGenerator: function (id) {
+                return function (evt) {
+                    this.props.dispatch(ActionProvider.toggleBookmarkSelection(id, evt.shiftKey));
+                }.bind(this);
+            },
             dispatchActionGenerator: function (action) {
-                return function () {this.props.dispatch(action); }.bind(this);
+                return function () {
+                    this.props.dispatch(action);
+                }.bind(this);
             },
             createSingle: function (bm) {
                 return (<Bookmark
@@ -19,7 +25,7 @@ define(['lodash', 'react', 'components/bookmarkList/bookmarkGroup', 'components/
                     onView={this.onView}
                     onEdit={this.dispatchActionGenerator(ActionProvider.editBookmark(bm.id))}
                     onDelete={this.dispatchActionGenerator(ActionProvider.removeBookmark(bm.id))}
-                    onClick={this.dispatchActionGenerator(ActionProvider.toggleBookmarkSelection(bm.id, true))}
+                    onClick={this.onClickActionGenerator(bm.id)}
                     onDoubleClick={this.onView}/>);
             },
             createGroup: function (bm) {
@@ -29,7 +35,7 @@ define(['lodash', 'react', 'components/bookmarkList/bookmarkGroup', 'components/
                     onOpen={this.dispatchActionGenerator(ActionProvider.openBookmarkGroup(bm.id))}
                     onEdit={this.dispatchActionGenerator(ActionProvider.editBookmark(bm.id))}
                     onDelete={this.dispatchActionGenerator(ActionProvider.removeBookmark(bm.id))}
-                    onClick={this.dispatchActionGenerator(ActionProvider.toggleBookmarkSelection(bm.id, true))}
+                    onClick={this.onClickActionGenerator(bm.id)}
                     onDoubleClick={this.dispatchActionGenerator(ActionProvider.openBookmarkGroup(bm.id))}/>);
             },
             getFilteredBookmarks: function () {
