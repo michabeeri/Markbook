@@ -5,13 +5,13 @@ define(['lodash',
         'use strict';
         return React.createClass({
             displayName: 'BreadCrumbs',
-            onItemClick: function () {
-                this.props.dispatch(ActionProvider.navigateToPreviousGroup());
+            onItemClick: function (id) {
+                this.props.dispatch(ActionProvider.navigateToPreviousGroup(id));
             },
-            renderItem: function (item, key) {
+            renderItem: function (item) {
                 return <span
                     className='title-small'
-                    onClick={this.onItemClick} key={key}>{item}</span>;
+                    onClick={this.onItemClick.bind(this, item.id)} key={item.id}>{item.title + ' > '}</span>;
             },
             render: function () {
                 return (
