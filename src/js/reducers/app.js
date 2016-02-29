@@ -1,9 +1,11 @@
-define(['redux', 'reducers/bookmarks', 'reducers/userInfo', 'reducers/filter'], function (Redux, bookmarksReducer, userInfoReducer, filterReducer) {
+define(['redux', 'reducers/bookmarks', 'reducers/userInfo', 'reducers/filter', 'reducers/currentBookmarkPath'],
+    function (Redux, bookmarksReducer, userInfoReducer, filterReducer, currentBookmarkPathReducer) {
     'use strict';
 
     return Redux.combineReducers({
         bookmarks: bookmarksReducer,
         userInfo: userInfoReducer,
-        filter: filterReducer
+        filter: filterReducer,
+        currentBookmarkPath: currentBookmarkPathReducer
     });
 });

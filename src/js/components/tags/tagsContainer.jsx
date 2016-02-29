@@ -10,15 +10,18 @@ define(['React', 'lodash', 'components/tags/tagInput', 'components/tags/tagsList
             },
 
             addTag: function (tag) {
-                this.props.addTag(tag);
+                if (this.props.tags.indexOf(tag) === -1) {
+                    this.props.addTag(tag);
+                }
             },
             removeTag: function (tag) {
                 this.props.removeTag(tag);
             },
+            userTags: ['naama', 'nam', 'na'],
             render: function () {
                 return (
                     <div>
-                        <TagInput addTag={this.addTag} tags={['naama', 'nam', 'na']}/>
+                        <TagInput addTag={this.addTag} userTags={this.userTags}/>
                         <TagsList tags={this.props.tags} removeTag={this.removeTag}/>
                     </div>
                 );

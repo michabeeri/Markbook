@@ -2,12 +2,13 @@ define(['uuid', 'constants'], function (uuid, Constants) {
     'use strict';
 
     return {
-        addBookmark: function (title, url) {
+        addBookmark: function (title, url, tags) {
             return {
                 type: Constants.ADD_BOOKMARK,
                 id: uuid.v4(),
                 title: title,
                 url: url,
+                tags: tags,
                 date: new Date()
             };
         },
@@ -46,6 +47,12 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 type: Constants.SET_FILTER,
                 tag: tag,
                 title: title
+            };
+        },
+        navigateToPreviousGroup: function (id) {
+            return {
+                type: Constants.NAVIGATE_TO_PREVIOUS_GROUP,
+                id: id
             };
         }
     };
