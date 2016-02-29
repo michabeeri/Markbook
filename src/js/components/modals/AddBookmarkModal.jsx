@@ -1,8 +1,11 @@
-define(['react', 'lodash', 'components/modals/Modal', 'actionProviders/actions', 'components/tags/tagsContainer'],
-    function (React, _, Modal, actions, TagsContainer) {
+define(['react', 'components/modals/Modal', 'actionProviders/actions'],
+    function (React, Modal, actions) {
         'use strict';
 
+        var LinkedStateMixin = React.addons.LinkedStateMixin;
+
         return React.createClass({
+            mixins: [LinkedStateMixin],
             displayName: 'AddBookmarkModal',
             propTypes: {
                 classNameAddBookmark: React.PropTypes.string.isRequired,
@@ -11,13 +14,13 @@ define(['react', 'lodash', 'components/modals/Modal', 'actionProviders/actions',
             },
             getInitialState: function () {
                 return {
+                    bookmarkName: '',
+                    bookmarkUrl: '',
                     tags: []
                 };
             },
             addBookmark: function () {
-                var bookMarkName = this.refs.bookMarkName.value;
-                var bookMarkUrl = this.refs.bookMarkUrl.value;
-                this.props.dispatch(actions.addBookmark(bookMarkName, bookMarkUrl));
+                this.props.dispatch(actions.addBookmark(this.state.bookmarkName, this.state.bookmarkUrl));
                 this.props.closeModal();
             },
             addTag: function (tag) {
@@ -36,9 +39,9 @@ define(['react', 'lodash', 'components/modals/Modal', 'actionProviders/actions',
                 return (
                     <Modal className={this.props.classNameAddBookmark} closeModal={this.props.closeModal}>
                         <h1>Add Bookmark</h1>
-                        <input type="text" ref="bookMarkName" placeholder="Name your bookmark"
+                        <input type="text" valueLink={this.linkState('bookmarkName')} placeholder="Name your bookmark"
                                className="input" autofocus/>
-                        <input type="text" ref="bookMarkUrl" placeholder="Paste url to bookmark"
+                        <input type="text" valueLink={this.linkState('bookmarkUrl')} placeholder="Paste url to bookmark"
                                className="input"/>
                         <TagsContainer tags={this.state.tags} addTag={this.addTag} removeTag={this.removeTag}/>
                         <button onClick={this.addBookmark} className="btn">Add Bookmark</button>
