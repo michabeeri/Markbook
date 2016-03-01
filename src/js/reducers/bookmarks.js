@@ -66,6 +66,13 @@ define(['lodash', 'uuid', 'constants'], function (_, uuid, Constants) {
             id: '0008',
             title: 'Group 2',
             date: new Date(2007, 9, 20),
+            children: ['0009'],
+            tags: []
+        },
+        {
+            id: '0009',
+            title: 'Group 3',
+            date: new Date(2007, 9, 20),
             children: null,
             tags: ['Group2']
         }
