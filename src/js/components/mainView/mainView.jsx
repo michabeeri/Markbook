@@ -10,10 +10,10 @@ define(['react', 'components/bookmarkList/bookmarkList', 'components/modals/Moda
             };
         },
         componentDidMount: function () {
-            window.addEventListener('optimizedResize', this.resizeHandler);
+            window.addEventListener('throttledResize', this.resizeHandler);
         },
         componentWillUnmount: function () {
-            window.removeEventListener('optimizedResize', this.resizeHandler);
+            window.removeEventListener('throttledResize', this.resizeHandler);
         },
         resizeHandler: function () {
             this.setState({

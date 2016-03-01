@@ -1,5 +1,5 @@
-define(['lodash', 'react', 'constants', 'components/bookmarkList/bookmark', 'actionProviders/actions'],
-    function (_, React, Constants, Bookmark, ActionProvider) {
+define(['lodash', 'react', 'constants', 'components/bookmarkList/bookmark'],
+    function (_, React, Constants, Bookmark) {
 
         'use strict';
 
@@ -9,19 +9,6 @@ define(['lodash', 'react', 'constants', 'components/bookmarkList/bookmark', 'act
                 return {
                     dragged: null
                 };
-            },
-            onView: function () {
-                window.open('http://www.google.com');
-            },
-            onClickActionGenerator: function (id) {
-                return function (evt) {
-                    this.props.dispatch(ActionProvider.toggleBookmarkSelection(id, evt.shiftKey));
-                }.bind(this);
-            },
-            dispatchActionGenerator: function (action) {
-                return function () {
-                    this.props.dispatch(action);
-                }.bind(this);
             },
             getFilteredBookmarks: function () {
                 var filter = this.props.state.filter;
@@ -61,11 +48,7 @@ define(['lodash', 'react', 'constants', 'components/bookmarkList/bookmark', 'act
                                     dataId={'bm' + bm.id}
                                     bookmarkData={bm}
                                     layout={this.props.layout}
-                                    onView={this.onView}
-                                    onOpen={this.dispatchActionGenerator(ActionProvider.openBookmarkGroup(bm.id))}
-                                    onEdit={this.dispatchActionGenerator(ActionProvider.editBookmark(bm.id))}
-                                    onDelete={this.dispatchActionGenerator(ActionProvider.removeBookmark(bm.id))}
-                                    onSelect={this.onClickActionGenerator(bm.id)}
+                                    dispatch={this.props.dispatch}
                                     dragClass={dragged}
                                     dragStart={this.setDragged}
                                     dragOver={this.dragReorder}
