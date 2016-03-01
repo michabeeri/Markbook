@@ -45,7 +45,7 @@ define(['lodash'], function (_) {
         filterItems: filterItems,
         getCurrentGroupItems: getCurrentGroupItems,
         getBookmarkById: getBookmarkById,
-        getBookmarkIndexById: getBookmarkIndexById
+        getBookmarkIndexById: getBookmarkIndexById,
         isCurrentGroup: isCurrentGroup
     };
 });
