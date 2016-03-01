@@ -25,6 +25,7 @@ html {
 
 .style-less-list {
   list-style: none;
+  padding-left: 15px;
 }
 
 .title-normal {
@@ -42,6 +43,11 @@ html {
 .btn {
   padding: 3px 10px;
   text-align: center;
+  cursor: hand;
+}
+
+.btn-list-item {
+  text-align: left;
 }
 
 .btn-group {

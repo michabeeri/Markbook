@@ -1,5 +1,5 @@
-define(['react', 'components/toolbar/bookmarksSearch'],
-    function (React, BookmarksSearch) {
+define(['react', 'components/toolbar/bookmarksSearch', 'actionProviders/actions'],
+    function (React, BookmarksSearch, ActionProvider) {
         'use strict';
 
         return React.createClass({
@@ -8,10 +8,13 @@ define(['react', 'components/toolbar/bookmarksSearch'],
                 state: React.PropTypes.object.isRequired,
                 dispatch: React.PropTypes.func.isRequired
             },
+            setFilter: function (tag, title) {
+                this.props.dispatch(ActionProvider.setFilter(tag, title));
+            },
             render: function () {
                 return (
                     <div className='toolbar'>
-                        <BookmarksSearch dispatch={this.props.dispatch} items={this.props.state.bookmarks} />
+                        <BookmarksSearch setFilter={this.setFilter} items={this.props.state.bookmarks}/>
                     </div>
                 );
             }

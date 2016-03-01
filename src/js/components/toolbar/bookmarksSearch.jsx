@@ -1,5 +1,5 @@
-define(['lodash', 'react', 'components/dropdown/dropdown', 'actionProviders/actions'],
-    function (_, React, Dropdown, ActionProvider) {
+define(['lodash', 'react', 'components/dropdown/dropdown'],
+    function (_, React, Dropdown) {
         'use strict';
 
         var SearchBox = React.createClass({
@@ -20,37 +20,48 @@ define(['lodash', 'react', 'components/dropdown/dropdown', 'actionProviders/acti
                 };
             },
             propTypes: {
-                dispatch: React.PropTypes.func.isRequired,
+                setFilter: React.PropTypes.func.isRequired,
                 items: React.PropTypes.array.isRequired
             },
             getSearchResult: function () {
                 var items = this.props.items;
-                console.info('items: ', items);
+
                 var searcTerm = this.state.searchTerm;
-                var resultTags = [];
-                var resultTitles = [];
-                _.forEach(items, function (item) {
-                    if (item.title.startsWith(searcTerm) && !_.contains(resultTitles, item.title)) {
-                        resultTitles.push(item.title);
-                    }
-                    var tags = item[tags] || [];
-                    var filteredTags = _.filter(tags, function (tag) {
-                        return tag.startsWith(searcTerm);
-                    });
-                    resultTags = _.union(resultTags, filteredTags);
-                });
+
+                var resultTitles =
+                    _.chain(items)
+                        .map('title')
+                        .filter(function (item) {
+                            return item.startsWith(searcTerm);
+                        })
+                        .union()
+                        .sort()
+                        .value();
+
+                var resultTags =
+                    _.chain(items)
+                        .map('tags')
+                        .flatten()
+                        .filter(function (tag) {
+                            return tag && tag.startsWith(searcTerm);
+                        })
+                        .union()
+                        .sort()
+                        .value();
+
+
                 var results = {
                     items: []
                 };
                 if (!_.isEmpty(resultTags)) {
                     results.items.push({
-                       type: 'tags',
+                        type: 'tags',
                         lines: resultTags
                     });
                 }
                 if (!_.isEmpty(resultTitles)) {
                     results.items.push({
-                       type: 'title',
+                        type: 'title',
                         lines: resultTitles
                     });
                 }
@@ -65,7 +76,7 @@ define(['lodash', 'react', 'components/dropdown/dropdown', 'actionProviders/acti
                     title = filterTerm;
                 }
                 this.setState({searchTerm: ''});
-                this.props.dispatch(ActionProvider.setFilter(tag, title));
+                this.props.setFilter(tag, title);
             },
             render: function () {
                 var dropdown = null;
