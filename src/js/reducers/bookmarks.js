@@ -1,31 +1,44 @@
-define(['lodash', 'constants'], function (_, Constants) {
+define(['lodash', 'uuid', 'constants'], function (_, uuid, Constants) {
 
     'use strict';
 
     var initialState = [
         {
-            id: '0000',
+            id: uuid.v4(),
             title: 'Fargo Season 2',
             date: new Date(2015, 10, 18),
             children: null
         },
         {
-            id: '0001',
+            id: uuid.v4(),
             title: 'Fargo Season 1',
             date: new Date(2014, 11, 10),
             children: null
         },
         {
-            id: '0002',
+            id: uuid.v4(),
             title: 'Bookmark 2 title',
             date: new Date(2012, 10, 9),
             children: null
         },
         {
-            id: '0003',
+            id: uuid.v4(),
             title: 'Gaspar Noe Movies',
             date: new Date(2012, 10, 9),
-            children: Array(4).fill({})
+            children: [
+                {
+                    id: uuid.v4(),
+                    title: 'Machete Kills',
+                    date: new Date(2013, 4, 11),
+                    children: null
+                },
+                {
+                    id: uuid.v4(),
+                    title: 'Grindhouse',
+                    date: new Date(2007, 9, 20),
+                    children: null
+                }
+            ]
         }
     ];
 

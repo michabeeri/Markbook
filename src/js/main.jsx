@@ -30,7 +30,7 @@ requirejs(['lodash', 'react', 'reactDOM', 'redux', 'reactRedux', 'components/app
         'use strict';
 
         window.addEventListener('resize', _.throttle(function (evt) {
-            window.dispatchEvent(new CustomEvent('optimizedResize', evt));
+            window.dispatchEvent(new CustomEvent('throttledResize', evt));
         }, 80));
 
         var Provider = ReactRedux.Provider;
