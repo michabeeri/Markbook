@@ -12,7 +12,7 @@ define(['react'],
             render: function () {
                 return (
                     <div className={this.props.className}>
-                        <div className="modal-content ">
+                        <div className="modal-content">
                             <i className='fa fa-times btn-close' id='modalCloser' onClick={this.props.closeModal}></i>
                             {this.props.children}
                         </div>

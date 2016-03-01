@@ -15,17 +15,11 @@ define(['react', 'components/toolbar/toolbar'],
             it ('should show a search box with Search placeholder', function () {
                 var searchNode = testUtils.findRenderedDOMComponentWithClass(toolBar, 'search-box');
                 expect(searchNode).toBeTruthy();
+                expect(searchNode.placeholder).toEqual('Search');
             });
         });
 
     });
-
-
-
-
-
-
-
 
 
 

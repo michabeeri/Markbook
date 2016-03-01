@@ -4,7 +4,7 @@ define(['react', 'reactDOM', 'constants', 'components/bookmarkList/bookmark'],
 
         var TestUtils = React.addons.TestUtils;
 
-        fdescribe('Bookmark', function () {
+        describe('Bookmark', function () {
 
             var bookmark,
                 draggedBookmark,

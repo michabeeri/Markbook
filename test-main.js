@@ -23,8 +23,10 @@ requirejs.config({
         constants: 'js/constants',
         reducers: 'js/reducers',
         actionProviders: 'js/actionProviders',
+        actions: 'js/actionProviders/actions',
         reduxTestUtils: 'tests/components/reduxTestUtils',
-        reduxUtils: 'js/reduxUtils'
+        reduxUtils: 'js/reduxUtils',
+        utils: 'js/utils'
     },
     map: {
         '*': {

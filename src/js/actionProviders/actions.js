@@ -57,11 +57,10 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 currentGroup: currentGroup
             };
         },
-        openBookmarkGroup: function (id, title) {
+        openBookmarkGroup: function (id) {
             return {
                 type: Constants.OPEN_BOOKMARK_GROUP,
-                id: id,
-                title: title
+                id: id
             };
         }
     };

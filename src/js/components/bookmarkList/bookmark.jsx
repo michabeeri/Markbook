@@ -75,12 +75,10 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions'], fu
             return (
                 <div className={this.getClassString()}
                         data-id={this.props.dataId}
-                        draggable='true'
-                        onDragStart={this.onDragStart}
-                        onDragEnd={this.onDragEnd}
-                        onDragOver={this.onDragOver}
                         onClick={this.onSelect}
-                        onDoubleClick={this.isGroup() ? this.onOpen : this.onView}>
+                        onDoubleClick={this.isGroup() ? this.onOpen : this.onView}
+                        onDradStart={this.onDragStart}
+                        {...this.getDragAttr()}>
                     <div>
                         <h1 className='title-small'>{this.props.bookmarkData.title}</h1>
 

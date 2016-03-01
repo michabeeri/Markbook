@@ -2,12 +2,6 @@ define([],
     function () {
         'use strict';
 
-        var eModalType = {
-            NONE: 'None',
-            MODAL_ADD_BOOKMARK: 'Add Bookmark modal',
-            MODAL_EDIT_GROUP: 'Modal Edit Group'
-        };
-
         var bookmarkType = {
             LEAF: 'LEAF',
             GROUP: 'GROUP'
@@ -21,7 +15,6 @@ define([],
         return {
             APP_NAME: 'Markbook',
 
-            eModalType: eModalType,
             bookmarkType: bookmarkType,
             layoutType: layoutType,
 
@@ -37,6 +30,8 @@ define([],
             NAVIGATE_TO_PREVIOUS_GROUP: 'NAVIGATE_TO_PREVIOUS_GROUP',
             DRAG_REORDER: 'DRAG_REORDER',
 
+            ROOT_GROUP_ID: 'rootGroup',
+
             // user info action types
             LOGOUT: 'LOGOUT',
 
@@ -44,6 +39,5 @@ define([],
             SET_FILTER: 'SET_FILTER',
 
             GRID_MIN_WIDTH: 960
-
         };
     });
