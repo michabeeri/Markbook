@@ -6,7 +6,7 @@ define(['react', 'reactRedux', 'components/mainView/mainView', 'components/mainV
             displayName: 'AppView',
             render: function () {
                 return (
-                    <div className='main'>
+                    <div className='main border-simple'>
                         <TopBar {...this.props}/>
                         <MainView {...this.props}/>
                     </div>
