@@ -6,7 +6,8 @@ requirejs.config({
         router: 'https://cdnjs.cloudflare.com/ajax/libs/react-router/2.0.0/ReactRouter',
         redux: '../vendor/redux',
         reactRedux: '../vendor/react-redux',
-        uuid: '../vendor/uuid'
+        uuid: '../vendor/uuid',
+        Firebase: '../vendor/firebase'
     },
     map: {
         '*': {
@@ -23,6 +24,7 @@ requirejs.config({
         reactDom: ['react']
     }
 });
+
 
 requirejs(['lodash', 'react', 'reactDOM', 'redux', 'reactRedux', 'components/appView', 'reducers/app'],
     function (_, React, ReactDOM, Redux, ReactRedux, AppView, appReducer) {

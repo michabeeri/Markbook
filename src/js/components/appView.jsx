@@ -1,5 +1,6 @@
-define(['react', 'reactRedux', 'components/mainView/mainView', 'components/mainView/topbar'],
-    function (React, ReactRedux, MainView, TopBar) {
+define(['react', 'reactRedux', 'components/mainView/mainView', 'components/mainView/topbar', 'components/loginManager/login', 'components/loginManager/signup'],
+    function (React, ReactRedux, MainView, TopBar, LoginComp, SignupComp) {
+
 
         'use strict';
         var AppView = React.createClass({
@@ -9,6 +10,7 @@ define(['react', 'reactRedux', 'components/mainView/mainView', 'components/mainV
                     <div className='main border-simple'>
                         <TopBar {...this.props}/>
                         <MainView {...this.props}/>
+                        <SignupComp />
                     </div>
                 );
             }
