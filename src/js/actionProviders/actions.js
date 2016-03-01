@@ -55,7 +55,7 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 draggedId: draggedId,
                 draggedOverId: draggedOverId,
                 currentGroup: currentGroup
-            }
+            };
         },
         openBookmarkGroup: function (id, title) {
             return {
