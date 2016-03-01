@@ -8,7 +8,6 @@ define(['react', 'components/modals/Modal', 'actionProviders/actions'],
             mixins: [LinkedStateMixin],
             displayName: 'AddBookmarkModal',
             propTypes: {
-                classNameAddBookmark: React.PropTypes.string.isRequired,
                 closeModal: React.PropTypes.func.isRequired,
                 dispatch: React.PropTypes.func.isRequired
             },
@@ -23,15 +22,17 @@ define(['react', 'components/modals/Modal', 'actionProviders/actions'],
                 this.props.closeModal();
             },
             render: function () {
-                return (
-                    <Modal className={this.props.classNameAddBookmark} closeModal={this.props.closeModal}>
+                return (<div>
                         <h1>Add Bookmark</h1>
-                        <input type="text" valueLink={this.linkState('bookmarkName')} placeholder="Name your bookmark"
+                        <input name="BookmarkName" type="text" valueLink={this.linkState('bookmarkName')}
+                               placeholder="Name your bookmark"
                                className="input" autofocus/>
-                        <input type="text" valueLink={this.linkState('bookmarkUrl')} placeholder="Paste url to bookmark"
+                        <input name="BookmarkUrl" type="text" valueLink={this.linkState('bookmarkUrl')}
+                               placeholder="Paste url to bookmark"
                                className="input"/>
                         <button onClick={this.addBookmark} className="btn">Add Bookmark</button>
-                    </Modal>
+                    </div>
+
                 );
             }
         });

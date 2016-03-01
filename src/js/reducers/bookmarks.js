@@ -7,19 +7,22 @@ define(['lodash', 'constants'], function (_, Constants) {
             id: '0000',
             title: 'Fargo Season 2',
             date: new Date(2015, 10, 18),
-            children: null
+            children: null,
+            url: 'www.tweeter.com'
         },
         {
             id: '0001',
             title: 'Fargo Season 1',
             date: new Date(2014, 11, 10),
-            children: null
+            children: null,
+            url: 'www.pinterest.com'
         },
         {
             id: '0002',
             title: 'Bookmark 2 title',
             date: new Date(2012, 10, 9),
-            children: null
+            children: null,
+            url: 'www.facebook.com'
         },
         {
             id: '0003',
@@ -39,7 +42,8 @@ define(['lodash', 'constants'], function (_, Constants) {
                 return (state ? state.slice() : []).concat({
                     id: action.id,
                     title: action.title,
-                    date: action.date
+                    date: action.date,
+                    url: action.url
                 });
 
             case Constants.OPEN_BOOKMARK_GROUP:

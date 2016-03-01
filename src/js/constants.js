@@ -1,5 +1,5 @@
-define([],
-    function () {
+define(['components/modals/AddBookmarkModal'],
+    function (AddBookmarkModal) {
         'use strict';
 
         var eModalType = {
@@ -8,10 +8,26 @@ define([],
             MODAL_EDIT_GROUP: 'Modal Edit Group'
         };
 
+        var Modals = [
+            {
+                key: eModalType.MODAL_ADD_BOOKMARK,
+                rendered: true,
+                class: AddBookmarkModal,
+                name: 'Add Bookmark Modal',
+                props: ['closeModal', 'dispatch']
+            },
+            {
+                key: eModalType.NONE,
+                rendered: false
+            }
+        ];
+
+
         return {
             APP_NAME: 'Markbook',
 
             eModalType: eModalType,
+            modals: Modals,
 
             // Bookmark action types
             ADD_BOOKMARK: 'ADD_BOOKMARK',
