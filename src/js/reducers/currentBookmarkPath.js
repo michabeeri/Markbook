@@ -4,15 +4,6 @@ define(['lodash', 'constants'], function (_, Constants) {
     var initialState = [
         {
             id: Constants.ROOT_GROUP_ID
-        },
-        {
-            id: '0001'
-        },
-        {
-            id: '0002'
-        },
-        {
-            id: '0003'
         }
     ];
 

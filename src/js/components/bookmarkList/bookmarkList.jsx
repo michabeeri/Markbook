@@ -21,7 +21,17 @@ define(['lodash', 'react', 'constants', 'components/bookmarkList/bookmark', 'act
                     return !filter || !filter.tag;
                 }
 
-                return _.filter(this.props.state.bookmarks, function (bm) {
+                var currentPath = this.props.state.currentBookmarkPath;
+                var bookmarks = this.props.state.bookmarks;
+                var currentGroup = _.find(bookmarks, {id: currentPath[currentPath.length - 1].id});
+
+                var groupBookmarkItems = [];
+                _.forEach(currentGroup.children, function (childId) {
+                    var result = _.find(bookmarks, {id: childId});
+                    groupBookmarkItems.push(result);
+                });
+
+                return _.filter(groupBookmarkItems, function (bm) {
                     return titleCondition(bm) && tagCondition(bm);
                 });
             },

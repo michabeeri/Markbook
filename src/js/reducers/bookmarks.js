@@ -7,67 +7,49 @@ define(['lodash', 'uuid', 'constants'], function (_, uuid, Constants) {
             id: Constants.ROOT_GROUP_ID,
             title: 'All Bookmarks',
             date: new Date(2015, 10, 18),
-            children: ['0001', '0002', '0003', '0004']
+            children: ['0001', '0002', '0003', '0004'],
+            tags: []
         },
         {
             id: '0001',
-            title: 'Group 1',
-            date: new Date(2015, 10, 18),
-            children: null
-        },
-        {
-            id: '0002',
-            title: 'Group 2',
-            date: new Date(2015, 10, 18),
-            children: null
-        },
-        {
-            id: '0003',
-            title: 'Group 3',
-            date: new Date(2015, 10, 18),
-            children: null
-        },
-        {
-            id: '0004',
             title: 'Fargo Season 2',
             date: new Date(2015, 10, 18),
             children: null,
             tags: []
         },
         {
-            id: '0005',
+            id: '0002',
             title: 'Fargo Season 1',
             date: new Date(2014, 11, 10),
             children: null,
             tags: []
         },
         {
-            id: '0006',
+            id: '0003',
             title: 'Bookmark 2 title',
             date: new Date(2012, 10, 9),
             children: null,
             tags: []
         },
         {
-            id: '0007',
+            id: '0004',
             title: 'Gaspar Noe Movies',
             date: new Date(2012, 10, 9),
-            children: [
-                {
-                    id: uuid.v4(),
-                    title: 'Machete Kills',
-                    date: new Date(2013, 4, 11),
-                    children: null,
-                    tags: []
-                },
-                {
-                    id: uuid.v4(),
-                    title: 'Grindhouse',
-                    date: new Date(2007, 9, 20),
-                    children: null,
-                    tags: []
-                }
-            ],
+            children: ['0005', '0006'],
+            tags: []
+        },
+        {
+            id: '0005',
+            title: 'Machete Kills',
+            date: new Date(2013, 4, 11),
+            children: null,
+            tags: []
+        },
+        {
+            id: '0006',
+            title: 'Grindhouse',
+            date: new Date(2007, 9, 20),
+            children: null,
             tags: []
         }
     ];
