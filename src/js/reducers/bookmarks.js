@@ -16,7 +16,7 @@ define(['lodash', 'uuid', 'constants'], function (_, uuid, Constants) {
             date: new Date(2015, 10, 18),
             children: null,
             url: 'www.tweeter.com',
-            tags: ['fargo','season2']
+            tags: ['fargo', 'season2']
         },
         {
             id: '0002',
