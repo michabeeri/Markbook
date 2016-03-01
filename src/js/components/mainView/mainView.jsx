@@ -9,6 +9,19 @@ define(['react', 'components/bookmarkList/bookmarkList', 'components/modals/Moda
                 layout: Constants.layoutType.GRID
             };
         },
+        componentDidMount: function () {
+            window.addEventListener('optimizedResize', this.resizeHandler);
+        },
+        componentWillUnmount: function () {
+            window.removeEventListener('optimizedResize', this.resizeHandler);
+        },
+        resizeHandler: function () {
+            this.setState({
+                layout: document.body.clientWidth < Constants.GRID_MIN_WIDTH
+                    ? Constants.layoutType.LIST
+                    : Constants.layoutType.GRID
+            });
+        },
         openAddBookMarkModal: function () {
             this.setState({
                 openedModal: Constants.eModalType.MODAL_ADD_BOOKMARK

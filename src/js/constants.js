@@ -37,7 +37,9 @@ define([],
             LOGOUT: 'LOGOUT',
 
             // filter
-            SET_FILTER: 'SET_FILTER'
+            SET_FILTER: 'SET_FILTER',
+
+            GRID_MIN_WIDTH: 960
 
         };
     });
