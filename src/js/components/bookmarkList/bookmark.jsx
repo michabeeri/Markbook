@@ -4,17 +4,30 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions'], fu
     var Bookmark = React.createClass({
         mixins: [draggable],
         displayName: 'Bookmark',
+        getInitialState: function () {
+            return {isOpen: false};
+        },
         onView: function () {
             window.open('http://www.google.com');
+            evt.stopPropagation();
         },
-        onOpen: function () {
-            this.props.dispatch(ActionProvider.openBookmarkGroup(this.props.bookmarkData.id));
+        onOpen: function (evt) {
+            if (this.isGrid()) {
+                this.props.dispatch(ActionProvider.openBookmarkGroup(this.props.bookmarkData.id));
+
+            } else {
+                this.setState({isOpen: !this.state.isOpen} );
+
+            }
+            evt.stopPropagation();
         },
         onEdit: function () {
             this.props.dispatch(ActionProvider.editBookmark(this.props.bookmarkData.id));
+            evt.stopPropagation();
         },
         onDelete: function () {
             this.props.dispatch(ActionProvider.removeBookmark(this.props.bookmarkData.id));
+            evt.stopPropagation();
         },
         onSelect: function (evt) {
             this.props.dispatch(ActionProvider.toggleBookmarkSelection(this.props.bookmarkData.id, evt.shiftKey));
@@ -37,7 +50,7 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions'], fu
                 (this.props.dragClass ? ' dragged' : '');
         },
         renderChildren: function () {
-            if (this.isGrid() || !this.isGroup()) {
+            if (this.isGrid() || !this.isGroup() || !this.state.isOpen) {
                 return (<ul></ul>);
             }
 
