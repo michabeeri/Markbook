@@ -9,7 +9,8 @@ define(['react', 'components/modals/Modal', 'actionProviders/actions', 'componen
             displayName: 'AddBookmarkModal',
             propTypes: {
                 closeModal: React.PropTypes.func.isRequired,
-                dispatch: React.PropTypes.func.isRequired
+                dispatch: React.PropTypes.func.isRequired,
+                state: React.PropTypes.object
             },
             getInitialState: function () {
                 return {

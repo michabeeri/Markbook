@@ -8,7 +8,8 @@ define(['react', 'components/modals/AddBookmarkModal', 'components/modals/Modal'
             propTypes: {
                 openedModal: React.PropTypes.oneOf(_.values(modalData.eModalType)),
                 closeModal: React.PropTypes.func.isRequired,
-                dispatch: React.PropTypes.func.isRequired
+                dispatch: React.PropTypes.func.isRequired,
+                state: React.PropTypes.object
             },
             getModalContent: function () {
                 var indexOfModal = _.findIndex(modalData.modals, {key: this.props.openedModal});

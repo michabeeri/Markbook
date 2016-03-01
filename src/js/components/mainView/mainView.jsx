@@ -42,7 +42,7 @@ define(['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmark
                             currentPath={this.props.state.currentBookmarkPath}/>
                         <BookmarkList dispatch={this.props.dispatch} state={this.props.state}
                                       layout={this.state.layout}/>
-                        <ModalContainer dispatch={this.props.dispatch} closeModal={this.closeModal}
+                        <ModalContainer dispatch={this.props.dispatch} state={this.props.state} closeModal={this.closeModal}
                                         openedModal={this.state.openedModal}/>
                         <i className="fa fa-plus-circle fa-3x btn-add" onClick={this.openAddBookMarkModal}></i>
                     </div>
