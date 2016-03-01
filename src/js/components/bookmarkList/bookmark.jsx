@@ -13,7 +13,7 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions'], fu
         },
         onOpen: function (evt) {
             if (this.isGrid()) {
-                this.props.dispatch(ActionProvider.openBookmarkGroup(this.props.bookmarkData.id));
+                this.props.dispatch(ActionProvider.openBookmarkGroup(this.props.bookmarkData.id, this.props.bookmarkData.title));
 
             } else {
                 this.setState({isOpen: !this.state.isOpen} );
