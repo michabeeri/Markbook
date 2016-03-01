@@ -24,10 +24,14 @@ requirejs.config({
     }
 });
 
-requirejs(['react', 'reactDOM', 'redux', 'reactRedux', 'components/appView', 'reducers/app'],
-    function (React, ReactDOM, Redux, ReactRedux, AppView, appReducer) {
+requirejs(['lodash', 'react', 'reactDOM', 'redux', 'reactRedux', 'components/appView', 'reducers/app'],
+    function (_, React, ReactDOM, Redux, ReactRedux, AppView, appReducer) {
 
         'use strict';
+
+        window.addEventListener('resize', _.throttle(function (evt) {
+            window.dispatchEvent(new CustomEvent('optimizedResize', evt));
+        }, 80));
 
         var Provider = ReactRedux.Provider;
 

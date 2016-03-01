@@ -8,10 +8,22 @@ define([],
             MODAL_EDIT_GROUP: 'Modal Edit Group'
         };
 
+        var bookmarkType = {
+            LEAF: 'LEAF',
+            GROUP: 'GROUP'
+        };
+
+        var layoutType = {
+            GRID: 'GRID',
+            LIST: 'LIST'
+        };
+
         return {
             APP_NAME: 'Markbook',
 
             eModalType: eModalType,
+            bookmarkType: bookmarkType,
+            layoutType: layoutType,
 
             // Bookmark action types
             ADD_BOOKMARK: 'ADD_BOOKMARK',
@@ -25,7 +37,9 @@ define([],
             LOGOUT: 'LOGOUT',
 
             // filter
-            SET_FILTER: 'SET_FILTER'
+            SET_FILTER: 'SET_FILTER',
+
+            GRID_MIN_WIDTH: 960
 
         };
     });

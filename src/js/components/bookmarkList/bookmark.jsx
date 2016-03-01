@@ -1,18 +1,50 @@
-define(['react', 'mixins/draggable'], function (React, draggable) {
+
+define(['react', 'constants', 'mixins/draggable'], function (React, Constants, draggable) {
+
     'use strict';
     return React.createClass({
         mixins: [draggable],
         displayName: 'Bookmark',
+        isGrid: function () {
+            return this.props.layout === Constants.layoutType.GRID;
+        },
+        isGroup: function () {
+            var children = this.props.bookmarkData.children;
+            return children && children.length > 0;
+        },
+        isSelected: function () {
+            return this.props.bookmarkData.selected;
+        },
+        getClassString: function () {
+            return 'bookmark-base' +
+                (this.isGrid() ? ' grid' : ' list') +
+                (this.isGroup() ? ' group' : ' leaf') +
+                (this.props.bookmarkData.selected ? ' selected' : '') +
+                (this.props.dragClass ? ' dragged' : '');
+        },
         render: function () {
-            var classString = 'bookmark-base grid' + (this.props.bookmarkData.selected ? ' selected' : '') +
-                (this.props.dragClass ? 'dragged' : '');
+
             return (
-                <div className={classString}
-                     draggable='true' onDragStart={this.onDragStart} onDragEnd={this.onDragEnd} onDragOver={this.onDragOver}
-                     onClick={this.props.onClick} onDoubleClick={this.props.onDoubleClick} data-id={this.props.dataId}>
+                <div className={this.getClassString()}
+                     data-id={this.props.dataId}
+                     draggable='true'
+                     onDragStart={this.onDragStart}
+                     onDragEnd={this.onDragEnd}
+                     onDragOver={this.onDragOver}
+                     onClick={this.props.onSelect}
+                     onDoubleClick={this.isGroup() ? this.props.onOpen : this.props.onView}>
+
                     <h1 className='title-small'>{this.props.bookmarkData.title}</h1>
-                    <h2 className='title-small footer'>{this.props.bookmarkData.date.toLocaleDateString('en-US')}</h2>
-                    <button onClick={this.props.onView}>{'View'}</button>
+
+                    <h2 className='title-small footer'>{this.isGroup()
+                        ? this.props.bookmarkData.children.length + ' items inside'
+                        : this.props.bookmarkData.date.toLocaleDateString('en-US')}</h2>
+
+                    {this.isGroup()
+                        ? <button onClick={this.props.onOpen}>{'Open'}</button>
+                        : <button onClick={this.props.onView}>{'View'}</button>
+                    }
+
                     <button onClick={this.props.onEdit}>{'Edit'}</button>
                     <button onClick={this.props.onDelete}>{'Delete'}</button>
                 </div>
