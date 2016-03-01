@@ -10,8 +10,8 @@ define(['lodash',
             },
             renderItem: function (item) {
                 return <span
-                    className='title-small'
-                    onClick={this.onItemClick.bind(this, item.id)}>{item.title + ' > '}</span>;
+                    className='title-small group-item'
+                    onClick={this.onItemClick.bind(this, item.id)}>{item.title}</span>;
             },
             isPathOnChildGroupLevel: function () {
                 return this.isPathLevelDeeperThan(1);
@@ -48,7 +48,7 @@ define(['lodash',
                 }
 
                 return (
-                    <nav>
+                    <nav className="box">
                         {rootItem}
                         {foldedItem}
                         {parentItem}

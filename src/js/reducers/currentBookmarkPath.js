@@ -5,6 +5,18 @@ define(['lodash', 'constants'], function (_, Constants) {
         {
             id: 'root',
             title: 'All Bookmarks'
+        },
+        {
+            id: '3234',
+            title: 'Bla Bla'
+        },
+        {
+            id: '1234',
+            title: 'Test'
+        },
+        {
+            id: '1111',
+            title: 'Meow'
         }
     ];
 
