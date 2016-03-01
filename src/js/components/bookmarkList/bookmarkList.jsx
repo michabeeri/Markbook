@@ -5,6 +5,11 @@ define(['lodash', 'react', 'constants', 'components/bookmarkList/bookmark', 'act
 
         return React.createClass({
             displayName: 'BookmarkList',
+            getInitialState: function () {
+                return {
+                    dragged: null
+                };
+            },
             onView: function () {
                 window.open('http://www.google.com');
             },
@@ -33,13 +38,27 @@ define(['lodash', 'react', 'constants', 'components/bookmarkList/bookmark', 'act
                     return titleCondition(bm) && tagCondition(bm);
                 });
             },
+            dragReorder: function () {
+                //TODO implementation of reorder
+            },
+            setDragged: function (draggedId) {
+                if (this.state.dragged !== draggedId) {
+                    this.setState({dragged: draggedId});
+                }
+            },
             render: function () {
                 return (
                     <div className='bookmark-list-container grid'>
                         {_.map(this.getFilteredBookmarks(), function (bm) {
+                            var dragged = false;
+                            if (bm.id === this.state.dragged) {
+                                dragged = true;
+                            }
+
                             return (
                                 <Bookmark
                                     key={bm.id}
+                                    dataId={'bm' + bm.id}
                                     bookmarkData={bm}
                                     layout={this.props.layout}
                                     onView={this.onView}
@@ -47,6 +66,10 @@ define(['lodash', 'react', 'constants', 'components/bookmarkList/bookmark', 'act
                                     onEdit={this.dispatchActionGenerator(ActionProvider.editBookmark(bm.id))}
                                     onDelete={this.dispatchActionGenerator(ActionProvider.removeBookmark(bm.id))}
                                     onSelect={this.onClickActionGenerator(bm.id)}
+                                    dragClass={dragged}
+                                    dragStart={this.setDragged}
+                                    dragOver={this.dragReorder}
+                                    dragEnd={this.setDragged}
                                 />);
                         }.bind(this))}
                     </div>

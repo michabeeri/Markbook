@@ -1,6 +1,9 @@
-define(['react', 'constants'], function (React, Constants) {
+
+define(['react', 'constants', 'mixins/draggable'], function (React, Constants, draggable) {
+
     'use strict';
     return React.createClass({
+        mixins: [draggable],
         displayName: 'Bookmark',
         isGrid: function () {
             return this.props.layout === Constants.layoutType.GRID;
@@ -14,13 +17,20 @@ define(['react', 'constants'], function (React, Constants) {
         },
         getClassString: function () {
             return 'bookmark-base' +
-                (this.isSelected() ? ' selected' : '') +
                 (this.isGrid() ? ' grid' : ' list') +
-                (this.isGroup() ? ' group' : ' leaf');
+                (this.isGroup() ? ' group' : ' leaf') +
+                (this.props.bookmarkData.selected ? ' selected' : '') +
+                (this.props.dragClass ? ' dragged' : '');
         },
         render: function () {
+
             return (
                 <div className={this.getClassString()}
+                     data-id={this.props.dataId}
+                     draggable='true'
+                     onDragStart={this.onDragStart}
+                     onDragEnd={this.onDragEnd}
+                     onDragOver={this.onDragOver}
                      onClick={this.props.onSelect}
                      onDoubleClick={this.isGroup() ? this.props.onOpen : this.props.onView}>
 

@@ -4,7 +4,7 @@ define(['react', 'reactDOM', 'components/breadcrumbs/breadCrumbs'],
 
         var TestUtils = React.addons.TestUtils;
 
-        describe('Bread Crumbs', function () {
+        xdescribe('Bread Crumbs', function () {
 
             var breadCrumbs;
 
