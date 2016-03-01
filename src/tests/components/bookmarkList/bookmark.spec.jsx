@@ -1,5 +1,5 @@
-define(['react', 'reactDOM', 'components/bookmarkList/bookmark'],
-    function (React, ReactDOM, Bookmark) {
+define(['react', 'reactDOM', 'constants', 'components/bookmarkList/bookmark'],
+    function (React, ReactDOM, Constants, Bookmark) {
         'use strict';
 
         var TestUtils = React.addons.TestUtils;
@@ -14,7 +14,7 @@ define(['react', 'reactDOM', 'components/bookmarkList/bookmark'],
                         title: 'Fargo Season 2',
                         date: new Date(2015, 10, 18)
                     };
-                bookmark = TestUtils.renderIntoDocument(<Bookmark bookmarkData={bookmarkData}/>);
+                bookmark = TestUtils.renderIntoDocument(<Bookmark bookmarkData={bookmarkData} layout={Constants.layoutType.GRID}/>);
             });
 
             it('should render title in h1 tag', function () {
