@@ -1,5 +1,5 @@
-define(['lodash', 'react', 'components/dropdown/dropdown'],
-    function (_, React, Dropdown) {
+define(['lodash', 'react', 'components/dropdown/dropdown', 'utils/bookmarksUtil'],
+    function (_, React, Dropdown, BookmarksUtil) {
         'use strict';
 
         var SearchBox = React.createClass({
@@ -24,49 +24,23 @@ define(['lodash', 'react', 'components/dropdown/dropdown'],
                 items: React.PropTypes.array.isRequired
             },
             getSearchResult: function () {
-                var items = this.props.items;
 
-                var searcTerm = this.state.searchTerm;
+                var filterResults = BookmarksUtil.filterItems(this.props.items, this.state.searchTerm, ['title', 'tags']);
 
-                var resultTitles =
-                    _.chain(items)
-                        .map('title')
-                        .flatten()
-                        .filter(function (item) {
-                            return _.startsWith(item.toLowerCase(), searcTerm.toLowerCase());
-                        })
-                        .union()
-                        .sort()
-                        .value();
-
-                var resultTags =
-                    _.chain(items)
-                        .map('tags')
-                        .flatten()
-                        .filter(function (tag) {
-                            return _.startsWith(tag.toLowerCase(), searcTerm.toLowerCase());
-                        })
-                        .union()
-                        .sort()
-                        .value();
-
-
-                var results = {
-                    items: []
-                };
-                if (!_.isEmpty(resultTags)) {
-                    results.items.push({
-                        type: 'tags',
-                        lines: resultTags
-                    });
-                }
-                if (!_.isEmpty(resultTitles)) {
-                    results.items.push({
+                var searchResults = {items: []};
+                if (!_.isEmpty(filterResults.title)) {
+                    searchResults.items.push({
                         type: 'title',
-                        lines: resultTitles
+                        lines: filterResults.title
                     });
                 }
-                return results;
+                if (!_.isEmpty(filterResults.tags)) {
+                    searchResults.items.push({
+                        type: 'tags',
+                        lines: filterResults.tags
+                    });
+                }
+                return searchResults;
             },
             filterBookmarksByTerm: function (type, filterTerm) {
                 var tag = '';
