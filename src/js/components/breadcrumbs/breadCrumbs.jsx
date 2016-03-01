@@ -7,6 +7,18 @@ define(['lodash',
     ],
     function (_, React, ActionProvider, Constants, BookmarksUtil, BreadCrumbsUtil) {
         'use strict';
+
+        function foldItemsIfNeeded(path, items) {
+            var foldThreshold = 3;
+            var foldSymbol = '...';
+
+            if (path.length > foldThreshold) {
+                items.splice(1, items.length - (foldThreshold + 1));
+                items[items.length - foldThreshold].title = foldSymbol;
+            }
+            return items;
+        }
+
         return React.createClass({
             displayName: 'BreadCrumbs',
             propTypes: {
@@ -24,7 +36,9 @@ define(['lodash',
                 return <span className='title-small group-item' onClick={onClick} key={item.id}>{item.title}</span>;
             },
             render: function () {
-                var items = BreadCrumbsUtil.getItemsData(this.props.currentPath, this.props.bookmarks);
+                var path = this.props.currentPath;
+                var items = BreadCrumbsUtil.getItemsData(path, this.props.bookmarks);
+                items = foldItemsIfNeeded(path, items);
 
                 return (
                     <nav className="groups-item-container box">
