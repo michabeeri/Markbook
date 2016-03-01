@@ -7,10 +7,11 @@ define(['React', 'components/tags/tagsContainer'],
         describe('TagsContainer', function () {
 
             var props;
-            var tag = 'test';
+            var newTag = 'test';
+            var existingTag = 'tag3';
             beforeEach(function () {
                 props = {
-                    tags: ['tag1', 'tag2'],
+                    tags: ['tag1', 'tag2', existingTag],
                     addTag: function () {
                     },
                     removeTag: function () {
@@ -20,34 +21,47 @@ define(['React', 'components/tags/tagsContainer'],
 
             describe('addTag', function () {
 
-                it('should call the addTag callback when a new tag is added', function () {
+                beforeEach(function () {
                     spyOn(props, 'addTag');
+                });
+
+                it('should call the addTag callback with the tag when a tag is added', function () {
                     var instance = React.createElement(TagsContainer, props);
                     var tags = ReactTestUtils.renderIntoDocument(instance);
-                    tags.addTag(tag);
-                    expect(props.addTag).toHaveBeenCalledWith(tag);
+                    tags.addTag(newTag);
+                    expect(props.addTag).toHaveBeenCalledWith(newTag);
                 });
 
                 it('should not call the addTag callback when the tag already exists', function () {
-                    spyOn(props, 'addTag');
                     var instance = React.createElement(TagsContainer, props);
                     var tags = ReactTestUtils.renderIntoDocument(instance);
-                    tags.addTag('tag1');
+                    tags.addTag(existingTag);
                     expect(props.addTag).not.toHaveBeenCalled();
+                });
+
+                it('should clear input after tag is added', function () {
+                    var instance = React.createElement(TagsContainer, props);
+                    var tags = ReactTestUtils.renderIntoDocument(instance);
+                    tags.addTag(newTag);
+                    expect(tags.state.input).toEqual('');
                 });
             });
 
             describe('removeTag', function () {
 
-                it('should call the removeTag callback when a tag is removed', function () {
+                it('should call the removeTag callback with the tag when a tag is removed', function () {
                     spyOn(props, 'removeTag');
                     var instance = React.createElement(TagsContainer, props);
                     var tags = ReactTestUtils.renderIntoDocument(instance);
-                    tags.removeTag(tag);
-                    expect(props.removeTag).toHaveBeenCalledWith(tag);
+                    tags.removeTag(newTag);
+                    expect(props.removeTag).toHaveBeenCalledWith(newTag);
                 });
             });
 
+            it('should remove existing bookmark tags from suggested user tags', function () {
+                var instance = React.createElement(TagsContainer, props);
+                var tags = ReactTestUtils.renderIntoDocument(instance);
 
+            });
         })
     });
