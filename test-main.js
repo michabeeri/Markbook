@@ -15,6 +15,8 @@ requirejs.config({
         redux: 'vendor/redux',
         reactRedux: 'vendor/react-redux',
         uuid: 'vendor/uuid',
+        md5: 'vendor/md5',
+        Firebase: 'vendor/firebase',
         router: 'https://cdnjs.cloudflare.com/ajax/libs/react-router/2.0.0/ReactRouter',
         components: 'js/components',
         mixins: 'js/mixins',
@@ -34,6 +36,9 @@ requirejs.config({
         lodash: {
             exports: '_'
         },
+        Firebase: {
+            exports: 'Firebase'
+        },
         React: {
             exports: 'react'
         },
@@ -44,5 +49,5 @@ requirejs.config({
     deps: tests,
 
     // start test run, once Require.js is done
-    callback: window.__karma__.start,
+    callback: window.__karma__.start
 });

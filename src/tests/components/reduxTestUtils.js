@@ -33,7 +33,11 @@ define(['react', 'reactDOM', 'redux', 'reactRedux'],
                         date: new Date(2012, 10, 9),
                         children: Array(4).fill({})
                     }
-                ]
+                ],
+                currentBookmarkPath: [{
+                    id: 'root',
+                    title: 'All Bookmarks'
+                }]
             };
         }
 

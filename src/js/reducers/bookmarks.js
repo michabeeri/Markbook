@@ -61,11 +61,6 @@ define(['lodash', 'uuid', 'constants'], function (_, uuid, Constants) {
                     date: action.date
                 });
 
-            case Constants.OPEN_BOOKMARK_GROUP:
-                // drill into group
-                console.log('open ' + action.id);
-                return state;
-
             case Constants.EDIT_BOOKMARK:
                 // open edit modal
                 console.log('edit ' + action.id);
@@ -88,6 +83,8 @@ define(['lodash', 'uuid', 'constants'], function (_, uuid, Constants) {
                 // delete group if last item removed
                 // open modal to ask before deleting group
                 return _.reject(state, {id: action.id});
+
+            case Constants.DRAG_REORDER:
 
 
             default:

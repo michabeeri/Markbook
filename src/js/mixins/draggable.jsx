@@ -1,8 +1,8 @@
 define([], function () {
     'use strict';
     return {
-        onDragStart: function (event) {
-            event.dataTransfer.effectAllowed = 'move';
+        onDragStart: function () {
+            //event.dataTransfer.effectAllowed = 'move';
             setTimeout(function () {
                 this.props.dragStart(this.props.dataId);
             }.bind(this), 50);

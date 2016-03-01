@@ -37,6 +37,7 @@ module.exports = function (grunt) {
                         dest: VENDOR_TARGET + 'lodash.js'
                     },
                     {
+
                         src: 'node_modules/redux/dist/redux.js',
                         dest: VENDOR_TARGET + 'redux.js'
                     },
@@ -47,6 +48,14 @@ module.exports = function (grunt) {
                     {
                         src: 'node_modules/node-uuid/uuid.js',
                         dest: VENDOR_TARGET + 'uuid.js'
+                    },
+                    {
+                        src: 'node_modules/js-md5/src/md5.js',
+                        dest: VENDOR_TARGET + 'md5.js'
+                    },
+                    {
+                        src: 'node_modules/firebase/lib/firebase-web.js',
+                        dest: VENDOR_TARGET + 'firebase-web.js'
                     },
                     {
                         expand: true,
@@ -188,18 +197,29 @@ module.exports = function (grunt) {
                 configFile: 'karma.conf.js',
                 browser: ['Chrome']
             }
+        },
+        umd: {
+            Firebase: {
+                options: {
+                    src: 'node_modules/firebase/lib/firebase-web.js',
+                    dest: VENDOR_TARGET + 'firebase.js',
+                    objectToExport: 'Firebase',
+                    amdModuleId: 'Firebase',
+                    deps: {
+                        'default': ['require', 'exports', 'module'],
+                        amd: ['require', 'exports', 'module']
+                    }
+                }
+            }
         }
     });
-    //grunt.loadNpmTasks('grunt-scss-lint');
-    //grunt.registerTask('log', function (text) {
-    //    grunt.log.writeln(text);
-    //});
 
     require('jit-grunt')(grunt);
 
     grunt.registerTask('lint', ['eslint']);
     grunt.registerTask('compile', ['babel']);
-    grunt.registerTask('test', ['karma:debug']);
+    grunt.registerTask('compile', ['umd', 'babel']);
+    grunt.registerTask('test', ['karma:unit']);
     grunt.registerTask('build', ['lint', 'clean:build', 'compile', 'copy:build']);
     grunt.registerTask('default', ['build', 'test']);
 };

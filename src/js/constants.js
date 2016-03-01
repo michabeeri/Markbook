@@ -25,6 +25,9 @@ define([],
             bookmarkType: bookmarkType,
             layoutType: layoutType,
 
+            //Application root database:
+            APP_ROOT_DATA: 'https://markbook.firebaseio.com/',
+
             // Bookmark action types
             ADD_BOOKMARK: 'ADD_BOOKMARK',
             OPEN_BOOKMARK_GROUP: 'OPEN_BOOKMARK_GROUP',
@@ -32,6 +35,7 @@ define([],
             TOGGLE_BOOKMARK_SELECTION: 'TOGGLE_BOOKMARK_SELECTION',
             REMOVE_BOOKMARK: 'REMOVE_BOOKMARK',
             NAVIGATE_TO_PREVIOUS_GROUP: 'NAVIGATE_TO_PREVIOUS_GROUP',
+            DRAG_REORDER: 'DRAG_REORDER',
 
             // user info action types
             LOGOUT: 'LOGOUT',

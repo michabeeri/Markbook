@@ -6,7 +6,8 @@ requirejs.config({
         router: 'https://cdnjs.cloudflare.com/ajax/libs/react-router/2.0.0/ReactRouter',
         redux: '../vendor/redux',
         reactRedux: '../vendor/react-redux',
-        uuid: '../vendor/uuid'
+        uuid: '../vendor/uuid',
+        Firebase: '../vendor/firebase'
     },
     map: {
         '*': {
@@ -24,6 +25,7 @@ requirejs.config({
     }
 });
 
+
 requirejs(['lodash', 'react', 'reactDOM', 'redux', 'reactRedux', 'components/appView', 'reducers/app'],
     function (_, React, ReactDOM, Redux, ReactRedux, AppView, appReducer) {
 
@@ -32,11 +34,13 @@ requirejs(['lodash', 'react', 'reactDOM', 'redux', 'reactRedux', 'components/app
         window.addEventListener('resize', _.throttle(function (evt) {
             window.dispatchEvent(new CustomEvent('throttledResize', evt));
         }, 80));
-
+        
         var Provider = ReactRedux.Provider;
-
         ReactDOM.render(
-            <Provider store={Redux.createStore(appReducer)}>
+            <Provider store={Redux.createStore(appReducer, appReducer(), window.devToolsExtension
+                ? window.devToolsExtension()
+                : undefined)}>
+
                 <AppView />
             </Provider>,
             document.getElementById('app')
