@@ -1,0 +1,5 @@
+.group-item + .group-item::before {
+  margin: 10px;
+  font-weight: bold;
+  content: '>';
+}

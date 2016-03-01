@@ -1,5 +1,5 @@
-define(['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmarkList', 'components/modals/ModalContainer', 'constants'],
-    function (React, ToolBar, BookmarkList, ModalContainer, Constants) {
+define(['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmarkList', 'components/breadcrumbs/breadCrumbs', 'components/modals/ModalContainer', 'constants'],
+    function (React, ToolBar, BookmarkList, BreadCrumbs, ModalContainer, Constants) {
         'use strict';
         return React.createClass({
             displayName: 'MainView',
@@ -36,6 +36,7 @@ define(['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmark
                 return (
                     <div>
                         <ToolBar {...this.props}/>
+                        <BreadCrumbs dispatch={this.props.dispatch} items={this.props.state.currentBookmarkPath}/>
                         <BookmarkList dispatch={this.props.dispatch} state={this.props.state}
                                       layout={this.state.layout}/>
                         <ModalContainer dispatch={this.props.dispatch} closeModal={this.closeModal}
