@@ -7,6 +7,11 @@ define(['lodash',
         'use strict';
         return React.createClass({
             displayName: 'BreadCrumbs',
+            propTypes: {
+                dispatch: React.PropTypes.func.isRequired,
+                currentPath: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+                bookmarks: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+            },
             onItemClick: function (id) {
                 this.props.dispatch(ActionProvider.navigateToPreviousGroup(id));
             },
