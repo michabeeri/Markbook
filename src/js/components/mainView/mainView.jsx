@@ -36,7 +36,10 @@ define(['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmark
                 return (
                     <div>
                         <ToolBar {...this.props}/>
-                        <BreadCrumbs dispatch={this.props.dispatch} items={this.props.state.currentBookmarkPath}/>
+                        <BreadCrumbs
+                            dispatch={this.props.dispatch}
+                            bookmarks={this.props.state.bookmarks}
+                            currentPath={this.props.state.currentBookmarkPath}/>
                         <BookmarkList dispatch={this.props.dispatch} state={this.props.state}
                                       layout={this.state.layout}/>
                         <ModalContainer dispatch={this.props.dispatch} closeModal={this.closeModal}

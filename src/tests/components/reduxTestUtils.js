@@ -1,5 +1,5 @@
-define(['react', 'reactDOM', 'redux', 'reactRedux'],
-    function (React, ReactDOM, Redux, ReactRedux) {
+define(['react', 'reactDOM', 'redux', 'reactRedux', 'constants'],
+    function (React, ReactDOM, Redux, ReactRedux, Constants) {
 
         'use strict';
 
@@ -12,6 +12,12 @@ define(['react', 'reactDOM', 'redux', 'reactRedux'],
                     username: 'user@wix.com'
                 },
                 bookmarks: [
+                    {
+                        id: Constants.ROOT_GROUP_ID,
+                        title: 'All Bookmarks',
+                        date: new Date(2015, 10, 18),
+                        children: ['0001', '0002', '0003', '0004']
+                    },
                     {
                         title: 'Fargo Season 2',
                         date: new Date(2015, 10, 18),
@@ -35,8 +41,7 @@ define(['react', 'reactDOM', 'redux', 'reactRedux'],
                     }
                 ],
                 currentBookmarkPath: [{
-                    id: 'root',
-                    title: 'All Bookmarks'
+                    id: Constants.ROOT_GROUP_ID
                 }]
             };
         }

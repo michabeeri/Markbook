@@ -4,28 +4,52 @@ define(['lodash', 'uuid', 'constants'], function (_, uuid, Constants) {
 
     var initialState = [
         {
-            id: uuid.v4(),
+            id: Constants.ROOT_GROUP_ID,
+            title: 'All Bookmarks',
+            date: new Date(2015, 10, 18),
+            children: ['0001', '0002', '0003', '0004']
+        },
+        {
+            id: '0001',
+            title: 'Group 1',
+            date: new Date(2015, 10, 18),
+            children: null
+        },
+        {
+            id: '0002',
+            title: 'Group 2',
+            date: new Date(2015, 10, 18),
+            children: null
+        },
+        {
+            id: '0003',
+            title: 'Group 3',
+            date: new Date(2015, 10, 18),
+            children: null
+        },
+        {
+            id: '0004',
             title: 'Fargo Season 2',
             date: new Date(2015, 10, 18),
             children: null,
             tags: []
         },
         {
-            id: uuid.v4(),
+            id: '0005',
             title: 'Fargo Season 1',
             date: new Date(2014, 11, 10),
             children: null,
             tags: []
         },
         {
-            id: uuid.v4(),
+            id: '0006',
             title: 'Bookmark 2 title',
             date: new Date(2012, 10, 9),
             children: null,
             tags: []
         },
         {
-            id: uuid.v4(),
+            id: '0007',
             title: 'Gaspar Noe Movies',
             date: new Date(2012, 10, 9),
             children: [
