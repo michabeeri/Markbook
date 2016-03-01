@@ -44,7 +44,8 @@ define(['react', 'actionProviders/actions', 'components/tags/tagsContainer'],
                         <input name="BookmarkUrl" type="text" valueLink={this.linkState('bookmarkUrl')}
                                placeholder="Paste url to bookmark"
                                className="input"/>
-                        <TagsContainer tags={this.state.tags} addTag={this.addTag} removeTag={this.removeTag}/>
+                        <TagsContainer tags={this.state.tags} addTag={this.addTag} removeTag={this.removeTag}
+                                       bookmarks={this.props.state.bookmarks}/>
                         <button onClick={this.addBookmark} className="btn">Add Bookmark</button>
                     </div>
 
