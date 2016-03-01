@@ -9,7 +9,8 @@ define([ 'React', 'reactDOM', 'components/modals/ModalContainer','components/mod
             function createDemoModalContainer(openedModal)
             {
                 var callback = jasmine.createSpy('callback');
-                return TestUtils.renderIntoDocument( <ModalContainer openedModal={openedModal} closeModal={callback}/>);
+                return TestUtils.renderIntoDocument(<ModalContainer openedModal={openedModal} closeModal={callback}
+                                                                    state={{}}/>);
             }
 
             it('should have be closed when NONE type is passed', function () {
