@@ -48,7 +48,7 @@ define(['lodash',
                 }
 
                 return (
-                    <nav className="box">
+                    <nav className="groups-item-container box">
                         {rootItem}
                         {foldedItem}
                         {parentItem}

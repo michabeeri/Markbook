@@ -1,3 +1,11 @@
+.groups-item-container > .group-item:not(:last-child) {
+  cursor: pointer;
+}
+
+.group-item:last-child {
+  cursor: default;
+}
+
 .group-item + .group-item::before {
   margin: 10px;
   font-weight: bold;
