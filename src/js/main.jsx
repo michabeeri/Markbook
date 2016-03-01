@@ -32,8 +32,7 @@ requirejs(['lodash', 'react', 'reactDOM', 'redux', 'reactRedux', 'components/app
         window.addEventListener('resize', _.throttle(function (evt) {
             window.dispatchEvent(new CustomEvent('throttledResize', evt));
         }, 80));
-
-        //var initialState = appReducer();
+        
         var Provider = ReactRedux.Provider;
         ReactDOM.render(
             <Provider store={Redux.createStore(appReducer, appReducer(), window.devToolsExtension
