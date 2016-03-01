@@ -31,8 +31,9 @@ define(['lodash', 'react', 'components/dropdown/dropdown'],
                 var resultTitles =
                     _.chain(items)
                         .map('title')
+                        .flatten()
                         .filter(function (item) {
-                            return item.startsWith(searcTerm);
+                            return _.startsWith(item.toLowerCase(), searcTerm.toLowerCase());
                         })
                         .union()
                         .sort()
@@ -43,7 +44,7 @@ define(['lodash', 'react', 'components/dropdown/dropdown'],
                         .map('tags')
                         .flatten()
                         .filter(function (tag) {
-                            return tag && tag.startsWith(searcTerm);
+                            return _.startsWith(tag.toLowerCase(), searcTerm.toLowerCase());
                         })
                         .union()
                         .sort()

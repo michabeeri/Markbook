@@ -7,19 +7,22 @@ define(['lodash', 'uuid', 'constants'], function (_, uuid, Constants) {
             id: uuid.v4(),
             title: 'Fargo Season 2',
             date: new Date(2015, 10, 18),
-            children: null
+            children: null,
+            tags: []
         },
         {
             id: uuid.v4(),
             title: 'Fargo Season 1',
             date: new Date(2014, 11, 10),
-            children: null
+            children: null,
+            tags: []
         },
         {
             id: uuid.v4(),
             title: 'Bookmark 2 title',
             date: new Date(2012, 10, 9),
-            children: null
+            children: null,
+            tags: []
         },
         {
             id: uuid.v4(),
@@ -30,15 +33,18 @@ define(['lodash', 'uuid', 'constants'], function (_, uuid, Constants) {
                     id: uuid.v4(),
                     title: 'Machete Kills',
                     date: new Date(2013, 4, 11),
-                    children: null
+                    children: null,
+                    tags: []
                 },
                 {
                     id: uuid.v4(),
                     title: 'Grindhouse',
                     date: new Date(2007, 9, 20),
-                    children: null
+                    children: null,
+                    tags: []
                 }
-            ]
+            ],
+            tags: []
         }
     ];
 
