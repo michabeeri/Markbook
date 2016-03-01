@@ -16,7 +16,7 @@ define(['lodash', 'uuid', 'constants'], function (_, uuid, Constants) {
             date: new Date(2015, 10, 18),
             children: null,
             url: 'www.tweeter.com',
-            tags: []
+            tags: ['fargo','season2']
         },
         {
             id: '0002',
@@ -24,7 +24,7 @@ define(['lodash', 'uuid', 'constants'], function (_, uuid, Constants) {
             date: new Date(2014, 11, 10),
             children: null,
             url: 'www.pinterest.com',
-            tags: []
+            tags: ['fargo', 'season1']
         },
         {
             id: '0003',
@@ -53,21 +53,21 @@ define(['lodash', 'uuid', 'constants'], function (_, uuid, Constants) {
             title: 'Grindhouse',
             date: new Date(2007, 9, 20),
             children: ['0007'],
-            tags: []
+            tags: ['Grindhouse']
         },
         {
             id: '0007',
             title: 'Group 1',
             date: new Date(2007, 9, 20),
             children: ['0008'],
-            tags: []
+            tags: ['Group1']
         },
         {
             id: '0008',
             title: 'Group 2',
             date: new Date(2007, 9, 20),
             children: null,
-            tags: []
+            tags: ['Group2']
         }
     ];
 
