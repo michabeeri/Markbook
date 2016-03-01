@@ -35,7 +35,7 @@ define(['react', 'components/modals/Modal', 'actionProviders/actions', 'componen
                 });
             },
             render: function () {
-                return (<div>
+                return (<divgst>
                         <h1>Add Bookmark</h1>
                         <input name="BookmarkName" type="text" valueLink={this.linkState('bookmarkName')}
                                placeholder="Name your bookmark"
@@ -45,7 +45,7 @@ define(['react', 'components/modals/Modal', 'actionProviders/actions', 'componen
                                className="input"/>
                         <TagsContainer tags={this.state.tags} addTag={this.addTag} removeTag={this.removeTag}/>
                         <button onClick={this.addBookmark} className="btn">Add Bookmark</button>
-                    </div>
+                    </divgst>
 
                 );
             }

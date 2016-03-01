@@ -1,5 +1,10 @@
-define(['lodash', 'react', 'constants', 'components/bookmarkList/bookmark', 'actionProviders/actions'],
-    function (_, React, Constants, Bookmark, ActionProvider) {
+define(['lodash',
+        'react',
+        'constants',
+        'components/bookmarkList/bookmark',
+        'actionProviders/actions',
+        'utils/bookmarksUtil'],
+    function (_, React, Constants, Bookmark, ActionProvider, BookmarksUtil) {
 
         'use strict';
 
@@ -37,9 +42,10 @@ define(['lodash', 'react', 'constants', 'components/bookmarkList/bookmark', 'act
                 }
             },
             render: function () {
+                var currentGroupItems = BookmarksUtil.getCurrentGroupItems(this.props.state.bookmarks, this.props.state.currentBookmarkPath);
                 return (
                     <div className='bookmark-list-container grid'>
-                        {_.map(this.getFilteredBookmarks(), function (bm) {
+                        {_.map(currentGroupItems, function (bm) {
                             var dragged = false;
                             if (bm.id === this.state.dragged) {
                                 dragged = true;

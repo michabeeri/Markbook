@@ -30,6 +30,8 @@ define([],
             NAVIGATE_TO_PREVIOUS_GROUP: 'NAVIGATE_TO_PREVIOUS_GROUP',
             DRAG_REORDER: 'DRAG_REORDER',
 
+            ROOT_GROUP_ID: 'rootGroup',
+
             // user info action types
             LOGOUT: 'LOGOUT',
 

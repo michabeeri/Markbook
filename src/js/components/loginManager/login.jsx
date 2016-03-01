@@ -21,7 +21,7 @@ define(['lodash',
             render: function () {
                 return (
                     <header>
-                        <img src='images/wix-icon.png' alt='markbook logo' width='150px'/>
+                        <img src='img/logo.jpg' alt='markbook logo' width='150px'/>
                         <h1>{Constants.APP_NAME}</h1>
                     </header>
                 );
