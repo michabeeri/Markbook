@@ -81,7 +81,6 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions'], fu
                         onDragOver={this.onDragOver}
                         onClick={this.onSelect}
                         onDoubleClick={this.isGroup() ? this.onOpen : this.onView}>
-
                     <div>
                         <h1 className='title-small'>{this.props.bookmarkData.title}</h1>
 

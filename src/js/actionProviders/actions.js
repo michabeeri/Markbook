@@ -54,6 +54,14 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 type: Constants.NAVIGATE_TO_PREVIOUS_GROUP,
                 id: id
             };
+        },
+        dragReorder: function (draggedId, draggedOverId, currentGroup) {
+            return {
+                type: Constants.DRAG_REORDER,
+                draggedId: draggedId,
+                draggedOverId: draggedOverId,
+                currentGroup: currentGroup
+            };
         }
     };
 });

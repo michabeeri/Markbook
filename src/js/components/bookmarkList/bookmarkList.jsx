@@ -1,5 +1,5 @@
-define(['lodash', 'react', 'constants', 'components/bookmarkList/bookmark'],
-    function (_, React, Constants, Bookmark) {
+define(['lodash', 'react', 'constants', 'components/bookmarkList/bookmark', 'actionProviders/actions'],
+    function (_, React, Constants, Bookmark, ActionProvider) {
 
         'use strict';
 
@@ -25,8 +25,11 @@ define(['lodash', 'react', 'constants', 'components/bookmarkList/bookmark'],
                     return titleCondition(bm) && tagCondition(bm);
                 });
             },
-            dragReorder: function () {
-                //TODO implementation of reorder
+            dragReorder: function (draggedOverId) {
+                if (!this.state.dragged || this.state.dragged === draggedOverId) {
+                    return;
+                }
+                this.props.dispatch(ActionProvider.dragReorder(this.state.dragged, draggedOverId, _.last(this.props.state.currentBookmarkPath)));
             },
             setDragged: function (draggedId) {
                 if (this.state.dragged !== draggedId) {
