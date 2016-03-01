@@ -109,7 +109,7 @@ define(['lodash', 'uuid', 'constants'], function (_, uuid, Constants) {
                 return _.reject(state, {id: action.id});
 
             case Constants.DRAG_REORDER:
-
+                //return state.slice().splice(BookmarksUtil.getBookmarkIndexById(action.draggedOverId), 0, state.slice().splice(BookmarksUtil.getBookmarkIndexById(action.draggedId), 1)[0]);
 
             default:
                 return state;

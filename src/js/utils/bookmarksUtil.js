@@ -24,6 +24,10 @@ define(['lodash'], function (_) {
         return _.find(bookmarks, {id: id});
     }
 
+    function getBookmarkIndexById(bookmarks, id) {
+        return _.findIndex(bookmarks, {id: id});
+    }
+
     function getCurrentGroupItems(bookmarks, currentPath) {
         var currentGroupId = currentPath[currentPath.length - 1].id;
         var currentGroup = _.find(bookmarks, {id: currentGroupId});
@@ -36,6 +40,7 @@ define(['lodash'], function (_) {
     return {
         filterItems: filterItems,
         getCurrentGroupItems: getCurrentGroupItems,
-        getBookmarkById: getBookmarkById
+        getBookmarkById: getBookmarkById,
+        getBookmarkIndexById: getBookmarkIndexById
     };
 });
