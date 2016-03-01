@@ -27,6 +27,14 @@ define(['React', 'components/tags/tagsContainer'],
                     tags.addTag(tag);
                     expect(props.addTag).toHaveBeenCalledWith(tag);
                 });
+
+                it('should not call the addTag callback when the tag already exists', function () {
+                    spyOn(props, 'addTag');
+                    var instance = React.createElement(TagsContainer, props);
+                    var tags = ReactTestUtils.renderIntoDocument(instance);
+                    tags.addTag('tag1');
+                    expect(props.addTag).not.toHaveBeenCalled();
+                });
             });
 
             describe('removeTag', function () {
@@ -39,5 +47,7 @@ define(['React', 'components/tags/tagsContainer'],
                     expect(props.removeTag).toHaveBeenCalledWith(tag);
                 });
             });
+
+
         })
     });

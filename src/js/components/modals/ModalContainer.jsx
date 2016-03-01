@@ -1,21 +1,20 @@
-define(['react', 'components/modals/AddBookmarkModal', 'components/modals/Modal', 'constants', 'lodash'],
-    function (React, AddBookmarkModal, Modal, constants, _) {
+define(['react', 'components/modals/AddBookmarkModal', 'components/modals/Modal', 'components/modals/modalData', 'lodash'],
+    function (React, AddBookmarkModal, Modal, modalData, _) {
         'use strict';
 
         return React.createClass({
             displayName: 'Modal container',
             contentProps: {},
             propTypes: {
-                openedModal: React.PropTypes.oneOf(_.values(constants.eModalType)),
+                openedModal: React.PropTypes.oneOf(_.values(modalData.eModalType)),
                 closeModal: React.PropTypes.func.isRequired,
                 dispatch: React.PropTypes.func.isRequired
             },
             getModalContent: function () {
-                //find Modal to be opened in Modals array
-                var indexOfModal = _.findIndex(constants.modals, {key: this.props.openedModal});
-                var modalDetails = constants.modals[indexOfModal];
+                var indexOfModal = _.findIndex(modalData.modals, {key: this.props.openedModal});
+                var modalDetails = modalData.modals[indexOfModal];
 
-                if (modalDetails.rendered) {
+                if (modalDetails !== undefined) {
 
                     var contentProps = {};
                     for (var i = 0; i < modalDetails.props.length; i++) {
@@ -34,7 +33,7 @@ define(['react', 'components/modals/AddBookmarkModal', 'components/modals/Modal'
             render: function () {
                 //prevent scrolling of web page when modal is opened
                 //TODO: change to component Overlay
-                document.body.style.overflow = (this.props.openedModal !== constants.eModalType.NONE) ? 'hidden' : 'none';
+                document.body.style.overflow = (this.props.openedModal !== modalData.eModalType.NONE) ? 'hidden' : 'none';
 
                 var content = this.getModalContent();
                 if (content) {
@@ -48,6 +47,3 @@ define(['react', 'components/modals/AddBookmarkModal', 'components/modals/Modal'
         });
     }
 );
-
-
-// <AddBookmarkModal dispatch={this.props.dispatch} closeModal={this.props.closeModal}/>

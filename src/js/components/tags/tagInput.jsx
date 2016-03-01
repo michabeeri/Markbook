@@ -6,7 +6,8 @@ define(['React', 'lodash', 'components/dropdown/dropdown'],
 
     return React.createClass({
         propTypes: {
-            addTag: React.PropTypes.func.isRequired
+            addTag: React.PropTypes.func.isRequired,
+            userTags: React.PropTypes.array.isRequired
         },
         mixins: [LinkedStateMixin],
         getInitialState: function () {
@@ -14,14 +15,17 @@ define(['React', 'lodash', 'components/dropdown/dropdown'],
                 input: ''
             };
         },
+        addTag: function (tag) {
+            this.props.addTag(tag);
+            this.setState({
+                input: ''
+            });
+        },
         onKeyDown: function (event) {
             if (!_.isEmpty(event.target.value)) {
                 if (event.keyCode === 13 || event.keyCode === 188) {
                     event.preventDefault();
-                    this.props.addTag(this.state.input);
-                    this.setState({
-                        input: ''
-                    });
+                    this.addTag(this.state.input);
                 }
             }
         },
@@ -36,18 +40,20 @@ define(['React', 'lodash', 'components/dropdown/dropdown'],
             if (filteredTags.indexOf(filter) === -1) {
                 items.push({title: 'New tag', groupType: 'tag', lines: [filter]});
             }
-
             return {
                 input: filter,
                 items: items
             };
         },
+        onLineClick: function (group, tag) {
+            this.addTag(tag);
+        },
         render: function () {
             var dropdown = null;
             if (!_.isEmpty(this.state.input)) {
                 dropdown = <DropDown ref="dropdown"
-                                     data={this.getDataForDropdown(this.state.input, this.props.tags)}
-                                     onLineClick={this.props.addTag}/>;
+                                     data={this.getDataForDropdown(this.state.input, this.props.userTags)}
+                                     onLineClick={this.onLineClick}/>;
             }
             return (
                 <div>

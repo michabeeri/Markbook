@@ -1,6 +1,4 @@
 .bookmark-list-container.grid {
-  border-width: 0 1px 1px 1px;
-  border-style: solid;
   height: 500px;
   text-align: center;
 }
@@ -24,6 +22,10 @@
 
 .bookmark-base.selected {
   box-shadow: inset 0 0 2px #00336C, 0 0 2px #00336C;
+}
+
+.bookmark-base.dragged {
+  opacity: 0;
 }
 
 .bookmark-base.grid {
@@ -54,3 +56,4 @@
 .bookmark-base.list .btn-group {
 
 }
+

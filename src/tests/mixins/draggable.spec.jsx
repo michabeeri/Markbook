@@ -13,7 +13,7 @@ define(['react', 'reactDOM', 'mixins/draggable'],
             }
         })
 
-        describe('Draggable item', function () {
+        xdescribe('Draggable item', function () {
 
             it('should receive dragged className on drag start', function () {
                 var comp = TestUtils.renderIntoDocument(<MyComp/>);

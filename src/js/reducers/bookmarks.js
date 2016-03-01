@@ -1,34 +1,47 @@
-define(['lodash', 'constants'], function (_, Constants) {
+define(['lodash', 'uuid', 'constants'], function (_, uuid, Constants) {
 
     'use strict';
 
     var initialState = [
         {
-            id: '0000',
+            id: uuid.v4(),
             title: 'Fargo Season 2',
             date: new Date(2015, 10, 18),
             children: null,
             url: 'www.tweeter.com'
         },
         {
-            id: '0001',
+            id: uuid.v4(),
             title: 'Fargo Season 1',
             date: new Date(2014, 11, 10),
             children: null,
             url: 'www.pinterest.com'
         },
         {
-            id: '0002',
+            id: uuid.v4(),
             title: 'Bookmark 2 title',
             date: new Date(2012, 10, 9),
             children: null,
             url: 'www.facebook.com'
         },
         {
-            id: '0003',
+            id: uuid.v4(),
             title: 'Gaspar Noe Movies',
             date: new Date(2012, 10, 9),
-            children: Array(4).fill({})
+            children: [
+                {
+                    id: uuid.v4(),
+                    title: 'Machete Kills',
+                    date: new Date(2013, 4, 11),
+                    children: null
+                },
+                {
+                    id: uuid.v4(),
+                    title: 'Grindhouse',
+                    date: new Date(2007, 9, 20),
+                    children: null
+                }
+            ]
         }
     ];
 
@@ -45,11 +58,6 @@ define(['lodash', 'constants'], function (_, Constants) {
                     date: action.date,
                     url: action.url
                 });
-
-            case Constants.OPEN_BOOKMARK_GROUP:
-                // drill into group
-                console.log('open ' + action.id);
-                return state;
 
             case Constants.EDIT_BOOKMARK:
                 // open edit modal
@@ -73,6 +81,8 @@ define(['lodash', 'constants'], function (_, Constants) {
                 // delete group if last item removed
                 // open modal to ask before deleting group
                 return _.reject(state, {id: action.id});
+
+            case Constants.DRAG_REORDER:
 
 
             default:

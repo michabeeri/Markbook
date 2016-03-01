@@ -17,7 +17,7 @@ define(['react'], function (React) {
             return this.props.data.items.map(function (filteredGroup, groupIndex) {
                 return (
                     <li><span>{filteredGroup.title}</span>
-                        <ul ref={'group' + groupIndex}>
+                        <ul className='style-less-list' ref={'group' + groupIndex}>
                             {self.renderGroupLines(filteredGroup)}
                         </ul>
                     </li>);
@@ -27,7 +27,7 @@ define(['react'], function (React) {
             var self = this;
             if (filteredGroup.lines.length > 0) {
                 return (filteredGroup.lines.map(function (line, itemIndex) {
-                    return (<li onClick={self.onClick}
+                    return (<li className='btn btn-list-item' onClick={self.onClick}
                                 data-value={line}
                                 data-type={filteredGroup.groupType}
                                 ref={filteredGroup.groupType + itemIndex}>
@@ -39,7 +39,7 @@ define(['react'], function (React) {
         },
         render: function () {
             return (
-                <ul ref="dropdownList">{this.renderGroup()}</ul>
+                <ul className='dropdown-container style-less-list' ref="dropdownList">{this.renderGroup()}</ul>
             );
         }
     });
