@@ -1,11 +1,11 @@
-define(['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmarkList', 'components/breadcrumbs/breadCrumbs', 'components/modals/ModalContainer', 'constants'],
-    function (React, ToolBar, BookmarkList, BreadCrumbs, ModalContainer, Constants) {
+define(['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmarkList', 'components/breadcrumbs/breadCrumbs', 'components/modals/ModalContainer', 'constants', 'components/modals/modalData'],
+    function (React, ToolBar, BookmarkList, BreadCrumbs, ModalContainer, Constants, modalData) {
         'use strict';
         return React.createClass({
             displayName: 'MainView',
             getInitialState: function () {
                 return {
-                    openedModal: Constants.eModalType.NONE,
+                    openedModal: modalData.eModalType.NONE,
                     layout: Constants.layoutType.GRID
                 };
             },
@@ -24,12 +24,12 @@ define(['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmark
             },
             openAddBookMarkModal: function () {
                 this.setState({
-                    openedModal: Constants.eModalType.MODAL_ADD_BOOKMARK
+                    openedModal: modalData.eModalType.MODAL_ADD_BOOKMARK
                 });
             },
             closeModal: function () {
                 this.setState({
-                    openedModal: Constants.eModalType.NONE
+                    openedModal: modalData.eModalType.NONE
                 });
             },
             render: function () {

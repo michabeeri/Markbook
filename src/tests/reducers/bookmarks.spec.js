@@ -9,7 +9,8 @@ define(['lodash', 'constants', 'reducers/bookmarks'],
                 var bookmark = {
                     id: _.uniqueId(),
                     title: 'Office Space',
-                    date: new Date(19, 3, 1999)
+                    date: new Date(19, 3, 1999),
+                    url: 'www.google.com'
                 };
                 var action = Object.assign({}, bookmark, {type: constants.ADD_BOOKMARK});
                 var newState = bookmarks(initialState, action);

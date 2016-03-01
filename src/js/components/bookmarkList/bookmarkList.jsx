@@ -1,5 +1,10 @@
-define(['lodash', 'react', 'constants', 'components/bookmarkList/bookmark', 'actionProviders/actions'],
-    function (_, React, Constants, Bookmark, ActionProvider) {
+define(['lodash',
+        'react',
+        'constants',
+        'components/bookmarkList/bookmark',
+        'actionProviders/actions',
+        'utils/bookmarksUtil'],
+    function (_, React, Constants, Bookmark, ActionProvider, BookmarksUtil) {
 
         'use strict';
 
@@ -21,17 +26,7 @@ define(['lodash', 'react', 'constants', 'components/bookmarkList/bookmark', 'act
                     return !filter || !filter.tag;
                 }
 
-                var currentPath = this.props.state.currentBookmarkPath;
-                var bookmarks = this.props.state.bookmarks;
-                var currentGroup = _.find(bookmarks, {id: currentPath[currentPath.length - 1].id});
-
-                var groupBookmarkItems = [];
-                _.forEach(currentGroup.children, function (childId) {
-                    var result = _.find(bookmarks, {id: childId});
-                    groupBookmarkItems.push(result);
-                });
-
-                return _.filter(groupBookmarkItems, function (bm) {
+                return _.filter(this.props.state.bookmarks, function (bm) {
                     return titleCondition(bm) && tagCondition(bm);
                 });
             },
@@ -47,9 +42,10 @@ define(['lodash', 'react', 'constants', 'components/bookmarkList/bookmark', 'act
                 }
             },
             render: function () {
+                var currentGroupItems = BookmarksUtil.getCurrentGroupItems(this.props.state.bookmarks, this.props.state.currentBookmarkPath);
                 return (
                     <div className='bookmark-list-container grid'>
-                        {_.map(this.getFilteredBookmarks(), function (bm) {
+                        {_.map(currentGroupItems, function (bm) {
                             var dragged = false;
                             if (bm.id === this.state.dragged) {
                                 dragged = true;
