@@ -9,6 +9,7 @@ define(['React', 'reactDOM', 'components/modals/AddBookmarkModal'],
             function createDemoAddBookmarkModal() {
                 var dispatchSpy = jasmine.createSpy('callback');
                 return TestUtils.renderIntoDocument(<AddBookmarkModal dispatch={dispatchSpy}
+                                                                      state={{}}
                                                                       classNameAddBookmark='modal modal-opened'
                                                                       closeModal={function(){}}/>);
             }
@@ -22,7 +23,7 @@ define(['React', 'reactDOM', 'components/modals/AddBookmarkModal'],
                 var domNode = ReactDOM.findDOMNode(reactComp);
                 var bookmarkNameNode = domNode.querySelector("input[name=BookmarkName]");
                 var bookmarkUrlNode = domNode.querySelector("input[name=BookmarkUrl]");
-                var saveBookmark = TestUtils.findRenderedDOMComponentWithTag(reactComp,'button');
+                var saveBookmark = TestUtils.findRenderedDOMComponentWithTag(reactComp, 'button');
                 bookmarkNameNode.value = bookmark.bookmarkName;
                 bookmarkUrlNode.value = bookmark.bookmarkUrl;
                 TestUtils.Simulate.click(saveBookmark);

@@ -13,7 +13,7 @@ define(['components/modals/AddBookmarkModal'],
                 key: eModalType.MODAL_ADD_BOOKMARK,
                 class: AddBookmarkModal,
                 name: 'Add Bookmark Modal',
-                props: ['closeModal', 'dispatch']
+                props: ['closeModal', 'dispatch', 'state']
             }
         ];
 

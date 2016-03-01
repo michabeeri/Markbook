@@ -20,6 +20,10 @@ define(['lodash'], function (_) {
         return results;
     }
 
+    function isCurrentGroup(path, id) {
+        return _.last(path).id === id;
+    }
+
     function getBookmarkById(bookmarks, id) {
         return _.find(bookmarks, {id: id});
     }
@@ -42,5 +46,6 @@ define(['lodash'], function (_) {
         getCurrentGroupItems: getCurrentGroupItems,
         getBookmarkById: getBookmarkById,
         getBookmarkIndexById: getBookmarkIndexById
+        isCurrentGroup: isCurrentGroup
     };
 });

@@ -1,19 +1,26 @@
 define(['lodash',
         'react',
         'actionProviders/actions',
-        'constants'],
-    function (_, React, ActionProvider, Constants) {
+        'constants',
+        'utils/bookmarksUtil'],
+    function (_, React, ActionProvider, Constants, BookmarksUtil) {
         'use strict';
         return React.createClass({
             displayName: 'BreadCrumbs',
+            propTypes: {
+                dispatch: React.PropTypes.func.isRequired,
+                currentPath: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+                bookmarks: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+            },
             onItemClick: function (id) {
                 this.props.dispatch(ActionProvider.navigateToPreviousGroup(id));
             },
             renderItem: function (item) {
-                var itemData = _.find(this.props.bookmarks, {id: item.id});
-                return <span
-                    className='title-small group-item'
-                    onClick={this.onItemClick.bind(this, item.id)}>{itemData.title}</span>;
+                var onClick = BookmarksUtil.isCurrentGroup(this.props.currentPath, item.id) ?
+                    null : this.onItemClick.bind(this, item.id);
+
+                var itemData = BookmarksUtil.getBookmarkById(this.props.bookmarks, item.id);
+                return <span className='title-small group-item' onClick={onClick}>{itemData.title}</span>;
             },
             renderFoldedItem: function (item) {
                 return <span
