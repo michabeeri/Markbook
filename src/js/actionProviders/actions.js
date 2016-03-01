@@ -49,6 +49,14 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 id: id
             };
         },
+        dragReorder: function (draggedId, draggedOverId, currentGroup) {
+            return {
+                type: Constants.DRAG_REORDER,
+                draggedId: draggedId,
+                draggedOverId: draggedOverId,
+                currentGroup: currentGroup
+            }
+        },
         openBookmarkGroup: function (id, title) {
             return {
                 type: Constants.OPEN_BOOKMARK_GROUP,

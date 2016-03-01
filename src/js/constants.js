@@ -35,6 +35,7 @@ define([],
             TOGGLE_BOOKMARK_SELECTION: 'TOGGLE_BOOKMARK_SELECTION',
             REMOVE_BOOKMARK: 'REMOVE_BOOKMARK',
             NAVIGATE_TO_PREVIOUS_GROUP: 'NAVIGATE_TO_PREVIOUS_GROUP',
+            DRAG_REORDER: 'DRAG_REORDER',
 
             // user info action types
             LOGOUT: 'LOGOUT',

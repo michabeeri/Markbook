@@ -78,6 +78,8 @@ define(['lodash', 'uuid', 'constants'], function (_, uuid, Constants) {
                 // open modal to ask before deleting group
                 return _.reject(state, {id: action.id});
 
+            case Constants.DRAG_REORDER:
+
 
             default:
                 return state;
