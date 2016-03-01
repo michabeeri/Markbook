@@ -19,7 +19,7 @@ define(['lodash',
             render: function () {
                 return (
                     <header>
-                        <img src='images/wix-icon.png' alt='wix-logo' width='150px'/>
+                        <img src='img/logo.jpg' alt='Markbook logo' width='150px'/>
                         <h1>Kick-Mark</h1>
                         <h2>Sign-Up</h2>
                     </header>

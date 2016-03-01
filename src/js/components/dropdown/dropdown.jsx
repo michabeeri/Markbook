@@ -16,7 +16,7 @@ define(['react'], function (React) {
             var self = this;
             return this.props.data.items.map(function (filteredGroup, groupIndex) {
                 return (
-                    <li><span>{filteredGroup.title}</span>
+                    <li key={Math.random()}><span>{filteredGroup.title}</span>
                         <ul className='style-less-list' ref={'group' + groupIndex}>
                             {self.renderGroupLines(filteredGroup)}
                         </ul>
@@ -28,7 +28,7 @@ define(['react'], function (React) {
             if (filteredGroup.lines.length > 0) {
                 return (filteredGroup.lines.map(function (line, itemIndex) {
                     return (<li className='btn btn-list-item' onClick={self.onClick}
-                                data-value={line}
+                                data-value={line} key={Math.random()}
                                 data-type={filteredGroup.groupType}
                                 ref={filteredGroup.groupType + itemIndex}>
                         {line}

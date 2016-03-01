@@ -8,7 +8,7 @@ define(['lodash', 'constants'], function (_, Constants) {
     ];
 
     return function currentBookmarkPath(state, action) {
-        if (!state) {
+        if (_.isUndefined(state)) {
             return initialState;
         }
 
