@@ -21,14 +21,14 @@ define(['lodash',
                     onClick={this.onItemClick.bind(this, item.id)}>...</span>;
             },
             isPathOnChildGroupLevel: function () {
-                return this.isPathLevelDeeperThan(1);
+                return this.isPathLevelDeeperThan(0);
             },
             shouldFoldParentItems: function () {
                 return this.isPathLevelDeeperThan(2);
             },
             isPathLevelDeeperThan: function (level) {
                 var itemsWithoutRoot = this.props.currentPath.slice(1);
-                return itemsWithoutRoot.length >= level;
+                return itemsWithoutRoot.length > level;
             },
             render: function () {
                 var path = this.props.currentPath,
