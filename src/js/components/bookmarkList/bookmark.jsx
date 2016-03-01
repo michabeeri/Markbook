@@ -7,7 +7,7 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions'], fu
         getInitialState: function () {
             return {isOpen: false};
         },
-        onView: function () {
+        onView: function (evt) {
             window.open('http://www.google.com');
             evt.stopPropagation();
         },
@@ -21,11 +21,11 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions'], fu
             }
             evt.stopPropagation();
         },
-        onEdit: function () {
+        onEdit: function (evt) {
             this.props.dispatch(ActionProvider.editBookmark(this.props.bookmarkData.id));
             evt.stopPropagation();
         },
-        onDelete: function () {
+        onDelete: function (evt) {
             this.props.dispatch(ActionProvider.removeBookmark(this.props.bookmarkData.id));
             evt.stopPropagation();
         },
