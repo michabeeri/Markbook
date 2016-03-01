@@ -3,7 +3,7 @@ define(['lodash'], function (_) {
 
     function getItemsData(path, bookmarks) {
         var idPath = _.map(path, 'id');
-        var items = _(bookmarks)
+        return _(bookmarks)
             .filter(function (item) {
                 return _.includes(idPath, item.id);
             })
@@ -11,13 +11,6 @@ define(['lodash'], function (_) {
                 return _.pick(item, ['id', 'title']);
             })
             .value();
-
-        if (path.length > 3) {
-            items.splice(1, items.length - 4);
-            items[items.length - 3].title = '...';
-        }
-
-        return items;
     }
 
     return {
