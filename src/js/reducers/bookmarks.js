@@ -1,4 +1,4 @@
-define(['lodash', 'uuid', 'constants'], function (_, uuid, Constants) {
+define(['lodash', 'uuid', 'constants', 'utils/bookmarksUtil'], function (_, uuid, Constants, bookmarksUtil) {
 
     'use strict';
 
@@ -177,7 +177,17 @@ define(['lodash', 'uuid', 'constants'], function (_, uuid, Constants) {
                 }());
 
             case Constants.DRAG_REORDER:
-                //return state.slice().splice(BookmarksUtil.getBookmarkIndexById(action.draggedOverId), 0, state.slice().splice(BookmarksUtil.getBookmarkIndexById(action.draggedId), 1)[0]);
+                return (function () {
+                    var newState = state.slice();
+                    var currentGroupIndex = bookmarksUtil.getBookmarkIndexById(action.currentGroup);
+                    var children = _.find(newState, currentGroupIndex).children;
+                    console.log(children);
+                    var indexDragged = _.find(children, action.draggedId.substring(2));
+                    var indexDraggedOver = _.find(children, action.draggedOverId.substring(2));
+                    children.splice(indexDraggedOver, 0, children.splice(indexDragged, 1)[0]);
+                    console.log(children);
+                    return newState;
+                }());
 
             default:
                 return state;
