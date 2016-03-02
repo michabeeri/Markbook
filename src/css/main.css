@@ -16,6 +16,7 @@ html {
   max-width: 900px;
   margin: auto;
   color: #333333;
+  font-size: 1.4em;
 }
 
 .box {
@@ -32,7 +33,12 @@ html {
 
 .style-less-list {
   list-style: none;
-  padding-left: 15px;
+  padding: 0;
+  margin: 0;
+}
+
+.horizontal-list .list-item {
+  display: inline-block;
 }
 
 .title-normal {
@@ -69,6 +75,12 @@ html {
   max-width: 20rem;
   margin-bottom: 20px;
   margin-right: 20px;
+}
+
+.btn-style-less {
+  border: none;
+  outline: none;
+  background: none;
 }
 
 .border-simple {

@@ -30,13 +30,13 @@ define(['React', 'lodash', 'components/tags/tagInput', 'components/tags/tagsList
             },
             removeExistingTagsFromSuggestions: function (filteredItems) {
                 var self = this;
-                _.pull(filteredItems, function (tag) {
+                _.remove(filteredItems, function (tag) {
                     return self.props.tags.indexOf(tag) !== -1;
                 });
             },
             getFilteredUserTags: function (filter) {
                 var filteredItems = BookmarksUtil.filterItems(this.props.bookmarks, filter, ['tags']).tags;
-                //this.removeExistingTagsFromSuggestions(filteredItems);
+                this.removeExistingTagsFromSuggestions(filteredItems);
                 return this.mapDataForDropdown(filter, filteredItems);
             },
             mapDataForDropdown: function (filter, filteredUserTags) {
