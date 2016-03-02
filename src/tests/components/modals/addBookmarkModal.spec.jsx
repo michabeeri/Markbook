@@ -1,5 +1,5 @@
-define(['React', 'reactDOM', 'components/modals/AddBookmarkModal'],
-    function (React, ReactDOM, AddBookmarkModal) {
+define(['React', 'reactDOM', 'components/modals/BookmarkData', 'constants'],
+    function (React, ReactDOM, BookmarkData, constants) {
         'use strict';
 
         var TestUtils = React.addons.TestUtils;
@@ -8,13 +8,12 @@ define(['React', 'reactDOM', 'components/modals/AddBookmarkModal'],
 
             function createDemoAddBookmarkModal() {
                 var dispatchSpy = jasmine.createSpy('callback');
-                return TestUtils.renderIntoDocument(<AddBookmarkModal dispatch={dispatchSpy}
-                                                                      state={{}}
-                                                                      classNameAddBookmark='modal modal-opened'
-                                                                      closeModal={function(){}}/>);
+                return TestUtils.renderIntoDocument(<BookmarkData dispatch={dispatchSpy}
+                                                                      state={{type: constants.eModalType.MODAL_ADD_BOOKMARK, id: ''}}
+                                                                      close={function(){}}/>);
             }
 
-            xit('should call dispatch with proper input', function () {
+            it('should call dispatch with proper input', function () {
                 var bookmark = {
                     bookmarkName: 'Demo Name',
                     bookmarkUrl: 'www.google.com'
