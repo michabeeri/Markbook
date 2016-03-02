@@ -62,18 +62,24 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 title: title
             };
         },
+        setSortType: function (sortType) {
+            return {
+                type: Constants.SET_SORT_TYPE,
+                sortType: sortType
+            };
+        },
         navigateToPreviousGroup: function (id) {
             return {
                 type: Constants.NAVIGATE_TO_PREVIOUS_GROUP,
                 id: id
             };
         },
-        dragReorder: function (draggedId, draggedOverId, currentGroup) {
+        dragReorder: function (draggedId, draggedOverId, currentGroupId) {
             return {
                 type: Constants.DRAG_REORDER,
                 draggedId: draggedId,
                 draggedOverId: draggedOverId,
-                currentGroup: currentGroup
+                currentGroupId: currentGroupId
             };
         },
         openBookmarkGroup: function (id) {

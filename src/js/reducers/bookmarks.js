@@ -1,4 +1,4 @@
-define(['lodash', 'uuid', 'constants'], function (_, uuid, Constants) {
+define(['lodash', 'uuid', 'constants', 'utils/bookmarksUtil'], function (_, uuid, Constants, bookmarksUtil) {
 
     'use strict';
 
@@ -7,11 +7,11 @@ define(['lodash', 'uuid', 'constants'], function (_, uuid, Constants) {
             id: Constants.ROOT_GROUP_ID,
             title: 'All Bookmarks',
             date: new Date(2015, 10, 18),
-            children: ['0001', '0002', '0003', '0004'],
+            children: ['bm0001', 'bm0002', 'bm0003', 'bm0004'],
             tags: []
         },
         {
-            id: '0001',
+            id: 'bm0001',
             title: 'Fargo Season 2',
             date: new Date(2015, 10, 18),
             children: null,
@@ -19,7 +19,7 @@ define(['lodash', 'uuid', 'constants'], function (_, uuid, Constants) {
             tags: ['fargo', 'season2']
         },
         {
-            id: '0002',
+            id: 'bm0002',
             title: 'Fargo Season 1',
             date: new Date(2014, 11, 10),
             children: null,
@@ -27,7 +27,7 @@ define(['lodash', 'uuid', 'constants'], function (_, uuid, Constants) {
             tags: ['fargo', 'season1']
         },
         {
-            id: '0003',
+            id: 'bm0003',
             title: 'Bookmark 2 title',
             date: new Date(2012, 10, 9),
             children: null,
@@ -35,42 +35,42 @@ define(['lodash', 'uuid', 'constants'], function (_, uuid, Constants) {
             tags: []
         },
         {
-            id: '0004',
+            id: 'bm0004',
             title: 'Gaspar Noe Movies',
             date: new Date(2012, 10, 9),
-            children: ['0005', '0006'],
+            children: ['bm0005', 'bm0006'],
             tags: []
         },
         {
-            id: '0005',
+            id: 'bm0005',
             title: 'Machete Kills',
             date: new Date(2013, 4, 11),
             children: null,
             tags: []
         },
         {
-            id: '0006',
+            id: 'bm0006',
             title: 'Grindhouse',
             date: new Date(2007, 9, 20),
-            children: ['0007'],
+            children: ['bm0007'],
             tags: ['Grindhouse']
         },
         {
-            id: '0007',
+            id: 'bm0007',
             title: 'Group 1',
             date: new Date(2007, 9, 20),
-            children: ['0008'],
+            children: ['bm0008'],
             tags: ['Group1']
         },
         {
-            id: '0008',
+            id: 'bm0008',
             title: 'Group 2',
             date: new Date(2007, 9, 20),
-            children: ['0009'],
+            children: ['bm0009'],
             tags: []
         },
         {
-            id: '0009',
+            id: 'bm0009',
             title: 'Group 3',
             date: new Date(2007, 9, 20),
             children: null,
@@ -145,7 +145,15 @@ define(['lodash', 'uuid', 'constants'], function (_, uuid, Constants) {
                 }());
 
             case Constants.DRAG_REORDER:
-            //return state.slice().splice(BookmarksUtil.getBookmarkIndexById(action.draggedOverId), 0, state.slice().splice(BookmarksUtil.getBookmarkIndexById(action.draggedId), 1)[0]);
+                return (function () {
+                    var newState = state.slice();
+                    var currentGroupIndex = bookmarksUtil.getBookmarkIndexById(newState, action.currentGroupId);
+                    var children = newState[currentGroupIndex].children;
+                    var indexDragged = children.indexOf(action.draggedId);
+                    var indexDraggedOver = children.indexOf(action.draggedOverId);
+                    children.splice(indexDraggedOver, 0, children.splice(indexDragged, 1)[0]);
+                    return newState;
+                }());
 
             default:
                 return state;

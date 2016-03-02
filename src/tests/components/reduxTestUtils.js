@@ -86,7 +86,12 @@ define(['react', 'reactDOM', 'redux', 'reactRedux', 'constants'],
                         tags: ['Group2']
                     }
                 ],
-                currentBookmarkPath: [Constants.ROOT_GROUP_ID]
+                currentBookmarkPath: [
+                    Constants.ROOT_GROUP_ID
+                ],
+                sort: {
+                    sortType: Constants.DEFAULT_SORT_TYPE
+                }
             };
         }
 
