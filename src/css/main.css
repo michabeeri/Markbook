@@ -23,6 +23,10 @@ html {
   margin: 15px
 }
 
+.contained {
+  margin: 0 10px;
+}
+
 .label {
   padding-right: 5px;
   vertical-align: sub;
@@ -91,7 +95,7 @@ html {
 }
 
 .border-simple {
-  border: 1px solid;
+  border: 1px solid #6b6b6b;
 }
 
 .border-no-top {

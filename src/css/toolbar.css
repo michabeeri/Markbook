@@ -4,3 +4,10 @@
   height: 40px;
   line-height: 30px;
 }
+
+.order-by {
+  font: 14px 'Helvetica Neue Regular', 'Helvetica Neue';
+  font-weight: 200;
+  height: 30px;
+  width: 150px;
+}
