@@ -3,16 +3,18 @@ define(['lodash',
         'router',
         'components/loginManager/login-fields/email',
         'components/loginManager/login-fields/password',
-        'components/loginManager/loginManager'],
+        'components/loginManager/loginManager',
+        'ReduxSimpleRouter',
+        'reactRedux'],
     function (_,
         React,
         ReactRouter,
         EmailInput,
         PasswordInput,
-        LoginManager) {
+        LoginManager,
+        ReduxSimpleRouter,
+        ReactRedux) {
         'use strict';
-
-        var Link = ReactRouter.Link;
 
         var SignupHeader = React.createClass({
             displayName: 'LoginHeader',
@@ -32,7 +34,7 @@ define(['lodash',
             render: function () {
                 return (
                     <footer>
-                        <h4>Already have an account? <LoginLink /></h4>
+                        <h4>Already have an account? <LoginLink {...this.props}/></h4>
                     </footer>
                 );
             }
@@ -40,9 +42,13 @@ define(['lodash',
 
         var LoginLink = React.createClass({
             displayName: 'LoginLink',
+            clickHandler: function (event) {
+                event.preventDefault();
+                this.props.dispatch(ReduxSimpleRouter.routeActions.push('/login'));
+            },
             render: function () {
                 return (
-                    <Link to='/'>Login</Link>
+                    <a href='#' onClick={this.clickHandler}>Login</a>
                 );
             }
         });
@@ -72,18 +78,31 @@ define(['lodash',
             }
         });
 
-        return React.createClass({
+        var signUpComp = React.createClass({
             displayName: 'Signup',
             render: function () {
                 return (
                     <section>
                         <SignupHeader />
                         <SignupForm />
-                        <SignupFooter />
+                        <SignupFooter {...this.props}/>
                     </section>
                 );
             }
         });
+
+        return ReactRedux.connect(
+            function (state) {
+                return {
+                    state: state
+                };
+            },
+            function (dispatch) {
+                return {
+                    dispatch: dispatch
+                };
+            }
+        )(signUpComp);
 
 
     });
