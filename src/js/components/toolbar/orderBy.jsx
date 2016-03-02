@@ -13,7 +13,7 @@ define(['lodash', 'react', 'uuid'],
                 this.props.setSortType(event.target.value);
             },
             renderOption: function (type) {
-                var description= this.props.sortTypes[type];
+                var description = this.props.sortTypes[type];
                 return <option key={uuid.v4()} value={type}>{description}</option>;
             },
             render: function () {
@@ -21,7 +21,8 @@ define(['lodash', 'react', 'uuid'],
                 return (
                     <div className='inline'>
                         <span>Reorder: </span>
-                        <select className='order-by' onChange={this.onSelectOrderBy} value={this.props.selectedSortType}>
+                        <select className='order-by' onChange={this.onSelectOrderBy}
+                                value={this.props.selectedSortType}>
                             {_.map(_.keys(this.props.sortTypes), function (type) {
                                 return renderOption(type);
                             })}
