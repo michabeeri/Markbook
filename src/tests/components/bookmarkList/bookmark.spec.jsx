@@ -7,7 +7,6 @@ define(['react', 'reactDOM', 'constants', 'components/bookmarkList/bookmark'],
         describe('Bookmark', function () {
 
             var bookmark,
-                draggedBookmark,
                 bookmarkData,
                 setDragged;
 
@@ -37,7 +36,8 @@ define(['react', 'reactDOM', 'constants', 'components/bookmarkList/bookmark'],
             });
 
             it('should call dragstart callback when being dragged', function (done) {
-                TestUtils.Simulate.dragStart(ReactDOM.findDOMNode(bookmark));
+                var mockDataTransfer = { setData: function () {} };
+                TestUtils.Simulate.dragStart(ReactDOM.findDOMNode(bookmark), {dataTransfer: mockDataTransfer});
                 jasmine.clock().tick(51);
                 expect(setDragged).toHaveBeenCalledWith('bm001');
                 done();
