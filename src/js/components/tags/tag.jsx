@@ -14,7 +14,9 @@ define(['React'], function (React) {
             return (
                 <span className="tag">
                     <span ref="title">{this.props.tag}</span>
-                    <button ref="removeBtn" onClick={this.onClick}>X</button>
+                    <button ref="removeBtn" onClick={this.onClick} className="btn-style-less">
+                        <i className="fa fa-times"></i>
+                    </button>
                 </span>
             );
         }

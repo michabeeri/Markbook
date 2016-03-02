@@ -44,7 +44,7 @@ define(['React', 'lodash', 'components/tags/tagInput', 'components/tags/tagsList
             }, mapDataForDropdown: function (filter, filteredUserTags) {
                 var data = {
                     input: filter,
-                    items: [{title: 'Tags', groupType: 'tag', lines: filteredUserTags}]
+                    items: [{title: 'Suggestions', groupType: 'tag', lines: filteredUserTags}]
                 };
                 if (this.isNewTag(filteredUserTags, filter)) {
                     data.items.push({title: 'New tag', groupType: 'tag', lines: [filter]});
