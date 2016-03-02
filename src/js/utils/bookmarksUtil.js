@@ -21,7 +21,7 @@ define(['lodash'], function (_) {
     }
 
     function isCurrentGroup(path, id) {
-        return _.last(path).id === id;
+        return _.last(path) === id;
     }
 
     function getBookmarkById(bookmarks, id) {
@@ -40,7 +40,7 @@ define(['lodash'], function (_) {
     }
 
     function getCurrentGroupItems(bookmarks, currentPath) {
-        return getItemsByGroupId(bookmarks, currentPath[currentPath.length - 1].id);
+        return getItemsByGroupId(bookmarks, currentPath[currentPath.length - 1]);
     }
 
     function getParent(state, id) {
