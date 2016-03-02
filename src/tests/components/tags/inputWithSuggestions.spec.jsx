@@ -11,7 +11,6 @@ define(['React', 'reactDOM', 'components/tags/inputWithSuggestions'],
                 props = {
                     onInputSelected: function () {
                     },
-                    tags: []
                 };
                 spyOn(props, 'onInputSelected');
             });
