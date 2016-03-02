@@ -4,14 +4,18 @@ define(['lodash',
         'components/loginManager/login-fields/email',
         'components/loginManager/login-fields/password',
         'components/loginManager/loginManager',
-        'constants'],
+        'constants',
+        'ReduxSimpleRouter',
+        'reactRedux'],
     function (_,
         React,
         ReactRouter,
         EmailInput,
         PasswordInput,
         LoginManager,
-        Constants) {
+        Constants,
+        ReduxSimpleRouter,
+        ReactRedux) {
         'use strict';
 
         //var Link = ReactRouter.Link;
@@ -33,7 +37,7 @@ define(['lodash',
             render: function () {
                 return (
                     <footer>
-                        <h4>Don't have an account? <SignupLink /></h4>
+                        <h4>Don't have an account? <SignupLink {...this.props}/></h4>
                     </footer>
                 );
             }
@@ -41,16 +45,13 @@ define(['lodash',
 
         var SignupLink = React.createClass({
             displayName: 'SignupLink',
-            contextTypes: {
-                router: React.PropTypes.object.isRequired
-            },
             clickHandler: function (event) {
                 event.preventDefault();
-                this.context.router.push('/signup');
+                this.props.dispatch(ReduxSimpleRouter.routeActions.push('/signup'));
             },
             render: function () {
                 return (
-                    <a href='#' onclick={this.clickHandler}>Sign Up</a>
+                    <a href='#' onClick={this.clickHandler}>Sign Up</a>
                 );
             }
         });
@@ -77,17 +78,30 @@ define(['lodash',
             }
         });
 
-        return React.createClass({
+        var loginComponent = React.createClass({
             displayName: 'Login',
             render: function () {
                 return (
                     <section>
                         <LoginHeader />
                         <LoginForm className='login-form' />
-                        <LoginFooter />
+                        <LoginFooter {...this.props}/>
                     </section>
                 );
             }
         });
+
+        return ReactRedux.connect(
+            function (state) {
+                return {
+                    state: state
+                };
+            },
+            function (dispatch) {
+                return {
+                    dispatch: dispatch
+                };
+            }
+        )(loginComponent);
 
     });

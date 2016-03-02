@@ -27,8 +27,23 @@ requirejs.config({
 });
 
 
-requirejs(['lodash', 'react', 'reactDOM', 'redux', 'router', 'reactRedux', 'components/appView', 'reducers/app', 'ReduxSimpleRouter', 'components/loginManager/login', 'middlewares/thunk'],
-    function (_, React, ReactDOM, Redux, ReactRouter, ReactRedux, AppView, appReducer, ReduxSimpleRouter, LoginComp, thunkMiddleware) {
+
+requirejs([
+    'lodash',
+    'react',
+    'reactDOM',
+    'redux',
+    'router',
+    'reactRedux',
+    'components/appView',
+    'reducers/app',
+    'ReduxSimpleRouter',
+    'components/loginManager/login',
+    'components/loginManager/signup',
+    'middlewares/thunk',
+    'middlewares/removeBookmark'],
+    function (_, React, ReactDOM, Redux, ReactRouter, ReactRedux, AppView, appReducer, ReduxSimpleRouter, LoginComp, SignupComp, thunkMiddleware, removeBookmarkMiddleware) {
+
 
         'use strict';
 
@@ -40,7 +55,7 @@ requirejs(['lodash', 'react', 'reactDOM', 'redux', 'router', 'reactRedux', 'comp
         var Route = ReactRouter.Route;
         var Provider = ReactRedux.Provider;
         var reduxMiddleware = ReduxSimpleRouter.syncHistory(ReactRouter.browserHistory);
-        var createStoreWithMiddleware = Redux.applyMiddleware(reduxMiddleware, thunkMiddleware)(Redux.createStore);
+        var createStoreWithMiddleware = Redux.applyMiddleware(reduxMiddleware, thunkMiddleware, removeBookmarkMiddleware)(Redux.createStore);
         var store = createStoreWithMiddleware(appReducer, window.devToolsExtension
             ? window.devToolsExtension()
             : undefined);
@@ -52,6 +67,7 @@ requirejs(['lodash', 'react', 'reactDOM', 'redux', 'router', 'reactRedux', 'comp
                 <Router history={ReactRouter.browserHistory}>
                     <Route path="/" component={AppView} />
                     <Route path="/login" component={LoginComp} />
+                    <Route path="/signup" component={SignupComp} />
                 </Router>
             </Provider>,
             document.getElementById('app')

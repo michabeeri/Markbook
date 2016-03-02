@@ -43,8 +43,8 @@ define(['lodash'], function (_) {
         return getItemsByGroupId(bookmarks, currentPath[currentPath.length - 1]);
     }
 
-    function getParent(state, id) {
-        return _.find(state, function (bm) {
+    function getParent(bookmarks, id) {
+        return _.find(bookmarks, function (bm) {
             return bm.children && bm.children.indexOf(id) !== -1;
         });
     }
