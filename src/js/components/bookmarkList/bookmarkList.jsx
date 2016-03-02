@@ -52,7 +52,13 @@ define(['lodash',
                 this.setState({dragged: null, draggedOver: null});
             },
             render: function () {
-                var currentGroupItems = BookmarksUtil.getCurrentGroupItems(this.props.state.bookmarks, this.props.state.currentBookmarkPath);
+                var currentGroupItems = BookmarksUtil.getCurrentGroupItems(this.props.state.bookmarks,
+                    this.props.state.currentBookmarkPath);
+
+                var sortType = this.props.state.sort.sortType;
+                if (sortType) {
+                    currentGroupItems = BookmarksUtil.sort(this.props.state.bookmarks, sortType);
+                }
                 return (
                     <div className='bookmark-list-container grid'>
                         {_.map(currentGroupItems, function (bm) {
@@ -69,7 +75,6 @@ define(['lodash',
                                     layout={this.props.layout}
                                     state={this.props.state}
                                     dispatch={this.props.dispatch}
-                                    modalUtils={this.props.modalUtils}
                                     dragClass={dragged}
                                     dragStart={this.setDragged}
                                     dragOver={this.dragReorder}

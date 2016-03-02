@@ -1,35 +1,19 @@
-define(['components/modals/AddBookmarkModal', 'components/modals/LastItemAlert'],
-    function (AddBookmarkModal, LastItemAlert) {
+define(['constants', 'components/modals/AddBookmarkModal', 'components/modals/LastItemAlert', 'components/modals/ModalGroupDelete'],
+    function (constants, AddBookmarkModal, LastItemAlert, ModalGroupDelete) {
         'use strict';
 
-        var eModalType = {
-            NONE: 'None',
-            MODAL_ADD_BOOKMARK: 'Add Bookmark modal',
-            MODAL_EDIT_GROUP: 'Modal Edit Group',
-            LAST_BOOKMARK_IN_GROUP_ALERT: 'Last Item In Group Alert',
-            GROUP_DELETE_NOTIFICATION: 'Group Delete Notification'
-        };
-
-        var Modals = [
+        return [
             {
-                key: eModalType.MODAL_ADD_BOOKMARK,
-                class: AddBookmarkModal,
-                props: ['closeModal', 'dispatch', 'state']
+                key: constants.eModalType.MODAL_ADD_BOOKMARK,
+                class: AddBookmarkModal
             },
             {
-                key: eModalType.LAST_BOOKMARK_IN_GROUP_ALERT,
-                class: LastItemAlert,
-                props: ['closeModal', 'dispatch', 'bookmarkId']
+                key: constants.eModalType.LAST_BOOKMARK_IN_GROUP_ALERT,
+                class: LastItemAlert
             },
             {
-                key: eModalType.GROUP_DELETE_NOTIFICATION,
-                class: LastItemAlert,
-                props: ['closeModal', 'dispatch', 'bookmarkId']
+                key: constants.eModalType.GROUP_DELETE_NOTIFICATION,
+                class: ModalGroupDelete
             }
         ];
-
-        return {
-            eModalType: eModalType,
-            modals: Modals
-        };
     });

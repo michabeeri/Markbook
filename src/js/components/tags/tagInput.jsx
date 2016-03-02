@@ -24,12 +24,17 @@ define(['React', 'lodash', 'components/dropdown/dropdown'],
             render: function () {
                 return (
                     <div>
-                        <span>Add tag:</span>
-                        <input type="text" onKeyDown={this.onKeyDown} ref="input" valueLink={this.props.valueLink}/>
-                        {!_.isEmpty(this.props.input) ?
-                            <DropDown ref="dropdown" data={this.props.suggestions} onLineClick={this.onLineClick}/> :
-                            null
-                        }
+                        <span className="label">Add tag:</span>
+                        <span className="input-wrapper">
+                            <input className="input" type="text" onKeyDown={this.onKeyDown} ref="input"
+                                   valueLink={this.props.valueLink}/>
+                            {!_.isEmpty(this.props.input) ?
+                                <DropDown ref="dropdown" data={this.props.suggestions}
+                                          onLineClick={this.onLineClick}/> :
+                                null
+                            }
+                        </span>
+
                     </div>
                 );
             }

@@ -1,10 +1,21 @@
 .dropdown-container {
+    border: 1px solid black;
+    background: white;
+    z-index: 1;
+    position: absolute;
+    width: 220px;
 }
 
 .dropdown-items-title {
-
+    font-weight: bold;
+    padding-left: 2px;
 }
 
 .dropdown-item {
+    padding-left: 5px;
+}
 
+.dropdown-item:hover {
+    cursor: pointer;
+    color: #00a0d1;
 }

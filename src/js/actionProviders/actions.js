@@ -2,18 +2,18 @@ define(['uuid', 'constants'], function (uuid, Constants) {
     'use strict';
 
     return {
-        addBookmarkAsync: function (parentGroupId, title, url, tags) {
-            return function (dispatch) {
-                return this.slowOperation().then(
-                    function () {
-                        dispatch(this.addBookmark(parentGroupId, title, url, tags));
-                    }.bind(this)
-                );
-            }.bind(this);
-        },
-        slowOperation: function () {
-            return Promise.resolve('ok');
-        },
+        //addBookmarkAsync: function (parentGroupId, title, url, tags) {
+        //    return function (dispatch) {
+        //        return this.slowOperation().then(
+        //            function () {
+        //                dispatch(this.addBookmark(parentGroupId, title, url, tags));
+        //            }.bind(this)
+        //        );
+        //    }.bind(this);
+        //},
+        //slowOperation: function () {
+        //    return Promise.resolve('ok');
+        //},
         addBookmark: function (parentGroupId, title, url, tags) {
             return {
                 type: Constants.ADD_BOOKMARK,
@@ -46,7 +46,7 @@ define(['uuid', 'constants'], function (uuid, Constants) {
         },
         removeAndReparent: function (id) {
             return {
-                type: Constants.REMOVE_LAST_BOOKMARK_IN_GROUP,
+                type: Constants.REMOVE_REPARENT_CHILDREN,
                 id: id
             };
         },
@@ -86,6 +86,37 @@ define(['uuid', 'constants'], function (uuid, Constants) {
             return {
                 type: Constants.OPEN_BOOKMARK_GROUP,
                 id: id
+            };
+        },
+        login: function (username, uid, token) {
+            return {
+                type: Constants.LOGIN, username: username, uid: uid, token: token
+            };
+        },
+        openBookmarkDataModal: function (id) {
+            return {
+                type: Constants.OPEN_MODAL,
+                modalType: Constants.eModalType.MODAL_ADD_BOOKMARK,
+                bookmarkId: id
+            };
+        },
+        openDeleteGroupModal: function (id) {
+            return {
+                type: Constants.OPEN_MODAL,
+                modalType: Constants.eModalType.GROUP_DELETE_NOTIFICATION,
+                bookmarkId: id
+            };
+        },
+        openLastItemInGroupDelete: function (id) {
+            return {
+                type: Constants.OPEN_MODAL,
+                modalType: Constants.eModalType.LAST_BOOKMARK_IN_GROUP_ALERT,
+                bookmarkId: id
+            };
+        },
+        closeModal: function () {
+            return {
+                type: Constants.CLOSE_MODAL
             };
         }
     };

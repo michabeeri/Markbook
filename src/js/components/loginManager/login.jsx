@@ -4,14 +4,20 @@ define(['lodash',
         'components/loginManager/login-fields/email',
         'components/loginManager/login-fields/password',
         'components/loginManager/loginManager',
-        'constants'],
+        'constants',
+        'ReduxSimpleRouter',
+        'reactRedux',
+        'actionProviders/actions'],
     function (_,
         React,
         ReactRouter,
         EmailInput,
         PasswordInput,
         LoginManager,
-        Constants) {
+        Constants,
+        ReduxSimpleRouter,
+        ReactRedux,
+        ActionProvider) {
         'use strict';
 
         //var Link = ReactRouter.Link;
@@ -33,7 +39,7 @@ define(['lodash',
             render: function () {
                 return (
                     <footer>
-                        <h4>Don't have an account? <SignupLink /></h4>
+                        <h4>Don't have an account? <SignupLink {...this.props}/></h4>
                     </footer>
                 );
             }
@@ -41,27 +47,29 @@ define(['lodash',
 
         var SignupLink = React.createClass({
             displayName: 'SignupLink',
-            contextTypes: {
-                router: React.PropTypes.object.isRequired
-            },
             clickHandler: function (event) {
                 event.preventDefault();
-                this.context.router.push('/signup');
+                this.props.dispatch(ReduxSimpleRouter.routeActions.push('/signup'));
             },
             render: function () {
                 return (
-                    <a href='#' onclick={this.clickHandler}>Sign Up</a>
+                    <a href='#' onClick={this.clickHandler}>Sign Up</a>
                 );
             }
         });
 
         var LoginForm = React.createClass({
             displayName: 'LoginForm',
+            successLogin: function (username, uid, token) {
+                this.props.dispatch(ActionProvider.login(username, uid, token));
+                this.props.dispatch(ReduxSimpleRouter.routeActions.push('/appView'));
+            },
             onLogin: function (event) {
                 console.info('onLogin');
                 event.preventDefault();
 
-                LoginManager.authenticateUser(this.refs.email.getValue(), this.refs.password.getValue());
+                LoginManager.authenticateUser(this.refs.email.getValue(), this.refs.password.getValue(),
+                this.successLogin);
             },
             render: function () {
                 return (
@@ -77,17 +85,30 @@ define(['lodash',
             }
         });
 
-        return React.createClass({
+        var loginComponent = React.createClass({
             displayName: 'Login',
             render: function () {
                 return (
                     <section>
                         <LoginHeader />
-                        <LoginForm className='login-form' />
-                        <LoginFooter />
+                        <LoginForm className='login-form' {...this.props}/>
+                        <LoginFooter {...this.props}/>
                     </section>
                 );
             }
         });
+
+        return ReactRedux.connect(
+            function (state) {
+                return {
+                    state: state
+                };
+            },
+            function (dispatch) {
+                return {
+                    dispatch: dispatch
+                };
+            }
+        )(loginComponent);
 
     });

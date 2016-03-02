@@ -13,7 +13,7 @@ define([ 'React', 'reactDOM', 'components/modals/Modal'],
             function createDemoModalContainer(className)
             {
                 var callback = jasmine.createSpy('callback');
-                return TestUtils.renderIntoDocument( <Modal className={className} closeModal={callback}>demo child</Modal>);
+                return TestUtils.renderIntoDocument( <Modal className={className} close={callback}>demo child</Modal>);
             }
 
             beforeEach(function() {
@@ -37,7 +37,7 @@ define([ 'React', 'reactDOM', 'components/modals/Modal'],
                 var domNode = ReactDOM.findDOMNode(reactComp);
                 var closingElement = domNode.querySelector('#modalCloser');
                 TestUtils.Simulate.click(closingElement);
-                expect(reactComp.props.closeModal).toHaveBeenCalled();
+                expect(reactComp.props.close).toHaveBeenCalled();
             });
         });
 

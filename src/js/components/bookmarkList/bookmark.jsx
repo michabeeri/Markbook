@@ -27,15 +27,17 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
         },
         onDelete: function (evt) {
             var id = this.props.bookmarkData.id;
-            //var parent = BookmarksUtil.getParent(this.props.state.bookmarks, id);
-            //if (parent.children && parent.children.length === 1) {
-            //    this.props.modalUtils.lastItemInGroup(id);
-            //
-            //} else {
-            //    this.props.dispatch(ActionProvider.removeBookmark(id));
-            //
-            //}
-            this.props.dispatch(ActionProvider.removeBookmark(id));
+            if (BookmarksUtil.isGroup(this.props.state.bookmarks, id)) {
+                this.props.dispatch(ActionProvider.openDeleteGroupModal(id));
+            } else {
+                var parent = BookmarksUtil.getParent(this.props.state.bookmarks, id);
+                if (parent.children && parent.children.length === 1) {
+                    this.props.dispatch(ActionProvider.openLastItemInGroupDelete(id));
+                } else {
+                    this.props.dispatch(ActionProvider.removeBookmark(id));
+                }
+            }
+
             evt.stopPropagation();
         },
         onSelect: function (evt) {
@@ -72,7 +74,6 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
                                 layout={this.props.layout}
                                 state={this.props.state}
                                 dispatch={this.props.dispatch}
-                                modalUtils={this.props.modalUtils}
                                 dragClass={false}
                                 dragStart={function () {}}
                                 dragOver={function () {}}

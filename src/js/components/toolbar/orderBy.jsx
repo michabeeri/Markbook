@@ -13,8 +13,8 @@ define(['lodash', 'react', 'uuid'],
                 this.props.setSortType(event.target.value);
             },
             renderOption: function (type) {
-                var description = this.props.sortTypes[type];
-                return <option key={uuid.v4()} value={type}>{description}</option>;
+                var sortType = this.props.sortTypes[type];
+                return <option key={uuid.v4()} value={sortType.value}>{sortType.description}</option>;
             },
             render: function () {
                 var renderOption = this.renderOption;
