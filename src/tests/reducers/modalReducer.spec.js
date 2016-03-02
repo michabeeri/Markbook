@@ -6,25 +6,25 @@ define(['lodash', 'reducers/modalReducer', 'actionProviders/actions', 'constants
 
             it('should open bookmark data modal', function () {
                 var initialState = null;
-                var action = actions.openBookmarkDataModal();
+                var action = actions.openBookmarkDataModal('');
                 var newState = modalReducer(initialState, action);
-                expect(newState).toEqual({type: constants.eModalType.MODAL_ADD_BOOKMARK});
+                expect(newState).toEqual({type: constants.eModalType.MODAL_ADD_BOOKMARK, id: ''});
             });
 
 
             it('should open delete group modal', function () {
                 var initialState = null;
-                var action = actions.openDeleteGroupModal();
+                var action = actions.openDeleteGroupModal('');
                 var newState = modalReducer(initialState, action);
-                expect(newState).toEqual({type: constants.eModalType.GROUP_DELETE_NOTIFICATION});
+                expect(newState).toEqual({type: constants.eModalType.GROUP_DELETE_NOTIFICATION, id: ''});
             });
 
 
             it('should open delete last item in group modal', function () {
                 var initialState = null;
-                var action = actions.openLastItemInGroupDelete();
+                var action = actions.openLastItemInGroupDelete('');
                 var newState = modalReducer(initialState, action);
-                expect(newState).toEqual({type: constants.eModalType.LAST_BOOKMARK_IN_GROUP_ALERT});
+                expect(newState).toEqual({type: constants.eModalType.LAST_BOOKMARK_IN_GROUP_ALERT, id: ''});
             });
 
             it('should have initial state of null', function () {
