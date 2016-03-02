@@ -38,11 +38,11 @@ define(['lodash', 'utils/localStorageUtil'], function (_, localStorageUtil) {
             var key = 'testKey';
             var testValue = 'testValue';
 
-            it('should call local storage setItem with key and value', function () {
+            it('should call local storage setItem with key and stringified value', function () {
                 spyOn(localStorage, 'setItem');
 
                 localStorageUtil.setItem(key, testValue);
-                expect(localStorage.setItem).toHaveBeenCalledWith(key, testValue);
+                expect(localStorage.setItem).toHaveBeenCalledWith(key, JSON.stringify(testValue));
             });
 
             it('should print a console message if failed to set item', function () {
