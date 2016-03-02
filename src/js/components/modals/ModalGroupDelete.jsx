@@ -15,10 +15,11 @@ define(['react', 'actionProviders/actions'],
             },
             render: function () {
                 return (<div>
-                        <h1>Note!</h1>
-                        <p>This is the only item in the group.</p>
-                        <p>Deleting it will romove the group as well</p>
+                        <h1>Wait!</h1>
+                        <p>You are deleting a group with N items</p>
+                        <p>Hmmm...</p>
                         <button onClick={this.DeleteItemAndGroup} className="btn">Delete</button>
+                        <p>I know, don't care</p>
                         <button onClick={this.props.closeModal} className="btn">Cancel</button>
                     </div>
                 );
@@ -26,6 +27,3 @@ define(['react', 'actionProviders/actions'],
         });
     }
 );
-
-
-

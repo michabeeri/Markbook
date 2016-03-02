@@ -81,6 +81,29 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 type: Constants.OPEN_BOOKMARK_GROUP,
                 id: id
             };
+        },
+        openBookmarkDataModal: function () {
+            return {
+                type: Constants.OPEN_MODAL,
+                modalType: Constants.eModalType.MODAL_ADD_BOOKMARK
+            };
+        },
+        openDeleteGroupModal: function () {
+            return {
+                type: Constants.OPEN_MODAL,
+                modalType: Constants.eModalType.GROUP_DELETE_NOTIFICATION
+            };
+        },
+        openLastItemInGroupDelete: function () {
+            return {
+                type: Constants.OPEN_MODAL,
+                modalType: Constants.eModalType.LAST_BOOKMARK_IN_GROUP_ALERT
+            };
+        },
+        closeModal: function () {
+            return {
+                type: Constants.CLOSE_MODAL
+            };
         }
     };
 });
