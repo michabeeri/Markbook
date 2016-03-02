@@ -13,7 +13,7 @@ define([],
         };
 
         var sortTypes = {
-            DEFAULT: 'Order By',
+            DEFAULT: '',
             DATE_ASC: 'Date, old to new',
             DATE_DESC: 'Date, new to old',
             TITLE_ASC: 'Title Ascending',

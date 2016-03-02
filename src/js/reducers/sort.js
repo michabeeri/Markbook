@@ -13,7 +13,6 @@ define(['constants'], function (Constants) {
         switch (action.type) {
 
             case Constants.SET_SORT_TYPE:
-                console.info('sort type = ', action.sortType);
                 return {
                     sortType: action.sortType
                 };
