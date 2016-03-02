@@ -7,9 +7,10 @@ define(['react', 'actionProviders/actions'],
             propTypes: {
                 closeModal: React.PropTypes.func.isRequired,
                 dispatch: React.PropTypes.func.isRequired
+               // id: React.PropTypes.func.isRequired
             },
             DeleteItemAndGroup: function () {
-                this.props.dispatch(actions.removeLastBookmarkInGroup());
+                this.props.dispatch(actions.removeBookmark(this.props.bookmarkId));
                 this.props.closeModal();
             },
             render: function () {

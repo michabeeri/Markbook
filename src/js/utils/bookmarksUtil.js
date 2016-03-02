@@ -21,7 +21,7 @@ define(['lodash'], function (_) {
     }
 
     function isCurrentGroup(path, id) {
-        return _.last(path).id === id;
+        return _.last(path) === id;
     }
 
     function getBookmarkById(bookmarks, id) {
@@ -40,7 +40,13 @@ define(['lodash'], function (_) {
     }
 
     function getCurrentGroupItems(bookmarks, currentPath) {
-        return getItemsByGroupId(bookmarks, currentPath[currentPath.length - 1].id);
+        return getItemsByGroupId(bookmarks, currentPath[currentPath.length - 1]);
+    }
+
+    function getParent(state, id) {
+        return _.find(state, function (bm) {
+            return bm.children && bm.children.indexOf(id) !== -1;
+        });
     }
 
     return {
@@ -49,6 +55,7 @@ define(['lodash'], function (_) {
         getBookmarkById: getBookmarkById,
         getBookmarkIndexById: getBookmarkIndexById,
         isCurrentGroup: isCurrentGroup,
-        getItemsByGroupId: getItemsByGroupId
+        getItemsByGroupId: getItemsByGroupId,
+        getParent: getParent
     };
 });
