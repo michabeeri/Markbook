@@ -33,8 +33,8 @@ define(['lodash'], function (_) {
         }
     }
 
-    function removeItem() {
-
+    function removeItem(key) {
+        localStorage.removeItem(key);
     }
 
     return {

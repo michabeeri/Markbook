@@ -70,6 +70,17 @@ define(['lodash', 'utils/localStorageUtil'], function (_, localStorageUtil) {
             });
         });
 
+        describe('removeItem', function () {
+            var key = 'testKey';
+
+            it('should call local storage removeItem with key', function () {
+                spyOn(localStorage, 'removeItem');
+
+                localStorageUtil.removeItem(key);
+                expect(localStorage.removeItem).toHaveBeenCalledWith(key);
+            });
+        });
+
 
     });
 
