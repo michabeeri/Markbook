@@ -6,8 +6,8 @@ define(['React', 'lodash', 'components/dropdown/dropdown'],
             propTypes: {
                 input: React.PropTypes.string.isRequired,
                 addTag: React.PropTypes.func.isRequired,
-                valueLink: React.PropTypes.func.isRequired,
-                suggestions: React.PropTypes.array.isRequired
+                valueLink: React.PropTypes.object.isRequired,
+                suggestions: React.PropTypes.object.isRequired
             },
             onKeyDown: function (event) {
                 var tag = event.target.value;

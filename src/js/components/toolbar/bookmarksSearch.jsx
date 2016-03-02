@@ -59,7 +59,7 @@ define(['lodash', 'react', 'components/dropdown/dropdown', 'utils/bookmarksUtil'
                     dropdown = <Dropdown data={this.getSearchResult()} onLineClick={this.filterBookmarksByTerm}/>;
                 }
                 return (
-                    <div>
+                    <div className='inline'>
                         <SearchBox valueLink={this.linkState('searchTerm')}/>
                         {dropdown}
                     </div>
