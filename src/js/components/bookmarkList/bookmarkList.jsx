@@ -57,7 +57,7 @@ define(['lodash',
                             return (
                                 <Bookmark
                                     key={bm.id}
-                                    dataId={'bm' + bm.id}
+                                    dataId={bm.id}
                                     bookmarkData={bm}
                                     layout={this.props.layout}
                                     state={this.props.state}
