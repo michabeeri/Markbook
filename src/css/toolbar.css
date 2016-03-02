@@ -3,6 +3,18 @@
   padding: 5px;
   height: 40px;
   line-height: 30px;
+  position: relative;
+}
+
+.search-box-container {
+  border-radius: 30px;
+  border: 1px solid #cccccc;
+  padding-left: 15px;
+}
+
+.search-box-container .search-box {
+  border: none;
+  background-color: transparent;
 }
 
 .order-by {
@@ -10,4 +22,20 @@
   font-weight: 200;
   height: 30px;
   width: 150px;
+  border: 1px solid #cccccc;
+}
+
+.action-controls {
+  height: 30px;
+  position: absolute;
+  right: 0;
+}
+
+.action-controls .btn {
+  font: 14px 'Helvetica Neue Regular', 'Helvetica Neue';
+  font-weight: 200;
+  border: none;
+  height: 30px;
+  text-align: right;
+  background-color: transparent;
 }

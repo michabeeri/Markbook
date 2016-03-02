@@ -54,7 +54,7 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
             return this.props.bookmarkData.selected;
         },
         getClassString: function () {
-            return 'bookmark-base' +
+            return 'bookmark-base border-simple' +
                 (this.isGrid() ? ' grid' : ' list') +
                 (this.isGroup() ? ' group' : ' leaf') +
                 (this.props.bookmarkData.selected ? ' selected' : '') +
