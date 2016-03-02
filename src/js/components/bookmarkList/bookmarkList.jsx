@@ -12,7 +12,8 @@ define(['lodash',
             displayName: 'BookmarkList',
             getInitialState: function () {
                 return {
-                    dragged: null
+                    dragged: null,
+                    draggedOver: null
                 };
             },
             getFilteredBookmarks: function () {
@@ -31,10 +32,12 @@ define(['lodash',
                 });
             },
             dragReorder: function (draggedOverId) {
-                if (!this.state.dragged || this.state.dragged === draggedOverId) {
+                if (!this.state.dragged || this.state.dragged === draggedOverId || this.state.draggedOver === draggedOverId) {
                     return;
                 }
-                this.props.dispatch(ActionProvider.dragReorder(this.state.dragged, draggedOverId, _.last(this.props.state.currentBookmarkPath)));
+                this.setState({draggedOver: draggedOverId}, function () {
+                    this.props.dispatch(ActionProvider.dragReorder(this.state.dragged, draggedOverId, _.last(this.props.state.currentBookmarkPath)));
+                });
             },
             setDragged: function (draggedId) {
                 if (this.state.dragged !== draggedId) {
