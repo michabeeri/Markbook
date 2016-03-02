@@ -28,6 +28,7 @@ define(['React', 'reactDOM', 'components/modals/BookmarkData', 'constants'],
                 TestUtils.Simulate.click(saveBookmark);
 
                 expect(reactComp.props.dispatch).toHaveBeenCalled();
+                //expect(reactComp.props.dispatch).toHaveBeenCalledWith();
             });
 
 
