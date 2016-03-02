@@ -22,12 +22,30 @@ define([],
         };
 
         var sortTypes = {
-            DEFAULT: '',
-            DATE_ASC: 'Date, old to new',
-            DATE_DESC: 'Date, new to old',
-            TITLE_ASC: 'Title Ascending',
-            TITLE_DESC: 'Title Descending',
-            TYPE: 'Type'
+            DEFAULT: {
+                value: 'DEFAULT',
+                description: ''
+            },
+            DATE_ASC: {
+                value: 'DATE_ASC',
+                description: 'Date, old to new'
+            },
+            DATE_DESC: {
+                value: 'DATE_DESC',
+                description: 'Date, new to old'
+            },
+            TITLE_ASC: {
+                value: 'TITLE_ASC',
+                description: 'Title Ascending'
+            },
+            TITLE_DESC: {
+                value: 'TITLE_DESC',
+                description: 'Title Descending'
+            },
+            TYPE: {
+                value: 'TYPE',
+                description: 'Type'
+            }
         };
 
         return {
