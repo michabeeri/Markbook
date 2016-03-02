@@ -43,12 +43,19 @@ define(['lodash'], function (_) {
         return getItemsByGroupId(bookmarks, currentPath[currentPath.length - 1].id);
     }
 
+    function getParent(state, id) {
+        return _.find(state, function (bm) {
+            return bm.children && bm.children.indexOf(id) !== -1;
+        });
+    }
+
     return {
         filterItems: filterItems,
         getCurrentGroupItems: getCurrentGroupItems,
         getBookmarkById: getBookmarkById,
         getBookmarkIndexById: getBookmarkIndexById,
         isCurrentGroup: isCurrentGroup,
-        getItemsByGroupId: getItemsByGroupId
+        getItemsByGroupId: getItemsByGroupId,
+        getParent: getParent
     };
 });

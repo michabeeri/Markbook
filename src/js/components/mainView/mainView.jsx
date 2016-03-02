@@ -6,7 +6,8 @@ define(['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmark
             getInitialState: function () {
                 return {
                     openedModal: modalData.eModalType.NONE,
-                    layout: Constants.layoutType.GRID
+                    layout: Constants.layoutType.GRID,
+                    currentIdForModal: ''
                 };
             },
             componentDidMount: function () {
@@ -27,6 +28,18 @@ define(['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmark
                     openedModal: modalData.eModalType.MODAL_ADD_BOOKMARK
                 });
             },
+            openRemoveLastItemInGroupModal: function (id) {
+                this.setState({
+                    openedModal: modalData.eModalType.LAST_BOOKMARK_IN_GROUP_ALERT,
+                    currentIdForModal: id
+                });
+            },
+            openGroupDeleteModal: function (id) {
+                this.setState({
+                    openedModal: modalData.eModalType.GROUP_DELETE_NOTIFICATION,
+                    currentIdForModal: id
+                });
+            },
             closeModal: function () {
                 this.setState({
                     openedModal: modalData.eModalType.NONE
@@ -41,9 +54,9 @@ define(['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmark
                             bookmarks={this.props.state.bookmarks}
                             currentPath={this.props.state.currentBookmarkPath}/>
                         <BookmarkList dispatch={this.props.dispatch} state={this.props.state}
-                                      layout={this.state.layout}/>
+                                      layout={this.state.layout} modalUtils={{lastItemInGroup: this.openRemoveLastItemInGroupModal, groupDelete: this.openGroupDeleteModal}}/>
                         <ModalContainer dispatch={this.props.dispatch} state={this.props.state} closeModal={this.closeModal}
-                                        openedModal={this.state.openedModal}/>
+                                        openedModal={this.state.openedModal} bookmarkId={this.state.currentIdForModal}/>
                         <i className="fa fa-plus-circle fa-3x btn-add" onClick={this.openAddBookMarkModal}></i>
                     </div>
                 );
