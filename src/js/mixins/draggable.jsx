@@ -8,7 +8,7 @@ define([], function () {
             }.bind(this), 50);
         },
         onDragOver: function (event) {
-            event.preventDefault();
+            event.preventDefault(); //allows drop at this location
             this.props.dragOver(this.props.dataId);
         },
         onDragEnd: function () {

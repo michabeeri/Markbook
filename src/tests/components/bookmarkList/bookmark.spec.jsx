@@ -43,5 +43,7 @@ define(['react', 'reactDOM', 'constants', 'components/bookmarkList/bookmark'],
                 done();
             });
 
+            it('should call drag')
+
         });
     });

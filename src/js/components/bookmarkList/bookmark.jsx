@@ -88,7 +88,6 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
                      data-id={this.props.dataId}
                      onClick={this.onSelect}
                      onDoubleClick={this.isGroup() ? this.onOpen : this.onView}
-                     onDradStart={this.onDragStart}
                     {...this.getDragAttr()}>
                     <div>
                         <h1 className='title-small'>{this.props.bookmarkData.title}</h1>

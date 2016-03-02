@@ -32,17 +32,24 @@ define(['lodash',
                 });
             },
             dragReorder: function (draggedOverId) {
-                if (!this.state.dragged || this.state.dragged === draggedOverId || this.state.draggedOver === draggedOverId) {
+                if (!this.state.dragged || this.state.draggedOver === draggedOverId) {
                     return;
                 }
-                this.setState({draggedOver: draggedOverId}, function () {
-                    this.props.dispatch(ActionProvider.dragReorder(this.state.dragged, draggedOverId, _.last(this.props.state.currentBookmarkPath)));
-                });
+                if (this.state.dragged === draggedOverId) {
+                    this.setState({draggedOver: draggedOverId});
+                } else {
+                    this.setState({draggedOver: draggedOverId}, function () {
+                        this.props.dispatch(ActionProvider.dragReorder(this.state.dragged, draggedOverId, _.last(this.props.state.currentBookmarkPath)));
+                    });
+                }
             },
             setDragged: function (draggedId) {
                 if (this.state.dragged !== draggedId) {
                     this.setState({dragged: draggedId});
                 }
+            },
+            resetDragState: function () {
+                this.setState({dragged: null, draggedOver: null});
             },
             render: function () {
                 var currentGroupItems = BookmarksUtil.getCurrentGroupItems(this.props.state.bookmarks, this.props.state.currentBookmarkPath);
@@ -66,7 +73,7 @@ define(['lodash',
                                     dragClass={dragged}
                                     dragStart={this.setDragged}
                                     dragOver={this.dragReorder}
-                                    dragEnd={this.setDragged}
+                                    dragEnd={this.resetDragState}
                                 />);
                         }.bind(this))}
                     </div>
