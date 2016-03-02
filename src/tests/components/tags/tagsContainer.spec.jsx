@@ -11,11 +11,18 @@ define(['React', 'components/tags/tagsContainer'],
             var existingTag = 'tag3';
             beforeEach(function () {
                 props = {
-                    tags: ['tag1', 'tag2', existingTag],
+                    tags: ['tag1', 'tag2', existingTag, 'fargo'],
                     addTag: function () {
                     },
                     removeTag: function () {
-                    }
+                    },
+                    bookmarks: [
+                        {
+                            tags: ['fargo', 'season2']
+                        },
+                        {
+                            tags: ['fargo', 'season1']
+                        }]
                 };
             });
 
@@ -58,10 +65,11 @@ define(['React', 'components/tags/tagsContainer'],
                 });
             });
 
-            it('should remove existing bookmark tags from suggested user tags', function () {
+            it('should remove existing tags from suggested user tags', function () {
                 var instance = React.createElement(TagsContainer, props);
                 var tags = ReactTestUtils.renderIntoDocument(instance);
-
+                var suggestions = tags.getFilteredUserTags('fargo')
+                expect(suggestions.items[0].lines).not.toContain('fargo');
             });
         })
     });
