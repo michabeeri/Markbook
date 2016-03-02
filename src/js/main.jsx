@@ -7,7 +7,8 @@ requirejs.config({
         redux: '../vendor/redux',
         reactRedux: '../vendor/react-redux',
         uuid: '../vendor/uuid',
-        Firebase: '../vendor/firebase'
+        Firebase: '../vendor/firebase',
+        ReduxSimpleRouter: '../vendor/redux-simple-router'
     },
     map: {
         '*': {
@@ -26,22 +27,32 @@ requirejs.config({
 });
 
 
-requirejs(['lodash', 'react', 'reactDOM', 'redux', 'reactRedux', 'components/appView', 'reducers/app'],
-    function (_, React, ReactDOM, Redux, ReactRedux, AppView, appReducer) {
+requirejs(['lodash', 'react', 'reactDOM', 'redux', 'router', 'reactRedux', 'components/appView', 'reducers/app', 'ReduxSimpleRouter', 'components/loginManager/login', 'middlewares/thunk'],
+    function (_, React, ReactDOM, Redux, ReactRouter, ReactRedux, AppView, appReducer, ReduxSimpleRouter, LoginComp, thunkMiddleware) {
 
         'use strict';
 
         window.addEventListener('resize', _.throttle(function (evt) {
             window.dispatchEvent(new CustomEvent('throttledResize', evt));
         }, 80));
-        
-        var Provider = ReactRedux.Provider;
-        ReactDOM.render(
-            <Provider store={Redux.createStore(appReducer, appReducer(), window.devToolsExtension
-                ? window.devToolsExtension()
-                : undefined)}>
 
-                <AppView />
+        var Router = ReactRouter.Router;
+        var Route = ReactRouter.Route;
+        var Provider = ReactRedux.Provider;
+        var reduxMiddleware = ReduxSimpleRouter.syncHistory(ReactRouter.browserHistory);
+        var createStoreWithMiddleware = Redux.applyMiddleware(reduxMiddleware, thunkMiddleware)(Redux.createStore);
+        var store = createStoreWithMiddleware(appReducer, window.devToolsExtension
+            ? window.devToolsExtension()
+            : undefined);
+
+        reduxMiddleware.listenForReplays(store, function (state) {return state.routing; });
+
+        ReactDOM.render(
+            <Provider store={store}>
+                <Router history={ReactRouter.browserHistory}>
+                    <Route path="/" component={AppView} />
+                    <Route path="/login" component={LoginComp} />
+                </Router>
             </Provider>,
             document.getElementById('app')
         );

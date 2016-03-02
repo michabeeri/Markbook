@@ -2,10 +2,23 @@ define(['uuid', 'constants'], function (uuid, Constants) {
     'use strict';
 
     return {
-        addBookmark: function (title, url, tags) {
+        addBookmarkAsync: function (parentGroupId, title, url, tags) {
+            return function (dispatch) {
+                return this.slowOperation().then(
+                    function () {
+                        dispatch(this.addBookmark(parentGroupId, title, url, tags));
+                    }.bind(this)
+                );
+            }.bind(this);
+        },
+        slowOperation: function () {
+            return Promise.resolve('ok');
+        },
+        addBookmark: function (parentGroupId, title, url, tags) {
             return {
                 type: Constants.ADD_BOOKMARK,
                 id: uuid.v4(),
+                parentGroupId: parentGroupId,
                 title: title,
                 url: url,
                 tags: tags,
@@ -28,6 +41,12 @@ define(['uuid', 'constants'], function (uuid, Constants) {
         removeBookmark: function (id) {
             return {
                 type: Constants.REMOVE_BOOKMARK,
+                id: id
+            };
+        },
+        removeAndReparent: function (id) {
+            return {
+                type: Constants.REMOVE_LAST_BOOKMARK_IN_GROUP,
                 id: id
             };
         },

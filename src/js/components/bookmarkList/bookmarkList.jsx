@@ -57,7 +57,9 @@ define(['lodash',
                                     dataId={'bm' + bm.id}
                                     bookmarkData={bm}
                                     layout={this.props.layout}
+                                    state={this.props.state}
                                     dispatch={this.props.dispatch}
+                                    modalUtils={this.props.modalUtils}
                                     dragClass={dragged}
                                     dragStart={this.setDragged}
                                     dragOver={this.dragReorder}

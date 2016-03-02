@@ -1,4 +1,4 @@
-define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions'], function (React, Constants, draggable, ActionProvider) {
+define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'utils/bookmarksUtil'], function (React, Constants, draggable, ActionProvider, BookmarksUtil) {
 
     'use strict';
     var Bookmark = React.createClass({
@@ -13,10 +13,10 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions'], fu
         },
         onOpen: function (evt) {
             if (this.isGrid()) {
-                this.props.dispatch(ActionProvider.openBookmarkGroup(this.props.bookmarkData.id, this.props.bookmarkData.title));
+                this.props.dispatch(ActionProvider.openBookmarkGroup(this.props.bookmarkData.id));
 
             } else {
-                this.setState({isOpen: !this.state.isOpen} );
+                this.setState({isOpen: !this.state.isOpen});
 
             }
             evt.stopPropagation();
@@ -26,7 +26,16 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions'], fu
             evt.stopPropagation();
         },
         onDelete: function (evt) {
-            this.props.dispatch(ActionProvider.removeBookmark(this.props.bookmarkData.id));
+            var id = this.props.bookmarkData.id;
+            //var parent = BookmarksUtil.getParent(this.props.state.bookmarks, id);
+            //if (parent.children && parent.children.length === 1) {
+            //    this.props.modalUtils.lastItemInGroup(id);
+            //
+            //} else {
+            //    this.props.dispatch(ActionProvider.removeBookmark(id));
+            //
+            //}
+            this.props.dispatch(ActionProvider.removeBookmark(id));
             evt.stopPropagation();
         },
         onSelect: function (evt) {
@@ -56,12 +65,14 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions'], fu
 
             return (
                 <ul>
-                    {_.map(this.props.bookmarkData.children, function (bm) {
+                    {_.map(BookmarksUtil.getItemsByGroupId(this.props.state.bookmarks, this.props.bookmarkData.id), function (bm) {
                         return (
                             <li key={bm.id}><Bookmark
                                 bookmarkData={bm}
                                 layout={this.props.layout}
+                                state={this.props.state}
                                 dispatch={this.props.dispatch}
+                                modalUtils={this.props.modalUtils}
                                 dragClass={false}
                                 dragStart={function () {}}
                                 dragOver={function () {}}
@@ -74,13 +85,11 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions'], fu
         render: function () {
             return (
                 <div className={this.getClassString()}
-                        data-id={this.props.dataId}
-                        draggable='true'
-                        onDragStart={this.onDragStart}
-                        onDragEnd={this.onDragEnd}
-                        onDragOver={this.onDragOver}
-                        onClick={this.onSelect}
-                        onDoubleClick={this.isGroup() ? this.onOpen : this.onView}>
+                     data-id={this.props.dataId}
+                     onClick={this.onSelect}
+                     onDoubleClick={this.isGroup() ? this.onOpen : this.onView}
+                     onDradStart={this.onDragStart}
+                    {...this.getDragAttr()}>
                     <div>
                         <h1 className='title-small'>{this.props.bookmarkData.title}</h1>
 

@@ -1,5 +1,5 @@
-define(['react', 'components/modals/Modal', 'actionProviders/actions', 'components/tags/tagsContainer'],
-    function (React, Modal, actions, TagsContainer) {
+define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsContainer'],
+    function (_, React, actions, TagsContainer) {
         'use strict';
 
         var LinkedStateMixin = React.addons.LinkedStateMixin;
@@ -20,7 +20,7 @@ define(['react', 'components/modals/Modal', 'actionProviders/actions', 'componen
                 };
             },
             addBookmark: function () {
-                this.props.dispatch(actions.addBookmark(this.state.bookmarkName, this.state.bookmarkUrl, this.state.tags));
+                this.props.dispatch(actions.addBookmark(_.last(this.props.state.currentBookmarkPath), this.state.bookmarkName, this.state.bookmarkUrl, this.state.tags));
                 this.props.closeModal();
             },
             addTag: function (tag) {
@@ -36,7 +36,7 @@ define(['react', 'components/modals/Modal', 'actionProviders/actions', 'componen
                 });
             },
             render: function () {
-                return (<divgst>
+                return (<div>
                         <h1>Add Bookmark</h1>
                         <input name="BookmarkName" type="text" valueLink={this.linkState('bookmarkName')}
                                placeholder="Name your bookmark"
@@ -44,9 +44,10 @@ define(['react', 'components/modals/Modal', 'actionProviders/actions', 'componen
                         <input name="BookmarkUrl" type="text" valueLink={this.linkState('bookmarkUrl')}
                                placeholder="Paste url to bookmark"
                                className="input"/>
-                        <TagsContainer tags={this.state.tags} addTag={this.addTag} removeTag={this.removeTag}/>
+                        <TagsContainer tags={this.state.tags} addTag={this.addTag} removeTag={this.removeTag}
+                                       bookmarks={this.props.state.bookmarks}/>
                         <button onClick={this.addBookmark} className="btn">Add Bookmark</button>
-                    </divgst>
+                    </div>
 
                 );
             }

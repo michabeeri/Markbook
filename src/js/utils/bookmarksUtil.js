@@ -21,19 +21,31 @@ define(['lodash'], function (_) {
     }
 
     function isCurrentGroup(path, id) {
-        return _.last(path).id === id;
+        return _.last(path) === id;
     }
 
     function getBookmarkById(bookmarks, id) {
         return _.find(bookmarks, {id: id});
     }
 
-    function getCurrentGroupItems(bookmarks, currentPath) {
-        var currentGroupId = currentPath[currentPath.length - 1].id;
-        var currentGroup = _.find(bookmarks, {id: currentGroupId});
+    function getBookmarkIndexById(bookmarks, id) {
+        return _.findIndex(bookmarks, {id: id});
+    }
 
+    function getItemsByGroupId(bookmarks, groupId) {
+        var currentGroup = _.find(bookmarks, {id: groupId});
         return _.map(currentGroup.children, function (id) {
             return getBookmarkById(bookmarks, id);
+        });
+    }
+
+    function getCurrentGroupItems(bookmarks, currentPath) {
+        return getItemsByGroupId(bookmarks, currentPath[currentPath.length - 1]);
+    }
+
+    function getParent(state, id) {
+        return _.find(state, function (bm) {
+            return bm.children && bm.children.indexOf(id) !== -1;
         });
     }
 
@@ -41,6 +53,9 @@ define(['lodash'], function (_) {
         filterItems: filterItems,
         getCurrentGroupItems: getCurrentGroupItems,
         getBookmarkById: getBookmarkById,
-        isCurrentGroup: isCurrentGroup
+        getBookmarkIndexById: getBookmarkIndexById,
+        isCurrentGroup: isCurrentGroup,
+        getItemsByGroupId: getItemsByGroupId,
+        getParent: getParent
     };
 });

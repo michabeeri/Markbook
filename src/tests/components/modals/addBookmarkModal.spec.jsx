@@ -14,7 +14,7 @@ define(['React', 'reactDOM', 'components/modals/AddBookmarkModal'],
                                                                       closeModal={function(){}}/>);
             }
 
-            it('should call dispatch with proper input', function () {
+            xit('should call dispatch with proper input', function () {
                 var bookmark = {
                     bookmarkName: 'Demo Name',
                     bookmarkUrl: 'www.google.com'

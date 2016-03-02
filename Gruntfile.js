@@ -57,6 +57,10 @@ module.exports = function (grunt) {
                         src: 'node_modules/firebase/lib/firebase-web.js',
                         dest: VENDOR_TARGET + 'firebase-web.js'
                     },
+                    //{
+                    //    src: 'node_modules/redux-simple-router/lib/index.js',
+                    //    dest: VENDOR_TARGET + 'redux-simple-router.js'
+                    //},
                     {
                         expand: true,
                         cwd: 'src/img/',
@@ -205,6 +209,18 @@ module.exports = function (grunt) {
                     dest: VENDOR_TARGET + 'firebase.js',
                     objectToExport: 'Firebase',
                     amdModuleId: 'Firebase',
+                    deps: {
+                        'default': ['require', 'exports', 'module'],
+                        amd: ['require', 'exports', 'module']
+                    }
+                }
+            },
+            ReduxSimpleRouter: {
+                options: {
+                    src: 'node_modules/redux-simple-router/lib/index.js',
+                    dest: VENDOR_TARGET + 'redux-simple-router.js',
+                    //objectToExport: 'middleware',
+                    amdModuleId: 'ReduxSimpleRouter',
                     deps: {
                         'default': ['require', 'exports', 'module'],
                         amd: ['require', 'exports', 'module']
