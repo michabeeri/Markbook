@@ -48,6 +48,10 @@ define(['lodash', 'constants'], function (_, Constants) {
         return isItemGroup(bookmark);
     }
 
+    function getAllGroups(bookmarks) {
+        return _.filter(bookmarks, isItemGroup);
+    }
+
     function getCurrentGroupItems(bookmarks, currentPath) {
         return getItemsByGroupId(bookmarks, currentPath[currentPath.length - 1]);
     }
@@ -121,6 +125,7 @@ define(['lodash', 'constants'], function (_, Constants) {
         getItemsByGroupId: getItemsByGroupId,
         getParent: getParent,
         isGroup: isGroup,
+        getAllGroups: getAllGroups,
         sort: sort
     };
 });

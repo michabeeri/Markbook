@@ -99,6 +99,19 @@ define(['lodash', 'utils/bookmarksUtil'], function (_, BookmarksUtil) {
             });
         });
 
+        describe('getAllGroups', function () {
+            it('should return an array with only group items', function () {
+                var bookmarks = [
+                    {children: ['bm0001', 'bm0002', 'bm0003', 'bm0004']},
+                    {children: null},
+                    {children: ['bk']}
+                ];
+
+                var groups = BookmarksUtil.getAllGroups(bookmarks);
+                expect(groups.length).toEqual(2);
+            });
+        });
+
     });
 
 });
