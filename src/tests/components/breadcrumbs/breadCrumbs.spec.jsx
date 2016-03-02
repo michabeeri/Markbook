@@ -1,28 +1,67 @@
-define(['react', 'reactDOM', 'components/breadcrumbs/breadCrumbs', 'constants'],
-    function (React, ReactDOM, BreadCrumbs, Constants) {
+define(['react',
+        'reactDOM',
+        'components/breadcrumbs/breadCrumbs',
+        'actionProviders/actions',
+        'constants'],
+    function (React, ReactDOM, BreadCrumbs, ActionProvider, Constants) {
         'use strict';
 
         var TestUtils = React.addons.TestUtils;
 
         describe('Bread Crumbs', function () {
 
+            var breadCrumbs;
+
+            function dispatcherMock() {
+            }
+
+            function renderBreadCrumbs(dispatcher, bookmarks, path) {
+                breadCrumbs = TestUtils.renderIntoDocument(<BreadCrumbs
+                    dispatch={dispatcher}
+                    bookmarks={bookmarks}
+                    currentPath={path}/>);
+            }
+
+            function getItemElements() {
+                return TestUtils.scryRenderedDOMComponentsWithTag(breadCrumbs, 'span');
+            }
+
+            describe('onItemClick', function () {
+                it('should dispatch navigateToPreviousGroup action with correct id', function () {
+                    var CLICKED_GROUP_ID = 'CLICKED_GROUP_ID';
+                    var CURRENT_GROUP_ID = 'CURRENT_GROUP_ID';
+
+                    var bookmarks = [{id: Constants.ROOT_GROUP_ID}, {id: CLICKED_GROUP_ID}, {id: CURRENT_GROUP_ID}];
+                    var path = [Constants.ROOT_GROUP_ID, CLICKED_GROUP_ID, CURRENT_GROUP_ID];
+
+                    var dispatcherSpy = jasmine.createSpy('dispatcherMock');
+                    var expectedActionProvider = ActionProvider.navigateToPreviousGroup(CLICKED_GROUP_ID);
+
+
+                    renderBreadCrumbs(dispatcherSpy, bookmarks, path);
+
+                    var clickedGroupItem = getItemElements()[1];
+                    TestUtils.Simulate.click(clickedGroupItem);
+
+                    expect(dispatcherSpy).toHaveBeenCalledWith(expectedActionProvider);
+                });
+
+                it('should not dispatch navigateToPreviousGroup action on current group item click', function () {
+                    var bookmarks = [{id: Constants.ROOT_GROUP_ID}];
+                    var path = [Constants.ROOT_GROUP_ID];
+
+                    var dispatcherSpy = jasmine.createSpy('dispatcherMock');
+
+                    renderBreadCrumbs(dispatcherSpy, bookmarks, path);
+
+                    var clickedGroupItem = getItemElements()[0];
+                    TestUtils.Simulate.click(clickedGroupItem);
+
+                    expect(dispatcherSpy).not.toHaveBeenCalled();
+                });
+            });
+
             describe('render', function () {
-                var breadCrumbs;
-
-                function dispatcherMock() {
-                }
-
-                function renderBreadCrumbs(dispatcher, bookmarks, path) {
-                    breadCrumbs = TestUtils.renderIntoDocument(<BreadCrumbs
-                        dispatch={dispatcher}
-                        bookmarks={bookmarks}
-                        currentPath={path}/>);
-                }
-
-                function getItemElements() {
-                    return TestUtils.scryRenderedDOMComponentsWithTag(breadCrumbs, 'span');
-                }
-
                 it('should render root level correctly', function () {
                     var EXPECTED_ROOT_GROUP_TITLE = 'EXPECTED_ROOT_GROUP_TITLE';
                     var bookmarks = [{
