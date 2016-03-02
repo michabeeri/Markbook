@@ -39,12 +39,14 @@ define(['React', 'lodash', 'components/tags/tagInput', 'components/tags/tagsList
                 this.removeExistingTagsFromSuggestions(filteredItems);
                 return this.mapDataForDropdown(filter, filteredItems);
             },
-            mapDataForDropdown: function (filter, filteredUserTags) {
+            isNewTag: function (filteredUserTags, filter) {
+                return filteredUserTags.indexOf(filter) === -1 && this.props.tags.indexOf(filter) === -1;
+            }, mapDataForDropdown: function (filter, filteredUserTags) {
                 var data = {
                     input: filter,
-                    items: [{title: 'Tags', groupType: 'tag', lines: filteredUserTags}]
+                    items: [{title: 'Suggestions', groupType: 'tag', lines: filteredUserTags}]
                 };
-                if (filteredUserTags.indexOf(filter) === -1) {
+                if (this.isNewTag(filteredUserTags, filter)) {
                     data.items.push({title: 'New tag', groupType: 'tag', lines: [filter]});
                 }
                 return data;

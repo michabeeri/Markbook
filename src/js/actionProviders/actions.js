@@ -88,12 +88,35 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 id: id
             };
         },
+
         login: function (username, uid, token) {
             return {
-                type: Constants.LOGIN,
-                username: username,
-                uid: uid,
-                token: token
+                type: Constants.LOGIN, username: username, uid: uid, token: token
+            };
+        },
+
+        openBookmarkDataModal: function () {
+            return {
+                type: Constants.OPEN_MODAL,
+                modalType: Constants.eModalType.MODAL_ADD_BOOKMARK
+            };
+        },
+        openDeleteGroupModal: function () {
+            return {
+                type: Constants.OPEN_MODAL,
+                modalType: Constants.eModalType.GROUP_DELETE_NOTIFICATION
+            };
+        },
+        openLastItemInGroupDelete: function () {
+            return {
+                type: Constants.OPEN_MODAL,
+                modalType: Constants.eModalType.LAST_BOOKMARK_IN_GROUP_ALERT
+            };
+        },
+        closeModal: function () {
+            return {
+                type: Constants.CLOSE_MODAL
+
             };
         }
     };
