@@ -118,48 +118,16 @@ define(['lodash', 'uuid', 'constants'], function (_, uuid, Constants) {
                 });
 
             case Constants.REMOVE_BOOKMARK:
-                // should implement smarter logic here:
-                // delete group if last item removed
-                // open modal to ask before deleting group
-
                 return (function () {
-
-                    var idsToRemove = getIdsToRemove(getTopSingleItemGroup(action.id));
                     var newState = _.reject(state, function (bm) {
-                        return idsToRemove.indexOf(bm.id) !== -1;
+                        return action.idsToRemove.indexOf(bm.id) !== -1;
                     });
 
                     newState.forEach(function (bm) {
-                        if (bm.children) {
-                            _.remove(bm.children, function (id) {
-                                return idsToRemove.indexOf(id) !== -1;
-                            });
-                        }
-                    });
-
-                    function getIdsToRemove(bookmarkId) {
-                        var ids = [bookmarkId];
-                        var bookmark = _.find(state, {id: bookmarkId});
-
-                        if (bookmark.children) {
-                            bookmark.children.forEach(function (id) {
-                                ids = ids.concat(getIdsToRemove(id));
-                            });
-                        }
-                        return ids;
-                    }
-
-                    function getTopSingleItemGroup(id) {
-                        var parentGroup = _.find(state, function (bm) {
-                            return bm.children && bm.children.indexOf(action.id) !== -1;
+                        _.remove(bm.children, function (id) {
+                            return action.idsToRemove.indexOf(id) !== -1;
                         });
-
-                        if (parentGroup.id === Constants.ROOT_GROUP_ID || parentGroup.children.length > 1) {
-                            return id;
-                        }
-
-                        return getTopSingleItemGroup(parentGroup.id);
-                    }
+                    });
 
                     return newState;
                 }());
@@ -177,7 +145,7 @@ define(['lodash', 'uuid', 'constants'], function (_, uuid, Constants) {
                 }());
 
             case Constants.DRAG_REORDER:
-                //return state.slice().splice(BookmarksUtil.getBookmarkIndexById(action.draggedOverId), 0, state.slice().splice(BookmarksUtil.getBookmarkIndexById(action.draggedId), 1)[0]);
+            //return state.slice().splice(BookmarksUtil.getBookmarkIndexById(action.draggedOverId), 0, state.slice().splice(BookmarksUtil.getBookmarkIndexById(action.draggedId), 1)[0]);
 
             default:
                 return state;
