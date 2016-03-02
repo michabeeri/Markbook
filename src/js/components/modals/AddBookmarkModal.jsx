@@ -21,7 +21,7 @@ define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsConta
             },
             addBookmark: function () {
                 this.props.dispatch(actions.addBookmark(_.last(this.props.state.currentBookmarkPath), this.state.bookmarkName, this.state.bookmarkUrl, this.state.tags));
-                this.props.closeModal();
+                this.props.close();
             },
             addTag: function (tag) {
                 this.state.tags.push(tag);

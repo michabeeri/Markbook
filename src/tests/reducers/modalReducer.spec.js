@@ -2,7 +2,7 @@ define(['lodash', 'reducers/modalReducer', 'actionProviders/actions', 'constants
     function (_, modalReducer, actions, constants) {
         'use strict';
 
-        fdescribe('Modal reducer', function () {
+        describe('Modal reducer', function () {
 
             it('should open bookmark data modal', function () {
                 var initialState = null;
