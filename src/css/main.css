@@ -26,6 +26,10 @@ html {
 
 }
 
+.inline {
+  display: inline-block;
+}
+
 .style-less-list {
   list-style: none;
   padding-left: 15px;

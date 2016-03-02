@@ -57,7 +57,10 @@ define(['react', 'reactDOM', 'redux', 'reactRedux', 'constants'],
                 ],
                 currentBookmarkPath: [{
                     id: Constants.ROOT_GROUP_ID
-                }]
+                }],
+                sort: {
+                    sortType: Constants.DEFAULT_SORT_TYPE
+                }
             };
         }
 

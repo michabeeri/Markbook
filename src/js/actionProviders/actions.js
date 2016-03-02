@@ -43,6 +43,12 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 title: title
             };
         },
+        setSortType: function (sortType) {
+            return {
+                type: Constants.SET_SORT_TYPE,
+                sortType: sortType
+            };
+        },
         navigateToPreviousGroup: function (id) {
             return {
                 type: Constants.NAVIGATE_TO_PREVIOUS_GROUP,
