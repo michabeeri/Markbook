@@ -14,8 +14,23 @@ define(['lodash'], function (_) {
         }
     }
 
-    function setItem() {
+    function setItem(key, value) {
+        if (_.isUndefined(key) || _.isUndefined(value)) {
+            return console.error('Key/value were not passed');
+        }
 
+        var valueStr;
+        try {
+            valueStr = JSON.stringify(value);
+        } catch (e) {
+            return console.error('Failed to stringify item', e);
+        }
+
+        try {
+            localStorage.setItem(key, valueStr);
+        } catch (e) {
+            console.error('Failed to set item', e);
+        }
     }
 
     function removeItem() {
