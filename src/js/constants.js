@@ -24,7 +24,7 @@ define([],
         var sortTypes = {
             DEFAULT: {
                 value: 'DEFAULT',
-                description: ''
+                description: 'None'
             },
             DATE_ASC: {
                 value: 'DATE_ASC',
