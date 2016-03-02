@@ -6,7 +6,8 @@ define(['lodash',
         'components/loginManager/loginManager',
         'constants',
         'ReduxSimpleRouter',
-        'reactRedux'],
+        'reactRedux',
+        'actionProviders/actions'],
     function (_,
         React,
         ReactRouter,
@@ -15,7 +16,8 @@ define(['lodash',
         LoginManager,
         Constants,
         ReduxSimpleRouter,
-        ReactRedux) {
+        ReactRedux,
+        ActionProvider) {
         'use strict';
 
         //var Link = ReactRouter.Link;
@@ -58,11 +60,16 @@ define(['lodash',
 
         var LoginForm = React.createClass({
             displayName: 'LoginForm',
+            successLogin: function (username, uid, token) {
+                this.props.dispatch(ActionProvider.login(username, uid, token));
+                this.props.dispatch(ReduxSimpleRouter.routeActions.push('/appView'));
+            },
             onLogin: function (event) {
                 console.info('onLogin');
                 event.preventDefault();
 
-                LoginManager.authenticateUser(this.refs.email.getValue(), this.refs.password.getValue());
+                LoginManager.authenticateUser(this.refs.email.getValue(), this.refs.password.getValue(),
+                this.successLogin);
             },
             render: function () {
                 return (
@@ -84,7 +91,7 @@ define(['lodash',
                 return (
                     <section>
                         <LoginHeader />
-                        <LoginForm className='login-form' />
+                        <LoginForm className='login-form' {...this.props}/>
                         <LoginFooter {...this.props}/>
                     </section>
                 );

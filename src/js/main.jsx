@@ -68,6 +68,7 @@ requirejs([
                     <Route path="/" component={AppView} />
                     <Route path="/login" component={LoginComp} />
                     <Route path="/signup" component={SignupComp} />
+                    <Route path="/appView" component={AppView} />
                 </Router>
             </Provider>,
             document.getElementById('app')

@@ -55,7 +55,7 @@ define(['Firebase'], function (Firebase) {
         //},
         //
 
-        authenticateUser: function (email, password) {
+        authenticateUser: function (email, password, successCallback) {
             var fireBaseRef = new Firebase('https://markbook.firebaseio.com/');
             fireBaseRef.authWithPassword({
                 email: email,
@@ -65,6 +65,7 @@ define(['Firebase'], function (Firebase) {
                     console.log('Login failed: ', error);
                 } else {
                     console.log('Authentication successful, payload: ', authData);
+                    successCallback(email, authData.uid, authData.token);
                 }
             });
         },

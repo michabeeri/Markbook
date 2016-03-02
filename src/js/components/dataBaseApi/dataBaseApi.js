@@ -8,8 +8,8 @@ define(['Firebase', 'constants'], function (Firebase, Constants) {
 
     var DataBaseApi = {
 
-        writeUserData: function (username, data) {
-            var fireBaseRef = new Firebase(Constants.APP_ROOT_DATA + 'users/' + username);
+        writeUserData: function (uid, data) {
+            var fireBaseRef = new Firebase(Constants.APP_ROOT_DATA + 'users/' + uid);
             fireBaseRef.set(data);
         },
 

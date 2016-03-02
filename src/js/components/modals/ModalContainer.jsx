@@ -43,7 +43,7 @@ define(['react', 'constants', 'components/modals/AddBookmarkModal', 'components/
                     );
 
                     return (
-                        <Modal className='modal modal-opened' closeModal={this.close} dispatch={this.props.dispatch}>
+                        <Modal className='modal modal-opened' close={this.close} dispatch={this.props.dispatch}>
                             {contentComponent}
                         </Modal>);
                 }
