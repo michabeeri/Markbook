@@ -124,7 +124,7 @@ define(['lodash', 'uuid', 'constants'], function (_, uuid, Constants) {
 
                 return (function () {
 
-                    var idsToRemove = getIdsToRemove(action.id);
+                    var idsToRemove = getIdsToRemove(getTopSingleItemGroup(action.id));
                     var newState = _.reject(state, function (bm) {
                         return idsToRemove.indexOf(bm.id) !== -1;
                     });
@@ -149,6 +149,30 @@ define(['lodash', 'uuid', 'constants'], function (_, uuid, Constants) {
                         return ids;
                     }
 
+                    function getTopSingleItemGroup(id) {
+                        var parentGroup = _.find(state, function (bm) {
+                            return bm.children && bm.children.indexOf(action.id) !== -1;
+                        });
+
+                        if (parentGroup.id === Constants.ROOT_GROUP_ID || parentGroup.children.length > 1) {
+                            return id;
+                        }
+
+                        return getTopSingleItemGroup(parentGroup.id);
+                    }
+
+                    return newState;
+                }());
+
+            case Constants.REMOVE_REPARENT_CHILDREN:
+                return (function () {
+                    var bookmark = _.find(state, {id: action.id});
+                    var parentGroup = _.find(state, function (bm) {
+                        return bm.children && bm.children.indexOf(action.id) !== -1;
+                    });
+
+                    var newState = _.reject(state, {id: action.id});
+                    parentGroup.children = parentGroup.children.concat(bookmark.children);
                     return newState;
                 }());
 

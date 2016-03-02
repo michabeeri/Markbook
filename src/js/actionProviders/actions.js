@@ -2,6 +2,18 @@ define(['uuid', 'constants'], function (uuid, Constants) {
     'use strict';
 
     return {
+        addBookmarkAsync: function (parentGroupId, title, url, tags) {
+            return function (dispatch) {
+                return this.slowOperation().then(
+                    function () {
+                        dispatch(this.addBookmark(parentGroupId, title, url, tags));
+                    }.bind(this)
+                );
+            }.bind(this);
+        },
+        slowOperation: function () {
+            return Promise.resolve('ok');
+        },
         addBookmark: function (parentGroupId, title, url, tags) {
             return {
                 type: Constants.ADD_BOOKMARK,
