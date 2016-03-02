@@ -60,7 +60,7 @@ define(['lodash', 'utils/localStorageUtil'], function (_, localStorageUtil) {
                 expect(console.error).toHaveBeenCalled();
             });
 
-            fit('should print a console message if value cannot be stringified', function () {
+            it('should print a console message if value cannot be stringified', function () {
                 var circularValue = {};
                 circularValue.a = {b: circularValue};
                 spyOn(console, 'error');
