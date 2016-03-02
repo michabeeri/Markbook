@@ -17,6 +17,7 @@ define(['lodash', 'constants'], function (_, Constants) {
             case Constants.NAVIGATE_TO_PREVIOUS_GROUP:
                 var index = _.findIndex(state, {id: action.id});
                 return state.slice(0, index + 1);
+
             case Constants.OPEN_BOOKMARK_GROUP:
                 return state.concat({id: action.id});
 

@@ -27,8 +27,8 @@ requirejs.config({
 });
 
 
-requirejs(['lodash', 'react', 'reactDOM', 'redux', 'router', 'reactRedux', 'components/appView', 'reducers/app', 'ReduxSimpleRouter', 'components/loginManager/login'],
-    function (_, React, ReactDOM, Redux, ReactRouter, ReactRedux, AppView, appReducer, ReduxSimpleRouter, LoginComp) {
+requirejs(['lodash', 'react', 'reactDOM', 'redux', 'router', 'reactRedux', 'components/appView', 'reducers/app', 'ReduxSimpleRouter', 'components/loginManager/login', 'middlewares/thunk'],
+    function (_, React, ReactDOM, Redux, ReactRouter, ReactRedux, AppView, appReducer, ReduxSimpleRouter, LoginComp, thunkMiddleware) {
 
         'use strict';
 
@@ -40,13 +40,10 @@ requirejs(['lodash', 'react', 'reactDOM', 'redux', 'router', 'reactRedux', 'comp
         var Route = ReactRouter.Route;
         var Provider = ReactRedux.Provider;
         var reduxMiddleware = ReduxSimpleRouter.syncHistory(ReactRouter.browserHistory);
-        var createStoreWithMiddleware = Redux.applyMiddleware(reduxMiddleware)(Redux.createStore);
+        var createStoreWithMiddleware = Redux.applyMiddleware(reduxMiddleware, thunkMiddleware)(Redux.createStore);
         var store = createStoreWithMiddleware(appReducer, window.devToolsExtension
             ? window.devToolsExtension()
             : undefined);
-
-        //var store = Redux.createStore(appReducer, Redux.applyMiddleware(reduxMiddleware), window.devToolsExtension
-        //    ? window.devToolsExtension() : undefined);
 
         reduxMiddleware.listenForReplays(store, function (state) {return state.routing; });
 

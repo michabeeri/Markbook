@@ -85,12 +85,20 @@ define(['lodash', 'uuid', 'constants'], function (_, uuid, Constants) {
 
         switch (action.type) {
             case Constants.ADD_BOOKMARK:
-                return (state ? state.slice() : []).concat({
-                    id: action.id,
-                    title: action.title,
-                    date: action.date,
-                    url: action.url
-                });
+                return (function () {
+                    var newState = state.concat({
+                        id: action.id,
+                        title: action.title,
+                        date: action.date,
+                        url: action.url,
+                        tags: action.tags
+                    });
+
+                    var parentId = action.parentGroupId || Constants.ROOT_GROUP_ID;
+                    _.find(newState, {id: parentId}).children.push(action.id);
+
+                    return newState;
+                }());
 
             case Constants.EDIT_BOOKMARK:
                 // open edit modal
@@ -113,7 +121,36 @@ define(['lodash', 'uuid', 'constants'], function (_, uuid, Constants) {
                 // should implement smarter logic here:
                 // delete group if last item removed
                 // open modal to ask before deleting group
-                return _.reject(state, {id: action.id});
+
+                return (function () {
+
+                    var idsToRemove = getIdsToRemove(action.id);
+                    var newState = _.reject(state, function (bm) {
+                        return idsToRemove.indexOf(bm.id) !== -1;
+                    });
+
+                    newState.forEach(function (bm) {
+                        if (bm.children) {
+                            _.remove(bm.children, function (id) {
+                                return idsToRemove.indexOf(id) !== -1;
+                            });
+                        }
+                    });
+
+                    function getIdsToRemove(bookmarkId) {
+                        var ids = [bookmarkId];
+                        var bookmark = _.find(state, {id: bookmarkId});
+
+                        if (bookmark.children) {
+                            bookmark.children.forEach(function (id) {
+                                ids = ids.concat(getIdsToRemove(id));
+                            });
+                        }
+                        return ids;
+                    }
+
+                    return newState;
+                }());
 
             case Constants.DRAG_REORDER:
                 //return state.slice().splice(BookmarksUtil.getBookmarkIndexById(action.draggedOverId), 0, state.slice().splice(BookmarksUtil.getBookmarkIndexById(action.draggedId), 1)[0]);

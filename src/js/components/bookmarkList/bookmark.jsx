@@ -1,4 +1,4 @@
-define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions'], function (React, Constants, draggable, ActionProvider) {
+define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'utils/bookmarksUtil'], function (React, Constants, draggable, ActionProvider, BookmarksUtil) {
 
     'use strict';
     var Bookmark = React.createClass({
@@ -13,7 +13,7 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions'], fu
         },
         onOpen: function (evt) {
             if (this.isGrid()) {
-                this.props.dispatch(ActionProvider.openBookmarkGroup(this.props.bookmarkData.id, this.props.bookmarkData.title));
+                this.props.dispatch(ActionProvider.openBookmarkGroup(this.props.bookmarkData.id));
 
             } else {
                 this.setState({isOpen: !this.state.isOpen} );
@@ -56,11 +56,12 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions'], fu
 
             return (
                 <ul>
-                    {_.map(this.props.bookmarkData.children, function (bm) {
+                    {_.map(BookmarksUtil.getItemsByGroupId(this.props.state.bookmarks, this.props.bookmarkData.id), function (bm) {
                         return (
                             <li key={bm.id}><Bookmark
                                 bookmarkData={bm}
                                 layout={this.props.layout}
+                                state={this.props.state}
                                 dispatch={this.props.dispatch}
                                 dragClass={false}
                                 dragStart={function () {}}

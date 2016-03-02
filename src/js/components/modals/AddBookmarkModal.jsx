@@ -1,5 +1,5 @@
-define(['react', 'actionProviders/actions', 'components/tags/tagsContainer'],
-    function (React, actions, TagsContainer) {
+define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsContainer'],
+    function (_, React, actions, TagsContainer) {
         'use strict';
 
         var LinkedStateMixin = React.addons.LinkedStateMixin;
@@ -20,7 +20,7 @@ define(['react', 'actionProviders/actions', 'components/tags/tagsContainer'],
                 };
             },
             addBookmark: function () {
-                this.props.dispatch(actions.addBookmark(this.state.bookmarkName, this.state.bookmarkUrl, this.state.tags));
+                this.props.dispatch(actions.addBookmark(_.last(this.props.state.currentBookmarkPath).id, this.state.bookmarkName, this.state.bookmarkUrl, this.state.tags));
                 this.props.closeModal();
             },
             addTag: function (tag) {
