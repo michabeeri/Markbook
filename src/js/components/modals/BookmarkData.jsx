@@ -6,7 +6,7 @@ define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsConta
 
         return React.createClass({
             mixins: [LinkedStateMixin],
-            displayName: 'AddBookmarkModal',
+            displayName: 'Bookmark Data',
             propTypes: {
                 dispatch: React.PropTypes.func.isRequired,
                 state: React.PropTypes.object.isRequired,
