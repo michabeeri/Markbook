@@ -23,7 +23,7 @@ define(['lodash',
             displayName: 'BreadCrumbs',
             propTypes: {
                 dispatch: React.PropTypes.func.isRequired,
-                currentPath: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+                currentPath: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
                 bookmarks: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
             },
             onItemClick: function (id) {

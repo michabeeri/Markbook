@@ -16,7 +16,7 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
                 this.props.dispatch(ActionProvider.openBookmarkGroup(this.props.bookmarkData.id));
 
             } else {
-                this.setState({isOpen: !this.state.isOpen} );
+                this.setState({isOpen: !this.state.isOpen});
 
             }
             evt.stopPropagation();
@@ -26,7 +26,16 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
             evt.stopPropagation();
         },
         onDelete: function (evt) {
-            this.props.dispatch(ActionProvider.removeBookmark(this.props.bookmarkData.id));
+            var id = this.props.bookmarkData.id;
+            //var parent = BookmarksUtil.getParent(this.props.state.bookmarks, id);
+            //if (parent.children && parent.children.length === 1) {
+            //    this.props.modalUtils.lastItemInGroup(id);
+            //
+            //} else {
+            //    this.props.dispatch(ActionProvider.removeBookmark(id));
+            //
+            //}
+            this.props.dispatch(ActionProvider.removeBookmark(id));
             evt.stopPropagation();
         },
         onSelect: function (evt) {
@@ -63,6 +72,7 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
                                 layout={this.props.layout}
                                 state={this.props.state}
                                 dispatch={this.props.dispatch}
+                                modalUtils={this.props.modalUtils}
                                 dragClass={false}
                                 dragStart={function () {}}
                                 dragOver={function () {}}
@@ -75,11 +85,11 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
         render: function () {
             return (
                 <div className={this.getClassString()}
-                        data-id={this.props.dataId}
-                        onClick={this.onSelect}
-                        onDoubleClick={this.isGroup() ? this.onOpen : this.onView}
-                        onDradStart={this.onDragStart}
-                        {...this.getDragAttr()}>
+                     data-id={this.props.dataId}
+                     onClick={this.onSelect}
+                     onDoubleClick={this.isGroup() ? this.onOpen : this.onView}
+                     onDradStart={this.onDragStart}
+                    {...this.getDragAttr()}>
                     <div>
                         <h1 className='title-small'>{this.props.bookmarkData.title}</h1>
 

@@ -44,7 +44,7 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 id: id
             };
         },
-        removeLastBookmarkInGroup: function (id) {
+        removeAndReparent: function (id) {
             return {
                 type: Constants.REMOVE_LAST_BOOKMARK_IN_GROUP,
                 id: id

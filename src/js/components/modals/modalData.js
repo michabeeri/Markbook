@@ -6,7 +6,8 @@ define(['components/modals/AddBookmarkModal', 'components/modals/LastItemAlert']
             NONE: 'None',
             MODAL_ADD_BOOKMARK: 'Add Bookmark modal',
             MODAL_EDIT_GROUP: 'Modal Edit Group',
-            LAST_BOOKMARK_IN_GROUP_ALERT: 'Last Item In Group Alert'
+            LAST_BOOKMARK_IN_GROUP_ALERT: 'Last Item In Group Alert',
+            GROUP_DELETE_NOTIFICATION: 'Group Delete Notification'
         };
 
         var Modals = [
@@ -18,7 +19,12 @@ define(['components/modals/AddBookmarkModal', 'components/modals/LastItemAlert']
             {
                 key: eModalType.LAST_BOOKMARK_IN_GROUP_ALERT,
                 class: LastItemAlert,
-                props: ['closeModal', 'dispatch']
+                props: ['closeModal', 'dispatch', 'bookmarkId']
+            },
+            {
+                key: eModalType.GROUP_DELETE_NOTIFICATION,
+                class: LastItemAlert,
+                props: ['closeModal', 'dispatch', 'bookmarkId']
             }
         ];
 
