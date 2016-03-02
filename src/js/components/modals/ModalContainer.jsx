@@ -1,5 +1,5 @@
-define(['react', 'constants', 'components/modals/AddBookmarkModal', 'components/modals/Modal', 'components/modals/modalData', 'lodash', 'actionProviders/actions'],
-    function (React, Constants, AddBookmarkModal, Modal, modalData, _, actions) {
+define(['react', 'constants', 'components/modals/Modal', 'components/modals/modalData', 'lodash', 'actionProviders/actions'],
+    function (React, Constants, Modal, modalData, _, actions) {
         'use strict';
 
         return React.createClass({

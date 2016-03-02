@@ -91,7 +91,8 @@ define(['lodash', 'uuid', 'constants', 'utils/bookmarksUtil'], function (_, uuid
                         title: action.title,
                         date: action.date,
                         url: action.url,
-                        tags: action.tags
+                        tags: action.tags,
+                        children: null
                     });
 
                     var parentId = action.parentGroupId || Constants.ROOT_GROUP_ID;
