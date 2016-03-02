@@ -57,7 +57,7 @@ define(['lodash',
 
                 var sortType = this.props.state.sort.sortType;
                 if (sortType) {
-                    currentGroupItems = BookmarksUtil.sort(this.props.state.bookmarks, sortType);
+                    currentGroupItems = BookmarksUtil.sort(currentGroupItems, sortType);
                 }
                 return (
                     <div className='bookmark-list-container grid'>
