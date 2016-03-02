@@ -23,6 +23,11 @@ html {
   margin: 15px
 }
 
+.label {
+  padding-right: 5px;
+  vertical-align: sub;
+}
+
 .hidden {
 
 }
@@ -81,6 +86,8 @@ html {
   border: none;
   outline: none;
   background: none;
+  cursor: pointer
+;
 }
 
 .border-simple {

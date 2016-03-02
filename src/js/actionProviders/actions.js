@@ -88,6 +88,11 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 id: id
             };
         },
+        login: function (username, uid, token) {
+            return {
+                type: Constants.LOGIN, username: username, uid: uid, token: token
+            };
+        },
         openBookmarkDataModal: function (id) {
             return {
                 type: Constants.OPEN_MODAL,

@@ -24,14 +24,20 @@ define(['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmark
             openAddBookMarkModal: function () {
                 this.props.dispatch(actions.openBookmarkDataModal());
             },
+            shouldRenderBreadCrumbs: function () {
+                return this.state.layout === Constants.layoutType.GRID;
+            },
+            getBreadCrumbsComponent: function () {
+                return this.shouldRenderBreadCrumbs() ?
+                    <BreadCrumbs dispatch={this.props.dispatch}
+                                 bookmarks={this.props.state.bookmarks}
+                                 currentPath={this.props.state.currentBookmarkPath}/> : null;
+            },
             render: function () {
                 return (
                     <div>
                         <ToolBar {...this.props}/>
-                        <BreadCrumbs
-                            dispatch={this.props.dispatch}
-                            bookmarks={this.props.state.bookmarks}
-                            currentPath={this.props.state.currentBookmarkPath}/>
+                        {this.getBreadCrumbsComponent()}
                         <BookmarkList dispatch={this.props.dispatch} state={this.props.state}
                                       layout={this.state.layout}
                                       modalUtils={{lastItemInGroup: this.openRemoveLastItemInGroupModal, groupDelete: this.openGroupDeleteModal}}/>

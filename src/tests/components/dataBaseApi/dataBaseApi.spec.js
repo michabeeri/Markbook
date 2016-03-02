@@ -3,8 +3,7 @@ define(['React', 'reactDOM', 'router', 'components/dataBaseApi/dataBaseApi'], fu
     'use strict';
 
     describe('Read Data', function () {
-
-        fit('should set and get the same data from the server', function () {
+        xit('should set and get the same data from the server', function () {
             var liran = {age: 30, surname: 'Kurtz'};
             DataBase.writeUserData('liran', liran);
             DataBase.readUserData('liran', function (message) {
