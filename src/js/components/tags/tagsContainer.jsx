@@ -1,5 +1,5 @@
-define(['React', 'lodash', 'components/tags/tagInput', 'components/tags/tagsList', 'utils/bookmarksUtil'],
-    function (React, _, TagInput, TagsList, BookmarksUtil) {
+define(['React', 'lodash', 'components/tags/inputWithSuggestions', 'components/tags/tagsList', 'utils/bookmarksUtil'],
+    function (React, _, InputWithSuggestions, TagsList, BookmarksUtil) {
         'use strict';
 
         var LinkedStateMixin = React.addons.LinkedStateMixin;
@@ -54,7 +54,8 @@ define(['React', 'lodash', 'components/tags/tagInput', 'components/tags/tagsList
             render: function () {
                 return (
                     <div>
-                        <TagInput addTag={this.addTag}
+                        <span className="label">Add tag:</span>
+                        <InputWithSuggestions onInputSelected={this.addTag}
                                   input={this.state.input}
                                   suggestions={this.getFilteredUserTags(this.state.input)}
                                   valueLink={this.linkState('input')}/>
