@@ -87,6 +87,14 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 type: Constants.OPEN_BOOKMARK_GROUP,
                 id: id
             };
+        },
+        login: function (username, uid, token) {
+            return {
+                type: Constants.LOGIN,
+                username: username,
+                uid: uid,
+                token: token
+            };
         }
     };
 });

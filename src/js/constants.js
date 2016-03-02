@@ -46,6 +46,7 @@ define([],
 
             // user info action types
             LOGOUT: 'LOGOUT',
+            LOGIN: 'LOGIN',
 
             // tool bar
             SET_FILTER: 'SET_FILTER',
