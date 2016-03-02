@@ -34,12 +34,18 @@ define(['React', 'reactDOM', 'components/tags/tagInput'],
                 it('should not display dropdown', function () {
                     var tagInput = renderTagInputWithData('');
                     var dropdown = ReactTestUtils.scryRenderedDOMComponentsWithTag(tagInput, 'DropDown');
-                    expect(dropdown).toEqual([]);
+                    expect(dropdown.length).toEqual(0);
                 });
 
             });
 
             describe('when a text was entered', function () {
+
+                it('should display dropdown', function () {
+                    var tagInput = renderTagInputWithData('test');
+                    var dropdown = ReactTestUtils.scryRenderedDOMComponentsWithTag(tagInput, 'DropDown');
+                    expect(dropdown).toBeDefined();
+                });
 
                 it('should call saveTag with the text when clicking enter', function () {
                     var tagInput = renderTagInputWithData('testTag');
@@ -47,10 +53,11 @@ define(['React', 'reactDOM', 'components/tags/tagInput'],
                     expect(props.addTag).toHaveBeenCalledWith(tagInput.refs.input.value);
                 });
 
-                it('should display dropdown', function () {
-                    var tagInput = renderTagInputWithData('test');
+                it('should hide dropdown when clicking enter', function () {
+                    var tagInput = renderTagInputWithData('testTag');
+                    ReactTestUtils.Simulate.keyDown(tagInput.refs.input, {keyCode: 13});
                     var dropdown = ReactTestUtils.scryRenderedDOMComponentsWithTag(tagInput, 'DropDown');
-                    expect(dropdown).toBeDefined();
+                    expect(dropdown.length).toEqual(0);
                 });
             });
         });
