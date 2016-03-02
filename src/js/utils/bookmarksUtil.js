@@ -39,6 +39,11 @@ define(['lodash'], function (_) {
         });
     }
 
+    function isGroup(bookmarks, bookmarkId) {
+        var bookmark = getBookmarkById(bookmarks, bookmarkId);
+        return (!_.isNull(bookmark.children));
+    }
+
     function getCurrentGroupItems(bookmarks, currentPath) {
         return getItemsByGroupId(bookmarks, currentPath[currentPath.length - 1]);
     }
@@ -56,6 +61,7 @@ define(['lodash'], function (_) {
         getBookmarkIndexById: getBookmarkIndexById,
         isCurrentGroup: isCurrentGroup,
         getItemsByGroupId: getItemsByGroupId,
-        getParent: getParent
+        getParent: getParent,
+        isGroup: isGroup
     };
 });

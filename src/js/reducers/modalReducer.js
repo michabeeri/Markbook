@@ -12,7 +12,8 @@ define(['constants'], function (Constants) {
 
             case Constants.OPEN_MODAL:
                 return {
-                    type: action.modalType
+                    type: action.modalType,
+                    id: action.id
                 };
 
             case Constants.CLOSE_MODAL:

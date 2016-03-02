@@ -27,7 +27,6 @@ define(['lodash', 'reducers/modalReducer', 'actionProviders/actions', 'constants
                 expect(newState).toEqual({type: constants.eModalType.LAST_BOOKMARK_IN_GROUP_ALERT});
             });
 
-
             it('should have initial state of null', function () {
                 var newState = modalReducer();
                 expect(newState).toEqual(null);

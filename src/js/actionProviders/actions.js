@@ -46,7 +46,7 @@ define(['uuid', 'constants'], function (uuid, Constants) {
         },
         removeAndReparent: function (id) {
             return {
-                type: Constants.REMOVE_LAST_BOOKMARK_IN_GROUP,
+                type: Constants.REMOVE_REPARENT_CHILDREN,
                 id: id
             };
         },
@@ -88,22 +88,25 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 id: id
             };
         },
-        openBookmarkDataModal: function () {
+        openBookmarkDataModal: function (id) {
             return {
                 type: Constants.OPEN_MODAL,
-                modalType: Constants.eModalType.MODAL_ADD_BOOKMARK
+                modalType: Constants.eModalType.MODAL_ADD_BOOKMARK,
+                bookmarkId: id
             };
         },
-        openDeleteGroupModal: function () {
+        openDeleteGroupModal: function (id) {
             return {
                 type: Constants.OPEN_MODAL,
-                modalType: Constants.eModalType.GROUP_DELETE_NOTIFICATION
+                modalType: Constants.eModalType.GROUP_DELETE_NOTIFICATION,
+                bookmarkId: id
             };
         },
-        openLastItemInGroupDelete: function () {
+        openLastItemInGroupDelete: function (id) {
             return {
                 type: Constants.OPEN_MODAL,
-                modalType: Constants.eModalType.LAST_BOOKMARK_IN_GROUP_ALERT
+                modalType: Constants.eModalType.LAST_BOOKMARK_IN_GROUP_ALERT,
+                bookmarkId: id
             };
         },
         closeModal: function () {
