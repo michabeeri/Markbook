@@ -19,7 +19,8 @@ define(
                 return (
                     <div className='toolbar'>
                         <BookmarksSearch setFilter={this.setFilter} items={this.props.state.bookmarks}/>
-                        <OrderBy setSortType={this.setSortType} sortTypes={Constants.sortTypes} selectedSortType={this.props.state.sort.sortType}/>
+                        <OrderBy setSortType={this.setSortType} sortTypes={Constants.sortTypes}
+                                 selectedSortType={this.props.state.sort.sortType} hiddenSortType={Constants.CUSTOM_SORT_TYPE}/>
                     </div>
                 );
             }
