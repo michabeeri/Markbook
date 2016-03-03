@@ -2,81 +2,13 @@ define(['lodash', 'uuid', 'constants', 'utils/bookmarksUtil'], function (_, uuid
 
     'use strict';
 
-    var initialState = [
-        {
-            id: Constants.ROOT_GROUP_ID,
-            title: 'All Bookmarks',
-            date: new Date(2015, 10, 18),
-            children: ['bm0001', 'bm0002', 'bm0003', 'bm0004'],
-            tags: []
-        },
-        {
-            id: 'bm0001',
-            title: 'Fargo Season 2',
-            date: new Date(2015, 10, 18),
-            children: null,
-            url: 'www.tweeter.com',
-            tags: ['fargo', 'season2']
-        },
-        {
-            id: 'bm0002',
-            title: 'Fargo Season 1',
-            date: new Date(2014, 11, 10),
-            children: null,
-            url: 'www.pinterest.com',
-            tags: ['fargo', 'season1']
-        },
-        {
-            id: 'bm0003',
-            title: 'Bookmark 2 title',
-            date: new Date(2012, 10, 9),
-            children: null,
-            url: 'www.facebook.com',
-            tags: []
-        },
-        {
-            id: 'bm0004',
-            title: 'Gaspar Noe Movies',
-            date: new Date(2012, 10, 9),
-            children: ['bm0005', 'bm0006'],
-            tags: []
-        },
-        {
-            id: 'bm0005',
-            title: 'Machete Kills',
-            date: new Date(2013, 4, 11),
-            children: null,
-            tags: []
-        },
-        {
-            id: 'bm0006',
-            title: 'Grindhouse',
-            date: new Date(2007, 9, 20),
-            children: ['bm0007'],
-            tags: ['Grindhouse']
-        },
-        {
-            id: 'bm0007',
-            title: 'Group 1',
-            date: new Date(2007, 9, 20),
-            children: ['bm0008'],
-            tags: ['Group1']
-        },
-        {
-            id: 'bm0008',
-            title: 'Group 2',
-            date: new Date(2007, 9, 20),
-            children: ['bm0009'],
-            tags: []
-        },
-        {
-            id: 'bm0009',
-            title: 'Group 3',
-            date: new Date(2007, 9, 20),
-            children: null,
-            tags: ['Group2']
-        }
-    ];
+    var initialState = [{
+        id: Constants.ROOT_GROUP_ID,
+        title: 'All Bookmarks',
+        date: new Date(2015, 10, 18),
+        children: [],
+        tags: []
+    }];
 
     return function bookmarks(state, action) {
         if (!state) {
@@ -155,6 +87,9 @@ define(['lodash', 'uuid', 'constants', 'utils/bookmarksUtil'], function (_, uuid
                     children.splice(indexDraggedOver, 0, children.splice(indexDragged, 1)[0]);
                     return newState;
                 }());
+
+            case Constants.STORE_DATA:
+                return action.bookmarks;
 
             default:
                 return state;

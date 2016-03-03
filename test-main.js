@@ -26,7 +26,8 @@ requirejs.config({
         actions: 'js/actionProviders/actions',
         reduxTestUtils: 'tests/components/reduxTestUtils',
         reduxUtils: 'js/reduxUtils',
-        utils: 'js/utils'
+        utils: 'js/utils',
+        dataBaseApi: 'js/dataBaseApi'
     },
     map: {
         '*': {

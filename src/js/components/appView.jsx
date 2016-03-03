@@ -1,10 +1,13 @@
-define(['react', 'reactRedux', 'components/mainView/mainView', 'components/mainView/topbar'],
-    function (React, ReactRedux, MainView, TopBar) {
+define(['react', 'reactRedux', 'constants', 'components/mainView/mainView', 'components/mainView/topbar', 'actionProviders/actions'],
+    function (React, ReactRedux, Constants, MainView, TopBar, ActionProvider) {
 
 
         'use strict';
         var AppView = React.createClass({
             displayName: 'AppView',
+            componentDidMount: function () {
+                this.props.dispatch(ActionProvider.loadData());
+            },
             render: function () {
                 return (
                     <div className='main border-simple'>

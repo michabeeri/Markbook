@@ -82,6 +82,11 @@ define([],
             SET_SORT_TYPE: 'SET_SORT_TYPE',
             DEFAULT_SORT_TYPE: 'DEFAULT',
 
+            // Database
+            LOAD_DATA: 'LOAD_DATA',
+            STORE_DATA: 'STORE_DATA',
+            UPDATE_DATABASE: 'UPDATE_DATABASE',
+
             GRID_MIN_WIDTH: 960
         };
     });
