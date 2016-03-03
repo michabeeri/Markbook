@@ -1,4 +1,4 @@
-define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsContainer', 'utils/bookmarksUtil','components/modals/groupInput'],
+define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsContainer', 'utils/bookmarksUtil', 'components/modals/groupInput'],
     function (_, React, actions, TagsContainer, BookmarksUtil, GroupInput) {
         'use strict';
 
@@ -17,7 +17,6 @@ define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsConta
                 return !(_.isUndefined(id) || _.isNull(id));
             },
             getInitialState: function () {
-
                 var bookmarkName = '',
                     bookmarkUrl = '',
                     tags = [],
@@ -34,7 +33,7 @@ define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsConta
                     bookmarkName: bookmarkName,
                     bookmarkUrl: bookmarkUrl,
                     tags: tags,
-                        group: group
+                    group: group
                 };
             },
             addBookmark: function () {
