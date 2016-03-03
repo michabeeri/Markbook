@@ -70,7 +70,11 @@ define(['React', 'reactDOM', 'components/modals/BookmarkData', 'constants'],
 
             describe('Bookmark Edit', function () {
 
-               
+                it('should call render button with Edit word', function () {
+                    var reactComp = createDemoAddBookmarkModal();
+                    var editBookmark = TestUtils.findRenderedDOMComponentWithTag(reactComp, 'button');
+                    expect(editBookmark.innerHTML).toMatch(/Edit/);
+                });
             });
         });
     });
