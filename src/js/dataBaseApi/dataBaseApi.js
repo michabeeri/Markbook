@@ -5,9 +5,19 @@ define(['Firebase', 'constants'], function (Firebase, Constants) {
 
     var DataBaseApi = {
 
-        writeUserData: function (uid, data) {
+
+        writeUserData: function (uid, data, callback) {
             var fireBaseRef = new Firebase(Constants.APP_ROOT_DATA + 'users/' + uid);
-            fireBaseRef.set(data);
+            fireBaseRef.set(data, function (error) {
+                if (error) {
+                    console.log('Synchronization failed');
+                } else {
+                    console.log('Synchronization succeeded');
+                    if (callback) {
+                        callback();
+                    }
+                }
+            });
         },
 
         readUserData: function (username, callback) {

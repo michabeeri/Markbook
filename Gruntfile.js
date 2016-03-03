@@ -5,7 +5,7 @@
 'use strict';
 
 module.exports = function (grunt) {
-
+    var historyApiFallbackMiddleware = require('connect-history-api-fallback');
     var VENDOR_TARGET = 'build/vendor/';
 
     grunt.initConfig({
@@ -227,11 +227,25 @@ module.exports = function (grunt) {
                     }
                 }
             }
+        },
+        connect: {
+            server: {
+                options: {
+                    port: 8000,
+                    keepalive: true,
+                    base: 'build',
+                    middleware: function (connect, options, middleware) {
+                        middleware.unshift(historyApiFallbackMiddleware());
+                        return middleware;
+                    }
+                }
+            }
         }
     });
 
     require('jit-grunt')(grunt);
 
+    grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.registerTask('lint', ['eslint']);
     grunt.registerTask('compile', ['babel']);
     grunt.registerTask('compile', ['umd', 'babel']);
