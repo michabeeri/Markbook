@@ -1,5 +1,5 @@
-define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsContainer'],
-    function (_, React, actions, TagsContainer) {
+define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsContainer', 'utils/bookmarksUtil'],
+    function (_, React, actions, TagsContainer, BookmarksUtil) {
         'use strict';
 
         var LinkedStateMixin = React.addons.LinkedStateMixin;
@@ -13,10 +13,22 @@ define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsConta
                 close: React.PropTypes.func.isRequired
             },
             getInitialState: function () {
+                var id = this.props.state.modals.id;
+                var bookmarkName = '',
+                    bookmarkUrl = '',
+                    tags = [];
+
+                if (!(_.isUndefined(id) || _.isNull(id))) {
+                    var bookmark = BookmarksUtil.getBookmarkById(this.props.state.bookmarks, id);
+                    bookmarkName = bookmark.title;
+                    bookmarkUrl = bookmark.url;
+                    bookmark.tags = tags;
+                }
+
                 return {
-                    bookmarkName: '',
-                    bookmarkUrl: '',
-                    tags: []
+                    bookmarkName: bookmarkName,
+                    bookmarkUrl: bookmarkUrl,
+                    tags: tags
                 };
             },
             addBookmark: function () {

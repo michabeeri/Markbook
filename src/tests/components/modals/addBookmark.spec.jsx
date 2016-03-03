@@ -4,12 +4,33 @@ define(['React', 'reactDOM', 'components/modals/BookmarkData', 'constants'],
 
         var TestUtils = React.addons.TestUtils;
 
-        describe('Add Bookmark Modal', function () {
+        describe('Bookmark Data Modal', function () {
 
             function createDemoAddBookmarkModal() {
-                var dispatchSpy = jasmine.createSpy('callback');
+                var bookmarkListItemsData = [
+                    {
+                        id: '002',
+                        title: 'Bookmark 2 title',
+                        date: new Date(2012, 10, 9),
+                        children: null,
+                        url: "www.tweeter.com"
+                    },
+                    {
+                        id: '001',
+                        title: 'Gaspar Noe Movies',
+                        date: new Date(2012, 10, 9),
+                        children: Array(2).fill({})
+                    }
+                ];
+                var state =
+                {
+                    modals: {type: constants.eModalType.MODAL_ADD_BOOKMARK, id: '002'},
+                    bookmarks: bookmarkListItemsData
+                };
+                var dispatchSpy = jasmine.createSpy('dispatchSpy');
+                var closeSpy = jasmine.createSpy('closeSpy');
                 return TestUtils.renderIntoDocument(<BookmarkData dispatch={dispatchSpy}
-                                                                  state={{modals: {type: constants.eModalType.MODAL_ADD_BOOKMARK, id: ''}}}
+                                                                  state={state}
                                                                   close={function(){}}/>);
             }
 

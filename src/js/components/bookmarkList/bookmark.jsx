@@ -19,7 +19,7 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
             evt.stopPropagation();
         },
         onEdit: function (evt) {
-            this.props.dispatch(ActionProvider.editBookmark(this.props.bookmarkData.id));
+            this.props.dispatch(ActionProvider.openBookmarkDataModal(this.props.bookmarkData.id));
             evt.stopPropagation();
         },
         onDelete: function (evt) {
