@@ -49,6 +49,20 @@ define(['lodash', 'utils/bookmarksUtil'], function (_, BookmarksUtil) {
                 expect(_.countBy(results.title).a).toEqual(1);
                 expect(_.countBy(results.tags).a).toEqual(1);
             });
+
+            it('should support missing property', function () {
+                var itemsWithoutTag = [
+                {
+                    title: 'a',
+                    date: new Date(2015, 10, 18),
+                    children: null
+                }];
+
+                var results = BookmarksUtil.filterItems(itemsWithoutTag, '', ['title', 'tags']);
+
+                expect(_.countBy(results.title).a).toEqual(1);
+                expect(results.tags.length).toEqual(0);
+            });
         });
 
         describe('isCurrentGroup', function () {

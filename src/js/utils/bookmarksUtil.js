@@ -8,9 +8,15 @@ define(['lodash', 'constants'], function (_, Constants) {
             var result =
                 _.chain(items)
                     .map(property)
+                    .filter(function (item) {
+                        return !_.isUndefined(item);
+                    })
                     .flatten()
                     .filter(function (item) {
-                        return _.startsWith(item.toLowerCase(), searchTerm.toLowerCase());
+                        if (typeof item === 'string') {
+                            return _.startsWith(item.toLowerCase(), searchTerm.toLowerCase());
+                        }
+                        return false;
                     })
                     .union()
                     .value();

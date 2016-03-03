@@ -68,12 +68,15 @@ define(['lodash', 'uuid', 'constants', 'utils/bookmarksUtil'], function (_, uuid
             case Constants.REMOVE_REPARENT_CHILDREN:
                 return (function () {
                     var bookmark = _.find(state, {id: action.id});
+                    var newState = _.reject(state, {id: action.id});
                     var parentGroup = _.find(state, function (bm) {
                         return bm.children && bm.children.indexOf(action.id) !== -1;
                     });
 
-                    var newState = _.reject(state, {id: action.id});
-                    parentGroup.children = parentGroup.children.concat(bookmark.children);
+                    parentGroup.children = parentGroup.children.filter(function (id) {
+                        return id !== bookmark.id;
+                    }).concat(bookmark.children);
+
                     return newState;
                 }());
 
