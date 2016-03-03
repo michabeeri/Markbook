@@ -22,9 +22,9 @@ define([],
         };
 
         var sortTypes = {
-            DEFAULT: {
-                value: 'DEFAULT',
-                description: 'None'
+            CUSTOM: {
+              value: 'CUSTOM',
+                description: 'custom'
             },
             DATE_ASC: {
                 value: 'DATE_ASC',
@@ -80,7 +80,13 @@ define([],
             // tool bar
             SET_FILTER: 'SET_FILTER',
             SET_SORT_TYPE: 'SET_SORT_TYPE',
-            DEFAULT_SORT_TYPE: 'DEFAULT',
+            DEFAULT_SORT_TYPE: 'DATE_ASC',
+            CUSTOM_SORT_TYPE: 'CUSTOM',
+
+            // Database
+            LOAD_DATA: 'LOAD_DATA',
+            STORE_DATA: 'STORE_DATA',
+            UPDATE_DATABASE: 'UPDATE_DATABASE',
 
             GRID_MIN_WIDTH: 960
         };

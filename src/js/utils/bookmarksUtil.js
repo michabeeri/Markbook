@@ -40,7 +40,7 @@ define(['lodash', 'constants'], function (_, Constants) {
     }
 
     function isItemGroup(item) {
-        return (!_.isNull(item.children));
+        return item.children && item.children.length > 0;
     }
 
     function isGroup(bookmarks, bookmarkId) {

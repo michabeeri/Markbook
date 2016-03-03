@@ -21,7 +21,7 @@ define(['lodash', 'constants', 'actionProviders/actions'], function (_, Constant
                     var ids = [bookmarkId];
                     var bookmark = _.find(state.bookmarks, {id: bookmarkId});
 
-                    if (bookmark.children) {
+                    if (bookmark && bookmark.children) {
                         bookmark.children.forEach(function (id) {
                             ids = ids.concat(getIdsToRemove(id));
                         });

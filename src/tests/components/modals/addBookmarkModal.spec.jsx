@@ -1,5 +1,5 @@
-define(['React', 'reactDOM', 'components/modals/AddBookmarkModal'],
-    function (React, ReactDOM, AddBookmarkModal) {
+define(['React', 'reactDOM', 'components/modals/BookmarkData', 'constants'],
+    function (React, ReactDOM, BookmarkData, constants) {
         'use strict';
 
         var TestUtils = React.addons.TestUtils;
@@ -8,29 +8,41 @@ define(['React', 'reactDOM', 'components/modals/AddBookmarkModal'],
 
             function createDemoAddBookmarkModal() {
                 var dispatchSpy = jasmine.createSpy('callback');
-                return TestUtils.renderIntoDocument(<AddBookmarkModal dispatch={dispatchSpy}
-                                                                      state={{}}
-                                                                      classNameAddBookmark='modal modal-opened'
-                                                                      closeModal={function(){}}/>);
+                return TestUtils.renderIntoDocument(<BookmarkData dispatch={dispatchSpy}
+                                                                  state={{type: constants.eModalType.MODAL_ADD_BOOKMARK, id: ''}}
+                                                                  close={function(){}}/>);
             }
 
-            xit('should call dispatch with proper input', function () {
-                var bookmark = {
-                    bookmarkName: 'Demo Name',
-                    bookmarkUrl: 'www.google.com'
-                };
+            it('should call dispatch', function () {
                 var reactComp = createDemoAddBookmarkModal();
                 var domNode = ReactDOM.findDOMNode(reactComp);
-                var bookmarkNameNode = domNode.querySelector("input[name=BookmarkName]");
-                var bookmarkUrlNode = domNode.querySelector("input[name=BookmarkUrl]");
+
                 var saveBookmark = TestUtils.findRenderedDOMComponentWithTag(reactComp, 'button');
-                bookmarkNameNode.value = bookmark.bookmarkName;
-                bookmarkUrlNode.value = bookmark.bookmarkUrl;
+
                 TestUtils.Simulate.click(saveBookmark);
 
                 expect(reactComp.props.dispatch).toHaveBeenCalled();
             });
 
+            xit('should call dispatch with proper input', function () {
+                //add tags and group
+                var bookmark = {
+                    bookmarkName: 'Demo Name',
+                    bookmarkUrl: 'www.google.com'
+                };
+
+                var bookmarkNameNode = domNode.querySelector("input[name=BookmarkName]");
+                var bookmarkUrlNode = domNode.querySelector("input[name=BookmarkUrl]");
+
+                bookmarkNameNode.value = bookmark.bookmarkName;
+                bookmarkUrlNode.value = bookmark.bookmarkUrl;
+
+                var saveBookmark = TestUtils.findRenderedDOMComponentWithTag(reactComp, 'button');
+                TestUtils.Simulate.click(saveBookmark);
+
+                //add parameters after adding a group
+                expect(reactComp.props.dispatch).toHaveBeenCalledWith();
+            });
 
         });
 

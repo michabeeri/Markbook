@@ -1,9 +1,9 @@
-define(['constants'], function (Constants) {
+define(['constants', 'developer'], function (Constants, Developer) {
     'use strict';
 
     var initialState = {
-        username: 'liran@bm.bm',
-        uid: '27b6ada8-7dc6-4117-8520-09ca0562ff12',
+        username: Developer.username,
+        uid: Developer.uid,
         token: null
     };
 
