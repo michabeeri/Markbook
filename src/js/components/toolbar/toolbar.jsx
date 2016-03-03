@@ -7,7 +7,9 @@ define(
             displayName: 'ToolBar',
             propTypes: {
                 state: React.PropTypes.object.isRequired,
-                dispatch: React.PropTypes.func.isRequired
+                dispatch: React.PropTypes.func.isRequired,
+                layout: React.PropTypes.string.isRequired,
+                switchLayout: React.PropTypes.func.isRequired
             },
             setFilter: function (tag, title) {
                 this.props.dispatch(ActionProvider.setFilter(tag, title));
@@ -18,6 +20,10 @@ define(
             onSelectAll: function () {
                 this.props.dispatch(ActionProvider.selectAll());
             },
+            getTotalSelected: function () {
+                var totalSelected = _.filter(this.props.state.bookmarks, 'selected').length;
+                return totalSelected;
+            },
             render: function () {
                 return (
                     <div className='toolbar'>
@@ -25,7 +31,8 @@ define(
                         <OrderBy setSortType={this.setSortType} sortTypes={Constants.sortTypes}
                                  selectedSortType={this.props.state.sort.sortType}
                                  hiddenSortType={Constants.CUSTOM_SORT_TYPE}/>
-                        <ActionControls onSelectAll={this.onSelectAll}/>
+                        <ActionControls onSelectAll={this.onSelectAll} layoutType={this.props.layout} switchLayout={this.props.switchLayout}
+                                        totalSelected={this.getTotalSelected()}/>
                     </div>
                 );
             }
