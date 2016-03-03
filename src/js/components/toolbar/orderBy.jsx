@@ -7,21 +7,23 @@ define(['lodash', 'react', 'uuid'],
             propTypes: {
                 setSortType: React.PropTypes.func.isRequired,
                 sortTypes: React.PropTypes.object.isRequired,
-                selectedSortType: React.PropTypes.string.isRequired
+                selectedSortType: React.PropTypes.string.isRequired,
+                hiddenSortType: React.PropTypes.string.isRequired
             },
             onSelectOrderBy: function (event) {
                 this.props.setSortType(event.target.value);
             },
             renderOption: function (type) {
                 var sortType = this.props.sortTypes[type];
-                return <option key={uuid.v4()} value={sortType.value}>{sortType.description}</option>;
+                return <option key={uuid.v4()} value={sortType.value}
+                               hidden={type === this.props.hiddenSortType}>{sortType.description}</option>;
             },
             render: function () {
                 var renderOption = this.renderOption;
                 return (
-                    <div className='inline'>
-                        <span>Reorder: </span>
-                        <select className='order-by' onChange={this.onSelectOrderBy}
+                    <div className='contained inline'>
+                        <span className='label'>Reorder:</span>
+                        <select className='border-simple order-by' onChange={this.onSelectOrderBy}
                                 value={this.props.selectedSortType}>
                             {_.map(_.keys(this.props.sortTypes), function (type) {
                                 return renderOption(type);

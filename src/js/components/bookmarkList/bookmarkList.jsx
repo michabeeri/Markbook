@@ -46,6 +46,7 @@ define(['lodash',
             setDragged: function (draggedId) {
                 if (this.state.dragged !== draggedId) {
                     this.setState({dragged: draggedId});
+                    this.props.dispatch(ActionProvider.setSortType(Constants.CUSTOM_SORT_TYPE));
                 }
             },
             resetDragState: function () {
@@ -56,7 +57,7 @@ define(['lodash',
                     this.props.state.currentBookmarkPath);
 
                 var sortType = this.props.state.sort.sortType;
-                if (sortType) {
+                if (sortType !== Constants.CUSTOM_SORT_TYPE) {
                     currentGroupItems = BookmarksUtil.sort(currentGroupItems, sortType);
                 }
                 return (
