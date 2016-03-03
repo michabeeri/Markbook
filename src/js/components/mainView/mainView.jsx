@@ -1,11 +1,13 @@
-define(['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmarkList', 'components/breadcrumbs/breadCrumbs', 'components/modals/ModalContainer', 'constants', 'actionProviders/actions'],
+define(
+    ['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmarkList', 'components/breadcrumbs/breadCrumbs', 'components/modals/ModalContainer', 'constants', 'actionProviders/actions'],
     function (React, ToolBar, BookmarkList, BreadCrumbs, ModalContainer, Constants, actions) {
         'use strict';
         return React.createClass({
             displayName: 'MainView',
             getInitialState: function () {
                 return {
-                    layout: Constants.layoutType.GRID
+                    layout: Constants.layoutType.GRID,
+                    minGridLayoutExceeded: document.body.clientWidth < Constants.GRID_MIN_WIDTH
                 };
             },
             componentDidMount: function () {
@@ -15,11 +17,17 @@ define(['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmark
                 window.removeEventListener('throttledResize', this.resizeHandler);
             },
             resizeHandler: function () {
-                this.setState({
-                    layout: document.body.clientWidth < Constants.GRID_MIN_WIDTH
-                        ? Constants.layoutType.LIST
-                        : Constants.layoutType.GRID
-                });
+                if (document.body.clientWidth < Constants.GRID_MIN_WIDTH) {
+                    this.setState({
+                        minGridLayoutExceeded: true,
+                        layout: Constants.layoutType.LIST
+                    });
+                } else if (this.state.minGridLayoutExceeded && document.body.clientWidth >= Constants.GRID_MIN_WIDTH) {
+                    this.setState({
+                        minGridLayoutExceeded: false,
+                        layout: Constants.layoutType.GRID
+                    });
+                }
             },
             openAddBookMarkModal: function () {
                 this.props.dispatch(actions.openBookmarkDataModal());
@@ -41,12 +49,21 @@ define(['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmark
             render: function () {
                 return (
                     <div>
-                        <ToolBar {...this.props} layout={this.state.layout} switchLayout={this.switchLayout}/>
+                        <ToolBar
+                            items={this.props.state.bookmarks}
+                            sort={this.props.state.sort}
+                            dispatch={this.props.dispatch}
+                            layout={this.state.layout}
+                            switchLayout={this.switchLayout}
+                            minGridLayoutExceeded={this.state.minGridLayoutExceeded}/>
                         {this.getBreadCrumbsComponent()}
-                        <BookmarkList dispatch={this.props.dispatch} state={this.props.state}
+                        <BookmarkList dispatch={this.props.dispatch}
+                                      state={this.props.state}
                                       layout={this.state.layout}
                                       modalUtils={{lastItemInGroup: this.openRemoveLastItemInGroupModal, groupDelete: this.openGroupDeleteModal}}/>
-                        <ModalContainer dispatch={this.props.dispatch} state={this.props.state}/>
+                        <ModalContainer
+                            dispatch={this.props.dispatch}
+                            state={this.props.state}/>
                         <i className="fa fa-plus-circle fa-3x btn-add" onClick={this.openAddBookMarkModal}></i>
                     </div>
                 );
