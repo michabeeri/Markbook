@@ -8,9 +8,15 @@ define(['lodash', 'constants'], function (_, Constants) {
             var result =
                 _.chain(items)
                     .map(property)
+                    .filter(function (item) {
+                        return !_.isUndefined(item);
+                    })
                     .flatten()
                     .filter(function (item) {
-                        return _.startsWith(item.toLowerCase(), searchTerm.toLowerCase());
+                        if (typeof item === 'string') {
+                            return _.startsWith(item.toLowerCase(), searchTerm.toLowerCase());
+                        }
+                        return false;
                     })
                     .union()
                     .value();
@@ -46,6 +52,10 @@ define(['lodash', 'constants'], function (_, Constants) {
     function isGroup(bookmarks, bookmarkId) {
         var bookmark = getBookmarkById(bookmarks, bookmarkId);
         return isItemGroup(bookmark);
+    }
+
+    function getAllGroups(bookmarks) {
+        return _.filter(bookmarks, isItemGroup);
     }
 
     function getCurrentGroupItems(bookmarks, currentPath) {
@@ -121,6 +131,7 @@ define(['lodash', 'constants'], function (_, Constants) {
         getItemsByGroupId: getItemsByGroupId,
         getParent: getParent,
         isGroup: isGroup,
+        getAllGroups: getAllGroups,
         sort: sort
     };
 });

@@ -49,6 +49,20 @@ define(['lodash', 'utils/bookmarksUtil'], function (_, BookmarksUtil) {
                 expect(_.countBy(results.title).a).toEqual(1);
                 expect(_.countBy(results.tags).a).toEqual(1);
             });
+
+            it('should support missing property', function () {
+                var itemsWithoutTag = [
+                {
+                    title: 'a',
+                    date: new Date(2015, 10, 18),
+                    children: null
+                }];
+
+                var results = BookmarksUtil.filterItems(itemsWithoutTag, '', ['title', 'tags']);
+
+                expect(_.countBy(results.title).a).toEqual(1);
+                expect(results.tags.length).toEqual(0);
+            });
         });
 
         describe('isCurrentGroup', function () {
@@ -96,6 +110,19 @@ define(['lodash', 'utils/bookmarksUtil'], function (_, BookmarksUtil) {
 
                 var bookmarkChildItems = BookmarksUtil.getCurrentGroupItems(bookmarks, path);
                 expect(bookmarkChildItems).toEqual(expectedChildBookmarks);
+            });
+        });
+
+        describe('getAllGroups', function () {
+            it('should return an array with only group items', function () {
+                var bookmarks = [
+                    {children: ['bm0001', 'bm0002', 'bm0003', 'bm0004']},
+                    {children: null},
+                    {children: ['bk']}
+                ];
+
+                var groups = BookmarksUtil.getAllGroups(bookmarks);
+                expect(groups.length).toEqual(2);
             });
         });
 

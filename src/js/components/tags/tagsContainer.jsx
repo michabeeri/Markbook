@@ -1,5 +1,5 @@
-define(['React', 'lodash', 'components/tags/tagInput', 'components/tags/tagsList', 'utils/bookmarksUtil'],
-    function (React, _, TagInput, TagsList, BookmarksUtil) {
+define(['React', 'lodash', 'components/tags/inputWithSuggestions', 'components/tags/tagsList', 'utils/bookmarksUtil'],
+    function (React, _, InputWithSuggestions, TagsList, BookmarksUtil) {
         'use strict';
 
         var LinkedStateMixin = React.addons.LinkedStateMixin;
@@ -41,20 +41,22 @@ define(['React', 'lodash', 'components/tags/tagInput', 'components/tags/tagsList
             },
             isNewTag: function (filteredUserTags, filter) {
                 return filteredUserTags.indexOf(filter) === -1 && this.props.tags.indexOf(filter) === -1;
-            }, mapDataForDropdown: function (filter, filteredUserTags) {
+            },
+            mapDataForDropdown: function (filter, filteredUserTags) {
                 var data = {
                     input: filter,
                     items: [{title: 'Suggestions', groupType: 'tag', lines: filteredUserTags}]
                 };
                 if (this.isNewTag(filteredUserTags, filter)) {
-                    data.items.push({title: 'New tag', groupType: 'tag', lines: [filter]});
+                    data.items.push({title: 'New Tag', groupType: 'tag', lines: [filter]});
                 }
                 return data;
             },
             render: function () {
                 return (
                     <div>
-                        <TagInput addTag={this.addTag}
+                        <span className="label">Add tag:</span>
+                        <InputWithSuggestions onInputSelected={this.addTag}
                                   input={this.state.input}
                                   suggestions={this.getFilteredUserTags(this.state.input)}
                                   valueLink={this.linkState('input')}/>
