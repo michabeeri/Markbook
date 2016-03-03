@@ -1,11 +1,11 @@
-define(['constants', 'components/modals/AddBookmarkModal', 'components/modals/LastItemAlert', 'components/modals/ModalGroupDelete'],
-    function (constants, AddBookmarkModal, LastItemAlert, ModalGroupDelete) {
+define(['constants', 'components/modals/BookmarkData', 'components/modals/LastItemAlert', 'components/modals/ModalGroupDelete'],
+    function (constants, BookmarkData, LastItemAlert, ModalGroupDelete) {
         'use strict';
 
         return [
             {
                 key: constants.eModalType.MODAL_ADD_BOOKMARK,
-                class: AddBookmarkModal
+                class: BookmarkData
             },
             {
                 key: constants.eModalType.LAST_BOOKMARK_IN_GROUP_ALERT,

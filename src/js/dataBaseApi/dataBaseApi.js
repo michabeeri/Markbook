@@ -1,6 +1,3 @@
-/**
- * Created by lirank on 29/02/16.
- */
 
 define(['Firebase', 'constants'], function (Firebase, Constants) {
 

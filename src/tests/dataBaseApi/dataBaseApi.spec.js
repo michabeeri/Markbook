@@ -1,4 +1,4 @@
-define(['React', 'reactDOM', 'router', 'components/dataBaseApi/dataBaseApi'], function (React, ReactDOM, ReactRouter, DataBase) {
+define(['React', 'reactDOM', 'router', 'dataBaseApi/dataBaseApi'], function (React, ReactDOM, ReactRouter, DataBase) {
 
     'use strict';
 

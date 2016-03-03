@@ -32,20 +32,35 @@ define(['lodash',
                 });
             },
             dragReorder: function (draggedOverId) {
-                if (!this.state.dragged || this.state.dragged === draggedOverId || this.state.draggedOver === draggedOverId) {
+                if (!this.state.dragged || this.state.draggedOver === draggedOverId) {
                     return;
                 }
-                this.setState({draggedOver: draggedOverId}, function () {
-                    this.props.dispatch(ActionProvider.dragReorder(this.state.dragged, draggedOverId, _.last(this.props.state.currentBookmarkPath)));
-                });
+                if (this.state.dragged === draggedOverId) {
+                    this.setState({draggedOver: draggedOverId});
+                } else {
+                    this.setState({draggedOver: draggedOverId}, function () {
+                        this.props.dispatch(ActionProvider.dragReorder(this.state.dragged, draggedOverId, _.last(this.props.state.currentBookmarkPath)));
+                    });
+                }
             },
             setDragged: function (draggedId) {
                 if (this.state.dragged !== draggedId) {
                     this.setState({dragged: draggedId});
+                    this.props.dispatch(ActionProvider.setSortType(Constants.CUSTOM_SORT_TYPE));
                 }
             },
+            resetDragState: function () {
+                this.setState({dragged: null, draggedOver: null});
+            },
             render: function () {
-                var currentGroupItems = BookmarksUtil.getCurrentGroupItems(this.props.state.bookmarks, this.props.state.currentBookmarkPath);
+                var currentGroupItems = this.props.layout === Constants.layoutType.GRID
+                    ? BookmarksUtil.getCurrentGroupItems(this.props.state.bookmarks, this.props.state.currentBookmarkPath)
+                    : BookmarksUtil.getItemsByGroupId(this.props.state.bookmarks, Constants.ROOT_GROUP_ID);
+
+                var sortType = this.props.state.sort.sortType;
+                if (sortType !== Constants.CUSTOM_SORT_TYPE) {
+                    currentGroupItems = BookmarksUtil.sort(currentGroupItems, sortType);
+                }
                 return (
                     <div className='bookmark-list-container grid'>
                         {_.map(currentGroupItems, function (bm) {
@@ -62,11 +77,10 @@ define(['lodash',
                                     layout={this.props.layout}
                                     state={this.props.state}
                                     dispatch={this.props.dispatch}
-                                    modalUtils={this.props.modalUtils}
                                     dragClass={dragged}
                                     dragStart={this.setDragged}
                                     dragOver={this.dragReorder}
-                                    dragEnd={this.setDragged}
+                                    dragEnd={this.resetDragState}
                                 />);
                         }.bind(this))}
                     </div>

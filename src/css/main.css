@@ -23,6 +23,10 @@ html {
   margin: 15px
 }
 
+.contained {
+  margin: 0 10px;
+}
+
 .label {
   padding-right: 5px;
   vertical-align: sub;
@@ -61,7 +65,7 @@ html {
 .btn {
   padding: 3px 10px;
   text-align: center;
-  cursor: hand;
+  cursor: pointer;
 }
 
 .btn-list-item {
@@ -69,8 +73,6 @@ html {
 }
 
 .btn-group {
-  display: flex;
-  align-items: center;
 }
 
 .btn-add {
@@ -91,7 +93,7 @@ html {
 }
 
 .border-simple {
-  border: 1px solid;
+  border: 1px solid #cccccc;
 }
 
 .border-no-top {
@@ -102,10 +104,11 @@ html {
 .border-bottom {
   border-width: 0 0 1px 0;
   border-style: solid;
+  border-color: #cccccc;
 }
 
 .input {
-  border-color: #6b6b6b;
+  border-color: #cccccc;
   border: 1px solid;
   color: #6b6b6b;
   font-size: 14px;
@@ -113,7 +116,7 @@ html {
   text-align: left;
   height: 30px;
   width: 220px;
-  padding: 5px;
+  padding: 15px;
 }
 
 .input-long {

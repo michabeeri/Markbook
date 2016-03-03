@@ -4,19 +4,16 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
     var Bookmark = React.createClass({
         mixins: [draggable],
         displayName: 'Bookmark',
-        getInitialState: function () {
-            return {isOpen: false};
-        },
         onView: function (evt) {
             window.open('http://www.google.com');
             evt.stopPropagation();
         },
         onOpen: function (evt) {
-            if (this.isGrid()) {
-                this.props.dispatch(ActionProvider.openBookmarkGroup(this.props.bookmarkData.id));
+            if (this.isOpen()) {
+                this.props.dispatch(ActionProvider.navigateToPreviousGroup(BookmarksUtil.getParent(this.props.state.bookmarks, this.props.bookmarkData.id).id));
 
             } else {
-                this.setState({isOpen: !this.state.isOpen});
+                this.props.dispatch(ActionProvider.openBookmarkGroup(this.props.bookmarkData.id));
 
             }
             evt.stopPropagation();
@@ -27,14 +24,17 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
         },
         onDelete: function (evt) {
             var id = this.props.bookmarkData.id;
-            var parent = BookmarksUtil.getParent(this.props.state.bookmarks, id);
-            if (parent.children && parent.children.length === 1) {
-                this.props.modalUtils.lastItemInGroup(id);
-
+            if (BookmarksUtil.isGroup(this.props.state.bookmarks, id)) {
+                this.props.dispatch(ActionProvider.openDeleteGroupModal(id));
             } else {
-                this.props.dispatch(ActionProvider.removeBookmark(id));
-
+                var parent = BookmarksUtil.getParent(this.props.state.bookmarks, id);
+                if (parent.children && parent.children.length === 1) {
+                    this.props.dispatch(ActionProvider.openLastItemInGroupDelete(id));
+                } else {
+                    this.props.dispatch(ActionProvider.removeBookmark(id));
+                }
             }
+
             evt.stopPropagation();
         },
         onSelect: function (evt) {
@@ -50,15 +50,18 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
         isSelected: function () {
             return this.props.bookmarkData.selected;
         },
+        isOpen: function () {
+            return this.props.state.currentBookmarkPath.indexOf(this.props.bookmarkData.id) !== -1;
+        },
         getClassString: function () {
-            return 'bookmark-base' +
+            return 'bookmark-base border-simple' +
                 (this.isGrid() ? ' grid' : ' list') +
                 (this.isGroup() ? ' group' : ' leaf') +
                 (this.props.bookmarkData.selected ? ' selected' : '') +
                 (this.props.dragClass ? ' dragged' : '');
         },
         renderChildren: function () {
-            if (this.isGrid() || !this.isGroup() || !this.state.isOpen) {
+            if (this.isGrid() || !this.isGroup() || !this.isOpen()) {
                 return (<ul></ul>);
             }
 
@@ -71,7 +74,6 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
                                 layout={this.props.layout}
                                 state={this.props.state}
                                 dispatch={this.props.dispatch}
-                                modalUtils={this.props.modalUtils}
                                 dragClass={false}
                                 dragStart={function () {}}
                                 dragOver={function () {}}
@@ -87,7 +89,6 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
                      data-id={this.props.dataId}
                      onClick={this.onSelect}
                      onDoubleClick={this.isGroup() ? this.onOpen : this.onView}
-                     onDradStart={this.onDragStart}
                     {...this.getDragAttr()}>
                     <div>
                         <h1 className='title-small'>{this.props.bookmarkData.title}</h1>

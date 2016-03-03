@@ -41,9 +41,10 @@ requirejs([
     'components/loginManager/login',
     'components/loginManager/signup',
     'middlewares/thunk',
-    'middlewares/removeBookmark'],
-    function (_, React, ReactDOM, Redux, ReactRouter, ReactRedux, AppView, appReducer, ReduxSimpleRouter, LoginComp, SignupComp, thunkMiddleware, removeBookmarkMiddleware) {
-
+    'middlewares/removeBookmark',
+    'middlewares/database',
+    'developer'],
+    function (_, React, ReactDOM, Redux, ReactRouter, ReactRedux, AppView, appReducer, ReduxSimpleRouter, LoginComp, SignupComp, thunkMiddleware, removeBookmarkMiddleware, databaseMiddleware, Developer) {
 
         'use strict';
 
@@ -55,12 +56,14 @@ requirejs([
         var Route = ReactRouter.Route;
         var Provider = ReactRedux.Provider;
         var reduxMiddleware = ReduxSimpleRouter.syncHistory(ReactRouter.browserHistory);
-        var createStoreWithMiddleware = Redux.applyMiddleware(reduxMiddleware, thunkMiddleware, removeBookmarkMiddleware)(Redux.createStore);
+        var createStoreWithMiddleware = Redux.applyMiddleware(reduxMiddleware, thunkMiddleware, removeBookmarkMiddleware, databaseMiddleware)(Redux.createStore);
         var store = createStoreWithMiddleware(appReducer, window.devToolsExtension
             ? window.devToolsExtension()
             : undefined);
 
         reduxMiddleware.listenForReplays(store, function (state) {return state.routing; });
+
+        Developer.setStore(store);
 
         ReactDOM.render(
             <Provider store={store}>

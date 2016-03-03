@@ -5,8 +5,7 @@ define(['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmark
             displayName: 'MainView',
             getInitialState: function () {
                 return {
-                    layout: Constants.layoutType.GRID,
-                    currentIdForModal: ''
+                    layout: Constants.layoutType.GRID
                 };
             },
             componentDidMount: function () {
@@ -20,16 +19,6 @@ define(['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmark
                     layout: document.body.clientWidth < Constants.GRID_MIN_WIDTH
                         ? Constants.layoutType.LIST
                         : Constants.layoutType.GRID
-                });
-            },
-            openRemoveLastItemInGroupModal: function (id) {
-                this.setState({
-                    currentIdForModal: id
-                });
-            },
-            openGroupDeleteModal: function (id) {
-                this.setState({
-                    currentIdForModal: id
                 });
             },
             openAddBookMarkModal: function () {

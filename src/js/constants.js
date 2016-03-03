@@ -22,12 +22,30 @@ define([],
         };
 
         var sortTypes = {
-            DEFAULT: '',
-            DATE_ASC: 'Date, old to new',
-            DATE_DESC: 'Date, new to old',
-            TITLE_ASC: 'Title Ascending',
-            TITLE_DESC: 'Title Descending',
-            TYPE: 'Type'
+            CUSTOM: {
+              value: 'CUSTOM',
+                description: 'custom'
+            },
+            DATE_ASC: {
+                value: 'DATE_ASC',
+                description: 'Date, old to new'
+            },
+            DATE_DESC: {
+                value: 'DATE_DESC',
+                description: 'Date, new to old'
+            },
+            TITLE_ASC: {
+                value: 'TITLE_ASC',
+                description: 'Title Ascending'
+            },
+            TITLE_DESC: {
+                value: 'TITLE_DESC',
+                description: 'Title Descending'
+            },
+            TYPE: {
+                value: 'TYPE',
+                description: 'Type'
+            }
         };
 
         return {
@@ -62,7 +80,13 @@ define([],
             // tool bar
             SET_FILTER: 'SET_FILTER',
             SET_SORT_TYPE: 'SET_SORT_TYPE',
-            DEFAULT_SORT_TYPE: 'DEFAULT',
+            DEFAULT_SORT_TYPE: 'DATE_ASC',
+            CUSTOM_SORT_TYPE: 'CUSTOM',
+
+            // Database
+            LOAD_DATA: 'LOAD_DATA',
+            STORE_DATA: 'STORE_DATA',
+            UPDATE_DATABASE: 'UPDATE_DATABASE',
 
             GRID_MIN_WIDTH: 960
         };

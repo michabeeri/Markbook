@@ -17,6 +17,9 @@ define(['constants'], function (Constants) {
                     sortType: action.sortType
                 };
 
+            case Constants.STORE_DATA:
+                return action.sort;
+
             default:
                 return state;
         }

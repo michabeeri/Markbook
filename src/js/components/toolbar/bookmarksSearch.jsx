@@ -6,7 +6,11 @@ define(['lodash', 'react', 'components/dropdown/dropdown', 'utils/bookmarksUtil'
             displayName: 'SearchBox',
             render: function () {
                 return (
-                    <input className='input search-box' placeholder='Search' valueLink={this.props.valueLink}/>
+                    <div className='search-box-container'>
+                        <label><i className='fa fa-search'></i></label>
+                        <input id='search-input' className='input search-box' placeholder='Search'
+                               valueLink={this.props.valueLink}/>
+                    </div>
                 );
             }
         });
@@ -25,7 +29,8 @@ define(['lodash', 'react', 'components/dropdown/dropdown', 'utils/bookmarksUtil'
             },
             getSearchResult: function () {
 
-                var filterResults = BookmarksUtil.filterItems(this.props.items, this.state.searchTerm, ['title', 'tags']);
+                var filterResults = BookmarksUtil.filterItems(this.props.items, this.state.searchTerm,
+                    ['title', 'tags']);
 
                 var searchResults = {items: []};
                 if (!_.isEmpty(filterResults.title)) {

@@ -1,21 +1,9 @@
 define(['uuid', 'constants'], function (uuid, Constants) {
     'use strict';
 
-    return {
-        //addBookmarkAsync: function (parentGroupId, title, url, tags) {
-        //    return function (dispatch) {
-        //        return this.slowOperation().then(
-        //            function () {
-        //                dispatch(this.addBookmark(parentGroupId, title, url, tags));
-        //            }.bind(this)
-        //        );
-        //    }.bind(this);
-        //},
-        //slowOperation: function () {
-        //    return Promise.resolve('ok');
-        //},
+    var Actions = {
         addBookmark: function (parentGroupId, title, url, tags) {
-            return {
+            return databaseUpdateWrapper({
                 type: Constants.ADD_BOOKMARK,
                 id: uuid.v4(),
                 parentGroupId: parentGroupId,
@@ -23,7 +11,7 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 url: url,
                 tags: tags,
                 date: new Date()
-            };
+            });
         },
         editBookmark: function (id) {
             return {
@@ -39,16 +27,16 @@ define(['uuid', 'constants'], function (uuid, Constants) {
             };
         },
         removeBookmark: function (id) {
-            return {
+            return databaseUpdateWrapper({
                 type: Constants.REMOVE_BOOKMARK,
                 id: id
-            };
+            });
         },
         removeAndReparent: function (id) {
-            return {
-                type: Constants.REMOVE_LAST_BOOKMARK_IN_GROUP,
+            return databaseUpdateWrapper({
+                type: Constants.REMOVE_REPARENT_CHILDREN,
                 id: id
-            };
+            });
         },
         logout: function () {
             return {
@@ -88,36 +76,70 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 id: id
             };
         },
-
         login: function (username, uid, token) {
             return {
                 type: Constants.LOGIN, username: username, uid: uid, token: token
             };
         },
-
-        openBookmarkDataModal: function () {
+        openBookmarkDataModal: function (id) {
             return {
                 type: Constants.OPEN_MODAL,
-                modalType: Constants.eModalType.MODAL_ADD_BOOKMARK
+                modalType: Constants.eModalType.MODAL_ADD_BOOKMARK,
+                bookmarkId: id
             };
         },
-        openDeleteGroupModal: function () {
+        openDeleteGroupModal: function (id) {
             return {
                 type: Constants.OPEN_MODAL,
-                modalType: Constants.eModalType.GROUP_DELETE_NOTIFICATION
+                modalType: Constants.eModalType.GROUP_DELETE_NOTIFICATION,
+                bookmarkId: id
             };
         },
-        openLastItemInGroupDelete: function () {
+        openLastItemInGroupDelete: function (id) {
             return {
                 type: Constants.OPEN_MODAL,
-                modalType: Constants.eModalType.LAST_BOOKMARK_IN_GROUP_ALERT
+                modalType: Constants.eModalType.LAST_BOOKMARK_IN_GROUP_ALERT,
+                bookmarkId: id
             };
         },
         closeModal: function () {
             return {
                 type: Constants.CLOSE_MODAL
-
+            };
+        },
+        loadData: function () {
+            return {
+                type: Constants.LOAD_DATA
+            };
+        },
+        storeData: function (bookmarks, sort) {
+            return {
+                type: Constants.STORE_DATA,
+                bookmarks: bookmarks,
+                sort: sort
+            };
+        },
+        updateDatabase: function () {
+            return {
+                type: Constants.UPDATE_DATABASE
             };
         }
     };
+
+    function databaseUpdateWrapper(action) {
+        if (action.type === Constants.UPDATE_DATABASE) {
+            throw ({message: 'NO NO NO NO NO NO NO !!!!!'});
+        }
+
+        return function (dispatch) {
+            return (new Promise( function (resolve) {
+                dispatch(action);
+                resolve();
+            })).then(function () {
+                dispatch(Actions.updateDatabase());
+            });
+        };
+    }
+
+    return Actions;
 });

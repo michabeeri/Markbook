@@ -1,5 +1,5 @@
-define(['react', 'constants', 'components/modals/AddBookmarkModal', 'components/modals/Modal', 'components/modals/modalData', 'lodash', 'actionProviders/actions'],
-    function (React, Constants, AddBookmarkModal, Modal, modalData, _, actions) {
+define(['react', 'constants', 'components/modals/Modal', 'components/modals/modalData', 'lodash', 'actionProviders/actions'],
+    function (React, Constants, Modal, modalData, _, actions) {
         'use strict';
 
         return React.createClass({
@@ -43,7 +43,7 @@ define(['react', 'constants', 'components/modals/AddBookmarkModal', 'components/
                     );
 
                     return (
-                        <Modal className='modal modal-opened' closeModal={this.close} dispatch={this.props.dispatch}>
+                        <Modal className='modal modal-opened' close={this.close} dispatch={this.props.dispatch}>
                             {contentComponent}
                         </Modal>);
                 }
