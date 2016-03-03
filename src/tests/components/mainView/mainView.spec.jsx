@@ -1,17 +1,47 @@
-define(['react', 'reactDOM', 'reduxTestUtils', 'components/mainView/mainView'],
-    function (React, ReactDOM, ReduxTestUtils, MainView) {
+define(['react', 'constants', 'reactDOM', 'components/mainView/mainView', 'components/bookmarkList/bookmarkList', 'components/toolbar/toolbar'],
+    function (React, constants, ReactDOM, MainView, BookmarkList, Toolbar) {
         'use strict';
 
-        xdescribe('Main View', function () {
+        var TestUtils = React.addons.TestUtils;
 
-            var mainView;
+        describe('Main View', function () {
 
-            beforeEach(function () {
-                mainView = ReduxTestUtils.renderInProvider(MainView);
+            describe('Empty state', function () {
+                var mainView;
+
+                beforeEach(function () {
+                    var dispatchSpy = jasmine.createSpy('dispatch');
+                    var state =
+                    {
+                        bookmarks: [{
+                            id: constants.ROOT_GROUP_ID,
+                            title: 'All Bookmarks',
+                            date: new Date(2015, 10, 18),
+                            children: [],
+                            tags: []
+                        }]
+                    };
+                    mainView = TestUtils.renderIntoDocument(<MainView dispatch={dispatchSpy}
+                                                                      state={state}/>);
+                });
+
+                it('should render with correct display name', function () {
+                    expect(mainView.constructor.displayName).toBe('MainView');
+                });
+
+                it('should not have a topbar', function () {
+                    expect(TestUtils.scryRenderedComponentsWithType(mainView, Toolbar).length).toBe(0);
+                });
+
+                it('should not have a bookmarkList', function () {
+                    expect(TestUtils.scryRenderedComponentsWithType(mainView, BookmarkList).length).toBe(0);
+                });
+
+                it('should have add button', function () {
+                    expect(TestUtils.scryRenderedDOMComponentsWithClass(mainView, 'btn-add').length).toBe(1);
+                });
             });
 
-            it('should render with correct display name', function () {
-                expect(mainView.constructor.displayName).toBe('MainView');
-            });
+
         });
     });
