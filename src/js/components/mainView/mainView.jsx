@@ -33,10 +33,15 @@ define(['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmark
                                  bookmarks={this.props.state.bookmarks}
                                  currentPath={this.props.state.currentBookmarkPath}/> : null;
             },
+            switchLayout: function () {
+                this.setState({
+                    layout: this.state.layout === Constants.layoutType.GRID ? Constants.layoutType.LIST : Constants.layoutType.GRID
+                });
+            },
             render: function () {
                 return (
                     <div>
-                        <ToolBar {...this.props}/>
+                        <ToolBar {...this.props} layout={this.state.layout} switchLayout={this.switchLayout}/>
                         {this.getBreadCrumbsComponent()}
                         <BookmarkList dispatch={this.props.dispatch} state={this.props.state}
                                       layout={this.state.layout}

@@ -68,6 +68,10 @@ html {
   cursor: pointer;
 }
 
+.btn-disabled {
+ cursor: not-allowed;
+}
+
 .btn-list-item {
   text-align: left;
 }
