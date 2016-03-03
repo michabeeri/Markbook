@@ -42,12 +42,15 @@ define(['lodash', 'constants', 'actionProviders/actions', 'dataBaseApi/dataBaseA
                         state = store.getState();
                         DataBaseApi.writeUserData(state.userInfo.uid, {
                             bookmarks: state.bookmarks.map(function (bm) {
-                                return Object.assign({}, bm, {date:
-                                    {
+                                return Object.assign({}, bm, {
+                                    date: {
                                         year: bm.date.getFullYear(),
                                         month: bm.date.getMonth(),
                                         day: bm.date.getDay()
-                                    }
+                                    },
+                                    tags: bm.tags
+                                        ? _.values(bm.tags)
+                                        : []
                                 });
                             }),
                             sort: state.sort
