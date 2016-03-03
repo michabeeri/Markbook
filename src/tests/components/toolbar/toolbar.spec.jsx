@@ -9,7 +9,7 @@ define(['react', 'components/toolbar/toolbar', 'constants'],
             var toolBar;
 
             beforeEach(function () {
-                toolBar = testUtils.renderIntoDocument(<ToolBar state={{sort: {sortType: Constants.DEFAULT_SORT_TYPE}}} dispatch={function(){}}/>);
+                toolBar = testUtils.renderIntoDocument(<ToolBar sort={{sortType: Constants.DEFAULT_SORT_TYPE}} dispatch={function(){}}/>);
             });
 
             it ('should show a search box with Search placeholder', function () {

@@ -6,8 +6,12 @@ define(
         return React.createClass({
             displayName: 'ToolBar',
             propTypes: {
-                state: React.PropTypes.object.isRequired,
-                dispatch: React.PropTypes.func.isRequired
+                items: React.PropTypes.array.isRequired,
+                sort: React.PropTypes.object.isRequired,
+                dispatch: React.PropTypes.func.isRequired,
+                layout: React.PropTypes.string.isRequired,
+                switchLayout: React.PropTypes.func.isRequired,
+                minGridLayoutExceeded: React.PropTypes.bool.isRequired
             },
             setFilter: function (tag, title) {
                 this.props.dispatch(ActionProvider.setFilter(tag, title));
@@ -18,14 +22,22 @@ define(
             onSelectAll: function () {
                 this.props.dispatch(ActionProvider.selectAll());
             },
+            getTotalSelected: function () {
+                var totalSelected = _.filter(this.props.items, 'selected').length;
+                return totalSelected;
+            },
             render: function () {
                 return (
                     <div className='toolbar'>
-                        <BookmarksSearch setFilter={this.setFilter} items={this.props.state.bookmarks}/>
+                        <BookmarksSearch setFilter={this.setFilter} items={this.props.items}/>
                         <OrderBy setSortType={this.setSortType} sortTypes={Constants.sortTypes}
-                                 selectedSortType={this.props.state.sort.sortType}
+                                 selectedSortType={this.props.sort.sortType}
                                  hiddenSortType={Constants.CUSTOM_SORT_TYPE}/>
-                        <ActionControls onSelectAll={this.onSelectAll}/>
+                        <ActionControls onSelectAll={this.onSelectAll}
+                                        totalSelected={this.getTotalSelected()}
+                                        layoutType={this.props.layout}
+                                        switchLayout={this.props.switchLayout}
+                                        minGridLayoutExceeded={this.props.minGridLayoutExceeded}/>
                     </div>
                 );
             }

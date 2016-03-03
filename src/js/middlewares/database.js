@@ -5,7 +5,8 @@ define(['lodash', 'constants', 'actionProviders/actions', 'dataBaseApi/dataBaseA
     function createBookmark(bm) {
         return Object.assign({}, bm, {
             date: new Date(bm.date.year, bm.date.month, bm.date.day),
-            children: _.values(bm.children)
+            children: _.values(bm.children),
+            tags: bm.tags ? _.values(bm.tags) : []
         });
     }
 
@@ -42,12 +43,15 @@ define(['lodash', 'constants', 'actionProviders/actions', 'dataBaseApi/dataBaseA
                         state = store.getState();
                         DataBaseApi.writeUserData(state.userInfo.uid, {
                             bookmarks: state.bookmarks.map(function (bm) {
-                                return Object.assign({}, bm, {date:
-                                    {
+                                return Object.assign({}, bm, {
+                                    date: {
                                         year: bm.date.getFullYear(),
                                         month: bm.date.getMonth(),
                                         day: bm.date.getDay()
-                                    }
+                                    },
+                                    tags: bm.tags
+                                        ? _.values(bm.tags)
+                                        : []
                                 });
                             }),
                             sort: state.sort

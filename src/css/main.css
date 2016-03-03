@@ -33,7 +33,7 @@ html {
 }
 
 .hidden {
-
+  display: none;
 }
 
 .inline {
@@ -66,6 +66,10 @@ html {
   padding: 3px 10px;
   text-align: center;
   cursor: pointer;
+}
+
+.btn-disabled {
+ cursor: not-allowed;
 }
 
 .btn-list-item {

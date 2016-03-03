@@ -13,11 +13,16 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 date: new Date()
             });
         },
-        editBookmark: function (id) {
-            return {
+        editBookmark: function (id, parentGroupId, title, url, tags) {
+            return databaseUpdateWrapper({
                 type: Constants.EDIT_BOOKMARK,
-                id: id
-            };
+                id: id,
+                parentGroupId: parentGroupId,
+                title: title,
+                url: url,
+                tags: tags,
+                date: new Date()
+            });
         },
         toggleBookmarkSelection: function (id, isMultiSelect) {
             return {

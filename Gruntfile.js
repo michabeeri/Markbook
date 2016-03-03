@@ -5,7 +5,7 @@
 'use strict';
 
 module.exports = function (grunt) {
-
+    var historyApiFallbackMiddleware = require('connect-history-api-fallback');
     var VENDOR_TARGET = 'build/vendor/';
 
     grunt.initConfig({
@@ -57,10 +57,6 @@ module.exports = function (grunt) {
                         src: 'node_modules/firebase/lib/firebase-web.js',
                         dest: VENDOR_TARGET + 'firebase-web.js'
                     },
-                    //{
-                    //    src: 'node_modules/redux-simple-router/lib/index.js',
-                    //    dest: VENDOR_TARGET + 'redux-simple-router.js'
-                    //},
                     {
                         expand: true,
                         cwd: 'src/img/',
@@ -72,12 +68,6 @@ module.exports = function (grunt) {
                         cwd: 'src/js',
                         src: '**/*.js',
                         dest: 'build/js'
-                    },
-                    {
-                        expand: true,
-                        cwd: 'src/css',
-                        src: '**/*.css',
-                        dest: 'build/css'
                     },
                     {
                         src: 'src/index.html',
@@ -175,17 +165,6 @@ module.exports = function (grunt) {
                 }
             }
         },
-        cssmin: {
-            main: {
-                files: [{
-                    expand: true,
-                    src: 'main.css',
-                    dest: 'dist/css/main',
-                    cwd: 'build/css',
-                    ext: '.min.css'
-                }]
-            }
-        },
         karma: {
             unit: {
                 port: 9999,
@@ -227,15 +206,37 @@ module.exports = function (grunt) {
                     }
                 }
             }
+        },
+        connect: {
+            server: {
+                options: {
+                    port: 8000,
+                    keepalive: true,
+                    base: 'build',
+                    middleware: function (connect, options, middleware) {
+                        middleware.unshift(historyApiFallbackMiddleware());
+                        return middleware;
+                    }
+                }
+            }
+        },
+        cssmin: {
+            dist: {
+                files: {
+                    'build/css/styles.min.css': ['src/css/**/*.css']
+                }
+            }
         }
     });
 
     require('jit-grunt')(grunt);
 
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.registerTask('lint', ['eslint']);
     grunt.registerTask('compile', ['babel']);
     grunt.registerTask('compile', ['umd', 'babel']);
     grunt.registerTask('test', ['karma:unit']);
-    grunt.registerTask('build', ['lint', 'clean:build', 'compile', 'copy:build']);
+    grunt.registerTask('build', ['lint', 'clean:build', 'compile', 'copy:build', 'cssmin']);
     grunt.registerTask('default', ['build', 'test']);
 };
