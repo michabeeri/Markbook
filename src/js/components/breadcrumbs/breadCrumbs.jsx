@@ -8,14 +8,15 @@ define(['lodash',
     function (_, React, actionProvider, constants, bookmarksUtil, breadCrumbsUtil) {
         'use strict';
 
-        function foldItemsIfNeeded(path, items) {
-            var foldThreshold = 3;
-            var foldSymbol = '...';
+        var FOLD_THRESHOLD = 3;
+        var FOLD_SYMBOL = '...';
 
-            if (path.length > foldThreshold) {
-                items.splice(1, items.length - (foldThreshold + 1));
-                items[items.length - foldThreshold].title = foldSymbol;
+        function foldItemsIfNeeded(path, items) {
+            if (path.length > FOLD_THRESHOLD) {
+                items.splice(1, items.length - (FOLD_THRESHOLD + 1));
+                items[items.length - FOLD_THRESHOLD].title = FOLD_SYMBOL;
             }
+
             return items;
         }
 
