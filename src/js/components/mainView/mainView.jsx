@@ -1,11 +1,13 @@
-define(['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmarkList', 'components/breadcrumbs/breadCrumbs', 'components/modals/ModalContainer', 'constants', 'actionProviders/actions'],
+define(
+    ['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmarkList', 'components/breadcrumbs/breadCrumbs', 'components/modals/ModalContainer', 'constants', 'actionProviders/actions'],
     function (React, ToolBar, BookmarkList, BreadCrumbs, ModalContainer, Constants, actions) {
         'use strict';
         return React.createClass({
             displayName: 'MainView',
             getInitialState: function () {
                 return {
-                    layout: Constants.layoutType.GRID
+                    layout: Constants.layoutType.GRID,
+                    minGridLayoutExceeded: document.body.clientWidth < Constants.GRID_MIN_WIDTH
                 };
             },
             componentDidMount: function () {
@@ -15,11 +17,17 @@ define(['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmark
                 window.removeEventListener('throttledResize', this.resizeHandler);
             },
             resizeHandler: function () {
-                this.setState({
-                    layout: document.body.clientWidth < Constants.GRID_MIN_WIDTH
-                        ? Constants.layoutType.LIST
-                        : Constants.layoutType.GRID
-                });
+                if (document.body.clientWidth < Constants.GRID_MIN_WIDTH) {
+                    this.setState({
+                        minGridLayoutExceeded: true,
+                        layout: Constants.layoutType.LIST
+                    });
+                } else if (this.state.minGridLayoutExceeded && document.body.clientWidth >= Constants.GRID_MIN_WIDTH) {
+                    this.setState({
+                        minGridLayoutExceeded: false,
+                        layout: Constants.layoutType.GRID
+                    });
+                }
             },
             openAddBookMarkModal: function () {
                 this.props.dispatch(actions.openBookmarkDataModal());
@@ -39,13 +47,37 @@ define(['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmark
                 });
             },
             render: function () {
+                var content;
+
+                if (this.props.state.bookmarks.length === 1) { //root group
+                    content = (
+                        <div>
+                            <h1>Welcome</h1>
+                            <i className="fa fa-plus fa-3x"></i>
+                            <p>Add your first bookmark</p>
+                        </div>);
+                } else {
+                    content = (
+                        <div>
+                            <ToolBar
+                                items={this.props.state.bookmarks}
+                                sort={this.props.state.sort}
+                                dispatch={this.props.dispatch}
+                                layout={this.state.layout}
+                                switchLayout={this.switchLayout}
+                                minGridLayoutExceeded={this.state.minGridLayoutExceeded}/>
+                            {this.getBreadCrumbsComponent()}
+                            <BookmarkList dispatch={this.props.dispatch}
+                                          state={this.props.state}
+                                          layout={this.state.layout}
+                                          modalUtils={{lastItemInGroup: this.openRemoveLastItemInGroupModal, groupDelete: this.openGroupDeleteModal}}/>
+                        </div>);
+                }
+
+
                 return (
                     <div>
-                        <ToolBar {...this.props} layout={this.state.layout} switchLayout={this.switchLayout}/>
-                        {this.getBreadCrumbsComponent()}
-                        <BookmarkList dispatch={this.props.dispatch} state={this.props.state}
-                                      layout={this.state.layout}
-                                      modalUtils={{lastItemInGroup: this.openRemoveLastItemInGroupModal, groupDelete: this.openGroupDeleteModal}}/>
+                        {content}
                         <ModalContainer dispatch={this.props.dispatch} state={this.props.state}/>
                         <i className="fa fa-plus-circle fa-3x btn-add" onClick={this.openAddBookMarkModal}></i>
                     </div>
