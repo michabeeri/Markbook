@@ -41,13 +41,14 @@ define(['React', 'lodash', 'components/tags/inputWithSuggestions', 'components/t
             },
             isNewTag: function (filteredUserTags, filter) {
                 return filteredUserTags.indexOf(filter) === -1 && this.props.tags.indexOf(filter) === -1;
-            }, mapDataForDropdown: function (filter, filteredUserTags) {
+            },
+            mapDataForDropdown: function (filter, filteredUserTags) {
                 var data = {
                     input: filter,
                     items: [{title: 'Suggestions', groupType: 'tag', lines: filteredUserTags}]
                 };
                 if (this.isNewTag(filteredUserTags, filter)) {
-                    data.items.push({title: 'New tag', groupType: 'tag', lines: [filter]});
+                    data.items.push({title: 'New Tag', groupType: 'tag', lines: [filter]});
                 }
                 return data;
             },

@@ -1,5 +1,5 @@
-define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsContainer'],
-    function (_, React, actions, TagsContainer) {
+define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsContainer', 'components/modals/groupInput'],
+    function (_, React, actions, TagsContainer, GroupInput) {
         'use strict';
 
         var LinkedStateMixin = React.addons.LinkedStateMixin;
@@ -16,12 +16,18 @@ define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsConta
                 return {
                     bookmarkName: '',
                     bookmarkUrl: '',
-                    tags: []
+                    tags: [],
+                    group: ''
                 };
             },
             addBookmark: function () {
                 this.props.dispatch(actions.addBookmark(_.last(this.props.state.currentBookmarkPath), this.state.bookmarkName, this.state.bookmarkUrl, this.state.tags));
                 this.props.close();
+            },
+            addGroup: function (group) {
+                this.setState({
+                    group: group
+                });
             },
             addTag: function (tag) {
                 this.state.tags.push(tag);
@@ -44,6 +50,7 @@ define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsConta
                         <input name="BookmarkUrl" type="text" valueLink={this.linkState('bookmarkUrl')}
                                placeholder="Paste url to bookmark"
                                className="input"/>
+                        <GroupInput addGroup={this.addGroup} bookmarks={this.props.state.bookmarks}/>
                         <TagsContainer tags={this.state.tags} addTag={this.addTag} removeTag={this.removeTag}
                                        bookmarks={this.props.state.bookmarks}/>
                         <button onClick={this.addBookmark} className="btn">Add Bookmark</button>
