@@ -68,7 +68,7 @@ requirejs([
         ReactDOM.render(
             <Provider store={store}>
                 <Router history={ReactRouter.browserHistory}>
-                    <Route path="/" component={LoginComp} />
+                    <Route path="/" component={AppView} />
                     <Route path="/login" component={LoginComp} />
                     <Route path="/signup" component={SignupComp} />
                     <Route path="/appView" component={AppView} />
