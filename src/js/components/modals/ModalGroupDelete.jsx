@@ -26,9 +26,9 @@ define(['react', 'actionProviders/actions'],
                         <h1>Wait!</h1>
                         <p>You are deleting a group with N items</p>
                         <p>Hmmm...</p>
-                        <button onClick={this.DeleteGroupAndReparentChildren} className="btn">Delete group, Keep Children</button>
+                        <button id="reparentChildren" onClick={this.DeleteGroupAndReparentChildren} className="btn">Delete group, Keep Children</button>
                         <p>I know, don't care</p>
-                        <button onClick={this.DeleteGroup} className="btn">Delete it all</button>
+                        <button id="deleteAll" onClick={this.DeleteGroup} className="btn">Delete it all</button>
                     </div>
                 );
             }

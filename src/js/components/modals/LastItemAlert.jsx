@@ -20,8 +20,8 @@ define(['react', 'actionProviders/actions'],
                         <h1>Note!</h1>
                         <p>This is the only item in the group.</p>
                         <p>Deleting it will romove the group as well</p>
-                        <button onClick={this.DeleteEmptyGroups} className="btn">Delete</button>
-                        <button onClick={this.props.close} className="btn">Cancel</button>
+                        <button id="lastBookmarkDelete" onClick={this.DeleteEmptyGroups} className="btn">Delete</button>
+                        <button id="lastBookmarkCancelDelete" onClick={this.props.close} className="btn">Cancel</button>
                     </div>
                 );
             }
