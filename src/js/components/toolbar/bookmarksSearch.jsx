@@ -7,7 +7,7 @@ define(['lodash', 'react', 'components/dropdown/dropdown', 'utils/bookmarksUtil'
             render: function () {
                 return (
                     <div className='search-box-container'>
-                        <label for='search-input'><i className='fa fa-search'></i></label>
+                        <label><i className='fa fa-search'></i></label>
                         <input id='search-input' className='input search-box' placeholder='Search'
                                valueLink={this.props.valueLink}/>
                     </div>
