@@ -62,6 +62,13 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 id: id
             };
         },
+        dragReorderInit: function (sortType, currentGroupId) {
+            return {
+                type: Constants.DRAG_REORDER_INIT,
+                sortType: sortType,
+                currentGroupId: currentGroupId
+            };
+        },
         dragReorder: function (draggedId, draggedOverId, currentGroupId) {
             return {
                 type: Constants.DRAG_REORDER,

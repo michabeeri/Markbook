@@ -35,18 +35,20 @@ define(['lodash',
                 if (!this.state.dragged || this.state.draggedOver === draggedOverId) {
                     return;
                 }
-                if (this.state.dragged === draggedOverId) {
-                    this.setState({draggedOver: draggedOverId});
-                } else {
-                    this.setState({draggedOver: draggedOverId}, function () {
+                this.setState({draggedOver: draggedOverId}, function () {
+                    if (this.state.dragged !== draggedOverId) {
                         this.props.dispatch(ActionProvider.dragReorder(this.state.dragged, draggedOverId, _.last(this.props.state.currentBookmarkPath)));
-                    });
-                }
+                    }
+                });
             },
             setDragged: function (draggedId) {
                 if (this.state.dragged !== draggedId) {
                     this.setState({dragged: draggedId});
-                    this.props.dispatch(ActionProvider.setSortType(Constants.CUSTOM_SORT_TYPE));
+                    var sortType = this.props.state.sort.sortType;
+                    if (sortType !== Constants.CUSTOM_SORT_TYPE) {
+                        this.props.dispatch(ActionProvider.dragReorderInit(sortType, _.last(this.props.state.currentBookmarkPath)));
+                        this.props.dispatch(ActionProvider.setSortType(Constants.CUSTOM_SORT_TYPE));
+                    }
                 }
             },
             resetDragState: function () {
