@@ -47,23 +47,38 @@ define(
                 });
             },
             render: function () {
+                var content;
+
+                if (this.props.state.bookmarks.length === 1) { //root group
+                    content = (
+                        <div>
+                            <h1>Welcome</h1>
+                            <i className="fa fa-plus fa-3x"></i>
+                            <p>Add your first bookmark</p>
+                        </div>);
+                } else {
+                    content = (
+                        <div>
+                            <ToolBar
+                                items={this.props.state.bookmarks}
+                                sort={this.props.state.sort}
+                                dispatch={this.props.dispatch}
+                                layout={this.state.layout}
+                                switchLayout={this.switchLayout}
+                                minGridLayoutExceeded={this.state.minGridLayoutExceeded}/>
+                            {this.getBreadCrumbsComponent()}
+                            <BookmarkList dispatch={this.props.dispatch}
+                                          state={this.props.state}
+                                          layout={this.state.layout}
+                                          modalUtils={{lastItemInGroup: this.openRemoveLastItemInGroupModal, groupDelete: this.openGroupDeleteModal}}/>
+                        </div>);
+                }
+
+
                 return (
                     <div>
-                        <ToolBar
-                            items={this.props.state.bookmarks}
-                            sort={this.props.state.sort}
-                            dispatch={this.props.dispatch}
-                            layout={this.state.layout}
-                            switchLayout={this.switchLayout}
-                            minGridLayoutExceeded={this.state.minGridLayoutExceeded}/>
-                        {this.getBreadCrumbsComponent()}
-                        <BookmarkList dispatch={this.props.dispatch}
-                                      state={this.props.state}
-                                      layout={this.state.layout}
-                                      modalUtils={{lastItemInGroup: this.openRemoveLastItemInGroupModal, groupDelete: this.openGroupDeleteModal}}/>
-                        <ModalContainer
-                            dispatch={this.props.dispatch}
-                            state={this.props.state}/>
+                        {content}
+                        <ModalContainer dispatch={this.props.dispatch} state={this.props.state}/>
                         <i className="fa fa-plus-circle fa-3x btn-add" onClick={this.openAddBookMarkModal}></i>
                     </div>
                 );
