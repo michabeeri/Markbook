@@ -5,7 +5,7 @@ define(['lodash',
         'utils/bookmarksUtil',
         'utils/breadCrumbsUtil'
     ],
-    function (_, React, ActionProvider, Constants, BookmarksUtil, BreadCrumbsUtil) {
+    function (_, React, actionProvider, constants, bookmarksUtil, breadCrumbsUtil) {
         'use strict';
 
         function foldItemsIfNeeded(path, items) {
@@ -27,17 +27,17 @@ define(['lodash',
                 bookmarks: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
             },
             onItemClick: function (id) {
-                this.props.dispatch(ActionProvider.navigateToPreviousGroup(id));
+                this.props.dispatch(actionProvider.navigateToPreviousGroup(id));
             },
             renderItem: function (item) {
-                var onClick = BookmarksUtil.isCurrentGroup(this.props.currentPath, item.id) ?
-                    null : this.onItemClick.bind(this, item.id);
+                var onClick = bookmarksUtil.isCurrentGroup(this.props.currentPath, item.id) ?
+                    undefined : this.onItemClick.bind(this, item.id);
 
                 return <span className='title-small group-item' onClick={onClick} key={item.id}>{item.title}</span>;
             },
             render: function () {
                 var path = this.props.currentPath;
-                var items = BreadCrumbsUtil.getItemsData(path, this.props.bookmarks);
+                var items = breadCrumbsUtil.getItemsData(path, this.props.bookmarks);
                 items = foldItemsIfNeeded(path, items);
 
                 return (

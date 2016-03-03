@@ -1,5 +1,5 @@
-define(['react', 'actionProviders/actions'],
-    function (React, actions) {
+define(['react', 'actionProviders/actions', 'utils/bookmarksUtil'],
+    function (React, actions, BookmarksUtil) {
         'use strict';
 
         return React.createClass({
@@ -22,13 +22,23 @@ define(['react', 'actionProviders/actions'],
                 }
             },
             render: function () {
+                var bookmark = BookmarksUtil.getBookmarkById(this.props.state.bookmarks, this.props.state.modals.id);
+
+                var numOfBookmarks = 0;
+
+                if (bookmark.children) {
+                    numOfBookmarks = bookmark.children.length;
+                }
+
                 return (<div>
                         <h1>Wait!</h1>
-                        <p>You are deleting a group with N items</p>
+                        <p>You are deleting a group with {numOfBookmarks} items</p>
                         <p>Hmmm...</p>
-                        <button onClick={this.DeleteGroupAndReparentChildren} className="btn">Delete group, Keep Children</button>
+                        <button id="reparentChildren" onClick={this.DeleteGroupAndReparentChildren} className="btn">
+                            Delete group, Keep Children
+                        </button>
                         <p>I know, don't care</p>
-                        <button onClick={this.DeleteGroup} className="btn">Delete it all</button>
+                        <button id="deleteAll" onClick={this.DeleteGroup} className="btn">Delete it all</button>
                     </div>
                 );
             }

@@ -7,4 +7,5 @@ build
 **/.DS_Store
 src/js/playground.js
 src/tests/components/demo
+src/js/developer.js
 dist

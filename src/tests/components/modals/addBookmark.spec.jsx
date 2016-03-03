@@ -9,7 +9,7 @@ define(['React', 'reactDOM', 'components/modals/BookmarkData', 'constants'],
             function createDemoAddBookmarkModal() {
                 var dispatchSpy = jasmine.createSpy('callback');
                 return TestUtils.renderIntoDocument(<BookmarkData dispatch={dispatchSpy}
-                                                                  state={{type: constants.eModalType.MODAL_ADD_BOOKMARK, id: ''}}
+                                                                  state={{modals: {type: constants.eModalType.MODAL_ADD_BOOKMARK, id: ''}}}
                                                                   close={function(){}}/>);
             }
 
@@ -43,7 +43,5 @@ define(['React', 'reactDOM', 'components/modals/BookmarkData', 'constants'],
                 //add parameters after adding a group
                 expect(reactComp.props.dispatch).toHaveBeenCalledWith();
             });
-
         });
-
     });
