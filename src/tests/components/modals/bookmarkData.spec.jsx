@@ -34,35 +34,43 @@ define(['React', 'reactDOM', 'components/modals/BookmarkData', 'constants'],
                                                                   close={function(){}}/>);
             }
 
-            it('should call dispatch', function () {
-                var reactComp = createDemoAddBookmarkModal();
-                var domNode = ReactDOM.findDOMNode(reactComp);
+            describe('Bookmark Add', function () {
 
-                var saveBookmark = TestUtils.findRenderedDOMComponentWithTag(reactComp, 'button');
+                it('should call dispatch', function () {
+                    var reactComp = createDemoAddBookmarkModal();
+                    var domNode = ReactDOM.findDOMNode(reactComp);
 
-                TestUtils.Simulate.click(saveBookmark);
+                    var saveBookmark = TestUtils.findRenderedDOMComponentWithTag(reactComp, 'button');
 
-                expect(reactComp.props.dispatch).toHaveBeenCalled();
+                    TestUtils.Simulate.click(saveBookmark);
+
+                    expect(reactComp.props.dispatch).toHaveBeenCalled();
+                });
+
+                xit('should call dispatch with proper input', function () {
+                    //add tags and group
+                    var bookmark = {
+                        bookmarkName: 'Demo Name',
+                        bookmarkUrl: 'www.google.com'
+                    };
+
+                    var bookmarkNameNode = domNode.querySelector("input[name=BookmarkName]");
+                    var bookmarkUrlNode = domNode.querySelector("input[name=BookmarkUrl]");
+
+                    bookmarkNameNode.value = bookmark.bookmarkName;
+                    bookmarkUrlNode.value = bookmark.bookmarkUrl;
+
+                    var saveBookmark = TestUtils.findRenderedDOMComponentWithTag(reactComp, 'button');
+                    TestUtils.Simulate.click(saveBookmark);
+
+                    //add parameters after adding a group
+                    expect(reactComp.props.dispatch).toHaveBeenCalledWith();
+                });
             });
 
-            xit('should call dispatch with proper input', function () {
-                //add tags and group
-                var bookmark = {
-                    bookmarkName: 'Demo Name',
-                    bookmarkUrl: 'www.google.com'
-                };
+            describe('Bookmark Edit', function () {
 
-                var bookmarkNameNode = domNode.querySelector("input[name=BookmarkName]");
-                var bookmarkUrlNode = domNode.querySelector("input[name=BookmarkUrl]");
-
-                bookmarkNameNode.value = bookmark.bookmarkName;
-                bookmarkUrlNode.value = bookmark.bookmarkUrl;
-
-                var saveBookmark = TestUtils.findRenderedDOMComponentWithTag(reactComp, 'button');
-                TestUtils.Simulate.click(saveBookmark);
-
-                //add parameters after adding a group
-                expect(reactComp.props.dispatch).toHaveBeenCalledWith();
+               
             });
         });
     });
