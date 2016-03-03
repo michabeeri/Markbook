@@ -53,8 +53,9 @@ define(['lodash',
                 this.setState({dragged: null, draggedOver: null});
             },
             render: function () {
-                var currentGroupItems = BookmarksUtil.getCurrentGroupItems(this.props.state.bookmarks,
-                    this.props.state.currentBookmarkPath);
+                var currentGroupItems = this.props.layout === Constants.layoutType.GRID
+                    ? BookmarksUtil.getCurrentGroupItems(this.props.state.bookmarks, this.props.state.currentBookmarkPath)
+                    : BookmarksUtil.getItemsByGroupId(this.props.state.bookmarks, Constants.ROOT_GROUP_ID);
 
                 var sortType = this.props.state.sort.sortType;
                 if (sortType !== Constants.CUSTOM_SORT_TYPE) {
