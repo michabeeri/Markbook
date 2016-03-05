@@ -33,7 +33,7 @@ define(
                 this.props.dispatch(actions.openBookmarkDataModal());
             },
             shouldRenderBreadCrumbs: function () {
-                var filterExists = this.props.state.filter && (this.props.state.filter.title || this.props.state.filter.tags);
+                var filterExists = this.props.state.filter && (this.props.state.filter.title || this.props.state.filter.tag);
                 return !filterExists && this.state.layout === Constants.layoutType.GRID;
             },
             getBreadCrumbsComponent: function () {

@@ -34,10 +34,10 @@ define(['lodash', 'react', 'components/toolbar/bookmarksSearch', 'components/dro
                 var dropdownNode = testUtils.findRenderedComponentWithType(bookmarksSearch, Dropdown);
                 var itemsPassedToDropdown = dropdownNode.props.data.items;
 
-                expect(itemsPassedToDropdown[0].type).toEqual('title');
+                expect(itemsPassedToDropdown[0].groupType).toEqual('title');
                 expect(itemsPassedToDropdown[0].lines).toEqual(['title1']);
 
-                expect(itemsPassedToDropdown[1].type).toEqual('tags');
+                expect(itemsPassedToDropdown[1].groupType).toEqual('tags');
                 expect(itemsPassedToDropdown[1].lines).toEqual(['title1tag1']);
             });
         });

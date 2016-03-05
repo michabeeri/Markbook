@@ -24,7 +24,7 @@ define(
             },
             render: function () {
                 return (
-                    <div className='toolbar'>
+                    <div className='app-line-container'>
                         <BookmarksSearch setFilter={this.setFilter} items={this.props.items}/>
                         <OrderBy setSortType={this.setSortType} sortTypes={Constants.sortTypes}
                                  selectedSortType={this.props.sort.sortType}

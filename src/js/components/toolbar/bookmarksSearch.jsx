@@ -6,7 +6,7 @@ define(['lodash', 'react', 'components/dropdown/dropdown', 'utils/bookmarksUtil'
             displayName: 'SearchBox',
             render: function () {
                 return (
-                    <div className='search-box-container'>
+                    <div className='search-box-container contained btn-border'>
                         <label><i className='fa fa-search'></i></label>
                         <input id='search-input' className='input search-box' placeholder='Search'
                                valueLink={this.props.valueLink}/>
@@ -35,13 +35,13 @@ define(['lodash', 'react', 'components/dropdown/dropdown', 'utils/bookmarksUtil'
                 var searchResults = {items: []};
                 if (!_.isEmpty(filterResults.title)) {
                     searchResults.items.push({
-                        type: 'title',
+                        groupType: 'title',
                         lines: filterResults.title
                     });
                 }
                 if (!_.isEmpty(filterResults.tags)) {
                     searchResults.items.push({
-                        type: 'tags',
+                        groupType: 'tags',
                         lines: filterResults.tags
                     });
                 }
@@ -50,7 +50,7 @@ define(['lodash', 'react', 'components/dropdown/dropdown', 'utils/bookmarksUtil'
             filterBookmarksByTerm: function (type, filterTerm) {
                 var tag = '';
                 var title = '';
-                if (type === 'tag') {
+                if (type === 'tags') {
                     tag = filterTerm;
                 } else {
                     title = filterTerm;

@@ -16,15 +16,18 @@ define(['lodash',
                     draggedOver: null
                 };
             },
-            getFilteredBookmarks: function () {
+            getFilteredBookmarks: function (filterTerm) {
                 var filter = this.props.state.filter;
+                var term = filterTerm.term;
 
                 function titleCondition(bm) {
-                    return !filter || !filter.title || bm.title.indexOf(filter.title) !== -1;
+                    return filterTerm.type !== 'title' || bm.title.indexOf(term) !== -1;
                 }
 
-                function tagCondition() {
-                    return !filter || !filter.tag;
+                function tagCondition(bm) {
+                    return filterTerm.type !== 'tag' || _.findIndex(bm.tags, function (tag) {
+                            return tag === filter.tag;
+                        }) !== -1;
                 }
 
                 return _.filter(this.props.state.bookmarks, function (bm) {
@@ -57,18 +60,41 @@ define(['lodash',
             resetFilter: function () {
                 this.props.dispatch(ActionProvider.setFilter('', ''));
             },
+            renderFilterResultsTitle: function (filterTerm, totalResults) {
+                var filterResultsTitle = (
+                    <div className='app-line-container'>
+                        <button className='btn btn-border title-small contained' onClick={this.resetFilter}>All Bookmarks</button>
+                        <span className='title-small contained'>Found {totalResults} match{totalResults === 1 ? '' : 'es'} for
+                            <span className='search-term'> {filterTerm.term}</span> ({filterTerm.type}):</span>
+                    </div>
+                );
+                return filterResultsTitle;
+            },
+            getFilterTerm: function () {
+                var filter = this.props.state.filter;
+                if (filter) {
+                    if (filter.title) {
+                        return {
+                            type: 'title',
+                            term: filter.title
+                        };
+                    }
+                    if (filter.tag) {
+                        return {
+                            type: 'tag',
+                            term: filter.tag
+                        };
+                    }
+                }
+                return null;
+            },
             render: function () {
                 var visibleItems;
-                var filterResults = null;
-                var filter = this.props.state.filter && (this.props.state.filter.title || this.props.state.filter.tags);
-                if (filter) {
-                    visibleItems = this.getFilteredBookmarks();
-                    filterResults = (
-                        <div>
-                            <button onClick={this.resetFilter}>All Bookmarks</button>
-                            <span>This is the Filter results:</span>
-                        </div>
-                    );
+                var filterResultsTitle = null;
+                var filterTerm = this.getFilterTerm();
+                if (filterTerm) {
+                    visibleItems = this.getFilteredBookmarks(filterTerm);
+                    filterResultsTitle = this.renderFilterResultsTitle(filterTerm, visibleItems.length);
                 } else {
                     visibleItems = this.props.layout === Constants.layoutType.GRID
                         ? BookmarksUtil.getCurrentGroupItems(this.props.state.bookmarks, this.props.state.currentBookmarkPath)
@@ -80,28 +106,30 @@ define(['lodash',
                     visibleItems = BookmarksUtil.sort(visibleItems, sortType);
                 }
                 return (
-                    <div className='bookmark-list-container grid'>
-                        {filterResults}
-                        {_.map(visibleItems, function (bm) {
-                            var dragged = false;
-                            if (bm.id === this.state.dragged) {
-                                dragged = true;
-                            }
+                    <div>
+                        {filterResultsTitle}
+                        <div className='bookmark-list-container grid'>
+                            {_.map(visibleItems, function (bm) {
+                                var dragged = false;
+                                if (bm.id === this.state.dragged) {
+                                    dragged = true;
+                                }
 
-                            return (
-                                <Bookmark
-                                    key={bm.id}
-                                    dataId={bm.id}
-                                    bookmarkData={bm}
-                                    layout={this.props.layout}
-                                    state={this.props.state}
-                                    dispatch={this.props.dispatch}
-                                    dragClass={dragged}
-                                    dragStart={this.setDragged}
-                                    dragOver={this.dragReorder}
-                                    dragEnd={this.resetDragState}
-                                />);
-                        }.bind(this))}
+                                return (
+                                    <Bookmark
+                                        key={bm.id}
+                                        dataId={bm.id}
+                                        bookmarkData={bm}
+                                        layout={this.props.layout}
+                                        state={this.props.state}
+                                        dispatch={this.props.dispatch}
+                                        dragClass={dragged}
+                                        dragStart={this.setDragged}
+                                        dragOver={this.dragReorder}
+                                        dragEnd={this.resetDragState}
+                                    />);
+                            }.bind(this))}
+                        </div>
                     </div>
                 );
             }
