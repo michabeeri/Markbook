@@ -55,9 +55,15 @@ define(['lodash',
                 this.setState({dragged: null, draggedOver: null});
             },
             render: function () {
-                var visibleItems = this.props.layout === Constants.layoutType.GRID
-                    ? BookmarksUtil.getCurrentGroupItems(this.props.state.bookmarks, this.props.state.currentBookmarkPath)
-                    : BookmarksUtil.getItemsByGroupId(this.props.state.bookmarks, Constants.ROOT_GROUP_ID);
+                var visibleItems;
+                var filter = this.props.state.filter && (this.props.state.filter.title || this.props.state.filter.tags);
+                if (filter) {
+                    visibleItems = this.getFilteredBookmarks();
+                } else {
+                    visibleItems = this.props.layout === Constants.layoutType.GRID
+                        ? BookmarksUtil.getCurrentGroupItems(this.props.state.bookmarks, this.props.state.currentBookmarkPath)
+                        : BookmarksUtil.getItemsByGroupId(this.props.state.bookmarks, Constants.ROOT_GROUP_ID);
+                }
 
                 var sortType = this.props.state.sort.sortType;
                 if (sortType !== Constants.CUSTOM_SORT_TYPE) {
