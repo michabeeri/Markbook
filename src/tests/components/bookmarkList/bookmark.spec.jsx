@@ -18,7 +18,8 @@ define(['react', 'reactDOM', 'constants', 'components/bookmarkList/bookmark'],
                 setDragged = jasmine.createSpy('setDragged');
                 bookmark = TestUtils.renderIntoDocument(<Bookmark bookmarkData={bookmarkData}
                                                                   layout={Constants.layoutType.GRID}
-                                                                  dragStart={setDragged}dataId='bm001'/>);
+                                                                  dragStart={setDragged}dataId='bm001'
+                                                                  state={{selectedBookmarks: {selectedBookmarksIds: []}}} />);
                 jasmine.clock().install();
             });
 

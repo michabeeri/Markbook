@@ -50,6 +50,11 @@ define(['lodash', 'uuid', 'constants', 'utils/bookmarksUtil'], function (_, uuid
                     return bm;
                 });
 
+            case Constants.SELECT_DESELECT_ALL:
+                return _.map(state, function (bm) {
+                    return Object.assign({}, bm, {selected: action.isSelectAll});
+                });
+
             case Constants.REMOVE_BOOKMARK:
                 return (function () {
                     var newState = _.reject(state, function (bm) {

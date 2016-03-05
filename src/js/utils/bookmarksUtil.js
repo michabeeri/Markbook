@@ -122,6 +122,10 @@ define(['lodash', 'constants'], function (_, Constants) {
         return items.slice(0).sort(compareFunction);
     }
 
+    function getTotalSelectedBookmarks(bookmarks) {
+        return _.countBy(bookmarks, 'selected').true || 0;
+    }
+
     return {
         filterItems: filterItems,
         getCurrentGroupItems: getCurrentGroupItems,
@@ -132,6 +136,7 @@ define(['lodash', 'constants'], function (_, Constants) {
         getParent: getParent,
         isGroup: isGroup,
         getAllGroups: getAllGroups,
-        sort: sort
+        sort: sort,
+        getTotalSelectedBookmarks: getTotalSelectedBookmarks
     };
 });

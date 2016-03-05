@@ -82,6 +82,7 @@ define([],
             SET_SORT_TYPE: 'SET_SORT_TYPE',
             DEFAULT_SORT_TYPE: 'DATE_ASC',
             CUSTOM_SORT_TYPE: 'CUSTOM',
+            SELECT_DESELECT_ALL: 'SELECT_DESELECT_ALL',
 
             // Database
             LOAD_DATA: 'LOAD_DATA',

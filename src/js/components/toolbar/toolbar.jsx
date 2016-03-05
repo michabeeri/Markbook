@@ -1,6 +1,6 @@
 define(
-    ['react', 'components/toolbar/bookmarksSearch', 'actionProviders/actions', 'components/toolbar/orderBy', 'constants', 'components/toolbar/actionControls'],
-    function (React, BookmarksSearch, ActionProvider, OrderBy, Constants, ActionControls) {
+    ['react', 'components/toolbar/bookmarksSearch', 'actionProviders/actions', 'components/toolbar/orderBy', 'constants', 'components/toolbar/actionControls', 'utils/bookmarksUtil'],
+    function (React, BookmarksSearch, ActionProvider, OrderBy, Constants, ActionControls, BookmarksUtil) {
         'use strict';
 
         return React.createClass({
@@ -19,12 +19,8 @@ define(
             setSortType: function (sortType) {
                 this.props.dispatch(ActionProvider.setSortType(sortType));
             },
-            onSelectAll: function () {
-                this.props.dispatch(ActionProvider.selectAll());
-            },
-            getTotalSelected: function () {
-                var totalSelected = _.filter(this.props.items, 'selected').length;
-                return totalSelected;
+            onSelectDeselectAll: function (isSelectAll) {
+                this.props.dispatch(ActionProvider.selectDeselectAll(isSelectAll));
             },
             render: function () {
                 return (
@@ -33,8 +29,8 @@ define(
                         <OrderBy setSortType={this.setSortType} sortTypes={Constants.sortTypes}
                                  selectedSortType={this.props.sort.sortType}
                                  hiddenSortType={Constants.CUSTOM_SORT_TYPE}/>
-                        <ActionControls onSelectAll={this.onSelectAll}
-                                        totalSelected={this.getTotalSelected()}
+                        <ActionControls onSelectDeselectAll={this.onSelectDeselectAll}
+                                        totalSelected={BookmarksUtil.getTotalSelectedBookmarks(this.props.items)}
                                         layoutType={this.props.layout}
                                         switchLayout={this.props.switchLayout}
                                         minGridLayoutExceeded={this.props.minGridLayoutExceeded}/>
