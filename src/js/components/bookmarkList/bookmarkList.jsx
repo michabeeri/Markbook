@@ -54,11 +54,21 @@ define(['lodash',
             resetDragState: function () {
                 this.setState({dragged: null, draggedOver: null});
             },
+            resetFilter: function () {
+                this.props.dispatch(ActionProvider.setFilter('', ''));
+            },
             render: function () {
                 var visibleItems;
+                var filterResults = null;
                 var filter = this.props.state.filter && (this.props.state.filter.title || this.props.state.filter.tags);
                 if (filter) {
                     visibleItems = this.getFilteredBookmarks();
+                    filterResults = (
+                        <div>
+                            <button onClick={this.resetFilter}>All Bookmarks</button>
+                            <span>This is the Filter results:</span>
+                        </div>
+                    );
                 } else {
                     visibleItems = this.props.layout === Constants.layoutType.GRID
                         ? BookmarksUtil.getCurrentGroupItems(this.props.state.bookmarks, this.props.state.currentBookmarkPath)
@@ -71,6 +81,7 @@ define(['lodash',
                 }
                 return (
                     <div className='bookmark-list-container grid'>
+                        {filterResults}
                         {_.map(visibleItems, function (bm) {
                             var dragged = false;
                             if (bm.id === this.state.dragged) {
