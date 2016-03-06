@@ -1,6 +1,6 @@
 define(
-    ['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmarkList', 'components/breadcrumbs/breadCrumbs', 'components/modals/ModalContainer', 'constants', 'actionProviders/actions'],
-    function (React, ToolBar, BookmarkList, BreadCrumbs, ModalContainer, Constants, actions) {
+    ['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmarkList', 'components/breadcrumbs/breadCrumbs', 'components/modals/ModalContainer', 'constants', 'actionProviders/actions', 'utils/bookmarksUtil', 'components/mainView/FilterResultsTitle'],
+    function (React, ToolBar, BookmarkList, BreadCrumbs, ModalContainer, Constants, actions, BookmarksUtil, FilterResultsTitle) {
         'use strict';
         return React.createClass({
             displayName: 'MainView',
@@ -42,6 +42,24 @@ define(
                                  bookmarks={this.props.state.bookmarks}
                                  currentPath={this.props.state.currentBookmarkPath}/> : null;
             },
+            resetFilter: function () {
+                this.props.dispatch(actions.setFilter('', ''));
+            },
+            getFilterResultsTitle: function (filterTerm) {
+                this.filteredBookmarks = BookmarksUtil.getFilteredBookmarks(this.props.state.bookmarks, this.props.state.filter, filterTerm);
+                return <FilterResultsTitle filterTerm={filterTerm.term}
+                                           filterType={filterTerm.type}
+                                           totalResults={this.filteredBookmarks.length}
+                                           resetFilter={this.resetFilter}/>;
+            },
+            getContext: function () {
+                var filterTerm = BookmarksUtil.getFilterTerm(this.props.state.filter);
+                if (filterTerm) {
+                    return this.getFilterResultsTitle(filterTerm);
+                }
+                this.filteredBookmarks = null;
+                return this.getBreadCrumbsComponent();
+            },
             switchLayout: function () {
                 this.setState({
                     layout: this.state.layout === Constants.layoutType.GRID ? Constants.layoutType.LIST : Constants.layoutType.GRID
@@ -69,11 +87,12 @@ define(
                                 layout={this.state.layout}
                                 switchLayout={this.switchLayout}
                                 minGridLayoutExceeded={this.state.minGridLayoutExceeded}/>
-                            {this.getBreadCrumbsComponent()}
+                            {this.getContext()}
                             <BookmarkList dispatch={this.props.dispatch}
                                           state={this.props.state}
                                           layout={this.state.layout}
-                                          modalUtils={{lastItemInGroup: this.openRemoveLastItemInGroupModal, groupDelete: this.openGroupDeleteModal}}/>
+                                          modalUtils={{lastItemInGroup: this.openRemoveLastItemInGroupModal, groupDelete: this.openGroupDeleteModal}}
+                                          filteredBookmarks={this.filteredBookmarks}/>
                         </div>);
                 }
 

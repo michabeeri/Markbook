@@ -132,6 +132,42 @@ define(['lodash', 'constants'], function (_, Constants) {
         return getSelectedBookmarks(bookmarks).length;
     }
 
+    function getFilterTerm(filter) {
+        if (filter) {
+            if (filter.title) {
+                return {
+                    type: 'title',
+                    term: filter.title
+                };
+            }
+            if (filter.tag) {
+                return {
+                    type: 'tag',
+                    term: filter.tag
+                };
+            }
+        }
+        return null;
+    }
+
+    function getFilteredBookmarks(bookmarks, filter, filterTerm) {
+        var term = filterTerm.term;
+
+        function titleCondition(bm) {
+            return filterTerm.type !== 'title' || bm.title.indexOf(term) !== -1;
+        }
+
+        function tagCondition(bm) {
+            return filterTerm.type !== 'tag' || _.findIndex(bm.tags, function (tag) {
+                    return tag === filter.tag;
+                }) !== -1;
+        }
+
+        return _.filter(bookmarks, function (bm) {
+            return titleCondition(bm) && tagCondition(bm);
+        });
+    }
+
     return {
         filterItems: filterItems,
         getCurrentGroupItems: getCurrentGroupItems,
@@ -144,6 +180,8 @@ define(['lodash', 'constants'], function (_, Constants) {
         getAllGroups: getAllGroups,
         sort: sort,
         getSelectedBookmarks: getSelectedBookmarks,
-        getTotalSelectedBookmarks: getTotalSelectedBookmarks
+        getTotalSelectedBookmarks: getTotalSelectedBookmarks,
+        getFilterTerm: getFilterTerm,
+        getFilteredBookmarks: getFilteredBookmarks
     };
 });
