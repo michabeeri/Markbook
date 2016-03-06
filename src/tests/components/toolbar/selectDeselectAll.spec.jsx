@@ -1,36 +1,41 @@
-define(['lodash', 'react', 'components/toolbar/actionControls'],
-    function (_, React, ActionControls) {
+define(['lodash', 'react', 'components/toolbar/actionControls', 'constants'],
+    function (_, React, ActionControls, Constants) {
         'use strict';
 
         var testUtils = React.addons.TestUtils;
 
-        describe('bookmarks search', function () {
+        describe('Select Deselect All', function () {
 
             var onSelectDeselectAll, actionControls;
 
-            beforeEach(function () {
+            function renderActionControls(isAllSelected) {
                 onSelectDeselectAll = jasmine.createSpy('onSelectDeselectAll');
-                actionControls = testUtils.renderIntoDocument(<ActionControls onSelectDeselectAll={onSelectDeselectAll}/>);
+                return testUtils.renderIntoDocument(<ActionControls isAllSelected={isAllSelected} onSelectDeselectAll={onSelectDeselectAll}/>);
+            }
+
+            it('should show deselect all when isAllSelected equals true', function () {
+                actionControls = renderActionControls(true);
+
+                var slctDeslctAll = testUtils.findRenderedDOMComponentWithClass(actionControls, 'select-deselect-all');
+
+                expect(slctDeslctAll.innerHTML).toEqual('Deselect All');
             });
 
-            it('should switch select all with deselect all on click', function () {
+            it('should show select all when isAllSelected equals false', function () {
+                actionControls = renderActionControls(false);
+
                 var slctDeslctAll = testUtils.findRenderedDOMComponentWithClass(actionControls, 'select-deselect-all');
-                var initialValue = slctDeslctAll.innerHTML;
-                var expectedValueAfterClick = _.xor([initialValue], ['Select All', 'Deselect All'])[0];
 
-                testUtils.Simulate.click(slctDeslctAll);
-
-                expect(slctDeslctAll.innerHTML).toEqual(expectedValueAfterClick);
+                expect(slctDeslctAll.innerHTML).toEqual('Select All');
             });
 
-            it('should call onSelectDeselectAll with the inSelectAllMode', function () {
+            it('should add hidden class when the layout is LIST', function () {
+                actionControls = testUtils.renderIntoDocument(<ActionControls layoutType={Constants.layoutType.LIST}/>);
+
                 var slctDeslctAll = testUtils.findRenderedDOMComponentWithClass(actionControls, 'select-deselect-all');
-                var initialValue = slctDeslctAll.innerHTML;
-                var inSelectAllMode = initialValue === 'Select All';
 
-                testUtils.Simulate.click(slctDeslctAll);
+                expect(slctDeslctAll.classList).toContain('hidden');
 
-                expect(onSelectDeselectAll).toHaveBeenCalledWith(inSelectAllMode);
             });
         });
 
