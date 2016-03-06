@@ -116,7 +116,6 @@ define(['lodash', 'uuid', 'constants', 'utils/bookmarksUtil'], function (_, uuid
                 return (function () {
                     var newState = state.slice();
                     var currentGroupIndex = bookmarksUtil.getBookmarkIndexById(newState, action.currentGroupId);
-                    //var children = newState[currentGroupIndex].children;
                     var children = bookmarksUtil.getItemsByGroupId(newState, action.currentGroupId);
                     newState[currentGroupIndex].children = bookmarksUtil.sort(children, action.sortType).map(function (bookmark) {
                         return bookmark.id;
