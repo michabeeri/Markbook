@@ -56,7 +56,7 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
                 return this.props.state.currentBookmarkPath.indexOf(this.props.bookmarkData.id) !== -1;
             },
             getClassString: function () {
-                return 'bookmark-base border-simple' +
+                return 'bookmark-base' +
                     (this.isGrid() ? ' grid' : ' list') +
                     (this.isGroup() ? ' group' : ' leaf') +
                     (this.isSelected() ? ' selected' : '') +
@@ -94,19 +94,21 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
                          onDoubleClick={this.isGroup() ? this.onOpen : this.onView}
                         {...this.getDragAttr()}>
                         <div>
-                            <h1 className='title-small'>{this.props.bookmarkData.title}</h1>
+                            <span className='title-small'>{this.props.bookmarkData.title}</span>
 
-                            <h2 className='title-small footer'>{this.isGroup()
+                            <span className='title-small footer'>{this.isGroup()
                                 ? this.props.bookmarkData.children.length + ' items inside'
-                                : this.props.bookmarkData.date.toLocaleDateString('en-US')}</h2>
+                                : this.props.bookmarkData.date.toLocaleDateString('en-US')}</span>
 
-                            {this.isGroup()
-                                ? <button onClick={this.onOpen}>{'Open'}</button>
-                                : <button onClick={this.onView}>{'View'}</button>
-                            }
+                            <ul className="btn-list">
+                                {this.isGroup()
+                                    ? <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onOpen}><i className="fa fa-folder-open-o"></i></a></li>
+                                    : <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onView}><i className="fa fa-play"></i></a></li>
+                                }
 
-                            <button onClick={this.onEdit}>{'Edit'}</button>
-                            <button onClick={this.onDelete}>{'Delete'}</button>
+                                <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onEdit}><i className="fa fa-pencil-square-o"></i></a></li>
+                                <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onDelete}><i className="fa fa-trash"></i></a></li>
+                            </ul>
                         </div>
                         {this.renderChildren()}
                     </div>);

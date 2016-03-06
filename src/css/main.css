@@ -69,7 +69,9 @@ html {
 }
 
 .title-small {
-  font-size: 14px;
+  font-size: 17px;
+  font-weight: 100;
+  /*display: block;*/
 }
 
 .btn {
@@ -148,11 +150,13 @@ html {
   background-color: #fdf3f3;
 }
 
-.err-color {
+.error-message {
   color: #cc0000;
 }
+
 
 .search-term {
   font-style: italic;
   font-weight: bold;
 }
+

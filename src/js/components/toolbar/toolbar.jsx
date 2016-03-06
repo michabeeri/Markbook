@@ -32,14 +32,18 @@ define(
                     ActionProvider.openBookmarkDataModal(BookmarksUtil.getSelectedBookmarks(this.props.items)[0].id));
             },
             render: function () {
+                var items = this.props.items;
+                var totalSelected = BookmarksUtil.getTotalSelectedBookmarks(items);
+                var currentViewItems = BookmarksUtil.getItemsByGroupId(items, this.props.currentGroupId);
                 return (
                     <div className='app-line-container'>
-                        <BookmarksSearch setFilter={this.setFilter} items={this.props.items}/>
+                        <BookmarksSearch setFilter={this.setFilter} items={items}/>
                         <OrderBy setSortType={this.setSortType} sortTypes={Constants.sortTypes}
                                  selectedSortType={this.props.sort.sortType}
                                  hiddenSortType={Constants.CUSTOM_SORT_TYPE}/>
                         <ActionControls onSelectDeselectAll={this.onSelectDeselectAll}
-                                        totalSelected={BookmarksUtil.getTotalSelectedBookmarks(this.props.items)}
+                                        totalSelected={totalSelected}
+                                        isAllSelected={totalSelected === currentViewItems.length}
                                         layoutType={this.props.layout}
                                         switchLayout={this.props.switchLayout}
                                         minGridLayoutExceeded={this.props.minGridLayoutExceeded}

@@ -12,19 +12,19 @@ define(['React', 'reactDOM', 'router', 'components/loginManager/loginManager'], 
             describe('Validate input for signup', function () {
 
                 it('should return password too short when password is too short', function () {
-                    expect(loginManager.validateSignUpInfo('Qwe1', 'Qwe1')).toEqual(loginManager.RESULTVALUES.passwordTooShort);
+                    expect(loginManager.validateSignUpInfo('Qwe1', 'Qwe1')).toEqual(loginManager.RESULT_VALUES.passwordTooShort);
                 });
 
                 it('should return passwords dont match when passwords dont match', function () {
-                    expect(loginManager.validateSignUpInfo('Qwerty1', 'Qwerty2')).toEqual(loginManager.RESULTVALUES.passwordsDontMatch);
+                    expect(loginManager.validateSignUpInfo('Qwerty1', 'Qwerty2')).toEqual(loginManager.RESULT_VALUES.passwordsDontMatch);
                 });
 
                 it('should return password missing alpha when password missing alpha', function () {
-                    expect(loginManager.validateSignUpInfo('12345678', '12345678')).toEqual(loginManager.RESULTVALUES.passwordMissingAlpha);
+                    expect(loginManager.validateSignUpInfo('12345678', '12345678')).toEqual(loginManager.RESULT_VALUES.passwordMissingAlpha);
                 });
 
                 it('should return password missing digit when password missing digit', function () {
-                    expect(loginManager.validateSignUpInfo('Qwerty', 'Qwerty')).toEqual(loginManager.RESULTVALUES.passwordMissingDigit);
+                    expect(loginManager.validateSignUpInfo('Qwerty', 'Qwerty')).toEqual(loginManager.RESULT_VALUES.passwordMissingDigit);
                 });
 
             });
