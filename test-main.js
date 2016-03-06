@@ -27,7 +27,8 @@ requirejs.config({
         reduxTestUtils: 'tests/components/reduxTestUtils',
         reduxUtils: 'js/reduxUtils',
         utils: 'js/utils',
-        dataBaseApi: 'js/dataBaseApi'
+        dataBaseApi: 'js/dataBaseApi',
+        ReduxSimpleRouter: 'vendor/redux-simple-router'
     },
     map: {
         '*': {

@@ -55,6 +55,16 @@ define(['Firebase'], function (Firebase) {
         //},
         //
 
+        isLoggedIn: function () {
+            var fireBaseRef = new Firebase('https://markbook.firebaseio.com/');
+            return !(!fireBaseRef.getAuth());
+        },
+
+        logout: function () {
+            var fireBaseRef = new Firebase('https://markbook.firebaseio.com/');
+            fireBaseRef.unauth();
+        },
+
         authenticateUser: function (email, password, successCallback) {
             var fireBaseRef = new Firebase('https://markbook.firebaseio.com/');
             fireBaseRef.authWithPassword({
@@ -86,7 +96,7 @@ define(['Firebase'], function (Firebase) {
             return this.RESULTVALUES.success;
         },
 
-        createUserOnDataBase: function (email, password, passwordRepeat) {
+        createUserOnDataBase: function (email, password, passwordRepeat, successCallback) {
             var validateResult = this.validateSignUpInfo(password, passwordRepeat);
             if (validateResult !== this.RESULTVALUES.success) {
                 console.log('Password error: ' + validateResult);
@@ -109,7 +119,7 @@ define(['Firebase'], function (Firebase) {
                         }
                     } else {
                         console.log('Successfully created user with uid: ' + userData.uid);
-                        self.authenticateUser(email, password);
+                        self.authenticateUser(email, password, successCallback);
                     }
                 });
             }

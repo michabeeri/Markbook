@@ -62,7 +62,7 @@ define(['lodash',
             displayName: 'LoginForm',
             successLogin: function (username, uid, token) {
                 this.props.dispatch(ActionProvider.login(username, uid, token));
-                this.props.dispatch(ReduxSimpleRouter.routeActions.push('/appView'));
+                this.props.dispatch(ReduxSimpleRouter.routeActions.push('/'));
             },
             onLogin: function (event) {
                 console.info('onLogin');

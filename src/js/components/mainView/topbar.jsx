@@ -1,5 +1,5 @@
-define(['react', 'constants', 'actionProviders/actions'],
-    function (React, Constants, ActionProvider) {
+define(['react', 'constants', 'actionProviders/actions', 'components/loginManager/loginManager', 'ReduxSimpleRouter'],
+    function (React, Constants, ActionProvider, LoginManager, ReduxSimpleRouter) {
         'use strict';
 
         return React.createClass({
@@ -9,7 +9,9 @@ define(['react', 'constants', 'actionProviders/actions'],
                 dispatch: React.PropTypes.func.isRequired
             },
             onLogout: function () {
+                LoginManager.logout();
                 this.props.dispatch(ActionProvider.logout());
+                this.props.dispatch(ReduxSimpleRouter.routeActions.push('/login'));
             },
             render: function () {
                 return (

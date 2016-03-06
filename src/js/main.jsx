@@ -43,8 +43,9 @@ requirejs([
     'middlewares/thunk',
     'middlewares/removeBookmark',
     'middlewares/database',
-    'developer'],
-    function (_, React, ReactDOM, Redux, ReactRouter, ReactRedux, AppView, appReducer, ReduxSimpleRouter, LoginComp, SignupComp, thunkMiddleware, removeBookmarkMiddleware, databaseMiddleware, Developer) {
+    'developer',
+    'components/loginManager/loginManager'],
+    function (_, React, ReactDOM, Redux, ReactRouter, ReactRedux, AppView, appReducer, ReduxSimpleRouter, LoginComp, SignupComp, thunkMiddleware, removeBookmarkMiddleware, databaseMiddleware, Developer, LoginManager) {
 
         'use strict';
 
@@ -65,13 +66,21 @@ requirejs([
 
         Developer.setStore(store);
 
+        function requireAuth(nextState, replace) {
+            if (!LoginManager.isLoggedIn()) {
+                replace({
+                    pathname: '/login',
+                    state: {nextPathname: nextState.location.pathname}
+                });
+            }
+        }
+
         ReactDOM.render(
             <Provider store={store}>
                 <Router history={ReactRouter.browserHistory}>
-                    <Route path="/" component={AppView} />
+                    <Route path="/" component={AppView} onEnter={requireAuth}/>
                     <Route path="/login" component={LoginComp} />
                     <Route path="/signup" component={SignupComp} />
-                    <Route path="/appView" component={AppView} />
                 </Router>
             </Provider>,
             document.getElementById('app')
