@@ -23,7 +23,7 @@ define([],
 
         var sortTypes = {
             CUSTOM: {
-              value: 'CUSTOM',
+                value: 'CUSTOM',
                 description: 'custom'
             },
             DATE_ASC: {
@@ -94,6 +94,11 @@ define([],
 
             // Layout
             SET_LAYOUT: 'SET_LAYOUT',
-            GRID_MIN_WIDTH: 960
+            GRID_MIN_WIDTH: 960,
+
+            //Flags
+            ADD_FLAG: 'ADD_FLAG',
+            REMOVE_FLAG: 'REMOVE_FLAG',
+            FIRST_VISIT_FLAG: 'FIRST_VISIT_FLAG'
         };
     });

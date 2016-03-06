@@ -40,7 +40,8 @@ define(['uuid', 'constants'], function (uuid, Constants) {
         editBookmarkAndCreateNewGroup: function (id, parentGroupId, title, url, tags) {
             return databaseUpdateWrapper({
                 type: Constants.EDIT_BOOKMARK_AND_CREATE_GROUP,
-                id: id,
+                bookmark: {id: id},
+                group: {},
                 groupId: uuid.v4(),
                 parentGroupId: parentGroupId,
                 title: title,
@@ -173,6 +174,18 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 type: Constants.SET_LAYOUT,
                 layoutType: layoutType
             };
+        },
+        turnOnFlag: function (flagName) {
+            return {
+                type: Constants.ADD_FLAG,
+                flag: flagName
+            };
+        },
+        turnOffFlag: function (flagName) {
+            return {
+                type: Constants.REMOVE_FLAG,
+                flag: flagName
+            };
         }
     };
 
@@ -182,7 +195,7 @@ define(['uuid', 'constants'], function (uuid, Constants) {
         }
 
         return function (dispatch) {
-            return (new Promise( function (resolve) {
+            return (new Promise(function (resolve) {
                 dispatch(action);
                 resolve();
             })).then(function () {
