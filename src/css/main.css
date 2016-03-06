@@ -149,11 +149,13 @@ html {
   background-color: #fdf3f3;
 }
 
-.err-color {
+.error-message {
   color: #cc0000;
 }
+
 
 .search-term {
   font-style: italic;
   font-weight: bold;
 }
+

@@ -1,12 +1,11 @@
 define(
-    ['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmarkList', 'components/breadcrumbs/breadCrumbs', 'components/modals/ModalContainer', 'constants', 'actionProviders/actions'],
-    function (React, ToolBar, BookmarkList, BreadCrumbs, ModalContainer, Constants, actions) {
+    ['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmarkList', 'components/breadcrumbs/breadCrumbs', 'components/modals/ModalContainer', 'constants', 'actionProviders/actions', 'utils/bookmarksUtil', 'components/mainView/FilterResultsTitle'],
+    function (React, ToolBar, BookmarkList, BreadCrumbs, ModalContainer, Constants, actions, BookmarksUtil, FilterResultsTitle) {
         'use strict';
         return React.createClass({
             displayName: 'MainView',
             getInitialState: function () {
                 return {
-                    layout: Constants.layoutType.GRID,
                     minGridLayoutExceeded: document.body.clientWidth < Constants.GRID_MIN_WIDTH
                 };
             },
@@ -18,38 +17,56 @@ define(
             },
             resizeHandler: function () {
                 if (document.body.clientWidth < Constants.GRID_MIN_WIDTH) {
+                    this.props.dispatch(actions.setLayout(Constants.layoutType.LIST));
                     this.setState({
-                        minGridLayoutExceeded: true,
-                        layout: Constants.layoutType.LIST
+                        minGridLayoutExceeded: true
                     });
-                } else if (this.state.minGridLayoutExceeded && document.body.clientWidth >= Constants.GRID_MIN_WIDTH) {
+                } else if (this.state.minGridLayoutExceeded) {
+                    this.props.dispatch(actions.setLayout(Constants.layoutType.GRID));
                     this.setState({
-                        minGridLayoutExceeded: false,
-                        layout: Constants.layoutType.GRID
+                        minGridLayoutExceeded: false
                     });
                 }
             },
             openAddBookMarkModal: function () {
                 this.props.dispatch(actions.openBookmarkDataModal());
             },
-            shouldRenderBreadCrumbs: function () {
+            shouldRenderBreadCrumbs: function (layout) {
                 var filterExists = this.props.state.filter && (this.props.state.filter.title || this.props.state.filter.tag);
-                return !filterExists && this.state.layout === Constants.layoutType.GRID;
+                return !filterExists && layout === Constants.layoutType.GRID;
             },
-            getBreadCrumbsComponent: function () {
-                return this.shouldRenderBreadCrumbs() ?
+            getBreadCrumbsComponent: function (layout) {
+                return this.shouldRenderBreadCrumbs(layout) ?
                     <BreadCrumbs dispatch={this.props.dispatch}
                                  bookmarks={this.props.state.bookmarks}
                                  currentPath={this.props.state.currentBookmarkPath}/> : null;
             },
+            resetFilter: function () {
+                this.props.dispatch(actions.setFilter('', ''));
+            },
+            getFilterResultsTitle: function (filterTerm) {
+                this.filteredBookmarks = BookmarksUtil.getFilteredBookmarks(this.props.state.bookmarks, this.props.state.filter, filterTerm);
+                return <FilterResultsTitle filterTerm={filterTerm.term}
+                                           filterType={filterTerm.type}
+                                           totalResults={this.filteredBookmarks.length}
+                                           resetFilter={this.resetFilter}/>;
+            },
+            getContext: function (layout) {
+                var filterTerm = BookmarksUtil.getFilterTerm(this.props.state.filter);
+                if (filterTerm) {
+                    return this.getFilterResultsTitle(filterTerm);
+                }
+                this.filteredBookmarks = null;
+                return this.getBreadCrumbsComponent(layout);
+            },
             switchLayout: function () {
-                this.setState({
-                    layout: this.state.layout === Constants.layoutType.GRID ? Constants.layoutType.LIST : Constants.layoutType.GRID
-                });
+                var newLayout = this.props.state.layout.layoutType === Constants.layoutType.GRID ? Constants.layoutType.LIST : Constants.layoutType.GRID;
+                this.props.dispatch(actions.setLayout(newLayout));
             },
             render: function () {
                 var content;
                 var currentBookmarkPath = this.props.state.currentBookmarkPath;
+                var layout = this.props.state.layout.layoutType;
 
                 if (this.props.state.bookmarks.length === 1) { //root group
                     content = (
@@ -66,14 +83,15 @@ define(
                                 currentGroupId={currentBookmarkPath[currentBookmarkPath.length - 1]}
                                 sort={this.props.state.sort}
                                 dispatch={this.props.dispatch}
-                                layout={this.state.layout}
+                                layout={layout}
                                 switchLayout={this.switchLayout}
                                 minGridLayoutExceeded={this.state.minGridLayoutExceeded}/>
-                            {this.getBreadCrumbsComponent()}
+                            {this.getContext(layout)}
                             <BookmarkList dispatch={this.props.dispatch}
                                           state={this.props.state}
-                                          layout={this.state.layout}
-                                          modalUtils={{lastItemInGroup: this.openRemoveLastItemInGroupModal, groupDelete: this.openGroupDeleteModal}}/>
+                                          layout={layout}
+                                          modalUtils={{lastItemInGroup: this.openRemoveLastItemInGroupModal, groupDelete: this.openGroupDeleteModal}}
+                                          filteredBookmarks={this.filteredBookmarks}/>
                         </div>);
                 }
 

@@ -91,6 +91,9 @@ define(['react', 'reactDOM', 'redux', 'reactRedux', 'constants'],
                 ],
                 sort: {
                     sortType: Constants.DEFAULT_SORT_TYPE
+                },
+                layout: {
+                    layoutType: Constants.layoutType.GRID
                 }
             };
         }
