@@ -3,7 +3,7 @@
   text-align: center;
 }
 
-.bookmark-base {
+.bookmark-internal {
   margin: 10px;
   font-weight: 200;
   background-color: #4C99CF;
@@ -12,17 +12,55 @@
   border-radius: 3px;
   text-align: center;
   padding: 5px 10px;
+  position: relative;
+  overflow: hidden;
 }
 
-.bookmark-base.grid > div {
+.bookmark-internal > div {
+  height: 20px;
+}
+
+.bookmark-base.grid .bookmark-internal{
   display: flex;
   justify-content: space-between;
   flex-direction: column;
   height: 100%;
 }
 
-.bookmark-base.group {
+.bookmark-internal .btn-list {
+  position: absolute;
+  background: #4C99CF;
+  bottom: -60px;
+}
+
+.bookmark-internal:hover .btn-list {
+  bottom:0;
+}
+
+.bookmark-base.group .bookmark-internal {
+  background: #4974A7;
+}
+
+.bookmark-base.group .bookmark-internal .btn-list{
   background-color: #4974A7;
+}
+
+@keyframes raise-buttons {
+  from {
+    bottom: -60px;
+  }
+  to {
+    bottom: 5px;
+  }
+}
+
+.bookmark-internal:hover .btn-list{
+  animation-name: raise-buttons;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
 }
 
 .bookmark-base h1,
@@ -56,7 +94,6 @@
 .bookmark-base.grid .footer {
   position: absolute;
   bottom: 0;
-  display: none;
 }
 
 .bookmark-base.list .footer {
