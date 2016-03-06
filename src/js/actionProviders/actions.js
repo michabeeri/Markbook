@@ -142,6 +142,12 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 itemIds: itemIds,
                 isSelectAll: isSelectAll
             };
+        },
+        setLayout: function (layoutType) {
+            return {
+                type: Constants.SET_LAYOUT,
+                layoutType: layoutType
+            };
         }
     };
 
