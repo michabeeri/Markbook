@@ -23,8 +23,17 @@ html {
   margin: 15px
 }
 
+.app-line-container {
+  margin: 15px;
+  padding: 5px;
+  height: 40px;
+  line-height: 30px;
+  position: relative;
+}
+
 .contained {
-  margin: 0 10px;
+  margin-left: 10px;
+  height: 30px;
 }
 
 .label {
@@ -63,13 +72,20 @@ html {
 }
 
 .btn {
+  font: 14px 'Helvetica Neue Regular', 'Helvetica Neue';
   padding: 3px 10px;
   text-align: center;
   cursor: pointer;
 }
 
+.btn-border {
+  border: 1px solid #cccccc;
+  border-radius: 30px;
+  background-color: transparent;
+}
+
 .btn-disabled {
- cursor: not-allowed;
+  cursor: not-allowed;
 }
 
 .btn-list-item {
@@ -92,8 +108,7 @@ html {
   border: none;
   outline: none;
   background: none;
-  cursor: pointer
-;
+  cursor: pointer;
 }
 
 .border-simple {
@@ -136,3 +151,7 @@ html {
   color: #cc0000;
 }
 
+.search-term {
+  font-style: italic;
+  font-weight: bold;
+}

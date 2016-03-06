@@ -135,6 +135,13 @@ define(['uuid', 'constants'], function (uuid, Constants) {
             return {
                 type: Constants.UPDATE_DATABASE
             };
+        },
+        selectDeselectAll: function (itemIds, isSelectAll) {
+            return {
+                type: Constants.SELECT_DESELECT_ALL,
+                itemIds: itemIds,
+                isSelectAll: isSelectAll
+            };
         }
     };
 

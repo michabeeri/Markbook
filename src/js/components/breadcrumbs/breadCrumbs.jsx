@@ -34,7 +34,7 @@ define(['lodash',
                 var onClick = bookmarksUtil.isCurrentGroup(this.props.currentPath, item.id) ?
                     undefined : this.onItemClick.bind(this, item.id);
 
-                return <span className='title-small group-item' onClick={onClick} key={item.id}>{item.title}</span>;
+                return <span className='title-small group-item contained' onClick={onClick} key={item.id}>{item.title}</span>;
             },
             render: function () {
                 var path = this.props.currentPath;
@@ -42,7 +42,7 @@ define(['lodash',
                 items = foldItemsIfNeeded(path, items);
 
                 return (
-                    <nav className="groups-item-container box">
+                    <nav className="app-line-container groups-item-container box">
                         {_.map(items, this.renderItem)}
                     </nav>
                 );

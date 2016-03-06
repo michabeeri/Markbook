@@ -7,7 +7,7 @@
 }
 
 .group-item + .group-item::before {
-  margin: 10px;
+  margin-right: 10px;
   font-weight: bold;
   content: '>';
 }

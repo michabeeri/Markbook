@@ -1,6 +1,6 @@
 define(
-    ['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmarkList', 'components/breadcrumbs/breadCrumbs', 'components/modals/ModalContainer', 'constants', 'actionProviders/actions'],
-    function (React, ToolBar, BookmarkList, BreadCrumbs, ModalContainer, Constants, actions) {
+    ['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmarkList', 'components/breadcrumbs/breadCrumbs', 'components/modals/ModalContainer', 'constants', 'actionProviders/actions', 'utils/bookmarksUtil', 'components/mainView/FilterResultsTitle'],
+    function (React, ToolBar, BookmarkList, BreadCrumbs, ModalContainer, Constants, actions, BookmarksUtil, FilterResultsTitle) {
         'use strict';
         return React.createClass({
             displayName: 'MainView',
@@ -33,13 +33,32 @@ define(
                 this.props.dispatch(actions.openBookmarkDataModal());
             },
             shouldRenderBreadCrumbs: function () {
-                return this.state.layout === Constants.layoutType.GRID;
+                var filterExists = this.props.state.filter && (this.props.state.filter.title || this.props.state.filter.tag);
+                return !filterExists && this.state.layout === Constants.layoutType.GRID;
             },
             getBreadCrumbsComponent: function () {
                 return this.shouldRenderBreadCrumbs() ?
                     <BreadCrumbs dispatch={this.props.dispatch}
                                  bookmarks={this.props.state.bookmarks}
                                  currentPath={this.props.state.currentBookmarkPath}/> : null;
+            },
+            resetFilter: function () {
+                this.props.dispatch(actions.setFilter('', ''));
+            },
+            getFilterResultsTitle: function (filterTerm) {
+                this.filteredBookmarks = BookmarksUtil.getFilteredBookmarks(this.props.state.bookmarks, this.props.state.filter, filterTerm);
+                return <FilterResultsTitle filterTerm={filterTerm.term}
+                                           filterType={filterTerm.type}
+                                           totalResults={this.filteredBookmarks.length}
+                                           resetFilter={this.resetFilter}/>;
+            },
+            getContext: function () {
+                var filterTerm = BookmarksUtil.getFilterTerm(this.props.state.filter);
+                if (filterTerm) {
+                    return this.getFilterResultsTitle(filterTerm);
+                }
+                this.filteredBookmarks = null;
+                return this.getBreadCrumbsComponent();
             },
             switchLayout: function () {
                 this.setState({
@@ -48,6 +67,7 @@ define(
             },
             render: function () {
                 var content;
+                var currentBookmarkPath = this.props.state.currentBookmarkPath;
 
                 if (this.props.state.bookmarks.length === 1) { //root group
                     content = (
@@ -61,16 +81,18 @@ define(
                         <div>
                             <ToolBar
                                 items={this.props.state.bookmarks}
+                                currentGroupId={currentBookmarkPath[currentBookmarkPath.length - 1]}
                                 sort={this.props.state.sort}
                                 dispatch={this.props.dispatch}
                                 layout={this.state.layout}
                                 switchLayout={this.switchLayout}
                                 minGridLayoutExceeded={this.state.minGridLayoutExceeded}/>
-                            {this.getBreadCrumbsComponent()}
+                            {this.getContext()}
                             <BookmarkList dispatch={this.props.dispatch}
                                           state={this.props.state}
                                           layout={this.state.layout}
-                                          modalUtils={{lastItemInGroup: this.openRemoveLastItemInGroupModal, groupDelete: this.openGroupDeleteModal}}/>
+                                          modalUtils={{lastItemInGroup: this.openRemoveLastItemInGroupModal, groupDelete: this.openGroupDeleteModal}}
+                                          filteredBookmarks={this.filteredBookmarks}/>
                         </div>);
                 }
 
