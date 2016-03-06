@@ -68,12 +68,27 @@ define(['lodash', 'uuid', 'constants', 'utils/bookmarksUtil'], function (_, uuid
             case Constants.REMOVE_REPARENT_CHILDREN:
                 return (function () {
                     var bookmark = _.find(state, {id: action.id});
+                    var newState = _.reject(state, {id: action.id});
                     var parentGroup = _.find(state, function (bm) {
                         return bm.children && bm.children.indexOf(action.id) !== -1;
                     });
 
-                    var newState = _.reject(state, {id: action.id});
-                    parentGroup.children = parentGroup.children.concat(bookmark.children);
+                    parentGroup.children = parentGroup.children.filter(function (id) {
+                        return id !== bookmark.id;
+                    }).concat(bookmark.children);
+
+                    return newState;
+                }());
+
+            case Constants.DRAG_REORDER_INIT:
+                return (function () {
+                    var newState = state.slice();
+                    var currentGroupIndex = bookmarksUtil.getBookmarkIndexById(newState, action.currentGroupId);
+                    //var children = newState[currentGroupIndex].children;
+                    var children = bookmarksUtil.getItemsByGroupId(newState, action.currentGroupId);
+                    newState[currentGroupIndex].children = bookmarksUtil.sort(children, action.sortType).map(function (bookmark) {
+                        return bookmark.id;
+                    });
                     return newState;
                 }());
 

@@ -5,7 +5,8 @@ define(['lodash', 'constants', 'actionProviders/actions', 'dataBaseApi/dataBaseA
     function createBookmark(bm) {
         return Object.assign({}, bm, {
             date: new Date(bm.date.year, bm.date.month, bm.date.day),
-            children: _.values(bm.children)
+            children: _.values(bm.children),
+            tags: bm.tags ? _.values(bm.tags) : []
         });
     }
 

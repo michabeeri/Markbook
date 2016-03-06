@@ -6,13 +6,32 @@ define(['React', 'reactDOM', 'components/modals/ModalGroupDelete', 'constants', 
 
         describe('Delete Group Alert', function () {
 
+
             function createDemoDeleteGroupAlert() {
+                var bookmarkListItemsData = [
+                    {
+                        id: '002',
+                        title: 'Bookmark 2 title',
+                        date: new Date(2012, 10, 9),
+                        children: null
+                    },
+                    {
+                        id: '001',
+                        title: 'Gaspar Noe Movies',
+                        date: new Date(2012, 10, 9),
+                        children: Array(2).fill({})
+                    }
+                ];
                 var dispatchSpy = jasmine.createSpy('dispatch');
                 var closeSpy = jasmine.createSpy('closeSpy');
-                var state = {modals: {type: constants.eModalType.LAST_BOOKMARK_IN_GROUP_ALERT, id: '001'}};
+                var state =
+                {
+                    modals: {type: constants.eModalType.LAST_BOOKMARK_IN_GROUP_ALERT, id: '001'},
+                    bookmarks: bookmarkListItemsData
+                };
                 return TestUtils.renderIntoDocument(<ModalGroupDelete dispatch={dispatchSpy}
-                                                                   state={state}
-                                                                   close={closeSpy}/>);
+                                                                      state={state}
+                                                                      close={closeSpy}/>);
             }
 
             it('should call proper dispatch on Reparent click and close', function () {
