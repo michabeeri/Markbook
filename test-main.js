@@ -28,7 +28,8 @@ requirejs.config({
         reduxUtils: 'js/reduxUtils',
         utils: 'js/utils',
         dataBaseApi: 'js/dataBaseApi',
-        ReduxSimpleRouter: 'vendor/redux-simple-router'
+        ReduxSimpleRouter: 'vendor/redux-simple-router',
+        spin: 'vendor/spin'
     },
     map: {
         '*': {

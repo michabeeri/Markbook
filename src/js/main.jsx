@@ -8,7 +8,8 @@ requirejs.config({
         reactRedux: '../vendor/react-redux',
         uuid: '../vendor/uuid',
         Firebase: '../vendor/firebase',
-        ReduxSimpleRouter: '../vendor/redux-simple-router'
+        ReduxSimpleRouter: '../vendor/redux-simple-router',
+        spin: '../vendor/spin'
     },
     map: {
         '*': {
