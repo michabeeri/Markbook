@@ -35,14 +35,6 @@ define(['react', 'reactDOM', 'constants', 'components/bookmarkList/bookmark'],
                 jasmine.clock().uninstall();
             });
 
-            it('should render title in h1 tag', function () {
-                expect(TestUtils.findRenderedDOMComponentWithTag(bookmark, 'h1').textContent).toBe('Fargo Season 2');
-            });
-
-            it('should render formated date in h2 tag', function () {
-                expect(TestUtils.findRenderedDOMComponentWithTag(bookmark, 'h2').textContent).toBe('11/18/2015');
-            });
-
             it('should have a draggable attribute', function () {
                 expect(ReactDOM.findDOMNode(bookmark).getAttribute('draggable')).toBeTruthy();
             });
