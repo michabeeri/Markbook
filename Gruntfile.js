@@ -37,6 +37,10 @@ module.exports = function (grunt) {
                         dest: VENDOR_TARGET + 'lodash.js'
                     },
                     {
+                        src: 'node_modules/spin.js/spin.js',
+                        dest: VENDOR_TARGET + 'spin.js'
+                    },
+                    {
 
                         src: 'node_modules/redux/dist/redux.js',
                         dest: VENDOR_TARGET + 'redux.js'

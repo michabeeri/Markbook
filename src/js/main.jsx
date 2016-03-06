@@ -8,7 +8,8 @@ requirejs.config({
         reactRedux: '../vendor/react-redux',
         uuid: '../vendor/uuid',
         Firebase: '../vendor/firebase',
-        ReduxSimpleRouter: '../vendor/redux-simple-router'
+        ReduxSimpleRouter: '../vendor/redux-simple-router',
+        spin: '../vendor/spin'
     },
     map: {
         '*': {
@@ -43,10 +44,11 @@ requirejs([
     'middlewares/thunk',
     'middlewares/removeBookmark',
     'middlewares/database',
+    'middlewares/layoutList',
     'middlewares/flagsMiddleware',
     'developer',
     'components/loginManager/loginManager'],
-    function (_, React, ReactDOM, Redux, ReactRouter, ReactRedux, AppView, appReducer, ReduxSimpleRouter, LoginComp, SignupComp, thunkMiddleware, removeBookmarkMiddleware, databaseMiddleware, flagsMiddleware, Developer, LoginManager) {
+    function (_, React, ReactDOM, Redux, ReactRouter, ReactRedux, AppView, appReducer, ReduxSimpleRouter, LoginComp, SignupComp, thunkMiddleware, removeBookmarkMiddleware, databaseMiddleware, LayoutListMiddleware, flagsMiddleware, Developer, LoginManager) {
 
         'use strict';
 
@@ -58,7 +60,7 @@ requirejs([
         var Route = ReactRouter.Route;
         var Provider = ReactRedux.Provider;
         var reduxMiddleware = ReduxSimpleRouter.syncHistory(ReactRouter.browserHistory);
-        var createStoreWithMiddleware = Redux.applyMiddleware(reduxMiddleware, thunkMiddleware, removeBookmarkMiddleware, databaseMiddleware, flagsMiddleware)(Redux.createStore);
+        var createStoreWithMiddleware = Redux.applyMiddleware(reduxMiddleware, thunkMiddleware, removeBookmarkMiddleware, databaseMiddleware, LayoutListMiddleware, flagsMiddleware)(Redux.createStore);
         var store = createStoreWithMiddleware(appReducer, window.devToolsExtension
             ? window.devToolsExtension()
             : undefined);

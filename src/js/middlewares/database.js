@@ -10,7 +10,7 @@ define(['lodash', 'constants', 'actionProviders/actions', 'dataBaseApi/dataBaseA
         });
     }
 
-    return function removeBookmarkMiddleware(store) {
+    return function database(store) {
         return function (next) {
             return function (action) {
 
@@ -36,7 +36,9 @@ define(['lodash', 'constants', 'actionProviders/actions', 'dataBaseApi/dataBaseA
                                     ? data.sort
                                     : {sortType: Constants.DEFAULT_SORT_TYPE}));
 
+                            store.dispatch(ActionProvider.turnOnFlag(Constants.BOOKMARKS_LOADED));
                         });
+
                         return next(action);
 
                     case Constants.UPDATE_DATABASE:

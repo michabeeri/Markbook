@@ -22,8 +22,10 @@ define(['react', 'constants', 'reactDOM', 'components/mainView/mainView', 'compo
                         }],
                         layout: {
                             layoutType: constants.layoutType.GRID
-                        }
+                        },
+                        flags: {}
                     };
+                    state.flags[constants.BOOKMARKS_LOADED] = true;
                     mainView = TestUtils.renderIntoDocument(<MainView dispatch={dispatchSpy}
                                                                       state={state}/>);
                 });

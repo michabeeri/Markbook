@@ -99,6 +99,7 @@ define([],
             //Flags
             ADD_FLAG: 'ADD_FLAG',
             REMOVE_FLAG: 'REMOVE_FLAG',
-            FIRST_VISIT_FLAG: 'FIRST_VISIT_FLAG'
+            FIRST_VISIT_FLAG: 'FIRST_VISIT_FLAG',
+            BOOKMARKS_LOADED: 'BOOKMARKS_LOADED'
         };
     });

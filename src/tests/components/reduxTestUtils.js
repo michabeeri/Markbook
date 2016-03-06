@@ -7,7 +7,7 @@ define(['react', 'reactDOM', 'redux', 'reactRedux', 'constants'],
         var Provider = ReactRedux.Provider;
 
         function getInitialState() {
-            return {
+            var state = {
                 userInfo: {
                     username: 'user@wix.com'
                 },
@@ -94,8 +94,13 @@ define(['react', 'reactDOM', 'redux', 'reactRedux', 'constants'],
                 },
                 layout: {
                     layoutType: Constants.layoutType.GRID
-                }
+                },
+                flags: {}
             };
+
+            state.flags[Constants.BOOKMARKS_LOADED] = true;
+
+            return state;
         }
 
         function renderInProvider(component, reducer) {

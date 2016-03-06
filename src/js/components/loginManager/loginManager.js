@@ -10,50 +10,16 @@ define(['Firebase'], function (Firebase) {
 
         passwordMinLength: 6,
 
-        RESULTVALUES: {
-            success: 1,
-            passwordsDontMatch: -1,
-            userAlreadyRegistered: -2,
-            passwordMissingAlpha: -3,
-            passwordMissingDigit: -4,
-            emailInvalid: -5,
-            passwordTooShort: -6
+        RESULT_VALUES: {
+            success: 'success',
+            passwordsDontMatch: 'Passwords don\'t match',
+            userAlreadyRegistered: 'User already exists',
+            passwordMissingAlpha: 'Password should contain a both letters and digits',
+            passwordMissingDigit: 'Password should contain a both letters and digits',
+            emailInvalid: 'Invalid Email',
+            passwordTooShort: 'Password is too short',
+            loginFailed: 'Invalid email or password'
         },
-
-        //hash: function (message) {
-        //    var hash = md5.create();
-        //    hash.update(message);
-        //    return hash.hex();
-        //},
-        //
-        //createSalt: function () {
-        //    return Math.random().toString(36).substring(7);
-        //},
-        //
-        //hashWithSalt: function (message) {
-        //    return this.hash(message + this.createSalt());
-        //},
-        //
-        //isUserExists: function (username) {
-        //    for (var i = 0; i < users.length; i++) {
-        //        if (users[i].username === username) {
-        //            return true;
-        //        }
-        //    }
-        //    return false;
-        //},
-        //
-        //isValidEmail: function (email) {
-        //    if (email.indexOf('@') === -1) {
-        //        return false;
-        //    }
-        //    var temp = email.substr(email.indexOf('@'));
-        //    if (temp.indexOf('.') === -1) {
-        //        return false;
-        //    }
-        //    return true;
-        //},
-        //
 
         isLoggedIn: function () {
             var fireBaseRef = new Firebase('https://markbook.firebaseio.com/');
@@ -65,14 +31,15 @@ define(['Firebase'], function (Firebase) {
             fireBaseRef.unauth();
         },
 
-        authenticateUser: function (email, password, successCallback) {
+        authenticateUser: function (email, password, successCallback, failureCallback) {
             var fireBaseRef = new Firebase('https://markbook.firebaseio.com/');
+            var self = this;
             fireBaseRef.authWithPassword({
-                email: email,
-                password: password
+                email: email, password: password
             }, function (error, authData) {
                 if (error) {
                     console.log('Login failed: ', error);
+                    failureCallback(self.RESULT_VALUES.loginFailed);
                 } else {
                     console.log('Authentication successful, payload: ', authData);
                     successCallback(email, authData.uid, authData.token);
@@ -82,47 +49,43 @@ define(['Firebase'], function (Firebase) {
 
         validateSignUpInfo: function (password, passwordRepeat) {
             if (password !== passwordRepeat) {
-                return this.RESULTVALUES.passwordsDontMatch;
+                return this.RESULT_VALUES.passwordsDontMatch;
             }
             if (password.length < this.passwordMinLength) {
-                return this.RESULTVALUES.passwordTooShort;
+                return this.RESULT_VALUES.passwordTooShort;
             }
             if (password.match(/\d+/g) === null) {
-                return this.RESULTVALUES.passwordMissingDigit;
+                return this.RESULT_VALUES.passwordMissingDigit;
             }
             if (password.match(/[A-Z,a-z]+/) === null) {
-                return this.RESULTVALUES.passwordMissingAlpha;
+                return this.RESULT_VALUES.passwordMissingAlpha;
             }
-            return this.RESULTVALUES.success;
+            return this.RESULT_VALUES.success;
         },
 
-        createUserOnDataBase: function (email, password, passwordRepeat, successCallback) {
-            var validateResult = this.validateSignUpInfo(password, passwordRepeat);
-            if (validateResult !== this.RESULTVALUES.success) {
-                console.log('Password error: ' + validateResult);
-            } else {
-                var fireBaseRef = new Firebase('https://markbook.firebaseio.com/');
-                var self = this;
-                fireBaseRef.createUser({
-                    email: email, password: password
-                }, function (error, userData) {
-                    if (error) {
-                        switch (error.code) {
-                            case 'EMAIL_TAKEN':
-                                //todo something
-                                console.log('User already registered');
-                                break;
-                            case 'INVALID_EMAIL':
-                                //todo something
-                                console.log('Invalid email');
-                                break;
-                        }
-                    } else {
-                        console.log('Successfully created user with uid: ' + userData.uid);
-                        self.authenticateUser(email, password, successCallback);
+        createUserOnDataBase: function (email, password, successCallback, failureCallback) {
+
+            var fireBaseRef = new Firebase('https://markbook.firebaseio.com/');
+            var self = this;
+            fireBaseRef.createUser({
+                email: email, password: password
+            }, function (error, userData) {
+                if (error) {
+                    switch (error.code) {
+                        case 'EMAIL_TAKEN':
+                            failureCallback(self.RESULT_VALUES.userAlreadyRegistered);
+                            console.log('User already registered');
+                            break;
+                        case 'INVALID_EMAIL':
+                            failureCallback(self.RESULT_VALUES.emailInvalid);
+                            console.log('Invalid email');
+                            break;
                     }
-                });
-            }
+                } else {
+                    console.log('Successfully created user with uid: ' + userData.uid);
+                    self.authenticateUser(email, password, successCallback, failureCallback);
+                }
+            });
 
         },
 
@@ -130,8 +93,6 @@ define(['Firebase'], function (Firebase) {
             var fireBaseRef = new Firebase('https://markbook.firebaseio.com/');
             fireBaseRef.set(dataToSave);
         }
-
-
 
     };
 

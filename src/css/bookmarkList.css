@@ -5,13 +5,24 @@
 
 .bookmark-base {
   margin: 10px;
-  padding-left: 5px;
   font-weight: 200;
-  position: relative;
+  background-color: #4C99CF;
+  color: white;
+  box-shadow: inset 0 0 1px #235b82, 0 0 1px #235b82;
+  border-radius: 3px;
+  text-align: center;
+  padding: 5px 10px;
+}
+
+.bookmark-base.grid > div {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 100%;
 }
 
 .bookmark-base.group {
-  background-color: #EAEAEA;
+  background-color: #4974A7;
 }
 
 .bookmark-base h1,
@@ -45,6 +56,7 @@
 .bookmark-base.grid .footer {
   position: absolute;
   bottom: 0;
+  display: none;
 }
 
 .bookmark-base.list .footer {
@@ -59,4 +71,7 @@
 .bookmark-base.list .btn-group {
 
 }
+
+
+
 
