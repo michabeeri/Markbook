@@ -1,12 +1,13 @@
 define(
-    ['react', 'components/toolbar/bookmarksSearch', 'actionProviders/actions', 'components/toolbar/orderBy', 'constants', 'components/toolbar/actionControls', 'utils/bookmarksUtil'],
-    function (React, BookmarksSearch, ActionProvider, OrderBy, Constants, ActionControls, BookmarksUtil) {
+    ['lodash', 'react', 'components/toolbar/bookmarksSearch', 'actionProviders/actions', 'components/toolbar/orderBy', 'constants', 'components/toolbar/actionControls', 'utils/bookmarksUtil'],
+    function (_, React, BookmarksSearch, ActionProvider, OrderBy, Constants, ActionControls, BookmarksUtil) {
         'use strict';
 
         return React.createClass({
             displayName: 'ToolBar',
             propTypes: {
                 items: React.PropTypes.array.isRequired,
+                currentGroupId: React.PropTypes.string.isRequired,
                 sort: React.PropTypes.object.isRequired,
                 dispatch: React.PropTypes.func.isRequired,
                 layout: React.PropTypes.string.isRequired,
@@ -20,10 +21,15 @@ define(
                 this.props.dispatch(ActionProvider.setSortType(sortType));
             },
             onSelectDeselectAll: function (isSelectAll) {
-                this.props.dispatch(ActionProvider.selectDeselectAll(isSelectAll));
+                var currentGroupId = this.props.currentGroupId;
+                var group = _.filter(this.props.items, function (item) {
+                    return item.id === currentGroupId;
+                })[0];
+                this.props.dispatch(ActionProvider.selectDeselectAll(group.children, isSelectAll));
             },
             onEdit: function () {
-                this.props.dispatch(ActionProvider.openBookmarkDataModal(BookmarksUtil.getSelectedBookmarks(this.props.items)[0].id));
+                this.props.dispatch(
+                    ActionProvider.openBookmarkDataModal(BookmarksUtil.getSelectedBookmarks(this.props.items)[0].id));
             },
             render: function () {
                 return (

@@ -49,6 +49,7 @@ define(
             },
             render: function () {
                 var content;
+                var currentBookmarkPath = this.props.state.currentBookmarkPath;
 
                 if (this.props.state.bookmarks.length === 1) { //root group
                     content = (
@@ -62,6 +63,7 @@ define(
                         <div>
                             <ToolBar
                                 items={this.props.state.bookmarks}
+                                currentGroupId={currentBookmarkPath[currentBookmarkPath.length - 1]}
                                 sort={this.props.state.sort}
                                 dispatch={this.props.dispatch}
                                 layout={this.state.layout}
