@@ -16,33 +16,45 @@
   overflow: hidden;
 }
 
+.bookmark-base.group .bookmark-internal {
+  background: #4974A7;
+}
+
+.bookmark-base.group .bookmark-internal .btn-list {
+  background-color: #4974A7;
+}
+
 .bookmark-internal > div {
   height: 20px;
 }
 
-.bookmark-base.grid .bookmark-internal{
+.bookmark-base .bookmark-internal{
   display: flex;
   justify-content: space-between;
   flex-direction: column;
   height: 100%;
 }
 
+.bookmark-base.grid .bookmark-internal{
+  flex-direction: column;
+}
+
+.bookmark-base.list .bookmark-internal{
+  flex-direction: row;
+  align-items: center;
+}
+
 .bookmark-internal .btn-list {
   position: absolute;
   background: #4C99CF;
+}
+
+.bookmark-base.grid .bookmark-internal .btn-list {
   bottom: -60px;
 }
 
-.bookmark-internal:hover .btn-list {
-  bottom:0;
-}
-
-.bookmark-base.group .bookmark-internal {
-  background: #4974A7;
-}
-
-.bookmark-base.group .bookmark-internal .btn-list{
-  background-color: #4974A7;
+.bookmark-base.grid .bookmark-internal:hover .btn-list {
+  bottom: 0px;
 }
 
 @keyframes raise-buttons {
@@ -57,6 +69,25 @@
 .bookmark-internal:hover .btn-list{
   animation-name: raise-buttons;
   animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+}
+
+.bookmark-base.list .bookmark-internal .btn-list {
+  bottom: 2px;
+  right: -150px;
+  transition: right 0.5s ease-out;
+}
+
+.bookmark-base.list .bookmark-internal:hover .btn-list {
+  right: 0px;
+}
+
+.bookmark-base.list .bookmark-internal:hover .btn-list{
+  animation-name: slide-buttons;
+  animation-duration: 0.5s;
   animation-timing-function: ease-out;
   animation-iteration-count: 1;
   animation-direction: normal;
@@ -88,7 +119,7 @@
 }
 
 .bookmark-base.list {
-
+  height: 60px;
 }
 
 .bookmark-base.grid .footer {
