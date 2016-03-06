@@ -3,6 +3,7 @@ define(['React', 'lodash', 'components/dropdown/dropdown'],
         'use strict';
 
         return React.createClass({
+            displayName: 'InputWithSuggestions',
             propTypes: {
                 onInputSelected: React.PropTypes.func.isRequired,
                 valueLink: React.PropTypes.object.isRequired,

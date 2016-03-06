@@ -5,6 +5,7 @@ define(['React', 'lodash', 'components/tags/inputWithSuggestions', 'components/t
         var LinkedStateMixin = React.addons.LinkedStateMixin;
 
         return React.createClass({
+            displayName: 'TagsContainer',
             propTypes: {
                 tags: React.PropTypes.array.isRequired,
                 addTag: React.PropTypes.func.isRequired,
