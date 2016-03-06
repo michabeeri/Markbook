@@ -90,6 +90,8 @@ define([],
             STORE_DATA: 'STORE_DATA',
             UPDATE_DATABASE: 'UPDATE_DATABASE',
 
+            // Layout
+            SET_LAYOUT: 'SET_LAYOUT',
             GRID_MIN_WIDTH: 960
         };
     });

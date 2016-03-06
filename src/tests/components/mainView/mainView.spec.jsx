@@ -19,7 +19,10 @@ define(['react', 'constants', 'reactDOM', 'components/mainView/mainView', 'compo
                             date: new Date(2015, 10, 18),
                             children: [],
                             tags: []
-                        }]
+                        }],
+                        layout: {
+                            layoutType: constants.layoutType.GRID
+                        }
                     };
                     mainView = TestUtils.renderIntoDocument(<MainView dispatch={dispatchSpy}
                                                                       state={state}/>);
