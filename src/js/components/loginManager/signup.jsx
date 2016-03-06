@@ -5,7 +5,8 @@ define(['lodash',
         'components/loginManager/login-fields/password',
         'components/loginManager/loginManager',
         'ReduxSimpleRouter',
-        'reactRedux'],
+        'reactRedux',
+        'actionProviders/actions'],
     function (_,
         React,
         ReactRouter,
@@ -13,7 +14,8 @@ define(['lodash',
         PasswordInput,
         LoginManager,
         ReduxSimpleRouter,
-        ReactRedux) {
+        ReactRedux,
+        ActionProvider) {
         'use strict';
 
         var SignupHeader = React.createClass({
@@ -56,11 +58,15 @@ define(['lodash',
         var SignupForm = React.createClass({
             mixins: [ReactRouter.History],
             displayName: 'SignUpForm',
+            successSignup: function (username, uid, token) {
+                this.props.dispatch(ActionProvider.login(username, uid, token));
+                this.props.dispatch(ReduxSimpleRouter.routeActions.push('/'));
+            },
             onSignup: function (event) {
                 event.preventDefault();
 
                 console.log('onSignup!');
-                LoginManager.createUserOnDataBase(this.refs.email.getValue(), this.refs.pass.getValue(), this.refs.passConfirm.getValue());
+                LoginManager.createUserOnDataBase(this.refs.email.getValue(), this.refs.pass.getValue(), this.refs.passConfirm.getValue(), this.successSignup);
 
             },
             render: function () {
@@ -84,7 +90,7 @@ define(['lodash',
                 return (
                     <section>
                         <SignupHeader />
-                        <SignupForm />
+                        <SignupForm {...this.props}/>
                         <SignupFooter {...this.props}/>
                     </section>
                 );
