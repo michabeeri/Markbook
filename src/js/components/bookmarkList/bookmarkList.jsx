@@ -16,21 +16,6 @@ define(['lodash',
                     draggedOver: null
                 };
             },
-            getFilteredBookmarks: function () {
-                var filter = this.props.state.filter;
-
-                function titleCondition(bm) {
-                    return !filter || !filter.title || bm.title.indexOf(filter.title) !== -1;
-                }
-
-                function tagCondition() {
-                    return !filter || !filter.tag;
-                }
-
-                return _.filter(this.props.state.bookmarks, function (bm) {
-                    return titleCondition(bm) && tagCondition(bm);
-                });
-            },
             dragReorder: function (draggedOverId) {
                 if (!this.state.dragged || this.state.draggedOver === draggedOverId) {
                     return;
@@ -55,9 +40,12 @@ define(['lodash',
                 this.setState({dragged: null, draggedOver: null});
             },
             render: function () {
-                var visibleItems = this.props.layout === Constants.layoutType.GRID
-                    ? BookmarksUtil.getCurrentGroupItems(this.props.state.bookmarks, this.props.state.currentBookmarkPath)
-                    : BookmarksUtil.getItemsByGroupId(this.props.state.bookmarks, Constants.ROOT_GROUP_ID);
+                var visibleItems = this.props.filteredBookmarks;
+                if (!visibleItems) {
+                    visibleItems = this.props.layout === Constants.layoutType.GRID
+                        ? BookmarksUtil.getCurrentGroupItems(this.props.state.bookmarks, this.props.state.currentBookmarkPath)
+                        : BookmarksUtil.getItemsByGroupId(this.props.state.bookmarks, Constants.ROOT_GROUP_ID);
+                }
 
                 var sortType = this.props.state.sort.sortType;
                 if (sortType !== Constants.CUSTOM_SORT_TYPE) {

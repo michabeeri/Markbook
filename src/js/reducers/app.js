@@ -1,6 +1,6 @@
 
-define(['redux', 'reducers/bookmarks', 'reducers/userInfo', 'reducers/filter', 'reducers/currentBookmarkPath', 'reducers/sort', 'ReduxSimpleRouter', 'reducers/modalReducer'],
-    function (Redux, bookmarksReducer, userInfoReducer, filterReducer, currentBookmarkPathReducer, sortReducer, ReduxSimpleRouter, modalReducer) {
+define(['redux', 'reducers/bookmarks', 'reducers/userInfo', 'reducers/filter', 'reducers/currentBookmarkPath', 'reducers/sort', 'ReduxSimpleRouter', 'reducers/modalReducer', 'reducers/layout', 'reducers/flags'],
+    function (Redux, bookmarksReducer, userInfoReducer, filterReducer, currentBookmarkPathReducer, sortReducer, ReduxSimpleRouter, modalReducer, layout, flags) {
         'use strict';
         return Redux.combineReducers({
             bookmarks: bookmarksReducer,
@@ -9,6 +9,8 @@ define(['redux', 'reducers/bookmarks', 'reducers/userInfo', 'reducers/filter', '
             currentBookmarkPath: currentBookmarkPathReducer,
             sort: sortReducer,
             routing: ReduxSimpleRouter.routeReducer,
-            modals: modalReducer
+            modals: modalReducer,
+            layout: layout,
+            flags: flags
         });
     });

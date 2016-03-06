@@ -22,6 +22,7 @@
 .top-bar-username,
 .btn-logout {
   padding: 3px 21px;
+  line-height: 40px;
 }
 
 .btn-logout {

@@ -23,7 +23,7 @@ define([],
 
         var sortTypes = {
             CUSTOM: {
-              value: 'CUSTOM',
+                value: 'CUSTOM',
                 description: 'custom'
             },
             DATE_ASC: {
@@ -61,8 +61,10 @@ define([],
 
             // Bookmark action types
             ADD_BOOKMARK: 'ADD_BOOKMARK',
+            ADD_BOOKMARK_AND_GROUP: 'ADD_BOOKMARK_AND_GROUP',
             OPEN_BOOKMARK_GROUP: 'OPEN_BOOKMARK_GROUP',
             EDIT_BOOKMARK: 'EDIT_BOOKMARK',
+            EDIT_BOOKMARK_AND_CREATE_GROUP: 'EDIT_BOOKMARK_AND_CREATE_GROUP',
             TOGGLE_BOOKMARK_SELECTION: 'TOGGLE_BOOKMARK_SELECTION',
             REMOVE_BOOKMARK: 'REMOVE_BOOKMARK',
             REMOVE_REPARENT_CHILDREN: 'REMOVE_REPARENT_CHILDREN',
@@ -83,12 +85,20 @@ define([],
             SET_SORT_TYPE: 'SET_SORT_TYPE',
             DEFAULT_SORT_TYPE: 'DATE_ASC',
             CUSTOM_SORT_TYPE: 'CUSTOM',
+            SELECT_DESELECT_ALL: 'SELECT_DESELECT_ALL',
 
             // Database
             LOAD_DATA: 'LOAD_DATA',
             STORE_DATA: 'STORE_DATA',
             UPDATE_DATABASE: 'UPDATE_DATABASE',
 
-            GRID_MIN_WIDTH: 960
+            // Layout
+            SET_LAYOUT: 'SET_LAYOUT',
+            GRID_MIN_WIDTH: 960,
+
+            //Flags
+            ADD_FLAG: 'ADD_FLAG',
+            REMOVE_FLAG: 'REMOVE_FLAG',
+            FIRST_VISIT_FLAG: 'FIRST_VISIT_FLAG'
         };
     });

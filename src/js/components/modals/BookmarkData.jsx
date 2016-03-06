@@ -16,37 +16,59 @@ define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsConta
                 var id = this.props.state.modals.id;
                 return !(_.isUndefined(id) || _.isNull(id));
             },
+            isBookmarkGroup: function () {
+                return BookmarksUtil.isGroup(this.props.state.bookmarks, this.props.state.modals.id);
+            },
             getInitialState: function () {
                 var bookmarkName = '',
                     bookmarkUrl = '',
-                    tags = [],
-                    group = '';
+                    tags = [];
 
                 if (this.isEditMode()) {
                     var bookmark = BookmarksUtil.getBookmarkById(this.props.state.bookmarks, this.props.state.modals.id);
                     bookmarkName = bookmark.title;
                     bookmarkUrl = bookmark.url;
-                    bookmark.tags = tags;
+                    tags = bookmark.tags;
                 }
 
                 return {
                     bookmarkName: bookmarkName,
                     bookmarkUrl: bookmarkUrl,
-                    tags: tags,
-                    group: group
+                    tags: tags
                 };
             },
+            addNewBookmarkToNewGroup: function () {
+                this.props.dispatch(actions.addNewBookmarkToNewGroup(_.last(this.props.state.currentBookmarkPath), this.state.groupName, this.state.bookmarkName, this.state.bookmarkUrl, this.state.tags));
+            },
+            addNewBookmarkToExistingGroup: function () {
+                var groupId = this.getGroupId();
+                this.props.dispatch(actions.addBookmark(groupId, this.state.bookmarkName, this.state.bookmarkUrl, this.state.tags));
+            },
             addBookmark: function () {
-                this.props.dispatch(actions.addBookmark(_.last(this.props.state.currentBookmarkPath), this.state.bookmarkName, this.state.bookmarkUrl, this.state.tags));
+                var group = BookmarksUtil.getGroupByTitle(this.props.state.bookmarks, this.state.groupName);
+
+                if (_.isUndefined(group)) {
+                    this.addNewBookmarkToNewGroup();
+                } else {
+                    this.addNewBookmarkToExistingGroup();
+                }
+
                 this.props.close();
+            },
+            getGroupId: function () {
+                var group = BookmarksUtil.getGroupByTitle(this.props.state.bookmarks, this.state.groupName);
+                return (group && group.id) ? group.id : _.last(this.props.state.currentBookmarkPath);
             },
             editBookmark: function () {
-                this.props.dispatch(actions.editBookmark(this.props.state.modals.id, _.last(this.props.state.currentBookmarkPath), this.state.bookmarkName, this.state.bookmarkUrl, this.state.tags));
+                //TODO: add option to save bookmark in other folder then
+                var groupId = this.getGroupId();
+
+                this.props.dispatch(actions.editBookmark(this.props.state.modals.id, groupId, this.state.bookmarkName, this.state.bookmarkUrl, this.state.tags));
                 this.props.close();
             },
-            addGroup: function (group) {
+            addGroup: function (groupName) {
                 this.setState({
-                    group: group
+                    groupName: groupName
                 });
             },
             addTag: function (tag) {
@@ -62,17 +84,32 @@ define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsConta
                 });
             },
             render: function () {
-                var buttonText = (this.isEditMode()) ? 'Edit bookmark' : 'Add Bookmark';
+                var titleText, buttonText, bookmarkUrlShow, bookmarkUrlContent = '';
+
+                if (this.isEditMode()) {
+                    buttonText = 'Save changes';
+                    titleText = (this.isBookmarkGroup()) ? 'Edit group' : 'Edit bookmark';
+                    bookmarkUrlShow = !this.isBookmarkGroup();
+                } else {
+                    bookmarkUrlShow = true;
+                    buttonText = 'Save';
+                    titleText = 'Add new bookmark';
+                }
+
+                if (bookmarkUrlShow) {
+                    bookmarkUrlContent = <input name="BookmarkUrl" type="text" valueLink={this.linkState('bookmarkUrl')}
+                                                placeholder="Paste url to bookmark"
+                                                className="input"/>;
+                }
+
                 var onClickCallback = (this.isEditMode()) ? this.editBookmark : this.addBookmark;
 
                 return (<div>
-                        <h1>Add Bookmark</h1>
+                        <h1>{titleText}</h1>
                         <input name="BookmarkName" type="text" valueLink={this.linkState('bookmarkName')}
                                placeholder="Name your bookmark"
                                className="input" autofocus/>
-                        <input name="BookmarkUrl" type="text" valueLink={this.linkState('bookmarkUrl')}
-                               placeholder="Paste url to bookmark"
-                               className="input"/>
+                        {bookmarkUrlContent}
                         <GroupInput addGroup={this.addGroup} bookmarks={this.props.state.bookmarks}/>
                         <TagsContainer tags={this.state.tags} addTag={this.addTag} removeTag={this.removeTag}
                                        bookmarks={this.props.state.bookmarks}/>
