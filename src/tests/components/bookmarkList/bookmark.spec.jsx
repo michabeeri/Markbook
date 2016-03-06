@@ -8,22 +8,30 @@ define(['react', 'reactDOM', 'constants', 'components/bookmarkList/bookmark'],
 
             var bookmark,
                 bookmarkData,
-                setDragged;
+                dragStart,
+                dragOver,
+                dragEnd;
 
             beforeEach(function () {
                 bookmarkData = {
-                        title: 'Fargo Season 2',
-                        date: new Date(2015, 10, 18)
-                    };
-                setDragged = jasmine.createSpy('setDragged');
+                    title: 'Fargo Season 2',
+                    date: new Date(2015, 10, 18)
+                };
+                dragStart = jasmine.createSpy('dragStart');
+                dragOver = jasmine.createSpy('dragOver');
+                dragEnd = jasmine.createSpy('dragEnd');
                 bookmark = TestUtils.renderIntoDocument(<Bookmark bookmarkData={bookmarkData}
                                                                   layout={Constants.layoutType.GRID}
-                                                                  dragStart={setDragged}dataId='bm001'
-                                                                  state={{selectedBookmarks: {selectedBookmarksIds: []}}} />);
+                                                                  dragStart={dragStart}
+                                                                  dragOver={dragOver}
+                                                                  dragEnd={dragEnd}
+                                                                  state={{selectedBookmarks: {selectedBookmarksIds: []}}}
+                                                                  dataId='bm001'/>);
+
                 jasmine.clock().install();
             });
 
-            afterEach(function() {
+            afterEach(function () {
                 jasmine.clock().uninstall();
             });
 
@@ -35,15 +43,39 @@ define(['react', 'reactDOM', 'constants', 'components/bookmarkList/bookmark'],
                 expect(TestUtils.findRenderedDOMComponentWithTag(bookmark, 'h2').textContent).toBe('11/18/2015');
             });
 
-            it('should call dragstart callback when being dragged', function (done) {
-                var mockDataTransfer = { setData: function () {} };
+            it('should have a draggable attribute', function () {
+                expect(ReactDOM.findDOMNode(bookmark).getAttribute('draggable')).toBeTruthy();
+            });
+
+            it('should call dragStart callback when being dragged', function (done) {
+                var mockDataTransfer = {
+                    setData: function () {
+                    }
+                };
                 TestUtils.Simulate.dragStart(ReactDOM.findDOMNode(bookmark), {dataTransfer: mockDataTransfer});
                 jasmine.clock().tick(51);
-                expect(setDragged).toHaveBeenCalledWith('bm001');
+                expect(dragStart).toHaveBeenCalledWith('bm001');
                 done();
             });
 
-            it('should call drag')
+            it('should call dragOver callback when being dragged over', function () {
+                TestUtils.Simulate.dragOver(ReactDOM.findDOMNode(bookmark));
+                expect(dragOver).toHaveBeenCalledWith('bm001');
+            });
 
+            it('should call dragEnd callback when being dropped', function () {
+                TestUtils.Simulate.dragEnd(ReactDOM.findDOMNode(bookmark));
+                expect(dragEnd).toHaveBeenCalledWith();
+            });
+
+            it('should not have a dragged class when receives a falsy dragClass prop', function () {
+                expect(ReactDOM.findDOMNode(bookmark).classList).not.toContain('dragged');
+            });
+
+            it('should have a dragged class when receives a truthy dragClass prop', function () {
+                var draggedBookmark = TestUtils.renderIntoDocument(<Bookmark bookmarkData={bookmarkData}
+                                                                             dragClass='true'/>);
+                expect(ReactDOM.findDOMNode(draggedBookmark).classList).toContain('dragged');
+            });
         });
     });

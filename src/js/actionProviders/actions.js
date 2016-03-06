@@ -2,6 +2,19 @@ define(['uuid', 'constants'], function (uuid, Constants) {
     'use strict';
 
     var Actions = {
+        addNewBookmarkToNewGroup: function (parentGroupId, groupName, title, url, tags) {
+            return databaseUpdateWrapper({
+                type: Constants.ADD_BOOKMARK_AND_GROUP,
+                parentGroupId: parentGroupId,
+                groupId: uuid.v4(),
+                bookmarkId: uuid.v4(),
+                groupName: groupName,
+                title: title,
+                url: url,
+                tags: tags,
+                date: new Date()
+            });
+        },
         addBookmark: function (parentGroupId, title, url, tags) {
             return databaseUpdateWrapper({
                 type: Constants.ADD_BOOKMARK,
@@ -17,6 +30,19 @@ define(['uuid', 'constants'], function (uuid, Constants) {
             return databaseUpdateWrapper({
                 type: Constants.EDIT_BOOKMARK,
                 id: id,
+                parentGroupId: parentGroupId,
+                title: title,
+                url: url,
+                tags: tags,
+                date: new Date()
+            });
+        },
+        editBookmarkAndCreateNewGroup: function (id, parentGroupId, title, url, tags) {
+            return databaseUpdateWrapper({
+                type: Constants.EDIT_BOOKMARK_AND_CREATE_GROUP,
+                bookmark: {id: id},
+                group: {},
+                groupId: uuid.v4(),
                 parentGroupId: parentGroupId,
                 title: title,
                 url: url,
@@ -148,6 +174,18 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 type: Constants.SET_LAYOUT,
                 layoutType: layoutType
             };
+        },
+        turnOnFlag: function (flagName) {
+            return {
+                type: Constants.ADD_FLAG,
+                flag: flagName
+            };
+        },
+        turnOffFlag: function (flagName) {
+            return {
+                type: Constants.REMOVE_FLAG,
+                flag: flagName
+            };
         }
     };
 
@@ -157,7 +195,7 @@ define(['uuid', 'constants'], function (uuid, Constants) {
         }
 
         return function (dispatch) {
-            return (new Promise( function (resolve) {
+            return (new Promise(function (resolve) {
                 dispatch(action);
                 resolve();
             })).then(function () {

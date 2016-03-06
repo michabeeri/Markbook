@@ -23,7 +23,7 @@ define([],
 
         var sortTypes = {
             CUSTOM: {
-              value: 'CUSTOM',
+                value: 'CUSTOM',
                 description: 'custom'
             },
             DATE_ASC: {
@@ -61,8 +61,10 @@ define([],
 
             // Bookmark action types
             ADD_BOOKMARK: 'ADD_BOOKMARK',
+            ADD_BOOKMARK_AND_GROUP: 'ADD_BOOKMARK_AND_GROUP',
             OPEN_BOOKMARK_GROUP: 'OPEN_BOOKMARK_GROUP',
             EDIT_BOOKMARK: 'EDIT_BOOKMARK',
+            EDIT_BOOKMARK_AND_CREATE_GROUP: 'EDIT_BOOKMARK_AND_CREATE_GROUP',
             TOGGLE_BOOKMARK_SELECTION: 'TOGGLE_BOOKMARK_SELECTION',
             REMOVE_BOOKMARK: 'REMOVE_BOOKMARK',
             REMOVE_REPARENT_CHILDREN: 'REMOVE_REPARENT_CHILDREN',
@@ -92,6 +94,11 @@ define([],
 
             // Layout
             SET_LAYOUT: 'SET_LAYOUT',
-            GRID_MIN_WIDTH: 960
+            GRID_MIN_WIDTH: 960,
+
+            //Flags
+            ADD_FLAG: 'ADD_FLAG',
+            REMOVE_FLAG: 'REMOVE_FLAG',
+            FIRST_VISIT_FLAG: 'FIRST_VISIT_FLAG'
         };
     });

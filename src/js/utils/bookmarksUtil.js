@@ -34,6 +34,12 @@ define(['lodash', 'constants'], function (_, Constants) {
         return _.find(bookmarks, {id: id});
     }
 
+    function getGroupByTitle(bookmarks, title) {
+        return _.find(bookmarks, function (bm) {
+            return (bm.title === title && bm.children.length > 0);
+        });
+    }
+
     function getBookmarkIndexById(bookmarks, id) {
         return _.findIndex(bookmarks, {id: id});
     }
@@ -173,6 +179,7 @@ define(['lodash', 'constants'], function (_, Constants) {
         getCurrentGroupItems: getCurrentGroupItems,
         getBookmarkById: getBookmarkById,
         getBookmarkIndexById: getBookmarkIndexById,
+        getGroupByTitle: getGroupByTitle,
         isCurrentGroup: isCurrentGroup,
         getItemsByGroupId: getItemsByGroupId,
         getParent: getParent,
