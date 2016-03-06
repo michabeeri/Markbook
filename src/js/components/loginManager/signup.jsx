@@ -6,16 +6,18 @@ define(['lodash',
         'components/loginManager/loginManager',
         'ReduxSimpleRouter',
         'reactRedux',
-        'actionProviders/actions'],
+        'actionProviders/actions',
+        'constants'],
     function (_,
-        React,
-        ReactRouter,
-        EmailInput,
-        PasswordInput,
-        LoginManager,
-        ReduxSimpleRouter,
-        ReactRedux,
-        ActionProvider) {
+              React,
+              ReactRouter,
+              EmailInput,
+              PasswordInput,
+              LoginManager,
+              ReduxSimpleRouter,
+              ReactRedux,
+              ActionProvider,
+              Constants) {
         'use strict';
 
         var SignupHeader = React.createClass({
@@ -61,6 +63,7 @@ define(['lodash',
             successSignup: function (username, uid, token) {
                 this.props.dispatch(ActionProvider.login(username, uid, token));
                 this.props.dispatch(ReduxSimpleRouter.routeActions.push('/'));
+                this.props.dispatch(ActionProvider.turnOnFlag(Constants.FIRST_VISIT_FLAG));
             },
             onSignup: function (event) {
                 event.preventDefault();
