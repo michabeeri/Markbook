@@ -37,17 +37,22 @@ define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsConta
                     tags: tags
                 };
             },
-            createGroupIfNeeded: function () {
-                var group = BookmarksUtil.getGroupByTitle(this.props.state.bookmarks, this.state.groupName);
-                if (_.isUndefined(group)) {
-                    this.props.dispatch(actions.addBookmark(_.last(this.props.state.currentBookmarkPath), this.state.groupName, '', []));
-                }
+            addNewBookmarkToNewGroup: function () {
+                this.props.dispatch(actions.addNewBookmarkToNewGroup(_.last(this.props.state.currentBookmarkPath), this.state.groupName, this.state.bookmarkName, this.state.bookmarkUrl, this.state.tags));
+            },
+            addNewBookmarkToExistingGroup: function () {
+                var groupId = this.getGroupId();
+                this.props.dispatch(actions.addBookmark(groupId, this.state.bookmarkName, this.state.bookmarkUrl, this.state.tags));
             },
             addBookmark: function () {
-                this.createGroupIfNeeded();
-                var groupId = this.getGroupId();
+                var group = BookmarksUtil.getGroupByTitle(this.props.state.bookmarks, this.state.groupName);
 
-                this.props.dispatch(actions.addBookmark(groupId, this.state.bookmarkName, this.state.bookmarkUrl, this.state.tags));
+                if (_.isUndefined(group)) {
+                    this.addNewBookmarkToNewGroup();
+                } else {
+                    this.addNewBookmarkToExistingGroup();
+                }
+
                 this.props.close();
             },
             getGroupId: function () {
@@ -55,7 +60,7 @@ define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsConta
                 return (group && group.id) ? group.id : _.last(this.props.state.currentBookmarkPath);
             },
             editBookmark: function () {
-                this.createGroupIfNeeded();
+                //TODO: add option to save bookmark in other folder then
                 var groupId = this.getGroupId();
 
                 this.props.dispatch(actions.editBookmark(this.props.state.modals.id, groupId, this.state.bookmarkName, this.state.bookmarkUrl, this.state.tags));
@@ -79,7 +84,7 @@ define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsConta
                 });
             },
             render: function () {
-                var titleText, buttonText, bookmarkUrlShow, bookmarkUrlContent;
+                var titleText, buttonText, bookmarkUrlShow, bookmarkUrlContent = '';
 
                 if (this.isEditMode()) {
                     buttonText = 'Save changes';
@@ -95,8 +100,6 @@ define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsConta
                     bookmarkUrlContent = <input name="BookmarkUrl" type="text" valueLink={this.linkState('bookmarkUrl')}
                                                 placeholder="Paste url to bookmark"
                                                 className="input"/>;
-                } else {
-                    bookmarkUrlContent = '';
                 }
 
                 var onClickCallback = (this.isEditMode()) ? this.editBookmark : this.addBookmark;

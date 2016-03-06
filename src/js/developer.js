@@ -107,8 +107,8 @@ define(['constants', 'dataBaseApi/dataBaseApi', 'actionProviders/actions'], func
         //username: 'odedg@wix.com',
         //uid: '3b9f234c-b3e0-4eb8-bd33-b816c6d217d7',
 
-        username: 'vladale@wix.com',
-        uid: 'e7d1c265-4a36-49a3-825a-389c3278cce6',
+        //username: 'vladale@wix.com',
+        //uid: 'e7d1c265-4a36-49a3-825a-389c3278cce6',
 
         //username: 'michaelb@wix.com',
         //uid: 'db3af885-f95a-4793-9481-91f2c57e1749',

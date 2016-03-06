@@ -33,6 +33,30 @@ define(['lodash', 'uuid', 'constants', 'utils/bookmarksUtil'], function (_, uuid
                     return newState;
                 }());
 
+            case Constants.ADD_BOOKMARK_AND_GROUP:
+                return (function () {
+                    var newState = state.concat({
+                            id: action.groupId,
+                            title: action.groupName,
+                            date: action.date,
+                            tags: [],
+                            children: [action.bookmarkId]
+                        },
+                        {
+                            id: action.bookmarkId,
+                            title: action.title,
+                            date: action.date,
+                            url: action.url,
+                            tags: action.tags,
+                            children: null
+                        });
+
+                    var parentId = action.parentGroupId || Constants.ROOT_GROUP_ID;
+                    _.find(newState, {id: parentId}).children.push(action.groupId);
+
+                    return newState;
+                }());
+
             case Constants.EDIT_BOOKMARK:
                 // open edit modal
                 console.log('edit ' + action.id);

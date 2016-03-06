@@ -2,6 +2,19 @@ define(['uuid', 'constants'], function (uuid, Constants) {
     'use strict';
 
     var Actions = {
+        addNewBookmarkToNewGroup: function (parentGroupId, groupName, title, url, tags) {
+            return databaseUpdateWrapper({
+                type: Constants.ADD_BOOKMARK_AND_GROUP,
+                parentGroupId: parentGroupId,
+                groupId: uuid.v4(),
+                bookmarkId: uuid.v4(),
+                groupName: groupName,
+                title: title,
+                url: url,
+                tags: tags,
+                date: new Date()
+            });
+        },
         addBookmark: function (parentGroupId, title, url, tags) {
             return databaseUpdateWrapper({
                 type: Constants.ADD_BOOKMARK,
@@ -17,6 +30,18 @@ define(['uuid', 'constants'], function (uuid, Constants) {
             return databaseUpdateWrapper({
                 type: Constants.EDIT_BOOKMARK,
                 id: id,
+                parentGroupId: parentGroupId,
+                title: title,
+                url: url,
+                tags: tags,
+                date: new Date()
+            });
+        },
+        editBookmarkAndCreateNewGroup: function (id, parentGroupId, title, url, tags) {
+            return databaseUpdateWrapper({
+                type: Constants.EDIT_BOOKMARK_AND_CREATE_GROUP,
+                id: id,
+                groupId: uuid.v4(),
                 parentGroupId: parentGroupId,
                 title: title,
                 url: url,

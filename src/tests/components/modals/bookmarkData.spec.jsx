@@ -13,12 +13,14 @@ define(['React', 'reactDOM', 'components/modals/BookmarkData', 'constants'],
                         title: 'Bookmark 2 title',
                         date: new Date(2012, 10, 9),
                         children: null,
+                        tags: [],
                         url: "www.tweeter.com"
                     },
                     {
                         id: '001',
                         title: 'Gaspar Noe Movies',
                         date: new Date(2012, 10, 9),
+                        tags: [],
                         children: Array(2).fill({})
                     }
                 ];
