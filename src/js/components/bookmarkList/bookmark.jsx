@@ -1,5 +1,5 @@
-define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'utils/bookmarksUtil'],
-    function (React, Constants, draggable, ActionProvider, BookmarksUtil) {
+define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'utils/bookmarksUtil', 'components/bookmarkList/bookmarkList'],
+    function (React, Constants, draggable, ActionProvider, BookmarksUtil, BookmarkList) {
 
         'use strict';
         var Bookmark = React.createClass({
@@ -68,22 +68,11 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
                 }
 
                 return (
-                    <ul>
-                        {_.map(BookmarksUtil.getItemsByGroupId(this.props.state.bookmarks, this.props.bookmarkData.id),
-                            function (bm) {
-                                return (
-                                    <li key={bm.id}><Bookmark
-                                        bookmarkData={bm}
-                                        layout={this.props.layout}
-                                        state={this.props.state}
-                                        dispatch={this.props.dispatch}
-                                        dragClass={false}
-                                        dragStart={function () {}}
-                                        dragOver={function () {}}
-                                        dragEnd={function () {}}
-                                    /></li>);
-                            }.bind(this))}
-                    </ul>
+                    <BookmarkList dispatch={this.props.dispatch}
+                                  state={this.props.state}
+                                  rootId={this.props.bookmarkData.id}
+                                  repeaterItem = {this.props.repeaterItem}
+                                  layout={this.props.layout}/>
                 );
             },
             render: function () {

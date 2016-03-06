@@ -1,10 +1,9 @@
 define(['lodash',
         'react',
         'constants',
-        'components/bookmarkList/bookmark',
         'actionProviders/actions',
         'utils/bookmarksUtil'],
-    function (_, React, Constants, Bookmark, ActionProvider, BookmarksUtil) {
+    function (_, React, Constants, ActionProvider, BookmarksUtil) {
 
         'use strict';
 
@@ -20,11 +19,14 @@ define(['lodash',
                 if (!this.state.dragged || this.state.draggedOver === draggedOverId) {
                     return;
                 }
-                this.setState({draggedOver: draggedOverId}, function () {
-                    if (this.state.dragged !== draggedOverId) {
-                        this.props.dispatch(ActionProvider.dragReorder(this.state.dragged, draggedOverId, _.last(this.props.state.currentBookmarkPath)));
-                    }
-                });
+                if (this.state.dragged === draggedOverId) {
+                    this.setState({draggedOver: draggedOverId});
+                } else {
+                    this.setState({draggedOver: draggedOverId}, function () {
+                        var rootId = this.props.layout === Constants.layoutType.GRID ? _.last(this.props.state.currentBookmarkPath) : this.props.rootId;
+                        this.props.dispatch(ActionProvider.dragReorder(this.state.dragged, draggedOverId, rootId));
+                    });
+                }
             },
             setDragged: function (draggedId) {
                 if (this.state.dragged !== draggedId) {
@@ -44,7 +46,7 @@ define(['lodash',
                 if (!visibleItems) {
                     visibleItems = this.props.layout === Constants.layoutType.GRID
                         ? BookmarksUtil.getCurrentGroupItems(this.props.state.bookmarks, this.props.state.currentBookmarkPath)
-                        : BookmarksUtil.getItemsByGroupId(this.props.state.bookmarks, Constants.ROOT_GROUP_ID);
+                        : BookmarksUtil.getItemsByGroupId(this.props.state.bookmarks, this.props.rootId);
                 }
 
                 var sortType = this.props.state.sort.sortType;
@@ -60,7 +62,7 @@ define(['lodash',
                             }
 
                             return (
-                                <Bookmark
+                                <this.props.repeaterItem
                                     key={bm.id}
                                     dataId={bm.id}
                                     bookmarkData={bm}
@@ -71,6 +73,7 @@ define(['lodash',
                                     dragStart={this.setDragged}
                                     dragOver={this.dragReorder}
                                     dragEnd={this.resetDragState}
+                                    repeaterItem = {this.props.repeaterItem}
                                 />);
                         }.bind(this))}
                     </div>
