@@ -13,12 +13,14 @@ define(['React', 'reactDOM', 'components/modals/BookmarkData', 'constants'],
                         title: 'Bookmark 2 title',
                         date: new Date(2012, 10, 9),
                         children: null,
+                        tags: [],
                         url: "www.tweeter.com"
                     },
                     {
                         id: '001',
                         title: 'Gaspar Noe Movies',
                         date: new Date(2012, 10, 9),
+                        tags: [],
                         children: Array(2).fill({})
                     }
                 ];
@@ -70,10 +72,10 @@ define(['React', 'reactDOM', 'components/modals/BookmarkData', 'constants'],
 
             describe('Bookmark Edit', function () {
 
-                it('should call render button with Edit word', function () {
+                it('should call render button with Save word', function () {
                     var reactComp = createDemoAddBookmarkModal();
                     var editBookmark = TestUtils.findRenderedDOMComponentWithTag(reactComp, 'button');
-                    expect(editBookmark.innerHTML).toMatch(/Edit/);
+                    expect(editBookmark.innerHTML).toMatch(/Save/);
                 });
             });
         });

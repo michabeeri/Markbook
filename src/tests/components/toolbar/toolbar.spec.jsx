@@ -9,16 +9,17 @@ define(['react', 'components/toolbar/toolbar', 'constants'],
             var toolBar;
 
             beforeEach(function () {
-                toolBar = testUtils.renderIntoDocument(<ToolBar sort={{sortType: Constants.DEFAULT_SORT_TYPE}} dispatch={function(){}}/>);
+                toolBar = testUtils.renderIntoDocument(<ToolBar items={[]} sort={{sortType: Constants.DEFAULT_SORT_TYPE}}
+                    dispatch={function(){}}/>);
             });
 
-            it ('should show a search box with Search placeholder', function () {
+            it('should show a search box with Search placeholder', function () {
                 var searchNode = testUtils.findRenderedDOMComponentWithClass(toolBar, 'search-box');
                 expect(searchNode).toBeTruthy();
                 expect(searchNode.placeholder).toEqual('Search');
             });
 
-            it ('should show an order by input', function () {
+            it('should show an order by input', function () {
                 var orderByNode = testUtils.findRenderedDOMComponentWithClass(toolBar, 'order-by');
                 expect(orderByNode).toBeTruthy();
             });

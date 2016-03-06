@@ -52,11 +52,11 @@ define(['lodash', 'utils/bookmarksUtil'], function (_, BookmarksUtil) {
 
             it('should support missing property', function () {
                 var itemsWithoutTag = [
-                {
-                    title: 'a',
-                    date: new Date(2015, 10, 18),
-                    children: null
-                }];
+                    {
+                        title: 'a',
+                        date: new Date(2015, 10, 18),
+                        children: null
+                    }];
 
                 var results = BookmarksUtil.filterItems(itemsWithoutTag, '', ['title', 'tags']);
 
@@ -123,6 +123,35 @@ define(['lodash', 'utils/bookmarksUtil'], function (_, BookmarksUtil) {
 
                 var groups = BookmarksUtil.getAllGroups(bookmarks);
                 expect(groups.length).toEqual(2);
+            });
+        });
+
+        describe('getTotalSelectedBookmarks', function () {
+            it('should return 0 if no bookmark has the selected property', function () {
+                var bookmarks = [
+                    {id: 1}
+                ];
+
+                var total = BookmarksUtil.getTotalSelectedBookmarks(bookmarks);
+
+                expect(total).toEqual(0);
+            });
+            it('should return 0 if the bookmarks array is empty', function () {
+                var bookmarks = [];
+
+                var total = BookmarksUtil.getTotalSelectedBookmarks(bookmarks);
+
+                expect(total).toEqual(0);
+            });
+            it('should return the total bookmarks with selected = true', function () {
+                var bookmarks = [
+                    {id: 1, selected: true},
+                    {id: 2, selected: false},
+                    {id: 3}
+                ];
+
+                var total = BookmarksUtil.getTotalSelectedBookmarks(bookmarks);
+                expect(total).toEqual(1);
             });
         });
 

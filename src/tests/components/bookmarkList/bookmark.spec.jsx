@@ -25,7 +25,9 @@ define(['react', 'reactDOM', 'constants', 'components/bookmarkList/bookmark'],
                                                                   dragStart={dragStart}
                                                                   dragOver={dragOver}
                                                                   dragEnd={dragEnd}
+                                                                  state={{selectedBookmarks: {selectedBookmarksIds: []}}}
                                                                   dataId='bm001'/>);
+
                 jasmine.clock().install();
             });
 
