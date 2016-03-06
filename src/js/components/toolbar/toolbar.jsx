@@ -22,6 +22,9 @@ define(
             onSelectDeselectAll: function (isSelectAll) {
                 this.props.dispatch(ActionProvider.selectDeselectAll(isSelectAll));
             },
+            onEdit: function () {
+                this.props.dispatch(ActionProvider.openBookmarkDataModal(BookmarksUtil.getSelectedBookmarks(this.props.items)[0].id));
+            },
             render: function () {
                 return (
                     <div className='app-line-container'>
@@ -33,7 +36,8 @@ define(
                                         totalSelected={BookmarksUtil.getTotalSelectedBookmarks(this.props.items)}
                                         layoutType={this.props.layout}
                                         switchLayout={this.props.switchLayout}
-                                        minGridLayoutExceeded={this.props.minGridLayoutExceeded}/>
+                                        minGridLayoutExceeded={this.props.minGridLayoutExceeded}
+                                        onEdit={this.onEdit}/>
                     </div>
                 );
             }

@@ -63,7 +63,7 @@ define(['lodash',
             renderFilterResultsTitle: function (filterTerm, totalResults) {
                 var filterResultsTitle = (
                     <div className='app-line-container'>
-                        <button className='btn btn-border title-small contained' onClick={this.resetFilter}>All Bookmarks</button>
+                        <button className='btn btn-border title-small contained' onClick={this.resetFilter}>Clear Filter</button>
                         <span className='title-small contained'>Found {totalResults} match{totalResults === 1 ? '' : 'es'} for
                             <span className='search-term'> {filterTerm.term}</span> ({filterTerm.type}):</span>
                     </div>

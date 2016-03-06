@@ -122,8 +122,14 @@ define(['lodash', 'constants'], function (_, Constants) {
         return items.slice(0).sort(compareFunction);
     }
 
+    function getSelectedBookmarks(bookmarks) {
+        return _.filter(bookmarks, function (item) {
+            return item.selected;
+        });
+    }
+
     function getTotalSelectedBookmarks(bookmarks) {
-        return _.countBy(bookmarks, 'selected').true || 0;
+        return getSelectedBookmarks(bookmarks).length;
     }
 
     return {
@@ -137,6 +143,7 @@ define(['lodash', 'constants'], function (_, Constants) {
         isGroup: isGroup,
         getAllGroups: getAllGroups,
         sort: sort,
+        getSelectedBookmarks: getSelectedBookmarks,
         getTotalSelectedBookmarks: getTotalSelectedBookmarks
     };
 });
