@@ -14,6 +14,7 @@ html {
 
 body {
   background: url('../img/fabric.png');
+  margin: 0;
 }
 
 .main {
@@ -22,7 +23,7 @@ body {
   margin: auto;
   color: #333333;
   font-size: 1.4em;
-  background: linear-gradient(to bottom,rgba(196, 212, 224, 0.52) 0,rgba(236,238,239,.13) 100%);
+  background: linear-gradient(to bottom,rgba(234, 231, 226, 0.75)0,rgba(247, 244, 238, 0.31) 100%);
   position: relative;
   z-index: 1;
 }
@@ -154,3 +155,7 @@ body {
   font-weight: bold;
 }
 
+.fa-chevron-circle-left:before,
+.fa-plus-circle:before {
+  color: #C7BDAF
+}
