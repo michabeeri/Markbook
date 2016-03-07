@@ -99,6 +99,7 @@ define(
                         </div>);
                 }
 
+
                 return (
                     <div>
                         {this.props.state.flags.hasOwnProperty(Constants.BOOKMARKS_LOADED) ?
@@ -107,6 +108,7 @@ define(
                                 <ModalContainer dispatch={this.props.dispatch} state={this.props.state}/>
                                 <div className="fixed-bottom-bar">
                                     <a className="btn" onClick={this.goBack}><i className="fa fa-chevron-circle-left"></i></a>
+                                    {this.props.state.flags[Constants.FIRST_VISIT_FLAG] ? <p className="helper-message">Click here to add a new bookmark</p> : null}
                                     <a className="btn" onClick={this.openAddBookMarkModal}><i className="fa fa-plus-circle"></i></a>
                                 </div>
                             </div> :
