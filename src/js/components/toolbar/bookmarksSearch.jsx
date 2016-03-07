@@ -6,7 +6,7 @@ define(['lodash', 'react', 'components/dropdown/dropdown', 'utils/bookmarksUtil'
             displayName: 'SearchBox',
             onChange: function (event) {
                 if (event.keyCode === Constants.DOWN_ARROW) {
-
+                    console.log('down arrow');
                 }
             },
             render: function () {
