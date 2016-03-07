@@ -123,9 +123,9 @@ define(
                     <div>
                         {this.props.state.flags.hasOwnProperty(Constants.BOOKMARKS_LOADED) ?
                             <div>
-                                <a className="btn btn-add" onClick={this.openAddBookMarkModal}><i className="fa fa-plus-circle"></i></a>
+                                <a className="btn btn-add fixed-bottom " onClick={this.openAddBookMarkModal}><i className="fa fa-plus-circle"></i></a>
                                 {content}
-                                {this.props.state.flags[Constants.FIRST_VISIT_FLAG] ? <p className="helper-message">Click here to add a new bookmark</p> : null}
+                                {this.props.state.flags[Constants.FIRST_VISIT_FLAG] ? <div className="helper-message fixed-bottom tooltip">Click here to add a new bookmark</div> : null}
                                 <ModalContainer dispatch={this.props.dispatch} state={this.props.state}/>
                             </div> :
                             <Spinner />
