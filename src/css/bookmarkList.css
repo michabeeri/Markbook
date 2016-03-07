@@ -12,20 +12,20 @@
   border-radius: 3px;
   text-align: center;
   padding: 5px 10px;
-  position: relative;
   overflow: hidden;
 }
 
-.bookmark-base.group .bookmark-internal {
+.bookmark-base.group > .bookmark-internal {
   background: #4974A7;
 }
 
-.bookmark-base.group .bookmark-internal .btn-list {
+.bookmark-base.group > .bookmark-internal .btn-list {
   background-color: #4974A7;
 }
 
 .bookmark-internal > div {
   height: 20px;
+  position: relative;
 }
 
 .bookmark-base .bookmark-internal{
@@ -51,47 +51,21 @@
 
 .bookmark-base.grid .bookmark-internal .btn-list {
   bottom: -60px;
+  transition: bottom 0.3s ease-out;
 }
 
 .bookmark-base.grid .bookmark-internal:hover .btn-list {
   bottom: 0px;
 }
 
-@keyframes raise-buttons {
-  from {
-    bottom: -60px;
-  }
-  to {
-    bottom: 5px;
-  }
-}
-
-.bookmark-internal:hover .btn-list{
-  animation-name: raise-buttons;
-  animation-duration: 0.3s;
-  animation-timing-function: ease-out;
-  animation-iteration-count: 1;
-  animation-direction: normal;
-  animation-fill-mode: forwards;
-}
-
 .bookmark-base.list .bookmark-internal .btn-list {
-  bottom: 2px;
+  bottom: -16px;
   right: -150px;
-  transition: right 0.5s ease-out;
+  transition: right 0.3s ease-out;
 }
 
 .bookmark-base.list .bookmark-internal:hover .btn-list {
   right: 0px;
-}
-
-.bookmark-base.list .bookmark-internal:hover .btn-list{
-  animation-name: slide-buttons;
-  animation-duration: 0.5s;
-  animation-timing-function: ease-out;
-  animation-iteration-count: 1;
-  animation-direction: normal;
-  animation-fill-mode: forwards;
 }
 
 .bookmark-base h1,
@@ -112,25 +86,28 @@
 }
 
 .bookmark-base.grid {
+  display: inline-block;
+}
+.bookmark-base.grid .bookmark-internal{
   width: 180px;
   height: 120px;
-  display: inline-block;
-  text-align: left;
+  /*display: inline-block;*/
+  /*text-align: left;*/
 }
 
-.bookmark-base.list {
+.bookmark-base.list .bookmark-internal{
   height: 60px;
 }
 
-.bookmark-base.grid .footer {
-  position: absolute;
-  bottom: 0;
-}
+/*.bookmark-base.grid .footer {*/
+  /*position: absolute;*/
+  /*bottom: 0;*/
+/*}*/
 
-.bookmark-base.list .footer {
-  position: absolute;
-  right: 0;
-}
+/*.bookmark-base.list .footer {*/
+  /*position: absolute;*/
+  /*right: 0;*/
+/*}*/
 
 .bookmark-base.grid .btn-group {
 

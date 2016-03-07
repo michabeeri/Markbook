@@ -68,7 +68,7 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
                 }
 
                 return (
-                    <ul>
+                    <ul className="bookmark-group-internal-list">
                         {_.map(BookmarksUtil.getItemsByGroupId(this.props.state.bookmarks, this.props.bookmarkData.id),
                             function (bm) {
                                 return (

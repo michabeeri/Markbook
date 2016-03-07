@@ -1,7 +1,10 @@
-.btn-list {
+ul {
     list-style: none;
     padding: 0;
     margin: 0;
+}
+
+.btn-list {
     display: flex;
     justify-content: space-around;
 }
@@ -11,4 +14,6 @@
     margin: 0;
 }
 
-
+.bookmark-group-internal-list {
+    padding-left: 60px;
+}
