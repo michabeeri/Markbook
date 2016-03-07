@@ -59,6 +59,11 @@ define([],
             //Application root database:
             APP_ROOT_DATA: 'https://markbook.firebaseio.com/',
 
+            //local Storage
+            LOCAL_STORAGE_KEY: 'markbook',
+            LOCAL_STORAGE_SORT: 'sort',
+            LOCAL_STORAGE_LAYOUT: 'layout',
+
             // Bookmark action types
             ADD_BOOKMARK: 'ADD_BOOKMARK',
             ADD_BOOKMARK_AND_GROUP: 'ADD_BOOKMARK_AND_GROUP',
