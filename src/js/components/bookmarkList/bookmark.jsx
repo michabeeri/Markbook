@@ -85,8 +85,9 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
                          data-id={this.props.dataId}
                          onClick={this.onSelect}
                          onDoubleClick={isGroup ? this.onOpen : this.onView}
-                        {...this.getDragAttr()}>
-                        <span className={this.isGrid() ? 'hidden' : 'drag-area fa fa-bars'}></span>
+                        {...this.getDragAttr()}
+                        draggable = {this.isGrid()}>
+                        <span draggable="true" className={this.isGrid() ? 'hidden' : 'drag-area fa fa-bars'}></span>
                         <div className="bookmark-internal">
                             <span className='title-small'>{this.props.bookmarkData.title}</span>
 

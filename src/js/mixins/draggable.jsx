@@ -4,6 +4,7 @@ define([], function () {
         onDragStart: function (event) {
             event.stopPropagation();
             event.dataTransfer.effectAllowed = 'move';
+            event.dataTransfer.setDragImage(this.refs.draggedItem, 0 , 0);
             setTimeout(function () {
                 this.props.dragStart(this.props.dataId);
             }.bind(this), 50);
@@ -17,10 +18,11 @@ define([], function () {
         },
         getDragAttr: function () {
             return {
-                draggable: 'true',
+                //draggable: 'true',
                 onDragStart: this.onDragStart,
                 onDragEnd: this.onDragEnd,
-                onDragOver: this.onDragOver
+                onDragOver: this.onDragOver,
+                ref: 'draggedItem'
             };
         }
     };
