@@ -1,6 +1,6 @@
 define(
-    ['lodash', 'react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmarkList', 'components/bookmarkList/bookmark', 'components/breadcrumbs/breadCrumbs', 'components/modals/ModalContainer', 'constants', 'actionProviders/actions', 'utils/bookmarksUtil', 'components/mainView/FilterResultsTitle', 'components/spinner/spinner'],
-    function (_, React, ToolBar, BookmarkList, Bookmark, BreadCrumbs, ModalContainer, Constants, actions, BookmarksUtil, FilterResultsTitle, Spinner) {
+    ['lodash', 'react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmarkList', 'components/bookmarkList/bookmark', 'components/breadcrumbs/breadCrumbs', 'components/modals/ModalContainer', 'constants', 'actionProviders/actions', 'utils/bookmarksUtil', 'utils/localStorageUtil', 'components/mainView/FilterResultsTitle', 'components/spinner/spinner'],
+    function (_, React, ToolBar, BookmarkList, Bookmark, BreadCrumbs, ModalContainer, Constants, actions, BookmarksUtil, LocalStorageUtil, FilterResultsTitle, Spinner) {
         'use strict';
         return React.createClass({
             displayName: 'MainView',
@@ -8,6 +8,10 @@ define(
                 return {
                     minGridLayoutExceeded: document.body.clientWidth < Constants.GRID_MIN_WIDTH
                 };
+            },
+            componentWillMount: function () {
+                this.props.dispatch(actions.setLayout(this.getDefaultLayout()));
+                this.props.dispatch(actions.setSortType(this.getDefaultSortType()));
             },
             componentDidMount: function () {
                 window.addEventListener('throttledResize', this.resizeHandler);
@@ -22,7 +26,7 @@ define(
                         minGridLayoutExceeded: true
                     });
                 } else if (this.state.minGridLayoutExceeded) {
-                    this.props.dispatch(actions.setLayout(Constants.layoutType.GRID));
+                    this.props.dispatch(actions.setLayout(this.getDefaultLayout()));
                     this.setState({
                         minGridLayoutExceeded: false
                     });
@@ -65,6 +69,22 @@ define(
             switchLayout: function () {
                 var newLayout = this.props.state.layout.layoutType === Constants.layoutType.GRID ? Constants.layoutType.LIST : Constants.layoutType.GRID;
                 this.props.dispatch(actions.setLayout(newLayout));
+            },
+            getDefaultLayout: function () {
+                var defaultLayout = Constants.layoutType.GRID;
+                var localStorage = LocalStorageUtil.getItem(Constants.LOCAL_STORAGE_KEY);
+                if (localStorage && localStorage.hasOwnProperty(Constants.LOCAL_STORAGE_LAYOUT)) {
+                    defaultLayout = localStorage[Constants.LOCAL_STORAGE_LAYOUT];
+                }
+                return defaultLayout;
+            },
+            getDefaultSortType: function () {
+                var defaultSort = Constants.sortTypes.DATE_ASC;
+                var localStorage = LocalStorageUtil.getItem(Constants.LOCAL_STORAGE_KEY);
+                if (localStorage && localStorage.hasOwnProperty(Constants.LOCAL_STORAGE_SORT)) {
+                    defaultSort = localStorage[Constants.LOCAL_STORAGE_SORT];
+                }
+                return defaultSort;
             },
             render: function () {
                 var content;

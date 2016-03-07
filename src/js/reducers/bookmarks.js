@@ -120,10 +120,10 @@ define(['lodash', 'uuid', 'constants', 'utils/bookmarksUtil'], function (_, uuid
             case Constants.TOGGLE_BOOKMARK_SELECTION:
                 return _.map(state, function (bm) {
                     if (bm.id === action.id) {
-                        return Object.assign({}, bm, {selected: !bm.selected});
+                        return _.assign({}, bm, {selected: !bm.selected});
 
                     } else if (!action.isMultiSelect) {
-                        return Object.assign({}, bm, {selected: false});
+                        return _.assign({}, bm, {selected: false});
 
                     }
                     return bm;
@@ -132,7 +132,7 @@ define(['lodash', 'uuid', 'constants', 'utils/bookmarksUtil'], function (_, uuid
             case Constants.SELECT_DESELECT_ALL:
                 return _.map(state, function (bm) {
                     if (_.contains(action.itemIds, bm.id)) {
-                        return Object.assign({}, bm, {selected: action.isSelectAll});
+                        return _.assign({}, bm, {selected: action.isSelectAll});
                     }
                     return bm;
                 });

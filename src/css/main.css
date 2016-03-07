@@ -81,6 +81,10 @@ body {
   font-size: 17px;
 }
 
+.btn-style-less:focus {
+  outline-width: 5px;
+}
+
 .border-simple {
   border: 1px solid #cccccc;
 }

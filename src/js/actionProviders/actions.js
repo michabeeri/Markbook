@@ -109,12 +109,12 @@ define(['uuid', 'constants'], function (uuid, Constants) {
             };
         },
         dragReorder: function (draggedId, draggedOverId, currentGroupId) {
-            return {
+            return databaseUpdateWrapper({
                 type: Constants.DRAG_REORDER,
                 draggedId: draggedId,
                 draggedOverId: draggedOverId,
                 currentGroupId: currentGroupId
-            };
+            });
         },
         openBookmarkGroup: function (id) {
             return {
