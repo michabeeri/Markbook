@@ -19,7 +19,7 @@ define(['React', 'reactDOM', 'components/modals/ModalGroupDelete', 'constants', 
                         id: '001',
                         title: 'Gaspar Noe Movies',
                         date: new Date(2012, 10, 9),
-                        children: Array(2).fill({})
+                        children: [{}, {}]
                     }
                 ];
                 var dispatchSpy = jasmine.createSpy('dispatch');
