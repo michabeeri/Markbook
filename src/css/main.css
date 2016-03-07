@@ -23,26 +23,22 @@ body {
   margin: auto;
   color: #333333;
   font-size: 1.4em;
-  background: linear-gradient(to bottom,rgba(234, 231, 226, 0.75)0,rgba(247, 244, 238, 0.31) 100%);
+  background: linear-gradient(to bottom, rgba(234, 231, 226, 0.75) 0, rgba(247, 244, 238, 0.31) 100%);
   position: relative;
   z-index: 1;
-}
-
-.box {
-  margin: 15px
 }
 
 .app-line-container {
   margin: 15px;
   padding: 5px;
-  height: 40px;
-  line-height: 30px;
+  height: 45px;
+  line-height: 35px;
   position: relative;
 }
 
 .contained {
   margin-left: 10px;
-  height: 30px;
+  height: 35px;
 }
 
 .label {
@@ -56,6 +52,11 @@ body {
 
 .inline {
   display: inline-block;
+}
+
+.fixed-middle {
+  position: fixed;
+  top: 50%;
 }
 
 .style-less-list {
@@ -78,36 +79,6 @@ body {
 
 .title-small {
   font-size: 17px;
-  font-weight: 100;
-}
-
-.btn {
-  font: 14px 'Helvetica Neue Regular', 'Helvetica Neue';
-  padding: 3px 10px;
-  text-align: center;
-  cursor: pointer;
-}
-
-.btn-border {
-  border: 1px solid #cccccc;
-  border-radius: 30px;
-  background-color: transparent;
-}
-
-.btn-disabled {
-  cursor: not-allowed;
-  color: #cccccc;
-}
-
-.btn-list-item {
-  text-align: left;
-}
-
-.btn-style-less {
-  border: none;
-  outline: none;
-  background: none;
-  cursor: pointer;
 }
 
 .border-simple {
@@ -132,7 +103,7 @@ body {
   font-size: 14px;
   font-weight: 200;
   text-align: left;
-  height: 30px;
+  height: 35px;
   width: 220px;
   padding: 15px;
 }
@@ -157,5 +128,5 @@ body {
 
 .fa-chevron-circle-left:before,
 .fa-plus-circle:before {
-  color: #C7BDAF
+  color: #c7bdaf
 }
