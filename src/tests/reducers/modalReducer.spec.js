@@ -5,7 +5,7 @@ define(['lodash', 'reducers/modalReducer', 'actionProviders/actions', 'constants
             var initialState = null;
             var action = actions.openBookmarkDataModal('');
             var newState = modalReducer(initialState, action);
-            expect(newState).toEqual({type: constants.eModalType.MODAL_ADD_BOOKMARK, id: ''});
+            expect(newState).toEqual({type: constants.eModalType.MODAL_BOOKMARK_DATA, id: ''});
         });
         it('should open delete group modal', function () {
             var initialState = null;
@@ -24,7 +24,7 @@ define(['lodash', 'reducers/modalReducer', 'actionProviders/actions', 'constants
             expect(newState).toEqual(null);
         });
         it('should close modal', function () {
-            var initialState = {type: constants.eModalType.MODAL_ADD_BOOKMARK};
+            var initialState = {type: constants.eModalType.MODAL_BOOKMARK_DATA};
             var action = actions.closeModal();
             var newState = modalReducer(initialState, action);
             expect(newState).toEqual(null);

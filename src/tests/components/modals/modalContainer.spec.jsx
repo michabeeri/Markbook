@@ -13,7 +13,7 @@ define(['React', 'reactDOM', 'components/modals/ModalContainer', 'constants'], f
             expect(TestUtils.scryRenderedDOMComponentsWithClass(reactComp, "modal-opened").length).toBe(0);
         });
         it('should have only one opened modal', function () {
-            var reactComp = createDemoModalContainer(constants.eModalType.MODAL_ADD_BOOKMARK);
+            var reactComp = createDemoModalContainer(constants.eModalType.LAST_BOOKMARK_IN_GROUP_ALERT);
             expect(TestUtils.scryRenderedDOMComponentsWithClass(reactComp, "modal-opened").length).toBe(1); 
             //add later others components 
         });
