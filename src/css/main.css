@@ -1,57 +1,57 @@
 html {
-  font: 62.5%/1.35 'Helvetica Neue Regular', 'Helvetica Neue';
-  font-weight: 200;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+    font: 62.5%/1.35 'Helvetica Neue Regular', 'Helvetica Neue';
+    font-weight: 200;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 *, *:before, *:after {
-  -webkit-box-sizing: inherit;
-  -moz-box-sizing: inherit;
-  box-sizing: inherit;
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
 }
 
 body {
-  background: url('../img/fabric.png');
-  margin: 0;
+    background: url('../img/fabric.png');
+    margin: 0;
 }
 
 .main {
-  max-width: 900px;
-  min-height: 700px;
-  margin: auto;
-  color: #333333;
-  font-size: 1.4em;
-  background: linear-gradient(to bottom, rgba(234, 231, 226, 0.75) 0, rgba(247, 244, 238, 0.31) 100%);
-  position: relative;
-  z-index: 1;
+    max-width: 900px;
+    min-height: 700px;
+    margin: auto;
+    color: #333333;
+    font-size: 1.4em;
+    background: linear-gradient(to bottom, rgba(234, 231, 226, 0.75) 0, rgba(247, 244, 238, 0.31) 100%);
+    position: relative;
+    z-index: 1;
 }
 
 .app-line-container {
-  margin: 15px;
-  padding: 5px;
-  height: 45px;
-  line-height: 35px;
-  position: relative;
+    margin: 15px;
+    padding: 5px;
+    height: 45px;
+    line-height: 35px;
+    position: relative;
 }
 
 .contained {
-  margin-left: 10px;
-  height: 35px;
+    margin-left: 10px;
+    height: 35px;
 }
 
 .label {
-  padding-right: 5px;
-  vertical-align: sub;
+    padding-right: 5px;
+    vertical-align: sub;
 }
 
 .hidden {
-  display: none;
+    display: none;
 }
 
 .inline {
-  display: inline-block;
+    display: inline-block;
 }
 
 .fixed-center {
@@ -60,77 +60,82 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  margin: auto
+  margin: auto;
+}
+
+.fixed-bottom {
+    position: fixed;
+    bottom: 5%;
 }
 
 .style-less-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .horizontal-list .list-item {
-  display: inline-block;
+    display: inline-block;
 }
 
 .title-normal {
-  font-size: 20px;
+    font-size: 20px;
 }
 
 .title-large {
-  font-size: 32px;
+    font-size: 32px;
 }
 
 .title-small {
-  font-size: 17px;
+    font-size: 17px;
 }
 
 .btn-style-less:focus {
-  outline-width: 5px;
+    outline-width: 5px;
 }
 
 .border-simple {
-  border: 1px solid #cccccc;
+    border: 1px solid #cccccc;
 }
 
 .border-no-top {
-  border-width: 0 1px 1px 1px;
-  border-style: solid;
+    border-width: 0 1px 1px 1px;
+    border-style: solid;
 }
 
 .border-bottom {
-  border-width: 0 0 1px 0;
-  border-style: solid;
-  border-color: #cccccc;
+    border-width: 0 0 1px 0;
+    border-style: solid;
+    border-color: #cccccc;
 }
 
 .input {
-  border-color: #cccccc;
-  border: 1px solid;
-  color: #6b6b6b;
-  font-size: 14px;
-  font-weight: 200;
-  text-align: left;
-  height: 35px;
-  width: 220px;
-  padding: 15px;
+    border-color: #cccccc;
+    border: 1px solid;
+    color: #6b6b6b;
+    font-size: 14px;
+    font-weight: 200;
+    text-align: left;
+    height: 35px;
+    width: 220px;
+    padding: 15px;
 }
 
 .input-long {
-  width: 520px;
+    width: 520px;
 }
 
 .invalid-input {
-  border-color: #cc0000;
-  background-color: #fdf3f3;
+    border-color: #cc0000;
+    background-color: #fdf3f3;
 }
 
 .error-message {
-  color: #cc0000;
+    color: #cc0000;
 }
 
 .search-term {
-  font-style: italic;
-  font-weight: bold;
+    font-style: italic;
+    font-weight: bold;
 }
 
