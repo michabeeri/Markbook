@@ -39,7 +39,6 @@
   background-color: rgba(152, 194, 193, 0.8);
 }
 
-.bookmark-base.grid.group .bookmark-internal .btn-list,
 .bookmark-base.grid.group .bookmark-internal:hover {
   background-color: rgba(152, 194, 193, 1);
 }
@@ -48,7 +47,6 @@
   background-color: rgba(154, 189, 220, 0.7);
 }
 
-.bookmark-base.grid.leaf .bookmark-internal .btn-list,
 .bookmark-base.grid.leaf .bookmark-internal:hover {
   background-color: rgba(154, 189, 220, 1);
 }
@@ -79,6 +77,7 @@
 
 .bookmark-base.grid:hover .title-info {
   color: transparent;
+  transition-duration: 0s;
 }
 
 .bookmark-base.grid .bookmark-internal:hover .btn-list {

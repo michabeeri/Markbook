@@ -7,7 +7,6 @@
 }
 
 .action-controls {
-  height: 30px;
   position: absolute;
   right: 0;
 }
@@ -22,10 +21,10 @@
 
 .search-box-container {
   padding-left: 15px;
+
 }
 
 .search-box.input {
   border: none;
   background-color: transparent;
-  line-height: 30px;
 }

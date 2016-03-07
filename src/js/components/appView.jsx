@@ -16,6 +16,7 @@ define(['react', 'reactRedux', 'constants', 'components/mainView/mainView', 'com
                         <TopBar {...this.props}/>
                         <MainView {...this.props}/>
                     </div>
+
                 );
             }
         });
