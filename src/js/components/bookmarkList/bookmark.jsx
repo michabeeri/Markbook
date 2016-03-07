@@ -6,7 +6,7 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
             mixins: [draggable],
             displayName: 'Bookmark',
             onView: function (evt) {
-                window.open('http://www.google.com');
+                window.open(this.props.bookmarkData.url);
                 evt.stopPropagation();
             },
             onOpen: function (evt) {

@@ -4,7 +4,7 @@ define([],
 
         var eModalType = {
             NONE: 'None',
-            MODAL_ADD_BOOKMARK: 'Add Bookmark modal',
+            MODAL_BOOKMARK_DATA: 'Modal Bookmark Data',
             MODAL_EDIT_GROUP: 'Modal Edit Group',
             LAST_BOOKMARK_IN_GROUP_ALERT: 'Last Item In Group Alert',
             GROUP_DELETE_NOTIFICATION: 'Group Delete Notification'

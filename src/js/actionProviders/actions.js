@@ -130,7 +130,7 @@ define(['uuid', 'constants'], function (uuid, Constants) {
         openBookmarkDataModal: function (id) {
             return {
                 type: Constants.OPEN_MODAL,
-                modalType: Constants.eModalType.MODAL_ADD_BOOKMARK,
+                modalType: Constants.eModalType.MODAL_BOOKMARK_DATA,
                 bookmarkId: id
             };
         },

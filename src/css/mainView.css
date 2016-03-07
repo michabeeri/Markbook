@@ -1,0 +1,23 @@
+.fixed-bottom-bar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.fixed-bottom-bar .btn {
+    color: #2e2e2e;
+}
+
+.fixed-bottom-bar .btn {
+    width: 64px;
+    height: 64px;
+}
+
+.fixed-bottom-bar .btn > .fa {
+    width: 54px;
+    height: 48px;
+    font-size: 48px;
+}
+
+.fixed-bottom-bar .btn:hover {
+    color: #4e4e4e;
+}
