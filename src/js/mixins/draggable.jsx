@@ -4,7 +4,7 @@ define([], function () {
         onDragStart: function (event) {
             event.stopPropagation();
             event.dataTransfer.effectAllowed = 'move';
-            event.dataTransfer.setDragImage(this.refs.draggedItem, 0 , 0);
+            event.dataTransfer.setDragImage(this.refs.draggedItem, 0, 0);
             setTimeout(function () {
                 this.props.dragStart(this.props.dataId);
             }.bind(this), 50);
