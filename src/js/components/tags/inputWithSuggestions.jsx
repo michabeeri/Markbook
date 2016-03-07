@@ -35,9 +35,9 @@ define(['React', 'lodash', 'components/dropdown/dropdown'],
                 }
             },
             onBlur: function () {
-                //this.setState({
-                //    isEditing: false
-                //});
+                this.setState({
+                    isEditing: false
+                });
             },
             onSuggestionClick: function (group, suggestion) {
                 this.onInputSelected(suggestion);

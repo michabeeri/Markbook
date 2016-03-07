@@ -29,7 +29,7 @@ define(['react'], function (React) {
             var self = this;
             if (filteredGroup.lines.length > 0) {
                 return (filteredGroup.lines.map(function (line, itemIndex) {
-                    return (<li className='btn-list-item dropdown-item' onClick={self.onClick}
+                    return (<li className='btn-list-item dropdown-item' onMouseDown={self.onClick}
                                 data-value={line} key={Math.random()}
                                 data-type={filteredGroup.groupType}
                                 ref={filteredGroup.groupType + itemIndex}>
