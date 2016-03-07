@@ -79,22 +79,24 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
                 );
             },
             render: function () {
+                var isGroup = this.isGroup();
                 return (
                     <div className={this.getClassString()}
                          data-id={this.props.dataId}
                          onClick={this.onSelect}
-                         onDoubleClick={this.isGroup() ? this.onOpen : this.onView}
+                         onDoubleClick={isGroup ? this.onOpen : this.onView}
                         {...this.getDragAttr()}>
+                        <span className={this.isGrid() ? 'hidden' : 'drag-area fa fa-bars'}></span>
                         <div className="bookmark-internal">
                             <span className='title-small'>{this.props.bookmarkData.title}</span>
 
                             <div>
-                                <span className='title-small title-info'>{this.isGroup()
+                                <span className='title-small title-info'>{isGroup
                                     ? this.props.bookmarkData.children.length + ' items inside'
                                     : this.props.bookmarkData.date.toLocaleDateString('en-US')}</span>
 
                                 <ul className="btn-list">
-                                    {this.isGroup()
+                                    {isGroup
                                         ? <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onOpen}><i className="fa fa-folder-open-o"></i></a></li>
                                         : <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onView}><i className="fa fa-link"></i></a></li>
                                     }
