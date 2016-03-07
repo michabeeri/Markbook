@@ -39,20 +39,16 @@ define(['lodash', 'react', 'components/dropdown/dropdown', 'utils/bookmarksUtil'
                     ['title', 'tags']);
 
                 var searchResults = {items: []};
-                if (!_.isEmpty(filterResults.title)) {
-                    searchResults.items.push({
-                        title: 'Bookmarks',
-                        groupType: 'title',
-                        lines: filterResults.title
-                    });
-                }
-                if (!_.isEmpty(filterResults.tags)) {
-                    searchResults.items.push({
-                        title: 'Tags',
-                        groupType: 'tags',
-                        lines: filterResults.tags
-                    });
-                }
+                searchResults.items.push({
+                    title: 'Bookmarks',
+                    groupType: 'title',
+                    lines: filterResults.title
+                });
+                searchResults.items.push({
+                    title: 'Tags',
+                    groupType: 'tags',
+                    lines: filterResults.tags
+                });
                 return searchResults;
             },
             filterBookmarksByTerm: function (type, filterTerm) {
