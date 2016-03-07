@@ -97,14 +97,15 @@ html {
 .btn-group {
 }
 
-.btn-add {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  max-width: 20rem;
-  margin-bottom: 20px;
-  margin-right: 20px;
-}
+.
+/*.btn-add {*/
+  /*position: fixed;*/
+  /*bottom: 0;*/
+  /*right: 0;*/
+  /*max-width: 20rem;*/
+  /*margin-bottom: 20px;*/
+  /*margin-right: 20px;*/
+/*}*/
 
 .btn-style-less {
   border: none;
