@@ -1,6 +1,6 @@
 define(
-    ['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmarkList', 'components/breadcrumbs/breadCrumbs', 'components/modals/ModalContainer', 'constants', 'actionProviders/actions', 'utils/bookmarksUtil', 'components/mainView/FilterResultsTitle'],
-    function (React, ToolBar, BookmarkList, BreadCrumbs, ModalContainer, Constants, actions, BookmarksUtil, FilterResultsTitle) {
+    ['react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmarkList', 'components/bookmarkList/bookmark', 'components/breadcrumbs/breadCrumbs', 'components/modals/ModalContainer', 'constants', 'actionProviders/actions', 'utils/bookmarksUtil', 'components/mainView/FilterResultsTitle', 'components/spinner/spinner'],
+    function (React, ToolBar, BookmarkList, Bookmark, BreadCrumbs, ModalContainer, Constants, actions, BookmarksUtil, FilterResultsTitle, Spinner) {
         'use strict';
         return React.createClass({
             displayName: 'MainView',
@@ -90,17 +90,22 @@ define(
                             <BookmarkList dispatch={this.props.dispatch}
                                           state={this.props.state}
                                           layout={layout}
-                                          modalUtils={{lastItemInGroup: this.openRemoveLastItemInGroupModal, groupDelete: this.openGroupDeleteModal}}
+                                          repeaterItem={Bookmark}
+                                          rootId={Constants.ROOT_GROUP_ID}
                                           filteredBookmarks={this.filteredBookmarks}/>
                         </div>);
                 }
 
-
                 return (
                     <div>
-                        {content}
-                        <ModalContainer dispatch={this.props.dispatch} state={this.props.state}/>
-                        <i className="fa fa-plus-circle fa-3x btn-add" onClick={this.openAddBookMarkModal}></i>
+                        {this.props.state.flags.hasOwnProperty(Constants.BOOKMARKS_LOADED) ?
+                            <div>
+                                {content}
+                                <ModalContainer dispatch={this.props.dispatch} state={this.props.state}/>
+                                <i className="fa fa-plus-circle fa-3x btn-add" onClick={this.openAddBookMarkModal}></i>
+                            </div> :
+                            <Spinner />
+                        }
                     </div>
                 );
             }

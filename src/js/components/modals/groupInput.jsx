@@ -6,13 +6,14 @@ define(['react', 'components/tags/inputWithSuggestions', 'utils/bookmarksUtil'],
 
         return React.createClass({
             propTypes: {
+                input: React.PropTypes.string.isRequired,
                 addGroup: React.PropTypes.func.isRequired,
                 bookmarks: React.PropTypes.array.isRequired
             },
             mixins: [LinkedStateMixin],
             getInitialState: function () {
                 return {
-                    input: ''
+                    input: this.props.input
                 };
             },
             onInputSelected: function (group) {

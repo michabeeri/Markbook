@@ -11,9 +11,7 @@ define(['react', 'reactDOM', 'reduxTestUtils', 'components/appView'],
             var appView;
 
             beforeEach(function () {
-
                 appView = ReduxTestUtils.renderInProvider(AppView);
-
             });
 
             it('should render the topbar component', function () {

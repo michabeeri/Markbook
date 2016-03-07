@@ -1,6 +1,9 @@
 .bookmark-list-container.grid {
   height: 500px;
-  text-align: center;
+}
+
+.bookmark-drill-down-spacer {
+  padding-left: 60px;
 }
 
 .bookmark-internal {

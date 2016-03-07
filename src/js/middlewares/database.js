@@ -36,6 +36,7 @@ define(['lodash', 'constants', 'actionProviders/actions', 'dataBaseApi/dataBaseA
                                     ? data.sort
                                     : {sortType: Constants.DEFAULT_SORT_TYPE}));
 
+                            store.dispatch(ActionProvider.turnOnFlag(Constants.BOOKMARKS_LOADED));
                         });
 
                         return next(action);
