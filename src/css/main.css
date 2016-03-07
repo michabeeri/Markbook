@@ -54,13 +54,12 @@ body {
   display: inline-block;
 }
 
-
 .fixed-center {
   position: fixed;
   top: 0;
   bottom: 0;
-  left:0;
-  right:0;
+  left: 0;
+  right: 0;
   margin: auto
 }
 
@@ -135,7 +134,3 @@ body {
   font-weight: bold;
 }
 
-.fa-chevron-circle-left:before,
-.fa-plus-circle:before {
-  color: #c7bdaf
-}

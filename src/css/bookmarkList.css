@@ -2,21 +2,29 @@
   padding-left: 60px;
 }
 
+.bookmark-list-container {
+  padding: 15px;
+}
+
 .bookmark-internal {
   font-weight: 200;
   color: white;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.bookmark-internal,
+.drag-area {
+  text-align: center;
   box-shadow: inset 0 0 1px #235b82;
   border-radius: 3px;
-  text-align: center;
-  padding: 5px 10px;
-  overflow: hidden;
-  transition: 0.7s ease;
 }
 
 .bookmark-base {
   margin: 10px;
   border-radius: 3px;
   display: flex;
+  transition: 0.8s ease;
 }
 
 .bookmark-base .bookmark-internal {
@@ -37,26 +45,29 @@
 
 .bookmark-base h1,
 .bookmark-base h2,
-.bookmark-base button {
+.bookmark-base button,
+.bookmark-base .title-small {
   user-select: none; /* CSS3 (little to no support) */
   -ms-user-select: none; /* IE 10+ */
   -moz-user-select: none; /* Gecko (Firefox) */
   -webkit-user-select: none;
+  cursor: default;
 }
 
-.bookmark-base.selected .bookmark-internal {
-  box-shadow: inset 0 0 4px #00336c, 0 0 4px #00336c;
+.bookmark-base.selected .bookmark-internal,
+.bookmark-base.selected .drag-area {
+  box-shadow: inset 0 0 2px #00336c,0 0 1px #00336c;
 }
 
 .bookmark-base.dragged {
   opacity: 0;
 }
 
-.bookmark-base .title-info {
+.bookmark-internal .title-info {
   transition: color 0.2s ease-in;
 }
 
-.bookmark-base:hover .title-info {
+.bookmark-internal:hover .title-info {
   color: transparent;
   transition-duration: 0s;
 }
@@ -107,7 +118,7 @@
 }
 
 .bookmark-base.grid .bookmark-internal:hover .btn-list {
-  bottom: 0px;
+  bottom: -9px;
 }
 
 .stack {
@@ -175,7 +186,6 @@
   left: 0;
 }
 
-
 /*
   LIST
 */
@@ -185,6 +195,7 @@
   align-items: center;
   height: 45px;
   flex-grow: 1;
+  color: #333333;
 }
 
 .bookmark-base.list .bookmark-internal:hover .btn-list {
@@ -197,35 +208,52 @@
   transition: right 0.3s ease-out;
 }
 
-.bookmark-base.list.group .bookmark-internal {
-  background-color: rgba(152, 194, 193, 0.8);
+.bookmark-base.list.group .bookmark-internal,
+.bookmark-base.list.group .drag-area {
+  /*background-color: rgba(152, 194, 193, 0.4);*/
+
+  background: linear-gradient(to bottom,rgba(152, 194, 193, 0.3) 0,rgba(152, 194, 193, 0.1) 100%);
+
 }
 
 .bookmark-base.list.group .bookmark-internal:hover {
-  background-color: rgba(152, 194, 193, 1);
+  background: rgba(152, 194, 193, 1);
 }
 
-.bookmark-base.list.leaf .bookmark-internal {
-  background-color: rgba(154, 189, 220, 0.7);
+.bookmark-base.list.leaf .bookmark-internal,
+.bookmark-base.list.leaf .drag-area {
+  /*background-color: rgba(167, 194, 218, 0.4);*/
+
+  background: linear-gradient(to bottom,rgba(167, 194, 218, 0.41) 0,rgb(239, 237, 233) 100%);
 }
 
 .bookmark-base.list.leaf .bookmark-internal:hover {
-  background-color: rgba(154, 189, 220, 1);
+  background: rgba(167, 194, 218, 1);
 }
 
 .drag-area {
   height: 45px;
   width: 45px;
-  border: 1px solid #7a91b1;
   padding: 10px;
   margin-right: 10px;
+  border-radius: 3px;
 }
 
 .drag-area:before {
   font-size: 25px;
-  color: #7a91b1;
+  color: rgba(122, 145, 177, 0.5);
+}
+
+.drag-area:hover:before {
+  color: rgba(122, 145, 177, 1);
 }
 
 .drag-area:hover {
   cursor: all-scroll;
+  /*transition: 0.7s ease;*/
+  box-shadow: inset 0 0 2px #00336c,0 0 1px #00336c;
+}
+
+.list .bookmark-internal .btn-list {
+
 }
