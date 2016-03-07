@@ -48,5 +48,36 @@ define(['react', 'constants', 'reactDOM', 'components/mainView/mainView', 'compo
             });
 
 
+            describe('First visit', function () {
+                var mainView;
+
+                beforeEach(function () {
+                    var dispatchSpy = jasmine.createSpy('dispatch');
+                    var state =
+                    {
+                        bookmarks: [{
+                            id: constants.ROOT_GROUP_ID,
+                            title: 'All Bookmarks',
+                            date: new Date(2015, 10, 18),
+                            children: [],
+                            tags: []
+                        }],
+                        layout: {
+                            layoutType: constants.layoutType.GRID
+                        },
+                        flags: {}
+                    };
+                    state.flags[constants.FIRST_VISIT_FLAG] = true;
+                    state.flags[constants.BOOKMARKS_LOADED] = true;
+                    mainView = TestUtils.renderIntoDocument(<MainView dispatch={dispatchSpy}
+                                                                      state={state}/>);
+                });
+
+                it('should have a help sentence on first visit', function () {
+                    expect(TestUtils.scryRenderedDOMComponentsWithClass(mainView, 'helper-message').length).toBe(1);
+                });
+
+            });
+
         });
     });
