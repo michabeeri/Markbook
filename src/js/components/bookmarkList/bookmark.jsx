@@ -100,7 +100,7 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
                                     }
 
                                     <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onEdit}><i className="fa fa-pencil-square-o"></i></a></li>
-                                    <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onDelete}><i className="fa fa-trash"></i></a></li>
+                                    <li className="btn-list-item test" ><a className="btn bookmark-btn" onClick={this.onDelete}><i className="fa fa-trash"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -111,3 +111,4 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
 
         return Bookmark;
     });
+us
