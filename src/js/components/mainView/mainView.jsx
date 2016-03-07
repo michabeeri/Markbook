@@ -123,8 +123,7 @@ define(
                     <div>
                         {this.props.state.flags.hasOwnProperty(Constants.BOOKMARKS_LOADED) ?
                             <div>
-                                <a className="btn btn-main-control btn-back fixed-middle" onClick={this.goBack}><i className="fa fa-chevron-circle-left"></i></a>
-                                <a className="btn btn-main-control btn-add fixed-middle" onClick={this.openAddBookMarkModal}><i className="fa fa-plus-circle"></i></a>
+                                <a className="btn btn-add" onClick={this.openAddBookMarkModal}><i className="fa fa-plus-circle"></i></a>
                                 {content}
                                 <ModalContainer dispatch={this.props.dispatch} state={this.props.state}/>
                             </div> :

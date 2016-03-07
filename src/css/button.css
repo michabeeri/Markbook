@@ -99,24 +99,20 @@
     border: 2px solid #f6f6f6;
 }
 
-.btn-main-control {
+.btn-add {
+    position: fixed;
+    bottom: 0;
     color: #2e2e2e;
     padding: 0;
+    margin-left: 880px
 }
 
-.btn.btn-main-control:hover {
+.btn-add:hover {
     color: #4e4e4e;
 }
 
-.btn-main-control > .fa {
+.btn-add > .fa {
     font-size: 50px;
 }
 
-.btn-back {
-    margin-left: -20px;
-}
-
-.btn-add {
-    margin-left: 880px;
-}
 
