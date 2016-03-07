@@ -4,7 +4,7 @@ define(['constants', 'components/modals/BookmarkData', 'components/modals/LastIt
 
         return [
             {
-                key: constants.eModalType.MODAL_ADD_BOOKMARK,
+                key: constants.eModalType.MODAL_BOOKMARK_DATA,
                 class: BookmarkData
             },
             {
