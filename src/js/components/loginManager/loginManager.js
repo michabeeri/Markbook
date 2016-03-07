@@ -92,6 +92,11 @@ define(['Firebase'], function (Firebase) {
         saveToFireBase: function (dataToSave) {
             var fireBaseRef = new Firebase('https://markbook.firebaseio.com/');
             fireBaseRef.set(dataToSave);
+        },
+
+        getLoggedInUserInfo: function () {
+            var fb = new Firebase('markbook.firebaseio.com');
+            return fb.getAuth();
         }
 
     };
