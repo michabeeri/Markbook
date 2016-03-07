@@ -43,7 +43,7 @@ define(['react', 'constants', 'reactDOM', 'components/mainView/mainView', 'compo
                 });
 
                 it('should have add button', function () {
-                    expect(TestUtils.scryRenderedDOMComponentsWithClass(mainView, 'btn-add').length).toBe(1);
+                    expect(TestUtils.scryRenderedDOMComponentsWithClass(mainView, 'fa-plus-circle').length).toBe(1);
                 });
             });
 
