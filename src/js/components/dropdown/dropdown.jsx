@@ -18,7 +18,7 @@ define(['react'], function (React) {
                 var title = (filteredGroup.title) ?
                     <span className="dropdown-items-title">{filteredGroup.title}</span> : '';
                 return (
-                    <li key={Math.random()}>{title}
+                    <li key={Math.random()} className="dropdown-group">{title}
                         <ul className='style-less-list' ref={'group' + groupIndex}>
                             {self.renderGroupLines(filteredGroup)}
                         </ul>
