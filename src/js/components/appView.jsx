@@ -10,7 +10,7 @@ define(['react', 'reactRedux', 'constants', 'components/mainView/mainView', 'com
             },
             render: function () {
                 return (
-                    <div className='main border-simple'>
+                    <div className='main'>
                         <TopBar {...this.props}/>
                         <MainView {...this.props}/>
                     </div>

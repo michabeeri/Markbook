@@ -23,6 +23,7 @@
     height: 48px;
     position: relative;
     display: inline-block;
+    margin: 0;
 
     /*display*/
     color: #f6f6f6;

@@ -12,12 +12,19 @@ html {
   box-sizing: inherit;
 }
 
+body {
+  background: url('../img/fabric.png');
+}
+
 .main {
   max-width: 900px;
   min-height: 700px;
   margin: auto;
   color: #333333;
   font-size: 1.4em;
+  background: linear-gradient(to bottom,rgba(196, 212, 224, 0.52) 0,rgba(236,238,239,.13) 100%);
+  position: relative;
+  z-index: 1;
 }
 
 .box {
@@ -88,13 +95,11 @@ html {
 
 .btn-disabled {
   cursor: not-allowed;
+  color: #cccccc;
 }
 
 .btn-list-item {
   text-align: left;
-}
-
-.btn-group {
 }
 
 .btn-add {
@@ -152,7 +157,6 @@ html {
 .error-message {
   color: #cc0000;
 }
-
 
 .search-term {
   font-style: italic;

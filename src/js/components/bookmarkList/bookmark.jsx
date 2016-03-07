@@ -58,9 +58,10 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
             getClassString: function () {
                 return 'bookmark-base' +
                     (this.isGrid() ? ' grid' : ' list') +
-                    (this.isGroup() ? ' group' : ' leaf') +
+                    (this.isGroup() ? ' group' : ' hvr-curl-top-left leaf') +
                     (this.isSelected() ? ' selected' : '') +
-                    (this.props.dragClass ? ' dragged' : '');
+                    (this.props.dragClass ? ' dragged' : '') +
+                    (this.isGroup() && this.isGrid() ? ' stack' : '');
             },
             renderChildren: function () {
                 if (this.isGrid() || !this.isGroup() || !this.isOpen()) {
@@ -88,14 +89,14 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
                             <span className='title-small'>{this.props.bookmarkData.title}</span>
 
                             <div>
-                                <span className='title-small'>{this.isGroup()
+                                <span className='title-small title-info'>{this.isGroup()
                                     ? this.props.bookmarkData.children.length + ' items inside'
                                     : this.props.bookmarkData.date.toLocaleDateString('en-US')}</span>
 
                                 <ul className="btn-list">
                                     {this.isGroup()
                                         ? <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onOpen}><i className="fa fa-folder-open-o"></i></a></li>
-                                        : <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onView}><i className="fa fa-play"></i></a></li>
+                                        : <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onView}><i className="fa fa-link"></i></a></li>
                                     }
 
                                     <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onEdit}><i className="fa fa-pencil-square-o"></i></a></li>
