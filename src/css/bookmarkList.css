@@ -1,5 +1,6 @@
 .bookmark-list-container.grid {
   height: 500px;
+  padding-left: 50px;
 }
 
 .bookmark-drill-down-spacer {
@@ -11,7 +12,7 @@
   font-weight: 200;
   background-color: #4C99CF;
   color: white;
-  box-shadow: inset 0 0 1px #235b82, 0 0 1px #235b82;
+  box-shadow: inset 0 0 1px #235b82;
   border-radius: 3px;
   text-align: center;
   padding: 5px 10px;
@@ -80,8 +81,8 @@
   -webkit-user-select: none;
 }
 
-.bookmark-base.selected {
-  box-shadow: inset 0 0 2px #00336C, 0 0 2px #00336C;
+.bookmark-base.selected .bookmark-internal{
+  box-shadow: inset 0 0 4px #00336C, 0 0 4px #00336C;
 }
 
 .bookmark-base.dragged {
@@ -91,33 +92,13 @@
 .bookmark-base.grid {
   display: inline-block;
 }
-.bookmark-base.grid .bookmark-internal{
+.bookmark-base.grid .bookmark-internal {
   width: 180px;
   height: 120px;
-  /*display: inline-block;*/
-  /*text-align: left;*/
 }
 
 .bookmark-base.list .bookmark-internal{
   height: 60px;
-}
-
-/*.bookmark-base.grid .footer {*/
-  /*position: absolute;*/
-  /*bottom: 0;*/
-/*}*/
-
-/*.bookmark-base.list .footer {*/
-  /*position: absolute;*/
-  /*right: 0;*/
-/*}*/
-
-.bookmark-base.grid .btn-group {
-
-}
-
-.bookmark-base.list .btn-group {
-
 }
 
 

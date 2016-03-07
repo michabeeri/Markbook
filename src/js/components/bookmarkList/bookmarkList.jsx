@@ -53,9 +53,9 @@ define(['lodash',
                 if (sortType !== Constants.CUSTOM_SORT_TYPE) {
                     visibleItems = BookmarksUtil.sort(visibleItems, sortType);
                 }
-                var bookmarkListClassName = 'bookmark-list-container' + (this.props.layout === Constants.layoutType.GRID)
-                    ? 'grid'
-                    : 'list';
+                var bookmarkListClassName = 'bookmark-list-container' + (this.props.layout === Constants.layoutType.GRID
+                    ? ' grid'
+                    : ' list');
 
                 return (
                     <div className={bookmarkListClassName}>
