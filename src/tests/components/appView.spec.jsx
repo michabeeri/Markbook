@@ -14,7 +14,7 @@ define(['react', 'reactDOM', 'reduxTestUtils', 'components/appView'],
                 appView = ReduxTestUtils.renderInProvider(AppView);
             });
 
-            it('should render the topbar component', function () {
+            xit('should render the topbar component', function () {
                 expect(function () {
                     TestUtils.findRenderedDOMComponentWithClass(appView, 'top-bar');
                 }).not.toThrowError();
