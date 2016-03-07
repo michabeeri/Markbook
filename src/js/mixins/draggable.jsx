@@ -2,6 +2,7 @@ define([], function () {
     'use strict';
     return {
         onDragStart: function (event) {
+            event.stopPropagation();
             event.dataTransfer.effectAllowed = 'move';
             setTimeout(function () {
                 this.props.dragStart(this.props.dataId);

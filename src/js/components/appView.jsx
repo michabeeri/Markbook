@@ -1,11 +1,13 @@
-define(['react', 'reactRedux', 'constants', 'components/mainView/mainView', 'components/mainView/topbar', 'actionProviders/actions'],
-    function (React, ReactRedux, Constants, MainView, TopBar, ActionProvider) {
+define(['react', 'reactRedux', 'constants', 'components/mainView/mainView', 'components/mainView/topbar', 'actionProviders/actions', 'components/loginManager/loginManager'],
+    function (React, ReactRedux, Constants, MainView, TopBar, ActionProvider, LoginManager) {
 
 
         'use strict';
         var AppView = React.createClass({
             displayName: 'AppView',
             componentDidMount: function () {
+                var user = LoginManager.getLoggedInUserInfo();
+                this.props.dispatch(ActionProvider.login(user.password.email, user.uid, user.token));
                 this.props.dispatch(ActionProvider.loadData());
             },
             render: function () {

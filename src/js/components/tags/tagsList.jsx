@@ -2,6 +2,7 @@ define(['React', 'lodash', 'components/tags/tag'], function (React, _, Tag) {
     'use strict';
 
     return React.createClass({
+        displayName: 'TagsList',
         propTypes: {
             tags: React.PropTypes.array.isRequired,
             removeTag: React.PropTypes.func.isRequired

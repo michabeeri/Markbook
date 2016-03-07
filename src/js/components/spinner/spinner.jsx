@@ -2,11 +2,11 @@ define(['react', 'spin'], function (React, Spinner) {
     'use strict';
 
     return React.createClass({
+        displayName: 'Spinner',
         propTypes: {
             config: React.PropTypes.object,
             stopped: React.PropTypes.bool
         },
-
         componentDidMount: function () {
             this.spinner = new Spinner(this.props.config);
             if (!this.props.stopped) {

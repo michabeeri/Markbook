@@ -8,8 +8,9 @@ define(['React', 'reactDOM', 'components/modals/Modal'], function (React, ReactD
         };
 
         function createDemoModalContainer(className) {
+            var dispatchSpy = jasmine.createSpy('dispatchSpy');
             var callback = jasmine.createSpy('callback');
-            return TestUtils.renderIntoDocument(<Modal className={className} close={callback}>demo child</Modal>);
+            return TestUtils.renderIntoDocument(<Modal className={className} dispatch={dispatchSpy} close={callback}>demo child</Modal>);
         }
 
         beforeEach(function () {
