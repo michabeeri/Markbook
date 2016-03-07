@@ -71,6 +71,7 @@ define(['lodash',
                 this.props.dispatch(ActionProvider.addBookmark(Constants.ROOT_GROUP_ID, 'My First Bookmark', 'www.google.com', []));
                 this.props.dispatch(ActionProvider.login(username, uid, token));
                 this.props.dispatch(ReduxSimpleRouter.routeActions.push('/'));
+                this.props.dispatch(ActionProvider.turnOnFlag(Constants.FIRST_VISIT_FLAG));
             },
             failureLogin: function (errorValue) {
                 this.setState({errorMessage: errorValue});

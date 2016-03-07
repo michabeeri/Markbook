@@ -23,13 +23,11 @@
     height: 48px;
     position: relative;
     display: inline-block;
+    margin: 0;
 
     /*display*/
-    /*background: #4C99CF;*/
     color: #f6f6f6;
-    /*border: 2px solid #f6f6f6;*/
     border-radius: 32px;
-    /*box-shadow: inset 0 0 1em hsl(215, 18%, 28%), 0 0 1em hsl(215, 18%, 28%);*/
     cursor: pointer;
 }
 

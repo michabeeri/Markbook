@@ -36,31 +36,82 @@ define(['lodash', 'uuid', 'constants', 'utils/bookmarksUtil'], function (_, uuid
             case Constants.ADD_BOOKMARK_AND_GROUP:
                 return (function () {
                     var newState = state.concat({
-                            id: action.groupId,
-                            title: action.groupName,
-                            date: action.date,
+                            id: action.group.id,
+                            title: action.group.groupName,
+                            date: action.group.date,
                             tags: [],
-                            children: [action.bookmarkId]
+                            children: [action.bookmark.id]
                         },
                         {
-                            id: action.bookmarkId,
-                            title: action.title,
-                            date: action.date,
-                            url: action.url,
-                            tags: action.tags,
+                            id: action.bookmark.id,
+                            title: action.bookmark.title,
+                            date: action.bookmark.date,
+                            url: action.bookmark.url,
+                            tags: action.bookmark.tags,
                             children: null
                         });
 
                     var parentId = action.parentGroupId || Constants.ROOT_GROUP_ID;
-                    _.find(newState, {id: parentId}).children.push(action.groupId);
+                    _.find(newState, {id: parentId}).children.push(action.group.id);
+
+                    return newState;
+                }());
+
+            case Constants.EDIT_BOOKMARK_AND_CREATE_GROUP:
+                return (function () {
+
+                    var bookmarksExcludingEditedBookmark = _.reject(state, {id: action.bookmark.id});
+
+                    var editedBookmark = _.filter(state, {id: action.bookmark.id})[0];
+
+                    var newState = bookmarksExcludingEditedBookmark.concat({
+                            id: action.group.id,
+                            title: action.group.groupName,
+                            date: action.group.date,
+                            tags: [],
+                            children: [action.bookmark.id]
+                        },
+                        {
+                            id: action.bookmark.id,
+                            title: action.bookmark.title,
+                            date: editedBookmark.date,
+                            url: action.bookmark.url,
+                            tags: action.bookmark.tags,
+                            children: null
+                        });
+
+                    var parentId = action.parentGroupId || Constants.ROOT_GROUP_ID;
+                    _.find(newState, {id: parentId}).children.push(action.group.id);
 
                     return newState;
                 }());
 
             case Constants.EDIT_BOOKMARK:
-                // open edit modal
-                console.log('edit ' + action.id);
-                return state;
+                return (function () {
+                    var bookmarksExcludingEditedBookmark = _.reject(state, {id: action.id});
+
+                    var editedBookmark = _.filter(state, {id: action.id})[0];
+
+                    var newState = bookmarksExcludingEditedBookmark.concat({
+                        id: action.id,
+                        title: action.title,
+                        date: editedBookmark.date,
+                        url: action.url,
+                        tags: action.tags,
+                        children: null
+                    });
+
+
+                    var destinationGroup = _.find(newState, {id: action.parentGroupId});
+                    var sourceGroup = bookmarksUtil.getParent(newState, action.id);
+
+                    if (destinationGroup !== sourceGroup) {
+                        _.find(newState, {id: action.parentGroupId}).children.push(action.action.id);
+                        _.find(newState, {id: sourceGroup.id}).children.pull(action.action.id);
+                    }
+
+                    return newState;
+                }());
 
             case Constants.TOGGLE_BOOKMARK_SELECTION:
                 return _.map(state, function (bm) {

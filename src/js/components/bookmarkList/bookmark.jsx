@@ -1,12 +1,12 @@
-define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'utils/bookmarksUtil'],
-    function (React, Constants, draggable, ActionProvider, BookmarksUtil) {
+define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'utils/bookmarksUtil', 'components/bookmarkList/bookmarkList'],
+    function (React, Constants, draggable, ActionProvider, BookmarksUtil, BookmarkList) {
 
         'use strict';
         var Bookmark = React.createClass({
             mixins: [draggable],
             displayName: 'Bookmark',
             onView: function (evt) {
-                window.open('http://www.google.com');
+                window.open(this.props.bookmarkData.url);
                 evt.stopPropagation();
             },
             onOpen: function (evt) {
@@ -58,32 +58,24 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
             getClassString: function () {
                 return 'bookmark-base' +
                     (this.isGrid() ? ' grid' : ' list') +
-                    (this.isGroup() ? ' group' : ' leaf') +
+                    (this.isGroup() ? ' group' : ' hvr-curl-top-left leaf') +
                     (this.isSelected() ? ' selected' : '') +
-                    (this.props.dragClass ? ' dragged' : '');
+                    (this.props.dragClass ? ' dragged' : '') +
+                    (this.isGroup() && this.isGrid() ? ' stack' : '');
             },
             renderChildren: function () {
                 if (this.isGrid() || !this.isGroup() || !this.isOpen()) {
-                    return (<ul></ul>);
+                    return (<div></div>);
                 }
 
                 return (
-                    <ul>
-                        {_.map(BookmarksUtil.getItemsByGroupId(this.props.state.bookmarks, this.props.bookmarkData.id),
-                            function (bm) {
-                                return (
-                                    <li key={bm.id}><Bookmark
-                                        bookmarkData={bm}
-                                        layout={this.props.layout}
-                                        state={this.props.state}
-                                        dispatch={this.props.dispatch}
-                                        dragClass={false}
-                                        dragStart={function () {}}
-                                        dragOver={function () {}}
-                                        dragEnd={function () {}}
-                                    /></li>);
-                            }.bind(this))}
-                    </ul>
+                    <div className="bookmark-drill-down-spacer">
+                        <BookmarkList dispatch={this.props.dispatch}
+                                  state={this.props.state}
+                                  rootId={this.props.bookmarkData.id}
+                                  repeaterItem = {this.props.repeaterItem}
+                                  layout={this.props.layout}/>
+                    </div>
                 );
             },
             render: function () {
@@ -93,22 +85,24 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
                          onClick={this.onSelect}
                          onDoubleClick={this.isGroup() ? this.onOpen : this.onView}
                         {...this.getDragAttr()}>
-                        <div>
+                        <div className="bookmark-internal">
                             <span className='title-small'>{this.props.bookmarkData.title}</span>
 
-                            <span className='title-small footer'>{this.isGroup()
-                                ? this.props.bookmarkData.children.length + ' items inside'
-                                : this.props.bookmarkData.date.toLocaleDateString('en-US')}</span>
+                            <div>
+                                <span className='title-small title-info'>{this.isGroup()
+                                    ? this.props.bookmarkData.children.length + ' items inside'
+                                    : this.props.bookmarkData.date.toLocaleDateString('en-US')}</span>
 
-                            <ul className="btn-list">
-                                {this.isGroup()
-                                    ? <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onOpen}><i className="fa fa-folder-open-o"></i></a></li>
-                                    : <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onView}><i className="fa fa-play"></i></a></li>
-                                }
+                                <ul className="btn-list">
+                                    {this.isGroup()
+                                        ? <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onOpen}><i className="fa fa-folder-open-o"></i></a></li>
+                                        : <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onView}><i className="fa fa-link"></i></a></li>
+                                    }
 
-                                <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onEdit}><i className="fa fa-pencil-square-o"></i></a></li>
-                                <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onDelete}><i className="fa fa-trash"></i></a></li>
-                            </ul>
+                                    <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onEdit}><i className="fa fa-pencil-square-o"></i></a></li>
+                                    <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onDelete}><i className="fa fa-trash"></i></a></li>
+                                </ul>
+                            </div>
                         </div>
                         {this.renderChildren()}
                     </div>);

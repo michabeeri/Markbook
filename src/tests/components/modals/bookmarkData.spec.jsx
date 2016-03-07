@@ -17,7 +17,7 @@ define(['React', 'reactDOM', 'components/modals/BookmarkData', 'constants'],
                         url: "www.tweeter.com"
                     },
                     {
-                        id: '001',
+                        id: 'rootGroup',
                         title: 'Gaspar Noe Movies',
                         date: new Date(2012, 10, 9),
                         tags: [],
@@ -26,8 +26,9 @@ define(['React', 'reactDOM', 'components/modals/BookmarkData', 'constants'],
                 ];
                 var state =
                 {
-                    modals: {type: constants.eModalType.MODAL_ADD_BOOKMARK, id: '002'},
-                    bookmarks: bookmarkListItemsData
+                    modals: {type: constants.eModalType.MODAL_BOOKMARK_DATA, id: '002'},
+                    bookmarks: bookmarkListItemsData,
+                    currentBookmarkPath: ['rootGroup']
                 };
                 var dispatchSpy = jasmine.createSpy('dispatchSpy');
                 var closeSpy = jasmine.createSpy('closeSpy');

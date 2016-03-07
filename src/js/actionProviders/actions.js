@@ -6,13 +6,18 @@ define(['uuid', 'constants'], function (uuid, Constants) {
             return databaseUpdateWrapper({
                 type: Constants.ADD_BOOKMARK_AND_GROUP,
                 parentGroupId: parentGroupId,
-                groupId: uuid.v4(),
-                bookmarkId: uuid.v4(),
-                groupName: groupName,
-                title: title,
-                url: url,
-                tags: tags,
-                date: new Date()
+                bookmark: {
+                    id: uuid.v4(),
+                    title: title,
+                    url: url,
+                    tags: tags,
+                    date: new Date()
+                },
+                group: {
+                    id: uuid.v4(),
+                    groupName: groupName,
+                    date: new Date()
+                }
             });
         },
         addBookmark: function (parentGroupId, title, url, tags) {
@@ -33,21 +38,24 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 parentGroupId: parentGroupId,
                 title: title,
                 url: url,
-                tags: tags,
-                date: new Date()
+                tags: tags
             });
         },
-        editBookmarkAndCreateNewGroup: function (id, parentGroupId, title, url, tags) {
+        editBookmarkAndCreateNewGroup: function (id, parentGroupId, groupName, title, url, tags) {
             return databaseUpdateWrapper({
                 type: Constants.EDIT_BOOKMARK_AND_CREATE_GROUP,
-                bookmark: {id: id},
-                group: {},
-                groupId: uuid.v4(),
                 parentGroupId: parentGroupId,
-                title: title,
-                url: url,
-                tags: tags,
-                date: new Date()
+                bookmark: {
+                    id: id,
+                    title: title,
+                    url: url,
+                    tags: tags
+                },
+                group: {
+                    id: uuid.v4(),
+                    groupName: groupName,
+                    date: new Date()
+                }
             });
         },
         toggleBookmarkSelection: function (id, isMultiSelect) {
@@ -122,7 +130,7 @@ define(['uuid', 'constants'], function (uuid, Constants) {
         openBookmarkDataModal: function (id) {
             return {
                 type: Constants.OPEN_MODAL,
-                modalType: Constants.eModalType.MODAL_ADD_BOOKMARK,
+                modalType: Constants.eModalType.MODAL_BOOKMARK_DATA,
                 bookmarkId: id
             };
         },
