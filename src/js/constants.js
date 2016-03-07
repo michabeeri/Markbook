@@ -105,6 +105,10 @@ define([],
             ADD_FLAG: 'ADD_FLAG',
             REMOVE_FLAG: 'REMOVE_FLAG',
             FIRST_VISIT_FLAG: 'FIRST_VISIT_FLAG',
-            BOOKMARKS_LOADED: 'BOOKMARKS_LOADED'
+            BOOKMARKS_LOADED: 'BOOKMARKS_LOADED',
+
+            // Key codes
+            DOWN_ARROW: 40,
+            UP_ARROW: 38
         };
     });
