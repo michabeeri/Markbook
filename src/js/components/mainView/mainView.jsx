@@ -93,9 +93,9 @@ define(
 
                 if (this.props.state.bookmarks.length === 1) { //root group
                     content = (
-                        <div>
+                        <div className = 'fixed-middle'>
                             <h1>Welcome</h1>
-                            <i className="fa fa-plus fa-3x"></i>
+                            <img src='img/bookmark.png' alt='bookmark' width='200' height='200'/>
                             <p>Add your first bookmark</p>
                         </div>);
                 } else {
@@ -125,6 +125,7 @@ define(
                             <div>
                                 <a className="btn btn-add" onClick={this.openAddBookMarkModal}><i className="fa fa-plus-circle"></i></a>
                                 {content}
+                                {this.props.state.flags[Constants.FIRST_VISIT_FLAG] ? <p className="helper-message">Click here to add a new bookmark</p> : null}
                                 <ModalContainer dispatch={this.props.dispatch} state={this.props.state}/>
                             </div> :
                             <Spinner />
