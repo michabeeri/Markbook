@@ -105,9 +105,13 @@ body {
 
 .btn-style-less {
   border: none;
-  outline: none;
+  outline-width: 0;
   background: none;
   cursor: pointer;
+}
+
+.btn-style-less:focus {
+  outline-width: 5px;
 }
 
 .border-simple {

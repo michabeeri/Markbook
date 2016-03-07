@@ -10,3 +10,8 @@
     display: inline-block;
     vertical-align: top;
 }
+
+.tag-list {
+    overflow-x: auto;
+    display: flex;
+}
