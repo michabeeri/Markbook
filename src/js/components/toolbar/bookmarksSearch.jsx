@@ -1,14 +1,20 @@
-define(['lodash', 'react', 'components/dropdown/dropdown', 'utils/bookmarksUtil'],
-    function (_, React, Dropdown, BookmarksUtil) {
+define(['lodash', 'react', 'components/dropdown/dropdown', 'utils/bookmarksUtil', 'constants'],
+    function (_, React, Dropdown, BookmarksUtil, Constants) {
         'use strict';
 
         var SearchBox = React.createClass({
             displayName: 'SearchBox',
+            onChange: function (event) {
+                if (event.keyCode === Constants.DOWN_ARROW) {
+                    console.log('down arrow');
+                }
+            },
             render: function () {
                 return (
                     <div className='search-box-container contained btn-border'>
                         <label><i className='fa fa-search'></i></label>
                         <input id='search-input' className='input search-box' placeholder='Search'
+                               onKeyDown={this.onChange}
                                valueLink={this.props.valueLink}/>
                     </div>
                 );
@@ -33,18 +39,16 @@ define(['lodash', 'react', 'components/dropdown/dropdown', 'utils/bookmarksUtil'
                     ['title', 'tags']);
 
                 var searchResults = {items: []};
-                if (!_.isEmpty(filterResults.title)) {
-                    searchResults.items.push({
-                        groupType: 'title',
-                        lines: filterResults.title
-                    });
-                }
-                if (!_.isEmpty(filterResults.tags)) {
-                    searchResults.items.push({
-                        groupType: 'tags',
-                        lines: filterResults.tags
-                    });
-                }
+                searchResults.items.push({
+                    title: 'Bookmarks',
+                    groupType: 'title',
+                    lines: filterResults.title
+                });
+                searchResults.items.push({
+                    title: 'Tags',
+                    groupType: 'tags',
+                    lines: filterResults.tags
+                });
                 return searchResults;
             },
             filterBookmarksByTerm: function (type, filterTerm) {
