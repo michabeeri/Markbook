@@ -18,10 +18,6 @@
   transition: 0.7s ease;
 }
 
-/*.bookmark-base.group > .bookmark-internal {*/
-  /*background: #4F6B84;*/
-/*}*/
-
 .bookmark-internal > div {
   height: 20px;
   position: relative;
@@ -29,9 +25,10 @@
 
 .bookmark-base {
   margin: 10px;
+  border-radius: 3px;
 }
 
-.bookmark-base .bookmark-internal{
+.bookmark-base .bookmark-internal {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -39,26 +36,28 @@
 }
 
 .bookmark-base.grid.group .bookmark-internal {
-  background-color: #647d92;
+  background-color: rgba(152, 194, 193, 0.8);
 }
 
-.bookmark-base.grid.group .bookmark-internal .btn-list {
-  background-color: #647d92;
+.bookmark-base.grid.group .bookmark-internal .btn-list,
+.bookmark-base.grid.group .bookmark-internal:hover {
+  background-color: rgba(152, 194, 193, 1);
 }
 
 .bookmark-base.grid.leaf .bookmark-internal {
-  background-color: #7b9ab5;
+  background-color: rgba(154, 189, 220, 0.7);
 }
 
-.bookmark-base.grid.leaf .bookmark-internal .btn-list {
-  background-color: #7b9ab5;
+.bookmark-base.grid.leaf .bookmark-internal .btn-list,
+.bookmark-base.grid.leaf .bookmark-internal:hover {
+  background-color: rgba(154, 189, 220, 1);
 }
 
-.bookmark-base.grid .bookmark-internal{
+.bookmark-base.grid .bookmark-internal {
   flex-direction: column;
 }
 
-.bookmark-base.list .bookmark-internal{
+.bookmark-base.list .bookmark-internal {
   flex-direction: row;
   align-items: center;
 }
@@ -69,17 +68,13 @@
 
 .bookmark-base.grid .bookmark-internal .btn-list {
   bottom: -60px;
-  transition: bottom 0.4s ease-out;
+  transition: bottom 0.3s ease-out;
   left: 0;
   right: 0;
 }
 
-.bookmark-base.grid:hover {
-  background-color: #3b4c58;
-}
-
 .bookmark-base.grid .title-info {
-  transition: color 0.1s 0.3s ease-in;
+  transition: color 0.2s ease-in;
 }
 
 .bookmark-base.grid:hover .title-info {
@@ -100,7 +95,6 @@
   transition: right 0.3s ease-out;
 }
 
-
 .bookmark-base h1,
 .bookmark-base h2,
 .bookmark-base button {
@@ -110,8 +104,8 @@
   -webkit-user-select: none;
 }
 
-.bookmark-base.selected .bookmark-internal{
-  box-shadow: inset 0 0 4px #00336C, 0 0 4px #00336C;
+.bookmark-base.selected .bookmark-internal {
+  box-shadow: inset 0 0 4px #00336c, 0 0 4px #00336c;
 }
 
 .bookmark-base.dragged {
@@ -121,12 +115,13 @@
 .bookmark-base.grid {
   display: inline-block;
 }
+
 .bookmark-base.grid .bookmark-internal {
   width: 180px;
   height: 120px;
 }
 
-.bookmark-base.list .bookmark-internal{
+.bookmark-base.list .bookmark-internal {
   height: 60px;
 }
 

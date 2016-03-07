@@ -46,9 +46,10 @@ requirejs([
     'middlewares/database',
     'middlewares/layoutList',
     'middlewares/flagsMiddleware',
+    'middlewares/localStorageMW',
     'developer',
     'components/loginManager/loginManager'],
-    function (_, React, ReactDOM, Redux, ReactRouter, ReactRedux, AppView, appReducer, ReduxSimpleRouter, LoginComp, SignupComp, thunkMiddleware, removeBookmarkMiddleware, databaseMiddleware, LayoutListMiddleware, flagsMiddleware, Developer, LoginManager) {
+    function (_, React, ReactDOM, Redux, ReactRouter, ReactRedux, AppView, appReducer, ReduxSimpleRouter, LoginComp, SignupComp, thunkMiddleware, removeBookmarkMiddleware, databaseMiddleware, LayoutListMiddleware, flagsMiddleware, LocalStorageMiddleware, Developer, LoginManager) {
 
         'use strict';
 
@@ -60,7 +61,7 @@ requirejs([
         var Route = ReactRouter.Route;
         var Provider = ReactRedux.Provider;
         var reduxMiddleware = ReduxSimpleRouter.syncHistory(ReactRouter.browserHistory);
-        var createStoreWithMiddleware = Redux.applyMiddleware(reduxMiddleware, thunkMiddleware, removeBookmarkMiddleware, databaseMiddleware, LayoutListMiddleware, flagsMiddleware)(Redux.createStore);
+        var createStoreWithMiddleware = Redux.applyMiddleware(reduxMiddleware, thunkMiddleware, removeBookmarkMiddleware, databaseMiddleware, LayoutListMiddleware, flagsMiddleware, LocalStorageMiddleware)(Redux.createStore);
         var store = createStoreWithMiddleware(appReducer, window.devToolsExtension
             ? window.devToolsExtension()
             : undefined);

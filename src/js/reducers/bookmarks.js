@@ -88,12 +88,13 @@ define(['lodash', 'uuid', 'constants', 'utils/bookmarksUtil'], function (_, uuid
 
             case Constants.EDIT_BOOKMARK:
                 return (function () {
-                    var bookmarksExcludingEditedBookmark = _.reject(state, {id: action.id});
+                    var editedBookmarkId = action.id;
+                    var bookmarksExcludingEditedBookmark = _.reject(state, {id: editedBookmarkId});
 
-                    var editedBookmark = _.filter(state, {id: action.id})[0];
+                    var editedBookmark = _.filter(state, {id: editedBookmarkId})[0];
 
                     var newState = bookmarksExcludingEditedBookmark.concat({
-                        id: action.id,
+                        id: editedBookmarkId,
                         title: action.title,
                         date: editedBookmark.date,
                         url: action.url,
@@ -101,13 +102,16 @@ define(['lodash', 'uuid', 'constants', 'utils/bookmarksUtil'], function (_, uuid
                         children: null
                     });
 
-
                     var destinationGroup = _.find(newState, {id: action.parentGroupId});
-                    var sourceGroup = bookmarksUtil.getParent(newState, action.id);
+                    var sourceGroup = bookmarksUtil.getParent(newState, editedBookmarkId);
 
                     if (destinationGroup !== sourceGroup) {
-                        _.find(newState, {id: action.parentGroupId}).children.push(action.action.id);
-                        _.find(newState, {id: sourceGroup.id}).children.pull(action.action.id);
+                        destinationGroup.children.push(editedBookmarkId);
+                        var indOfBookmark = _.indexOf(sourceGroup.children, editedBookmarkId);
+                        if (indOfBookmark > -1) {
+                            sourceGroup.children.splice(indOfBookmark, 1);
+                        }
+
                     }
 
                     return newState;
