@@ -12,7 +12,7 @@ define(['React'], function (React) {
         },
         render: function () {
             return (
-                <span className="tag">
+                <span className="tag" tabIndex="0">
                     <span ref="title">{this.props.tag}</span>
                     <button ref="removeBtn" onClick={this.onClick} className="btn-style-less">
                         <i className="fa fa-times"></i>
