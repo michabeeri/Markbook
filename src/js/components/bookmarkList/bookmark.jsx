@@ -87,24 +87,25 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
                          onDoubleClick={isGroup ? this.onOpen : this.onView}
                         {...this.getDragAttr()}
                         draggable = {this.isGrid()}>
-                        <span draggable="true" className={this.isGrid() ? 'hidden' : 'drag-area fa fa-bars'}></span>
-                        <div className="bookmark-internal">
-                            <span className='title-small'>{this.props.bookmarkData.title}</span>
+                        <div className="bookmark-content">
+                            <span draggable="true" className={this.isGrid() ? 'hidden' : 'drag-area fa fa-bars'}></span>
+                            <div className="bookmark-internal">
+                                <span className='title-small'>{this.props.bookmarkData.title}</span>
+                                <div>
+                                    <span className='title-small title-info'>{isGroup
+                                        ? this.props.bookmarkData.children.length + ' items inside'
+                                        : moment(this.props.bookmarkData.date).format('ll')}</span>
 
-                            <div>
-                                <span className='title-small title-info'>{isGroup
-                                    ? this.props.bookmarkData.children.length + ' items inside'
-                                    : moment(this.props.bookmarkData.date).format('ll')}</span>
+                                    <ul className="btn-list style-less-list">
+                                        {isGroup
+                                            ? <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onOpen}><i className="fa fa-folder-open-o"></i></a></li>
+                                            : <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onView}><i className="fa fa-link"></i></a></li>
+                                        }
 
-                                <ul className="btn-list style-less-list">
-                                    {isGroup
-                                        ? <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onOpen}><i className="fa fa-folder-open-o"></i></a></li>
-                                        : <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onView}><i className="fa fa-link"></i></a></li>
-                                    }
-
-                                    <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onEdit}><i className="fa fa-pencil-square-o"></i></a></li>
-                                    <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onDelete}><i className="fa fa-trash"></i></a></li>
-                                </ul>
+                                        <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onEdit}><i className="fa fa-pencil-square-o"></i></a></li>
+                                        <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onDelete}><i className="fa fa-trash"></i></a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                         {this.renderChildren()}
