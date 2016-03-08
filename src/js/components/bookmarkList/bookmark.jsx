@@ -33,7 +33,7 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
                     if (parent.children && parent.children.length === 1) {
                         this.props.dispatch(ActionProvider.openLastItemInGroupDelete(id));
                     } else {
-                        this.props.dispatch(ActionProvider.removeBookmark(id));
+                        this.props.dispatch(ActionProvider.removeBookmark([id]));
                     }
                 }
 

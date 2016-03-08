@@ -36,7 +36,7 @@ define(['react', 'constants'],
                         <button className={this.calcBtnClassName(editDisabled) + ' edit'} disabled={editDisabled}
                                 onClick={this.props.onEdit}>Edit
                         </button>
-                        <button className={this.calcBtnClassName(deleteDisabled) + ' delete'} disabled={deleteDisabled}>
+                        <button className={this.calcBtnClassName(deleteDisabled) + ' delete'} disabled={deleteDisabled} onClick={this.props.onDelete}>
                             Delete
                         </button>
                         <button className={'btn layout' + (this.props.minGridLayoutExceeded ? ' hidden' : '')}
