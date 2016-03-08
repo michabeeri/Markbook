@@ -12,13 +12,12 @@
     pointer-events: none;
 }
 
-
-.modal-opened  {
-    opacity:1;
+.modal-opened {
+    opacity: 1;
     pointer-events: auto;
 }
 
-.modal-content  {
+.modal-content {
     width: 400px;
     position: relative;
     padding: 10px;
@@ -26,8 +25,7 @@
     background: #fff;
 }
 
-.modal .btn-close
-{
+.modal .btn-close {
     float: right;
 }
 
@@ -40,10 +38,8 @@
     background-color: #c3c3c3;
 }
 
-
-.overlay
-{
-    display:flex;
+.overlay {
+    display: flex;
     align-items: center;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.65);
 }
