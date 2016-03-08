@@ -1,4 +1,6 @@
 .top-bar {
+  z-index: 30;
+  position: relative;
   display: flex;
   justify-content: space-between;
   line-height: 40px;
