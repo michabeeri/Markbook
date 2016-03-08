@@ -140,12 +140,12 @@ define(['lodash', 'uuid', 'constants', 'utils/bookmarksUtil'], function (_, uuid
             case Constants.REMOVE_BOOKMARK:
                 return (function () {
                     var newState = _.reject(state, function (bm) {
-                        return action.idsToRemove.indexOf(bm.id) !== -1;
+                        return action.ids.indexOf(bm.id) !== -1;
                     });
 
                     newState.forEach(function (bm) {
                         _.remove(bm.children, function (id) {
-                            return action.idsToRemove.indexOf(id) !== -1;
+                            return action.ids.indexOf(id) !== -1;
                         });
                     });
 

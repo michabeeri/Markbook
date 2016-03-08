@@ -65,10 +65,10 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 isMultiSelect: isMultiSelect
             };
         },
-        removeBookmark: function (id) {
+        removeBookmark: function (ids) {
             return databaseUpdateWrapper({
                 type: Constants.REMOVE_BOOKMARK,
-                id: id
+                ids: ids
             });
         },
         removeAndReparent: function (id) {
