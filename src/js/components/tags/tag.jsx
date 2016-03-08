@@ -12,10 +12,10 @@ define(['React'], function (React) {
         },
         render: function () {
             return (
-                <span className="tag" tabIndex="0">
-                    <span ref="title">{this.props.tag}</span>
-                    <button ref="removeBtn" onClick={this.onClick} className="btn-style-less">
-                        <i className="fa fa-times"></i>
+                <span className="tag scrollable-area" tabIndex="0">
+                    <span ref="title" className="scrollable-area">{this.props.tag}</span>
+                    <button ref="removeBtn" onClick={this.onClick} className="btn-style-less scrollable-area">
+                        <i className="fa fa-times scrollable-area"></i>
                     </button>
                 </span>
             );
