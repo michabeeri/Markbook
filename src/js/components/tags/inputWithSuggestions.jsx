@@ -12,23 +12,49 @@ define(['React', 'lodash', 'components/dropdown/dropdown'],
             },
             getInitialState: function () {
                 return {
-                    isEditing: false
+                    isEditing: false,
+                    selectedDropdownItemIndex: 0
                 };
             },
             onInputSelected: function (group, input) {
                 this.setState({
-                    isEditing: false
+                    isEditing: false,
+                    selectedDropdownItemIndex: 0
                 });
                 this.props.onInputSelected(input, group);
             },
-            onKeyUp: function (event) {
+            getSelectedItem: function () {
+                var index = this.state.selectedDropdownItemIndex;
+                var totalItems = 0;
+                var obj = null;
+                for (var i = 0; i < this.props.suggestions.items.length; i++) {
+                    var group = this.props.suggestions.items[i];
+                    totalItems += group.lines.length;
+                    if (index < totalItems) {
+                        obj = {
+                            type: group.groupType,
+                            title: group.lines[index % group.lines.length]
+                        };
+                        break;
+                    }
+                }
+                return obj;
+            }, onKeyUp: function (event) {
                 var text = event.target.value;
                 if (_.isEmpty(text)) {
                     this.setState({
-                        isEditing: false
+                        isEditing: false,
+                        selectedDropdownItemIndex: 0
                     });
                 } else if (event.keyCode === 13) {
-                    this.onInputSelected(text);
+                    var item = this.getSelectedItem();
+                    if (item !== null) {
+                        this.onInputSelected(item.type, item.title);
+                    }
+                } else if (event.keyCode === 40) {
+                    this.setNextSelected();
+                } else if (event.keyCode === 38) {
+                    this.setPrevSelected();
                 } else {
                     this.setState({
                         isEditing: true
@@ -37,16 +63,38 @@ define(['React', 'lodash', 'components/dropdown/dropdown'],
             },
             onBlur: function () {
                 this.setState({
-                    isEditing: false
+                    isEditing: false,
+                    selectedDropdownItemIndex: 0
                 });
+            },
+            setNextSelected: function () {
+                var maxIndex = _.sum(this.props.suggestions.items, function (item) {
+                    return item.lines.length;
+                });
+                if (this.state.selectedDropdownItemIndex < maxIndex - 1) {
+                    var nextItemIndex = this.state.selectedDropdownItemIndex + 1;
+                    this.setState({
+                        selectedDropdownItemIndex: nextItemIndex
+                    });
+                }
+            },
+            setPrevSelected: function () {
+                if (this.state.selectedDropdownItemIndex > 0) {
+                    var nextItemIndex = this.state.selectedDropdownItemIndex - 1;
+                    this.setState({
+                        selectedDropdownItemIndex: nextItemIndex
+                    });
+                }
             },
             render: function () {
                 return (
                     <span className="input-wrapper">
-                        <input className="input" type="text" onKeyUp={this.onKeyUp} ref="input"
-                               valueLink={this.props.valueLink} onBlur={this.onBlur} placeholder={this.props.placeholder}/>
+                        <input className="input input-with-label" type="text" onKeyUp={this.onKeyUp} ref="input"
+                               valueLink={this.props.valueLink} onBlur={this.onBlur}
+                               placeholder={this.props.placeholder}/>
                         {this.state.isEditing && this.props.valueLink.value ?
                             <DropDown ref="dropdown" data={this.props.suggestions}
+                                      selected={this.state.selectedDropdownItemIndex}
                                       onLineClick={this.onInputSelected}/> :
                             null
                         }

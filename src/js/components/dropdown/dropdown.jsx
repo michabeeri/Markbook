@@ -6,7 +6,12 @@ define(['react'], function (React) {
         displayName: 'Dropdown',
         propTypes: {
             data: React.PropTypes.object.isRequired,
-            onLineClick: React.PropTypes.func.isRequired
+            onLineClick: React.PropTypes.func.isRequired,
+            selected: React.PropTypes.number
+        },
+        getInitialState: function () {
+            this.counter = 0;
+            return {};
         },
         onClick: function (event) {
             var line = event.target;
@@ -25,12 +30,17 @@ define(['react'], function (React) {
                     </li>);
             });
         },
+        componentWillReceiveProps: function () {
+            this.counter = 0;
+        },
         renderGroupLines: function (filteredGroup) {
             var self = this;
             if (filteredGroup.lines.length > 0) {
                 return (filteredGroup.lines.map(function (line, itemIndex) {
-                    return (<li className='btn-list-item dropdown-item' onMouseDown={self.onClick}
-                                data-value={line} key={Math.random()}
+                    var id = self.counter++;
+                    var selectedClass = (id === self.props.selected) ? ' selected' : '';
+                    return (<li className={'btn-list-item dropdown-item' + selectedClass} onMouseDown={self.onClick}
+                                data-value={line} key={Math.random()} data-id={id}
                                 data-type={filteredGroup.groupType}
                                 ref={filteredGroup.groupType + itemIndex}>
                         {line}
