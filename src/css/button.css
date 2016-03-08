@@ -132,10 +132,8 @@
 }
 
 .btn-add {
-  position: fixed;
-  bottom: 3%;
+  right: 5%;
   padding: 0;
-  margin-left: 879px;
   color: rgba(199, 189, 175, 0.7);
   transition: color .5s ease;
 }
