@@ -20,6 +20,9 @@ define(['constants'], function (Constants) {
             case Constants.STORE_DATA:
                 return action.sort;
 
+            case Constants.LOGOUT:
+                return initialState;
+
             default:
                 return state;
         }

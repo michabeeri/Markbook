@@ -19,6 +19,9 @@ define(['constants'], function (Constants) {
             case Constants.CLOSE_MODAL:
                 return initialState;
 
+            case Constants.LOGOUT:
+                return initialState;
+
             default:
                 return state;
         }

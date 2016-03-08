@@ -1,9 +1,9 @@
-define(['constants', 'developer'], function (Constants, Developer) {
+define(['constants'], function (Constants) {
     'use strict';
 
     var initialState = {
-        username: Developer.username,
-        uid: Developer.uid,
+        username: null,
+        uid: null,
         token: null
     };
 
@@ -16,6 +16,9 @@ define(['constants', 'developer'], function (Constants, Developer) {
 
             case Constants.LOGIN:
                 return {username: action.username, uid: action.uid, token: action.token};
+
+            case Constants.LOGOUT:
+                return initialState;
 
             default:
                 return state;
