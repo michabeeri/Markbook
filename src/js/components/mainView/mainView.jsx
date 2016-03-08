@@ -93,9 +93,9 @@ define(
 
                 if (this.props.state.bookmarks.length === 1) { //root group
                     content = (
-                        <div>
-                            <h1>Welcome</h1>
-                            <i className="fa fa-plus fa-3x"></i>
+                        <div className = 'empty-state-container fixed-center'>
+                            <h1 className = 'empty-state-container-title'>Welcome</h1>
+                            <img src='img/bookmark.png' alt='bookmark' width='200' height='200'/>
                             <p>Add your first bookmark</p>
                         </div>);
                 } else {
@@ -123,12 +123,10 @@ define(
                     <div>
                         {this.props.state.flags.hasOwnProperty(Constants.BOOKMARKS_LOADED) ?
                             <div>
+                                <a className="btn btn-add fixed-bottom " onClick={this.openAddBookMarkModal}><i className="fa fa-plus-circle"></i></a>
                                 {content}
+                                {this.props.state.flags[Constants.FIRST_VISIT_FLAG] ? <div className="helper-message fixed-bottom tooltip">Click here to add a new bookmark</div> : null}
                                 <ModalContainer dispatch={this.props.dispatch} state={this.props.state}/>
-                                <div className="fixed-bottom-bar">
-                                    <a className="btn" onClick={this.goBack}><i className="fa fa-chevron-circle-left"></i></a>
-                                    <a className="btn" onClick={this.openAddBookMarkModal}><i className="fa fa-plus-circle"></i></a>
-                                </div>
                             </div> :
                             <Spinner />
                         }

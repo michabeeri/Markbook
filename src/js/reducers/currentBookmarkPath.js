@@ -17,6 +17,9 @@ define(['lodash', 'constants'], function (_, Constants) {
             case Constants.OPEN_BOOKMARK_GROUP:
                 return state.concat(action.id);
 
+            case Constants.LOGOUT:
+                return initialState;
+
             default:
                 return state;
         }

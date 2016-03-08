@@ -36,7 +36,7 @@ define(['lodash', 'constants'], function (_, Constants) {
 
     function getGroupByTitle(bookmarks, title) {
         return _.find(bookmarks, function (bm) {
-            return (bm.title === title && bm.children.length > 0);
+            return ((bm.title === title && bm.children.length > 0) || (bm.id === Constants.ROOT_GROUP_ID && bm.title === title));
         });
     }
 

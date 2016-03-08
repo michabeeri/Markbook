@@ -1,6 +1,14 @@
-define(['lodash', 'constants', 'actionProviders/actions'], function (_, Constants, ActionProvider) {
+define(['lodash', 'constants', 'utils/relationshipTreeUtil', 'actionProviders/actions'], function (_, Constants, RelationshipTreeUtil, ActionProvider) {
 
     'use strict';
+
+    function fixBookmarksPath(idsToRemove, bookmarkPath) {
+        if (idsToRemove.indexOf(_.last(bookmarkPath)) !== -1) {
+            bookmarkPath.pop();
+            return fixBookmarksPath(idsToRemove, bookmarkPath);
+        }
+        return bookmarkPath;
+    }
 
     return function removeBookmarkMiddleware(store) {
         return function (next) {
@@ -11,41 +19,20 @@ define(['lodash', 'constants', 'actionProviders/actions'], function (_, Constant
                 }
 
                 var state = store.getState();
-                var highestDeletedGroup = getHighestGroupToDelete(action.id);
-                var lowestRemainingGroup = _.find(state.bookmarks, function (bm) {
-                    return bm.children && bm.children.indexOf(highestDeletedGroup) !== -1;
+                var relationshipTree = RelationshipTreeUtil.getRelationshipTree(state.bookmarks, Constants.ROOT_GROUP_ID);
+                var idsToRemove = RelationshipTreeUtil.getIdsToRemove(relationshipTree, action.ids);
+
+                _.remove(idsToRemove, function neverDeleteRootGroup(id) {
+                    return id === Constants.ROOT_GROUP_ID;
                 });
-                var idsToRemove = getIdsToRemove(highestDeletedGroup);
 
-                function getIdsToRemove(bookmarkId) {
-                    var ids = [bookmarkId];
-                    var bookmark = _.find(state.bookmarks, {id: bookmarkId});
+                var currentOpenGroup = _.last(fixBookmarksPath(idsToRemove, state.currentBookmarkPath.slice()));
 
-                    if (bookmark && bookmark.children) {
-                        bookmark.children.forEach(function (id) {
-                            ids = ids.concat(getIdsToRemove(id));
-                        });
-                    }
-                    return ids;
+                if (currentOpenGroup !== _.last(state.currentBookmarkPath)) {
+                    store.dispatch(ActionProvider.navigateToPreviousGroup(currentOpenGroup));
                 }
 
-                function getHighestGroupToDelete(id) {
-                    var parentGroup = _.find(state.bookmarks, function (bm) {
-                        return bm.children && bm.children.indexOf(id) !== -1;
-                    });
-
-                    if (parentGroup.id === Constants.ROOT_GROUP_ID || parentGroup.children.length > 1) {
-                        return id;
-                    }
-
-                    return getHighestGroupToDelete(parentGroup.id);
-                }
-
-                if (lowestRemainingGroup.id !== _.last(state.currentBookmarkPath)) {
-                    store.dispatch(ActionProvider.navigateToPreviousGroup(lowestRemainingGroup.id));
-                }
-
-                return next(Object.assign(action, {idsToRemove: idsToRemove}));
+                return next(Object.assign(action, {ids: idsToRemove}));
             };
         };
     };

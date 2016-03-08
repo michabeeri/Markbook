@@ -22,6 +22,9 @@ define(['constants'], function (Constants) {
                 flag[action.flag] = false;
                 return _.assign({}, state, flag);
 
+            case Constants.LOGOUT:
+                return initialState;
+
             default:
                 return state;
         }
