@@ -4,6 +4,10 @@
   height: 30px;
   width: 150px;
   border: 1px solid #cccccc;
+  outline: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .action-controls {
@@ -20,8 +24,11 @@
 }
 
 .search-box .input {
-  height: 35px;
-  border: 1px solid #96938E;
   border-radius: 30px;
-  background-color: rgba(222, 218, 211, 0.5);
+}
+
+@media screen and (max-width: 960px) {
+  .action-controls.btn-group .btn {
+    visibility: hidden;
+  }
 }
