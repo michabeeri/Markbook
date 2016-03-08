@@ -18,12 +18,11 @@ body {
 }
 
 .main {
-    max-width: 900px;
     min-height: 700px;
     margin: auto;
     color: #333333;
     font-size: 1.4em;
-    background: linear-gradient(to bottom, rgba(234, 231, 226, 0.75) 0, rgba(247, 244, 238, 0.31) 100%);
+    /*background: linear-gradient(to bottom, rgba(234, 231, 226, 0.75) 0, rgba(247, 244, 238, 0.31) 100%);*/
     position: relative;
     z-index: 1;
 }
@@ -64,14 +63,19 @@ body {
 
 .title-normal {
     font-size: 20px;
+    font-weight: 200;
 }
 
 .title-large {
     font-size: 32px;
+    font-weight: 200;
+    margin: 15px;
 }
 
 .title-small {
     font-size: 17px;
+    font-weight: 200;
+    margin: 5px;
 }
 
 .btn-style-less:focus {
