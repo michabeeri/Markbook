@@ -28,7 +28,7 @@ define(['lodash',
             render: function () {
                 return (
                     <header>
-                        <img src='img/logo.jpg' alt='Markbook logo' width='150px'/>
+                        <img src='img/logo.png' alt='Markbook logo' width='150px'/>
                         <h1>{Constants.APP_NAME}</h1>
                         <h2>Sign-Up</h2>
                     </header>
@@ -105,7 +105,7 @@ define(['lodash',
             displayName: 'Signup',
             render: function () {
                 return (
-                    <section>
+                    <section className='main'>
                         <SignupHeader />
                         <SignupForm {...this.props}/>
                         <SignupFooter {...this.props}/>

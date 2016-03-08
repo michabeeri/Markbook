@@ -6,8 +6,8 @@ define(['lodash', 'react', 'router', 'components/loginManager/login-fields/email
         var LoginHeader = React.createClass({
             displayName: 'LoginHeader', render: function () {
                 return (
-                    <header>
-                        <img src='img/logo.jpg' alt='markbook logo' width='150px'/>
+                    <header className='header'>
+                        <img src='img/logo.png' alt='markbook logo' width='150px'/>
 
                         <h1>{Constants.APP_NAME}</h1>
                     </header>
@@ -52,13 +52,13 @@ define(['lodash', 'react', 'router', 'components/loginManager/login-fields/email
                 LoginManager.authenticateUser(this.refs.email.getValue(), this.refs.password.getValue(), this.successLogin, this.failureLogin);
             }, render: function () {
                 return (
-                    <form onSubmit={this.onLogin} className='login-form'>
+                    <form onSubmit={this.onLogin} className='form login-form'>
                         <ErrorMessage errorMessage={this.state.errorMessage}/>
                         <ul className='style-less-list'>
                             <li><EmailInput ref='email'/></li>
                             <li><PasswordInput ref='password'/></li>
                         </ul>
-                        <button className='login' type='submit' onClick={this.onLogin}>Login</button>
+                        <button className='btn login' type='submit' onClick={this.onLogin}>Login</button>
                     </form>
                 );
             }
@@ -67,7 +67,7 @@ define(['lodash', 'react', 'router', 'components/loginManager/login-fields/email
         var loginComponent = React.createClass({
             displayName: 'Login', render: function () {
                 return (
-                    <section>
+                    <section className='main login'>
                         <LoginHeader />
                         <LoginForm className='login-form' {...this.props}/>
                         <LoginFooter {...this.props}/>

@@ -7,6 +7,12 @@
   color: hsl(215, 18%, 28%);
   display: inline-block;
   background: transparent;
+  outline: none;
+}
+
+.fixed-bottom {
+  position: fixed;
+  bottom: 5%;
 }
 
 .btn:hover {
