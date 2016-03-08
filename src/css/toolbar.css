@@ -19,12 +19,9 @@
   background-color: transparent;
 }
 
-.search-box-container {
-  padding-left: 15px;
-
-}
-
-.search-box.input {
-  border: none;
-  background-color: transparent;
+.search-box .input {
+  height: 35px;
+  border: 1px solid #96938E;
+  border-radius: 30px;
+  background-color: rgba(222, 218, 211, 0.5);
 }

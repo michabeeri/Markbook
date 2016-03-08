@@ -47,7 +47,7 @@ requirejs([
     'middlewares/database',
     'middlewares/layoutList',
     'middlewares/flagsMiddleware',
-    'middlewares/localStorageMW',
+    'middlewares/localStorageMw',
     'developer',
     'components/loginManager/loginManager'],
     function (_, React, ReactDOM, Redux, ReactRouter, ReactRedux, AppView, appReducer, ReduxSimpleRouter, LoginComp, SignupComp, thunkMiddleware, removeBookmarkMiddleware, databaseMiddleware, LayoutListMiddleware, flagsMiddleware, LocalStorageMiddleware, Developer, LoginManager) {
