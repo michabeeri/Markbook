@@ -9,7 +9,7 @@ define(['react'],
             },
             render: function () {
                 return (
-                    <input ref='email' type='email' placeholder='Email' require autofocus/>
+                    <input className='input' ref='email' type='email' placeholder='Email' require autofocus/>
                 );
             }
         });

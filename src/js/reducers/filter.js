@@ -19,6 +19,9 @@ define(['constants'], function (Constants) {
                     title: action.title
                 };
 
+            case Constants.LOGOUT:
+                return initialState;
+
             default:
                 return state;
         }

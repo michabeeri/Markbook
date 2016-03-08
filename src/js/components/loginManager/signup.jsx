@@ -28,7 +28,7 @@ define(['lodash',
             render: function () {
                 return (
                     <header>
-                        <img src='img/logo.jpg' alt='Markbook logo' width='150px'/>
+                        <img src='img/logo.png' alt='Markbook logo' width='150px'/>
                         <h1>{Constants.APP_NAME}</h1>
                         <h2>Sign-Up</h2>
                     </header>
@@ -79,7 +79,7 @@ define(['lodash',
             onSignup: function (event) {
                 event.preventDefault();
                 console.log('onSignup!');
-                var validationResult = LoginManager.validateSignUpInfo(this.refs.pass.getValue(), this.refs.passConfirm.getValue());
+                var validationResult = LoginManager.validateSignUpInfo(this.refs.pass.getValue(), this.refs.passConfirm.getValue(), this.refs.email.getValue());
                 if (validationResult === LoginManager.RESULT_VALUES.success) {
                     LoginManager.createUserOnDataBase(this.refs.email.getValue(), this.refs.pass.getValue(), this.successSignup, this.failureSignup);
                 } else {
@@ -105,7 +105,7 @@ define(['lodash',
             displayName: 'Signup',
             render: function () {
                 return (
-                    <section>
+                    <section className='main'>
                         <SignupHeader />
                         <SignupForm {...this.props}/>
                         <SignupFooter {...this.props}/>

@@ -17,6 +17,9 @@ define(['constants'], function (Constants) {
                     layoutType: action.layoutType
                 };
 
+            case Constants.LOGOUT:
+                return initialState;
+
             default:
                 return state;
         }
