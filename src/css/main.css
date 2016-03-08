@@ -152,6 +152,7 @@ body {
 
 .error-message {
   color: #cc0000;
+  font-size: large;
 }
 
 .search-term {

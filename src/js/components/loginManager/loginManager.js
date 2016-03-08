@@ -18,7 +18,8 @@ define(['Firebase'], function (Firebase) {
             passwordMissingDigit: 'Password should contain a both letters and digits',
             emailInvalid: 'Invalid Email',
             passwordTooShort: 'Password is too short',
-            loginFailed: 'Invalid email or password'
+            loginFailed: 'Invalid email or password',
+            chuckNorris: 'Did you mean \'gmail@chucknorris.com\' ?'
         },
 
         isLoggedIn: function () {
@@ -47,7 +48,10 @@ define(['Firebase'], function (Firebase) {
             });
         },
 
-        validateSignUpInfo: function (password, passwordRepeat) {
+        validateSignUpInfo: function (password, passwordRepeat, email) {
+            if (email === 'chucknorris@gmail.com' || email === 'chuck.norris@gmail.com') {
+                return this.RESULT_VALUES.chuckNorris;
+            }
             if (password !== passwordRepeat) {
                 return this.RESULT_VALUES.passwordsDontMatch;
             }
