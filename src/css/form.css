@@ -27,8 +27,7 @@
 }
 
 .input {
-    border-color: #cccccc;
-    border: 1px solid;
+    border: 1px solid rgb(152, 149, 144);
     color: #6b6b6b;
     font-size: 14px;
     font-weight: 200;
@@ -42,7 +41,7 @@
 }
 
 .input.input-with-label {
-    width: 500px;
+    width: 350px;
 }
 
 .input:hover {
@@ -54,7 +53,7 @@
 }
 
 .input-long {
-    width: 520px;
+    width: 420px;
 }
 
 .invalid-input {

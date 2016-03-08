@@ -44,13 +44,13 @@ define(['lodash', 'react', 'components/dropdown/dropdown', 'utils/bookmarksUtil'
             },
             render: function () {
                 return (
-                    <span className="search-box">
+                    <div className="search-box contained inline">
                         <InputWithSuggestions suggestions={this.getSearchResult()}
                                               onInputSelected={this.filterBookmarksByTerm}
                                               valueLink={this.linkState('searchTerm')}
                                               placeholder="Search"
                         />
-                    </span>
+                    </div>
 
                 );
             }

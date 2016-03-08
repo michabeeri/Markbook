@@ -1,13 +1,14 @@
 .order-by {
   font: 14px 'Helvetica Neue Regular', 'Helvetica Neue';
   font-weight: 200;
-  height: 30px;
-  width: 150px;
-  border: 1px solid #cccccc;
+  height: 35px;
+  width: 200px;
   outline: 0;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  padding: 0 15px;
+  color: #404448;
 }
 
 .action-controls {
@@ -23,7 +24,8 @@
   background-color: transparent;
 }
 
-.search-box .input {
+.search-box .input,
+.order-by.input {
   border-radius: 30px;
 }
 

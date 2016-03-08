@@ -32,7 +32,7 @@ body {
 }
 
 .app-line-container {
-    margin: 15px;
+    margin: 15px 25px;
     padding: 5px;
     height: 45px;
     line-height: 35px;
@@ -40,7 +40,7 @@ body {
 }
 
 .contained {
-    margin-left: 10px;
+    margin-right: 25px;
     height: 35px;
 }
 

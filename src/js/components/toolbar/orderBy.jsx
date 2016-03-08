@@ -23,7 +23,7 @@ define(['lodash', 'react', 'uuid'],
                 return (
                     <div className='contained inline'>
                         <span className='label'>Reorder:</span>
-                        <select className='border-simple order-by' onChange={this.onSelectOrderBy}
+                        <select className='order-by input' onChange={this.onSelectOrderBy}
                                 value={this.props.selectedSortType}>
                             {_.map(_.keys(this.props.sortTypes), function (type) {
                                 return renderOption(type);
