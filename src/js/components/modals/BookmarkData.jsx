@@ -147,19 +147,23 @@ define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsConta
                 }
 
                 if (bookmarkUrlShow) {
-                    bookmarkUrlContent = <input name="BookmarkUrl" type="url" valueLink={this.linkState('bookmarkUrl')}
+                    bookmarkUrlContent = (<label className="label">
+                        <span>URL:</span><input name="BookmarkUrl" type="url" valueLink={this.linkState('bookmarkUrl')}
                                                 placeholder="Paste url to bookmark"
-                                                className="input"/>;
+                                                className="input"/></label>);
                 }
 
                 var onClickCallback = (this.isEditMode()) ? this.editBookmark : this.addBookmark;
 
                 return (<div>
-                        <h1>{titleText}</h1>
+                    <header className='header'>
+                        <h1 className='title title-large'>{titleText}</h1>
+                    </header>
                         <ErrorMessage errorMessage={this.state.errorMessage}/>
-                        <input name="BookmarkName" type="text" valueLink={this.linkState('bookmarkName')}
+                    <label className="label">
+                        <span>Name:</span><input name="BookmarkName" type="text" valueLink={this.linkState('bookmarkName')}
                                placeholder="Name your bookmark"
-                               className="input" autofocus/>
+                               className="input" autofocus/></label>
                         {bookmarkUrlContent}
                         <GroupInput addGroup={this.addGroup} bookmarks={this.props.state.bookmarks}
                                     input={this.state.groupName}/>
