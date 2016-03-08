@@ -6,6 +6,10 @@
     width: 220px;
 }
 
+.dropdown-group {
+    border: 1px solid black;
+}
+
 .dropdown-items-title {
     font-weight: bold;
     padding-left: 2px;

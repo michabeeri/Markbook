@@ -42,6 +42,9 @@ define(['react', 'reactDOM', 'constants', 'components/bookmarkList/bookmark'],
             it('should call dragStart callback when being dragged', function (done) {
                 var mockDataTransfer = {
                     setData: function () {
+                    },
+                    setDragImage: function () {
+
                     }
                 };
                 TestUtils.Simulate.dragStart(ReactDOM.findDOMNode(bookmark), {dataTransfer: mockDataTransfer});

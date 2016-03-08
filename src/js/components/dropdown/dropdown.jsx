@@ -15,8 +15,10 @@ define(['react'], function (React) {
         renderGroup: function () {
             var self = this;
             return this.props.data.items.map(function (filteredGroup, groupIndex) {
+                var title = (filteredGroup.title) ?
+                    <span className="dropdown-items-title">{filteredGroup.title}</span> : '';
                 return (
-                    <li key={Math.random()}><span className="dropdown-items-title">{filteredGroup.title}</span>
+                    <li key={Math.random()} className="dropdown-group">{title}
                         <ul className='style-less-list' ref={'group' + groupIndex}>
                             {self.renderGroupLines(filteredGroup)}
                         </ul>
@@ -27,7 +29,7 @@ define(['react'], function (React) {
             var self = this;
             if (filteredGroup.lines.length > 0) {
                 return (filteredGroup.lines.map(function (line, itemIndex) {
-                    return (<li className='btn-list-item dropdown-item' onClick={self.onClick}
+                    return (<li className='btn-list-item dropdown-item' onMouseDown={self.onClick}
                                 data-value={line} key={Math.random()}
                                 data-type={filteredGroup.groupType}
                                 ref={filteredGroup.groupType + itemIndex}>
@@ -44,5 +46,6 @@ define(['react'], function (React) {
         }
     });
 });
+
 
 

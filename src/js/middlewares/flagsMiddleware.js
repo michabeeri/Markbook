@@ -9,7 +9,7 @@ define(['lodash', 'constants', 'actionProviders/actions'], function (_, Constant
                 switch (action.type) {
                     case Constants.ADD_BOOKMARK_AND_GROUP:
                     case Constants.ADD_BOOKMARK:
-                        store.dispatch(ActionProvider.turnOffFlag(Constants.REMOVE_BOOKMARK));
+                        store.dispatch(ActionProvider.turnOffFlag(Constants.FIRST_VISIT_FLAG));
                         return next(action);
 
                     default:

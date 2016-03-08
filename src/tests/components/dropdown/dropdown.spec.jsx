@@ -51,7 +51,7 @@ define(['react', 'components/dropdown/dropdown'],
                     spyOn(props, 'onLineClick');
                     var comp = React.createElement(Dropdown, props);
                     dropdown = TestUtils.renderIntoDocument(comp);
-                    TestUtils.Simulate.click(dropdown.refs.bookmark0);
+                    TestUtils.Simulate.mouseDown(dropdown.refs.bookmark0);
                     expect(props.onLineClick).toHaveBeenCalledWith('bookmark', 'name1');
                 })
             });

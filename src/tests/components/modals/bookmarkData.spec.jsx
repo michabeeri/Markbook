@@ -21,7 +21,7 @@ define(['React', 'reactDOM', 'components/modals/BookmarkData', 'constants'],
                         title: 'Gaspar Noe Movies',
                         date: new Date(2012, 10, 9),
                         tags: [],
-                        children: Array(2).fill({})
+                        children: [{}, {}]
                     }
                 ];
                 var state =

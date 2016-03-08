@@ -21,3 +21,49 @@
 .fixed-bottom-bar .btn:hover {
     color: #4e4e4e;
 }
+
+.helper-message {
+    font-size: 1.2em;
+}
+
+.empty-state-container {
+    width: 200px;
+    height: 400px;
+    text-align:center;
+}
+
+.empty-state-container-title {
+    font-size: 4rem;
+}
+
+.tooltip
+{
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 8px;
+    margin-left: 550px;
+    width:300px;
+    hight: 50px;
+    border: 1px solid #c7bdaf;
+
+}
+
+.tooltip::after
+{
+    content:"";
+    left: 295px;
+    position: absolute;
+    border-top: 8px solid transparent;
+    border-left: 16px solid #ffffff;
+    border-bottom: 8px solid transparent;
+}
+
+.tooltip::before
+{
+    content:"";
+    position: absolute;
+    left:297px;
+    border-top: 8px solid transparent;
+    border-left: 16px solid #c7bdaf;
+    border-bottom: 8px solid transparent;
+}
