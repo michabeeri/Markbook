@@ -19,7 +19,7 @@ define(['react', 'components/toolbar/toolbar', 'constants', 'utils/bookmarksUtil
             it('should show a search box with Search placeholder', function () {
                 toolBar = renderToolBar([] ,true);
 
-                var searchNode = testUtils.findRenderedDOMComponentWithClass(toolBar, 'search-box');
+                var searchNode = testUtils.findRenderedDOMComponentWithClass(toolBar, 'input');
 
                 expect(searchNode).toBeTruthy();
                 expect(searchNode.placeholder).toEqual('Search');
