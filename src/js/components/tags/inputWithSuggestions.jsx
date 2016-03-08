@@ -96,7 +96,7 @@ define(['React', 'lodash', 'components/dropdown/dropdown'],
             render: function () {
                 return (
                     <span className="input-wrapper">
-                        <input className="input" type="text" onKeyUp={this.onKeyUp} ref="input" onFocus={this.onFocus}
+                        <input className="input input-with-label" type="text" onKeyUp={this.onKeyUp} ref="input"
                                valueLink={this.props.valueLink} onBlur={this.onBlur}
                                placeholder={this.props.placeholder}/>
                         {this.state.isEditing && this.props.valueLink.value ?

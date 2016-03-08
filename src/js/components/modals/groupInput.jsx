@@ -39,9 +39,10 @@ define(['react', 'components/tags/inputWithSuggestions', 'utils/bookmarksUtil'],
             },
             render: function () {
                 return (
-                    <InputWithSuggestions onInputSelected={this.onInputSelected}
-                                          valueLink={this.linkState('input')}
-                                          suggestions={this.getFilteredGroups(this.state.input)}/>
+                    <div><label className="label"><span>Group:</span>
+                        <InputWithSuggestions onInputSelected={this.onInputSelected}
+                                              valueLink={this.linkState('input')}
+                                              suggestions={this.getFilteredGroups(this.state.input)}/></label></div>
                 );
             }
         });
