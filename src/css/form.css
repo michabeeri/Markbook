@@ -1,0 +1,31 @@
+.label {
+  padding-right: 5px;
+  vertical-align: sub;
+}
+
+.input {
+  border-color: #cccccc;
+  border: 1px solid;
+  color: #6b6b6b;
+  font-size: 14px;
+  font-weight: 200;
+  text-align: left;
+  height: 35px;
+  width: 220px;
+  padding: 15px;
+  outline: none;
+  border-radius: 10px;
+}
+
+.input-long {
+  width: 520px;
+}
+
+.invalid-input {
+  border-color: #cc0000;
+  background-color: #fdf3f3;
+}
+
+.form .input {
+  margin-bottom: 10px;
+}

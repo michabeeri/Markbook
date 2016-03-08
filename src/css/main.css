@@ -28,6 +28,10 @@ body {
     z-index: 1;
 }
 
+.header {
+    padding: 10px;
+}
+
 .app-line-container {
     margin: 15px;
     padding: 5px;
@@ -39,11 +43,6 @@ body {
 .contained {
     margin-left: 10px;
     height: 35px;
-}
-
-.label {
-    padding-right: 5px;
-    vertical-align: sub;
 }
 
 .hidden {
@@ -61,21 +60,6 @@ body {
   left: 0;
   right: 0;
   margin: auto;
-}
-
-.fixed-bottom {
-    position: fixed;
-    bottom: 5%;
-}
-
-.style-less-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.horizontal-list .list-item {
-    display: inline-block;
 }
 
 .title-normal {
@@ -107,27 +91,6 @@ body {
     border-width: 0 0 1px 0;
     border-style: solid;
     border-color: #cccccc;
-}
-
-.input {
-    border-color: #cccccc;
-    border: 1px solid;
-    color: #6b6b6b;
-    font-size: 14px;
-    font-weight: 200;
-    text-align: left;
-    height: 35px;
-    width: 220px;
-    padding: 15px;
-}
-
-.input-long {
-    width: 520px;
-}
-
-.invalid-input {
-    border-color: #cc0000;
-    background-color: #fdf3f3;
 }
 
 .error-message {

@@ -10,7 +10,7 @@ define(['react'],
             render: function () {
                 var placeholder = this.props.placeholder || 'Password';
                 return (
-                    <input className='password' ref='input' type='password' placeholder={placeholder}
+                    <input className='input password' ref='input' type='password' placeholder={placeholder}
                            required/>
                 );
             }
