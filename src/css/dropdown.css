@@ -23,3 +23,7 @@
     cursor: pointer;
     color: #00a0d1;
 }
+
+.dropdown-item.selected {
+    background-color: purple;
+}
