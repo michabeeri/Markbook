@@ -150,7 +150,7 @@ define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsConta
                     bookmarkUrlContent = (<label className="label">
                         <span>URL:</span><input name="BookmarkUrl" type="url" valueLink={this.linkState('bookmarkUrl')}
                                                 placeholder="Paste url to bookmark" pattern="https?://.+"
-                                                className="input" required/></label>);
+                                                className="input input-with-label" required/></label>);
                 }
 
                 var onClickCallback = (this.isEditMode()) ? this.editBookmark : this.addBookmark;
@@ -160,17 +160,19 @@ define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsConta
                         <h1 className='title title-large'>{titleText}</h1>
                     </header>
                         <ErrorMessage errorMessage={this.state.errorMessage}/>
+                    <form onSubmit={onClickCallback} className='form'>
                     <label className="label">
                         <span>Name:</span><input name="BookmarkName" type="text" valueLink={this.linkState('bookmarkName')}
                                placeholder="Name your bookmark"
-                               className="input" autofocus required/></label>
+                               className="input input-with-label" autofocus required/></label>
                         {bookmarkUrlContent}
                         <GroupInput addGroup={this.addGroup} bookmarks={this.props.state.bookmarks}
                                     input={this.state.groupName}/>
                         <TagsContainer tags={this.state.tags} addTag={this.addTag} removeTag={this.removeTag}
                                        bookmarks={this.props.state.bookmarks}/>
-                        <button onClick={onClickCallback} className="btn">{buttonText}</button>
-                    </div>
+                        <button onClick={onClickCallback} className="btn btn-modal" type='submit'>{buttonText}</button>
+                    </form>
+                </div>
 
                 );
             }

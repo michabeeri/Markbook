@@ -6,7 +6,7 @@ define([''], function () {
 
         RESULT_VALUES: {
             groupName: 'Please select group for bookmark',
-            emptyBookmarkName: 'Bookmark field can\'t be empty',
+            emptyBookmarkName: 'Name field can\'t be empty',
             emptyBookmarkURL: 'URL field can\'t be empty'
         },
 
