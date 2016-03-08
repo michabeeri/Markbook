@@ -16,7 +16,9 @@ define(['React', 'reactDOM', 'components/tags/inputWithSuggestions'],
                     },
                     suggestions: {
                         input: 't',
-                        items: []
+                        items: [{title: 'Bookmarks', groupType: 'bookmark', lines: ['name1', 'name2', 'name3']},
+                            {title: 'Tags', groupType: 'tag', lines: ['tag1', 'tag2', 'tag3']},
+                            {title: 'Random', groupType: 'random', lines: []}]
                     }
                 };
                 spyOn(props, 'onInputSelected');
@@ -56,7 +58,7 @@ define(['React', 'reactDOM', 'components/tags/inputWithSuggestions'],
                 it('should call onInputSelected with the text when clicking enter', function () {
                     var tagInput = renderInputWithData('tag');
                     ReactTestUtils.Simulate.keyUp(tagInput.refs.input, {keyCode: 13});
-                    expect(props.onInputSelected).toHaveBeenCalledWith(undefined, tagInput.refs.input.value);
+                    expect(props.onInputSelected).toHaveBeenCalledWith('name1','bookmark');
                 });
 
                 it('should hide dropdown when clicking enter', function () {

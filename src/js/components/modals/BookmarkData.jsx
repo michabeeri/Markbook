@@ -149,8 +149,8 @@ define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsConta
                 if (bookmarkUrlShow) {
                     bookmarkUrlContent = (<label className="label">
                         <span>URL:</span><input name="BookmarkUrl" type="url" valueLink={this.linkState('bookmarkUrl')}
-                                                placeholder="Paste url to bookmark"
-                                                className="input"/></label>);
+                                                placeholder="Paste url to bookmark" pattern="https?://.+"
+                                                className="input" required/></label>);
                 }
 
                 var onClickCallback = (this.isEditMode()) ? this.editBookmark : this.addBookmark;
@@ -163,7 +163,7 @@ define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsConta
                     <label className="label">
                         <span>Name:</span><input name="BookmarkName" type="text" valueLink={this.linkState('bookmarkName')}
                                placeholder="Name your bookmark"
-                               className="input" autofocus/></label>
+                               className="input" autofocus required/></label>
                         {bookmarkUrlContent}
                         <GroupInput addGroup={this.addGroup} bookmarks={this.props.state.bookmarks}
                                     input={this.state.groupName}/>
