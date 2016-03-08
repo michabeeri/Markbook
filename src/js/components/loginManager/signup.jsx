@@ -27,10 +27,10 @@ define(['lodash',
             displayName: 'LoginHeader',
             render: function () {
                 return (
-                    <header>
+                    <header className='header'>
                         <img src={Constants.APP_LOGO_SRC} alt='Markbook logo' width='150px'/>
-                        <h1>{Constants.APP_NAME}</h1>
-                        <h2>Sign-Up</h2>
+                        <h1 className='title title-large'>{Constants.APP_NAME}</h1>
+                        <h2 className='title title-normal'>Sign-Up</h2>
                     </header>
                 );
             }
@@ -41,7 +41,7 @@ define(['lodash',
             render: function () {
                 return (
                     <footer className='footer'>
-                        <h4>Already have an account? <LoginLink {...this.props}/></h4>
+                        <h4 className='title-small'>Already have an account? <LoginLink {...this.props}/></h4>
                     </footer>
                 );
             }
@@ -55,7 +55,7 @@ define(['lodash',
             },
             render: function () {
                 return (
-                    <a href='#' onClick={this.clickHandler}>Login</a>
+                    <a className='btn btn-inline' href='#' onClick={this.clickHandler}>Login</a>
                 );
             }
         });
@@ -68,7 +68,8 @@ define(['lodash',
                 return {errorMessage: ''};
             },
             successSignup: function (username, uid, token) {
-                this.props.dispatch(ActionProvider.addBookmark(Constants.ROOT_GROUP_ID, 'My First Bookmark', 'www.google.com', []));
+                this.props.dispatch(
+                    ActionProvider.addBookmark(Constants.ROOT_GROUP_ID, 'My First Bookmark', 'www.google.com', []));
                 this.props.dispatch(ActionProvider.login(username, uid, token));
                 this.props.dispatch(ReduxSimpleRouter.routeActions.push('/'));
                 this.props.dispatch(ActionProvider.turnOnFlag(Constants.FIRST_VISIT_FLAG));
@@ -79,23 +80,26 @@ define(['lodash',
             onSignup: function (event) {
                 event.preventDefault();
                 console.log('onSignup!');
-                var validationResult = LoginManager.validateSignUpInfo(this.refs.pass.getValue(), this.refs.passConfirm.getValue(), this.refs.email.getValue());
+                var validationResult = LoginManager.validateSignUpInfo(this.refs.pass.getValue(),
+                    this.refs.passConfirm.getValue(), this.refs.email.getValue());
                 if (validationResult === LoginManager.RESULT_VALUES.success) {
-                    LoginManager.createUserOnDataBase(this.refs.email.getValue(), this.refs.pass.getValue(), this.successSignup, this.failureSignup);
+                    LoginManager.createUserOnDataBase(this.refs.email.getValue(), this.refs.pass.getValue(),
+                        this.successSignup, this.failureSignup);
                 } else {
                     this.setState({errorMessage: validationResult});
                 }
             },
             render: function () {
                 return (
-                    <form onSubmit={this.onSignup} className='signup-form'>
-                        <ErrorMessage errorMessage={this.state.errorMessage} />
+                    <form onSubmit={this.onSignup} className='form'>
+                        <ErrorMessage errorMessage={this.state.errorMessage}/>
                         <ul className='style-less-list'>
                             <li><EmailInput ref='email'/></li>
-                            <li><PasswordInput ref='pass'/></li> <span>min 6 characters</span>
+                            <li><PasswordInput ref='pass'/></li>
+                            <span>min 6 characters</span>
                             <li><PasswordInput ref='passConfirm' placeholder='Confirm Password'/></li>
                         </ul>
-                        <button className='signup' type='submit'>Signup</button>
+                        <button className='btn' type='submit'>Signup</button>
                     </form>
                 );
             }
@@ -105,10 +109,12 @@ define(['lodash',
             displayName: 'Signup',
             render: function () {
                 return (
-                    <section className='main'>
-                        <SignupHeader />
-                        <SignupForm {...this.props}/>
-                        <SignupFooter {...this.props}/>
+                    <section className='main signup'>
+                        <div className='form-container'>
+                            <SignupHeader />
+                            <SignupForm {...this.props}/>
+                            <SignupFooter {...this.props}/>
+                        </div>
                     </section>
                 );
             }
