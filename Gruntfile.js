@@ -62,6 +62,10 @@ module.exports = function (grunt) {
                         dest: VENDOR_TARGET + 'firebase-web.js'
                     },
                     {
+                        src: 'node_modules/moment/min/moment.min.js',
+                        dest: VENDOR_TARGET + 'moment.min.js'
+                    },
+                    {
                         expand: true,
                         cwd: 'src/img/',
                         src: '**/*',

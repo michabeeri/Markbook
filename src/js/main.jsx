@@ -9,7 +9,8 @@ requirejs.config({
         uuid: '../vendor/uuid',
         Firebase: '../vendor/firebase',
         ReduxSimpleRouter: '../vendor/redux-simple-router',
-        spin: '../vendor/spin'
+        spin: '../vendor/spin',
+        moment: '../vendor/moment.min'
     },
     map: {
         '*': {
