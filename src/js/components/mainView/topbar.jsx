@@ -17,7 +17,7 @@ define(['react', 'constants', 'actionProviders/actions', 'components/loginManage
                 return (
                     <header className='top-bar border-bottom'>
                         <div className='top-bar-section'>
-                            <img className='logo logo-img' src='img/logo.jpg' alt='app logo' width='40' height='40'/>
+                            <img className='logo logo-img' src='img/logo2.png' alt='app logo' width='50' height='50'/>
                             <span className='logo logo-name'>{Constants.APP_NAME}</span>
                         </div>
                         <div className='btn-group top-bar-section'>
