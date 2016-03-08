@@ -23,6 +23,13 @@
   color: #697FA4;
 }
 
+.signup .password ~ .tooltip {
+  visibility: hidden;
+}
+
+.signup .password:focus ~ .tooltip {
+  visibility: visible;
+}
 /*.login-container .footer {*/
   /*margin: 10px;*/
 /*}*/
