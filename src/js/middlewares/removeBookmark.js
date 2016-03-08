@@ -21,6 +21,11 @@ define(['lodash', 'constants', 'utils/relationshipTreeUtil', 'actionProviders/ac
                 var state = store.getState();
                 var relationshipTree = RelationshipTreeUtil.getRelationshipTree(state.bookmarks, Constants.ROOT_GROUP_ID);
                 var idsToRemove = RelationshipTreeUtil.getIdsToRemove(relationshipTree, action.ids);
+
+                _.remove(idsToRemove, function neverDeleteRootGroup(id) {
+                    return id === Constants.ROOT_GROUP_ID;
+                });
+
                 var currentOpenGroup = _.last(fixBookmarksPath(idsToRemove, state.currentBookmarkPath.slice()));
 
                 if (currentOpenGroup !== _.last(state.currentBookmarkPath)) {
