@@ -56,7 +56,7 @@ define(['React', 'reactDOM', 'components/tags/inputWithSuggestions'],
                 it('should call onInputSelected with the text when clicking enter', function () {
                     var tagInput = renderInputWithData('tag');
                     ReactTestUtils.Simulate.keyUp(tagInput.refs.input, {keyCode: 13});
-                    expect(props.onInputSelected).toHaveBeenCalledWith(tagInput.refs.input.value);
+                    expect(props.onInputSelected).toHaveBeenCalledWith(undefined, tagInput.refs.input.value);
                 });
 
                 it('should hide dropdown when clicking enter', function () {
