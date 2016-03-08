@@ -13,10 +13,12 @@ define(['constants'], function (Constants) {
         switch (action.type) {
 
             case Constants.SET_SORT_TYPE:
-
                 return {
                     sortType: action.sortType
                 };
+
+            case Constants.LOGOUT:
+                return initialState;
 
             default:
                 return state;
