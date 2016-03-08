@@ -96,6 +96,7 @@
 
 .bookmark-base.grid {
   display: inline-block;
+  cursor: all-scroll;
 }
 
 .bookmark-base.grid .bookmark-internal {
@@ -109,6 +110,7 @@
 
 .bookmark-base.grid.group .bookmark-internal:hover {
   background-color: rgba(152, 194, 193, 1);
+  cursor: all-scroll;
 }
 
 .bookmark-base.grid.leaf .bookmark-internal {
@@ -117,6 +119,7 @@
 
 .bookmark-base.grid.leaf .bookmark-internal:hover {
   background-color: rgba(154, 189, 220, 1);
+  cursor: all-scroll;
 }
 
 .bookmark-base.grid .bookmark-internal {

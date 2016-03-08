@@ -18,14 +18,17 @@ body {
 }
 
 .main {
-    max-width: 900px;
     min-height: 700px;
     margin: auto;
     color: #333333;
     font-size: 1.4em;
-    background: linear-gradient(to bottom, rgba(234, 231, 226, 0.75) 0, rgba(247, 244, 238, 0.31) 100%);
+    /*background: linear-gradient(to bottom, rgba(234, 231, 226, 0.75) 0, rgba(247, 244, 238, 0.31) 100%);*/
     position: relative;
     z-index: 1;
+}
+
+.header {
+    padding: 10px;
 }
 
 .app-line-container {
@@ -39,11 +42,6 @@ body {
 .contained {
     margin-left: 10px;
     height: 35px;
-}
-
-.label {
-    padding-right: 5px;
-    vertical-align: sub;
 }
 
 .hidden {
@@ -63,31 +61,21 @@ body {
   margin: auto;
 }
 
-.fixed-bottom {
-    position: fixed;
-    bottom: 5%;
-}
-
-.style-less-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.horizontal-list .list-item {
-    display: inline-block;
-}
-
 .title-normal {
     font-size: 20px;
+    font-weight: 200;
 }
 
 .title-large {
     font-size: 32px;
+    font-weight: 200;
+    margin: 15px;
 }
 
 .title-small {
     font-size: 17px;
+    font-weight: 200;
+    margin: 5px;
 }
 
 .btn-style-less:focus {
@@ -107,27 +95,6 @@ body {
     border-width: 0 0 1px 0;
     border-style: solid;
     border-color: #cccccc;
-}
-
-.input {
-    border-color: #cccccc;
-    border: 1px solid;
-    color: #6b6b6b;
-    font-size: 14px;
-    font-weight: 200;
-    text-align: left;
-    height: 35px;
-    width: 220px;
-    padding: 15px;
-}
-
-.input-long {
-    width: 520px;
-}
-
-.invalid-input {
-    border-color: #cc0000;
-    background-color: #fdf3f3;
 }
 
 .error-message {

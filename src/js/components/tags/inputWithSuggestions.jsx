@@ -7,18 +7,19 @@ define(['React', 'lodash', 'components/dropdown/dropdown'],
             propTypes: {
                 onInputSelected: React.PropTypes.func.isRequired,
                 valueLink: React.PropTypes.object.isRequired,
-                suggestions: React.PropTypes.object.isRequired
+                suggestions: React.PropTypes.object.isRequired,
+                placeholder: React.PropTypes.string
             },
             getInitialState: function () {
                 return {
                     isEditing: false
                 };
             },
-            onInputSelected: function (input) {
+            onInputSelected: function (group, input) {
                 this.setState({
                     isEditing: false
                 });
-                this.props.onInputSelected(input);
+                this.props.onInputSelected(input, group);
             },
             onKeyUp: function (event) {
                 var text = event.target.value;
@@ -39,17 +40,14 @@ define(['React', 'lodash', 'components/dropdown/dropdown'],
                     isEditing: false
                 });
             },
-            onSuggestionClick: function (group, suggestion) {
-                this.onInputSelected(suggestion);
-            },
             render: function () {
                 return (
                     <span className="input-wrapper">
                         <input className="input" type="text" onKeyUp={this.onKeyUp} ref="input"
-                               valueLink={this.props.valueLink} onBlur={this.onBlur}/>
+                               valueLink={this.props.valueLink} onBlur={this.onBlur} placeholder={this.props.placeholder}/>
                         {this.state.isEditing && this.props.valueLink.value ?
                             <DropDown ref="dropdown" data={this.props.suggestions}
-                                      onLineClick={this.onSuggestionClick}/> :
+                                      onLineClick={this.onInputSelected}/> :
                             null
                         }
                     </span>

@@ -1,82 +1,33 @@
-/*body {*/
-  /*font-family: 'Open Sans Condensed', sans-serif;*/
-  /*font-family: 'Handlee', cursive;*/
-  /*font-family: 'Slabo 27px', serif;*/
-  /*max-width: 420px;*/
-  /*margin: 15px auto;*/
-  /*text-align: center;*/
-  /*padding: 15px;*/
-  /*background-color: #FFFBEB;*/
-/*}*/
+.main.login,
+.main.signup {
+  text-align: center;
 
-/*.style-less-list {*/
-  /*list-style-type: none;*/
-  /*margin: 0;*/
-  /*padding: 0;*/
-/*}*/
+  font: 62.5%/1.35 'Helvetica Neue Regular', 'Helvetica Neue';
+  font-weight: 100;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
 
-/*.normal {*/
-  /*font-weight: normal;*/
-/*}*/
+.login-container {
+  max-width: 500px;
+  padding: 15px;
+  margin: 75px auto;
+  background: linear-gradient(to bottom,rgba(234, 231, 226, 0.63) 0,rgba(247,244,238,.31) 100%);
+  box-shadow: inset 0px 0px 0px #00336c,0px 0px 3px #00336c;
+  border-radius: 15px;
+}
 
-/*.bold {*/
-  /*font-weight: bold;*/
-/*}*/
+.login .header .title-large {
+  color: #697FA4;
+}
 
-/*.italic {*/
-  /*font-style: italic;*/
-/*}*/
-
-/*.checked {*/
-  /*text-decoration: line-through;*/
-/*}*/
-
-/*.taskItem:hover {*/
-  /*cursor: pointer;*/
-/*}*/
-
-/*#app {*/
-  /*border: 1px solid;*/
-  /*background-color: rgb(218, 231, 243);*/
-  /*padding: 15px;*/
-/*}*/
+.login-container .footer {
+  margin: 10px;
+}
 
 /*.pass-dont-match {*/
   /*visibility: visible;*/
   /*font: 17px 'Open Sans Condensed', sans-serif;*/
   /*margin: 0;*/
   /*color: red;*/
-
-/*}*/
-/*.hide {*/
-  /*visibility: hidden;*/
-/*}*/
-
-/*.login-form input {*/
-  /*font-size: 15px;*/
-  /*border-radius: 15px;*/
-  /*padding: 5px;*/
-  /*margin: 5px;*/
-/*}*/
-
-/*.login-form input:hover {*/
-  /*background-color: rgba(51, 51, 51, 0.23);*/
-/*}*/
-
-/*.login {*/
-  /*background: -webkit-linear-gradient(top, #00a0d1 0%, #008db8 100%);*/
-  /*background: linear-gradient(top, #00a0d1 0%, #008db8 100%);*/
-  /*padding: 5px 15px;*/
-  /*border-radius: 15px;*/
-  /*border: 1px solid #095b7e;*/
-  /*color: #cfebf3;*/
-  /*font-family: 'Helvetica Neue', sans-serif;*/
-  /*font-size: 13px;*/
-  /*margin: 3px;*/
-/*}*/
-
-/*.login:hover {*/
-  /*color: #333333;*/
-  /*background: -webkit-linear-gradient(top, #EEF2F3 0%, #BBC8CC 100%);*/
-  /*cursor: pointer;*/
-/*}*/

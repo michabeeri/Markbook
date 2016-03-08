@@ -96,7 +96,7 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
                                         ? this.props.bookmarkData.children.length + ' items inside'
                                         : moment(this.props.bookmarkData.date).format('ll')}</span>
 
-                                    <ul className="btn-list">
+                                    <ul className="btn-list style-less-list">
                                         {isGroup
                                             ? <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onOpen}><i className="fa fa-folder-open-o"></i></a></li>
                                             : <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onView}><i className="fa fa-link"></i></a></li>

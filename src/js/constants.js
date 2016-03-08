@@ -50,6 +50,7 @@ define([],
 
         return {
             APP_NAME: 'Markbook',
+            APP_LOGO_SRC: 'img/logo.png',
 
             bookmarkType: bookmarkType,
             layoutType: layoutType,
