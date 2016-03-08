@@ -95,8 +95,10 @@ define(['lodash',
                         <ErrorMessage errorMessage={this.state.errorMessage}/>
                         <ul className='style-less-list'>
                             <li><EmailInput ref='email'/></li>
-                            <li><PasswordInput ref='pass'/></li>
-                            <span>min 6 characters</span>
+                            <li>
+                                <PasswordInput ref='pass'/>
+                                <span className='tooltip title-small'>min 6 characters</span>
+                            </li>
                             <li><PasswordInput ref='passConfirm' placeholder='Confirm Password'/></li>
                         </ul>
                         <button className='btn' type='submit'>Signup</button>
