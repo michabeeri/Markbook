@@ -257,3 +257,7 @@
 .list .bookmark-internal .btn-list {
 
 }
+
+.favicon {
+  opacity: 0.2;
+}

@@ -1,5 +1,5 @@
-define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'utils/bookmarksUtil', 'components/bookmarkList/bookmarkList', 'moment'],
-    function (React, Constants, draggable, ActionProvider, BookmarksUtil, BookmarkList, moment) {
+define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'utils/bookmarksUtil', 'components/bookmarkList/bookmarkList', 'moment', 'utils/getFaviconUtil'],
+    function (React, Constants, draggable, ActionProvider, BookmarksUtil, BookmarkList, moment, GetFaviconUtil) {
 
         'use strict';
         var Bookmark = React.createClass({
@@ -89,6 +89,7 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
                         draggable = {this.isGrid()}>
                         <span draggable="true" className={this.isGrid() ? 'hidden' : 'drag-area fa fa-bars'}></span>
                         <div className="bookmark-internal">
+                            {!isGroup ? <img height="20" width="20" src={GetFaviconUtil.getFaviconUrlOf(this.props.bookmarkData.url)} className="favicon" /> : null}
                             <span className='title-small'>{this.props.bookmarkData.title}</span>
 
                             <div>

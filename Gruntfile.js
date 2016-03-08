@@ -238,7 +238,6 @@ module.exports = function (grunt) {
     });
 
     require('jit-grunt')(grunt);
-
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.registerTask('lint', ['eslint']);
