@@ -79,7 +79,7 @@ define(['lodash',
             onSignup: function (event) {
                 event.preventDefault();
                 console.log('onSignup!');
-                var validationResult = LoginManager.validateSignUpInfo(this.refs.pass.getValue(), this.refs.passConfirm.getValue());
+                var validationResult = LoginManager.validateSignUpInfo(this.refs.pass.getValue(), this.refs.passConfirm.getValue(), this.refs.email.getValue());
                 if (validationResult === LoginManager.RESULT_VALUES.success) {
                     LoginManager.createUserOnDataBase(this.refs.email.getValue(), this.refs.pass.getValue(), this.successSignup, this.failureSignup);
                 } else {

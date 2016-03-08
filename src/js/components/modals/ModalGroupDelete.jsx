@@ -11,7 +11,7 @@ define(['react', 'actionProviders/actions', 'utils/bookmarksUtil'],
             },
             DeleteGroup: function () {
                 if (this.props.state.modals) {
-                    this.props.dispatch(actions.removeBookmark(this.props.state.modals.id));
+                    this.props.dispatch(actions.removeBookmark([this.props.state.modals.id]));
                     this.props.close();
                 }
             },

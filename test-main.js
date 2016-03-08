@@ -29,7 +29,8 @@ requirejs.config({
         utils: 'js/utils',
         dataBaseApi: 'js/dataBaseApi',
         ReduxSimpleRouter: 'vendor/redux-simple-router',
-        spin: 'vendor/spin'
+        spin: 'vendor/spin',
+        moment: 'vendor/moment.min'
     },
     map: {
         '*': {

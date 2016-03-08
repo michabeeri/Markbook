@@ -31,6 +31,9 @@ define(
                 this.props.dispatch(
                     ActionProvider.openBookmarkDataModal(BookmarksUtil.getSelectedBookmarks(this.props.items)[0].id));
             },
+            onDelete: function () {
+                this.props.dispatch(ActionProvider.removeBookmark(_(this.props.items).filter({selected: true}).map('id').value()));
+            },
             render: function () {
                 var items = this.props.items;
                 var totalSelected = BookmarksUtil.getTotalSelectedBookmarks(items);
@@ -47,7 +50,8 @@ define(
                                         layoutType={this.props.layout}
                                         switchLayout={this.props.switchLayout}
                                         minGridLayoutExceeded={this.props.minGridLayoutExceeded}
-                                        onEdit={this.onEdit}/>
+                                        onEdit={this.onEdit}
+                                        onDelete={this.onDelete}/>
                     </div>
                 );
             }

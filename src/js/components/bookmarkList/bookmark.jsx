@@ -1,5 +1,5 @@
-define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'utils/bookmarksUtil', 'components/bookmarkList/bookmarkList'],
-    function (React, Constants, draggable, ActionProvider, BookmarksUtil, BookmarkList) {
+define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'utils/bookmarksUtil', 'components/bookmarkList/bookmarkList', 'moment'],
+    function (React, Constants, draggable, ActionProvider, BookmarksUtil, BookmarkList, moment) {
 
         'use strict';
         var Bookmark = React.createClass({
@@ -30,10 +30,10 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
                     this.props.dispatch(ActionProvider.openDeleteGroupModal(id));
                 } else {
                     var parent = BookmarksUtil.getParent(this.props.state.bookmarks, id);
-                    if (parent.children && parent.children.length === 1) {
+                    if (parent.id !== Constants.ROOT_GROUP_ID && parent.children.length === 1) {
                         this.props.dispatch(ActionProvider.openLastItemInGroupDelete(id));
                     } else {
-                        this.props.dispatch(ActionProvider.removeBookmark(id));
+                        this.props.dispatch(ActionProvider.removeBookmark([id]));
                     }
                 }
 
@@ -94,7 +94,7 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
                             <div>
                                 <span className='title-small title-info'>{isGroup
                                     ? this.props.bookmarkData.children.length + ' items inside'
-                                    : this.props.bookmarkData.date.toLocaleDateString('en-US')}</span>
+                                    : moment(this.props.bookmarkData.date).format('ll')}</span>
 
                                 <ul className="btn-list style-less-list">
                                     {isGroup
