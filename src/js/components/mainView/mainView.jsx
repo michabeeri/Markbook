@@ -110,12 +110,14 @@ define(
                                 switchLayout={this.switchLayout}
                                 minGridLayoutExceeded={this.state.minGridLayoutExceeded}/>
                             {this.getContext(layout)}
-                            <BookmarkList dispatch={this.props.dispatch}
-                                          state={this.props.state}
-                                          layout={layout}
-                                          repeaterItem={Bookmark}
-                                          rootId={Constants.ROOT_GROUP_ID}
-                                          filteredBookmarks={this.filteredBookmarks}/>
+                            <div className="bookmark-list-container">
+                                <BookmarkList dispatch={this.props.dispatch}
+                                              state={this.props.state}
+                                              layout={layout}
+                                              repeaterItem={Bookmark}
+                                              rootId={Constants.ROOT_GROUP_ID}
+                                              filteredBookmarks={this.filteredBookmarks}/>
+                            </div>
                         </div>);
                 }
 

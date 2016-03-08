@@ -1,5 +1,5 @@
-define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsContainer', 'utils/bookmarksUtil', 'components/modals/groupInput'],
-    function (_, React, actions, TagsContainer, BookmarksUtil, GroupInput) {
+define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsContainer', 'utils/bookmarksUtil', 'components/modals/groupInput', 'components/loginManager/errorMessage', 'components/modals/bookmarkValidator'],
+    function (_, React, actions, TagsContainer, BookmarksUtil, GroupInput, ErrorMessage, BookmarkValidator) {
         'use strict';
 
         var LinkedStateMixin = React.addons.LinkedStateMixin;
@@ -38,7 +38,9 @@ define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsConta
                     bookmarkName: bookmarkName,
                     bookmarkUrl: bookmarkUrl,
                     tags: tags,
-                    groupName: groupName
+                    groupName: groupName,
+                    errorMessage: ''
+
                 };
             },
             addNewBookmarkToNewGroup: function () {
@@ -67,30 +69,52 @@ define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsConta
                     this.state.tags));
             },
             addBookmark: function () {
-                var group = BookmarksUtil.getGroupByTitle(this.props.state.bookmarks, this.state.groupName);
 
-                if (_.isUndefined(group)) {
-                    this.addNewBookmarkToNewGroup();
+                if (BookmarkValidator.isValid(this.state.bookmarkName,
+                        this.state.bookmarkUrl, this.state.groupName)) {
+                    var group = BookmarksUtil.getGroupByTitle(this.props.state.bookmarks, this.state.groupName);
+
+                    if (_.isUndefined(group)) {
+                        this.addNewBookmarkToNewGroup();
+                    } else {
+                        this.addNewBookmarkToExistingGroup();
+                    }
+
+                    this.props.close();
                 } else {
-                    this.addNewBookmarkToExistingGroup();
-                }
+                    var errorMessage = BookmarkValidator.getErrorMessageOnFail(this.state.bookmarkName,
+                        this.state.bookmarkUrl, this.state.groupName);
 
-                this.props.close();
+                    this.setState({
+                        errorMessage: errorMessage
+                    });
+                }
             },
             getGroupId: function () {
                 var group = BookmarksUtil.getGroupByTitle(this.props.state.bookmarks, this.state.groupName);
                 return (group && group.id) ? group.id : _.last(this.props.state.currentBookmarkPath);
             },
             editBookmark: function () {
-                var group = BookmarksUtil.getGroupByTitle(this.props.state.bookmarks, this.state.groupName);
+                if (BookmarkValidator.isValid(this.state.bookmarkName,
+                        this.state.bookmarkUrl, this.state.groupName)) {
 
-                if (_.isUndefined(group)) {
-                    this.editBookmarkAddToNewGroup();
+                    var group = BookmarksUtil.getGroupByTitle(this.props.state.bookmarks, this.state.groupName);
+
+                    if (_.isUndefined(group)) {
+                        this.editBookmarkAddToNewGroup();
+                    } else {
+                        this.editBookmarkInExistingGroup();
+                    }
+
+                    this.props.close();
                 } else {
-                    this.editBookmarkInExistingGroup();
-                }
+                    var errorMessage = BookmarkValidator.getErrorMessageOnFail(this.state.bookmarkName,
+                        this.state.bookmarkUrl, this.state.groupName);
 
-                this.props.close();
+                    this.setState({
+                        errorMessage: errorMessage
+                    });
+                }
             },
             addGroup: function (groupName) {
                 this.setState({
@@ -123,7 +147,7 @@ define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsConta
                 }
 
                 if (bookmarkUrlShow) {
-                    bookmarkUrlContent = <input name="BookmarkUrl" type="text" valueLink={this.linkState('bookmarkUrl')}
+                    bookmarkUrlContent = <input name="BookmarkUrl" type="url" valueLink={this.linkState('bookmarkUrl')}
                                                 placeholder="Paste url to bookmark"
                                                 className="input"/>;
                 }
@@ -132,11 +156,13 @@ define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsConta
 
                 return (<div>
                         <h1>{titleText}</h1>
+                        <ErrorMessage errorMessage={this.state.errorMessage}/>
                         <input name="BookmarkName" type="text" valueLink={this.linkState('bookmarkName')}
                                placeholder="Name your bookmark"
                                className="input" autofocus/>
                         {bookmarkUrlContent}
-                        <GroupInput addGroup={this.addGroup} bookmarks={this.props.state.bookmarks} input={this.state.groupName}/>
+                        <GroupInput addGroup={this.addGroup} bookmarks={this.props.state.bookmarks}
+                                    input={this.state.groupName}/>
                         <TagsContainer tags={this.state.tags} addTag={this.addTag} removeTag={this.removeTag}
                                        bookmarks={this.props.state.bookmarks}/>
                         <button onClick={onClickCallback} className="btn">{buttonText}</button>

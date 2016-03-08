@@ -1,9 +1,14 @@
 .bookmark-drill-down-spacer {
-  padding-left: 60px;
+  padding-left: 55px;
 }
 
-.bookmark-list-container {
+.bookmark-list-container{
   padding: 15px;
+}
+
+.bookmark-content {
+  display: flex;
+  width: 100%;
 }
 
 .bookmark-internal {
@@ -21,10 +26,18 @@
 }
 
 .bookmark-base {
-  margin: 10px;
   border-radius: 3px;
   display: flex;
+  flex-direction: column;
   transition: 0.8s ease;
+}
+
+.bookmark-base.grid {
+  margin: 10px;
+}
+
+.bookmark-base.list {
+  margin: 10px 0;
 }
 
 .bookmark-base .bookmark-internal {
@@ -259,4 +272,8 @@
 
 .list .bookmark-internal .btn-list {
 
+}
+
+.favicon {
+  opacity: 0.2;
 }
