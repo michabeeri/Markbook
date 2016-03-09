@@ -36,10 +36,6 @@
   color: #ffffff;
 }
 
-.search-box {
-  border-radius: 30px;
-  width: 300px;
-}
 
 .search-box .input,
 .reorder-select-wrapper {
@@ -48,9 +44,10 @@
 }
 
 .search-box .input {
-  background: transparent;
-  border: none;
-  width: 255px;
+  padding-left: 47px;
+  background-image: url(../img/search-icon.png) ,-webkit-linear-gradient(top,rgba(222,218,211,.7) 0,rgba(222,218,211,.2) 100%);
+  background-repeat: no-repeat;
+  background-position: 5% center;
 }
 
 .action-controls {
@@ -72,14 +69,3 @@
     visibility: hidden;
   }
 }
-
-@media all and (min-width: 600px) {
-  .search-box {
-    width: 350px;
-  }
-
-  .search-box .input {
-    width: 305px;
-  }
-}
-

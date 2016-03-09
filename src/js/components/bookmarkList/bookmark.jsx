@@ -6,7 +6,11 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
             mixins: [draggable],
             displayName: 'Bookmark',
             onView: function (evt) {
-                window.open(this.props.bookmarkData.url);
+                var urlToOpen = this.props.bookmarkData.url;
+                if (urlToOpen.indexOf('http://') === -1 && urlToOpen.indexOf('https://') && urlToOpen.indexOf('//') !== 0) {
+                    urlToOpen = '//' + urlToOpen;
+                }
+                window.open(urlToOpen);
                 evt.stopPropagation();
             },
             onOpen: function (evt) {

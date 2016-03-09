@@ -155,7 +155,7 @@ define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsConta
 
                 var onClickCallback = (this.isEditMode()) ? this.editBookmark : this.addBookmark;
 
-                return (<div>
+                return (<div className="content-long">
                     <header className='header'>
                         <h1 className='title title-large'>{titleText}</h1>
                     </header>

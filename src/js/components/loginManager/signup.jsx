@@ -68,9 +68,9 @@ define(['lodash',
                 return {errorMessage: ''};
             },
             successSignup: function (username, uid, token) {
+                this.props.dispatch(ActionProvider.login(username, uid, token));
                 this.props.dispatch(
                     ActionProvider.addBookmark(Constants.ROOT_GROUP_ID, 'My First Bookmark', 'www.google.com', []));
-                this.props.dispatch(ActionProvider.login(username, uid, token));
                 this.props.dispatch(ReduxSimpleRouter.routeActions.push('/'));
                 this.props.dispatch(ActionProvider.turnOnFlag(Constants.FIRST_VISIT_FLAG));
             },
@@ -112,7 +112,7 @@ define(['lodash',
             render: function () {
                 return (
                     <section className='main signup'>
-                        <div className='form-container'>
+                        <div className='form-container sign-up-container'>
                             <SignupHeader />
                             <SignupForm {...this.props}/>
                             <SignupFooter {...this.props}/>
