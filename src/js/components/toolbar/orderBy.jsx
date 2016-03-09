@@ -18,17 +18,26 @@ define(['lodash', 'react', 'uuid'],
                 return <option key={uuid.v4()} value={sortType.value}
                                hidden={type === this.props.hiddenSortType}>{sortType.description}</option>;
             },
+            onIconSelection: function () {
+                var select = this.refs.select;
+                var newEvent = document.createEvent('MouseEvents');
+                newEvent.initMouseEvent('mousedown', true, true, window);
+                select.dispatchEvent(newEvent);
+            },
             render: function () {
                 var renderOption = this.renderOption;
                 return (
-                    <div className='contained inline'>
+                    <div className='reorder-wrapper contained inline'>
                         <span className='label'>Reorder:</span>
-                        <select className='border-simple order-by' onChange={this.onSelectOrderBy}
-                                value={this.props.selectedSortType}>
-                            {_.map(_.keys(this.props.sortTypes), function (type) {
-                                return renderOption(type);
-                            })}
-                        </select>
+                        <div className='reorder-select-wrapper input inline'>
+                            <select ref='select' className='reorder' onChange={this.onSelectOrderBy}
+                                    value={this.props.selectedSortType}>
+                                {_.map(_.keys(this.props.sortTypes), function (type) {
+                                    return renderOption(type);
+                                })}
+                            </select>
+                            <span className='fa fa-chevron-down' onClick={this.onIconSelection}></span>
+                        </div>
                     </div>
                 );
             }

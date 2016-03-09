@@ -29,10 +29,11 @@ define(['lodash', 'constants', 'utils/relationshipTreeUtil', 'actionProviders/ac
                 var currentOpenGroup = _.last(fixBookmarksPath(idsToRemove, state.currentBookmarkPath.slice()));
 
                 if (currentOpenGroup !== _.last(state.currentBookmarkPath)) {
+                    next(Object.assign(action, {ids: idsToRemove, incomplete: true}));
                     store.dispatch(ActionProvider.navigateToPreviousGroup(currentOpenGroup));
+                    return ActionProvider.nop();
                 }
-
-                return next(Object.assign(action, {ids: idsToRemove}));
+                return next(action);
             };
         };
     };

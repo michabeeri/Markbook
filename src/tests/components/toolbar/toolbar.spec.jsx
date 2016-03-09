@@ -1,5 +1,5 @@
-define(['react', 'components/toolbar/toolbar', 'constants', 'utils/bookmarksUtil'],
-    function (React, ToolBar, Constants, BookmarksUtil) {
+define(['react', 'components/toolbar/toolbar', 'constants', 'utils/bookmarksUtil', 'components/toolbar/bookmarksSearch'],
+    function (React, ToolBar, Constants, BookmarksUtil, BookmarksSearch) {
         'use strict';
 
         var testUtils = React.addons.TestUtils;
@@ -17,18 +17,16 @@ define(['react', 'components/toolbar/toolbar', 'constants', 'utils/bookmarksUtil
             }
 
             it('should show a search box with Search placeholder', function () {
-                toolBar = renderToolBar([] ,true);
+                var searchNode = testUtils.renderIntoDocument(<BookmarksSearch setFilter={function(){}} items={{id: '1'}}/>);
+                var inputNode = testUtils.findRenderedDOMComponentWithTag(searchNode, 'input');
 
-                var searchNode = testUtils.findRenderedDOMComponentWithClass(toolBar, 'input');
-
-                expect(searchNode).toBeTruthy();
-                expect(searchNode.placeholder).toEqual('Search');
+                expect(inputNode.placeholder).toEqual('Search');
             });
 
-            it('should show an order by input', function () {
+            it('should show the reorder input', function () {
                 toolBar = renderToolBar([], true);
 
-                var orderByNode = testUtils.findRenderedDOMComponentWithClass(toolBar, 'order-by');
+                var orderByNode = testUtils.findRenderedDOMComponentWithClass(toolBar, 'reorder');
 
                 expect(orderByNode).toBeTruthy();
             });

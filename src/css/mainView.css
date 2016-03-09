@@ -45,6 +45,7 @@
     width:300px;
     hight: 50px;
     border: 1px solid #c7bdaf;
+    position: absolute;
 
 }
 
@@ -67,3 +68,4 @@
     border-left: 16px solid #c7bdaf;
     border-bottom: 8px solid transparent;
 }
+

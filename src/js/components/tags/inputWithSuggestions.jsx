@@ -67,6 +67,13 @@ define(['React', 'lodash', 'components/dropdown/dropdown'],
                     selectedDropdownItemIndex: 0
                 });
             },
+            onFocus: function () {
+                if (!_.isEmpty(this.refs.input.value)) {
+                    this.setState({
+                        isEditing: true
+                    });
+                }
+            },
             setNextSelected: function () {
                 var maxIndex = _.sum(this.props.suggestions.items, function (item) {
                     return item.lines.length;
@@ -89,7 +96,7 @@ define(['React', 'lodash', 'components/dropdown/dropdown'],
             render: function () {
                 return (
                     <span className="input-wrapper">
-                        <input className="input" type="text" onKeyUp={this.onKeyUp} ref="input"
+                        <input className="input input-with-label" type="text" onKeyUp={this.onKeyUp} ref="input" onFocus={this.onFocus}
                                valueLink={this.props.valueLink} onBlur={this.onBlur}
                                placeholder={this.props.placeholder}/>
                         {this.state.isEditing && this.props.valueLink.value ?

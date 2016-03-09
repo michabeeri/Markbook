@@ -195,6 +195,9 @@ define(['lodash', 'uuid', 'constants', 'utils/bookmarksUtil'], function (_, uuid
             case Constants.LOGOUT:
                 return initialState;
 
+            case Constants.SET:
+                return action.prevState.bookmarks;
+
             default:
                 return state;
         }

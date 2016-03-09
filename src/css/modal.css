@@ -18,10 +18,7 @@
 }
 
 .modal-content {
-    width: 400px;
-    position: relative;
-    padding: 10px;
-    border-radius: 10px;
+    width: 750px;
     background: #fff;
 }
 
