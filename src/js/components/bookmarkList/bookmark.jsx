@@ -7,7 +7,7 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
             displayName: 'Bookmark',
             onView: function (evt) {
                 var urlToOpen = this.props.bookmarkData.url;
-                if (urlToOpen.indexOf('http://') === -1 && urlToOpen.indexOf('https://')) {
+                if (urlToOpen.indexOf('http://') === -1 && urlToOpen.indexOf('https://') && urlToOpen.indexOf('//') !== 0) {
                     urlToOpen = '//' + urlToOpen;
                 }
                 window.open(urlToOpen);
