@@ -35,6 +35,9 @@ define(
             openAddBookMarkModal: function () {
                 this.props.dispatch(actions.openBookmarkDataModal());
             },
+            undo: function () {
+                this.props.dispatch(actions.undo());
+            },
             goBack: function () {
                 this.props.dispatch(actions.navigateToPreviousGroup(this.props.state.currentBookmarkPath[this.props.state.currentBookmarkPath.length - 2]));
             },
@@ -128,6 +131,7 @@ define(
                         {this.props.state.flags.hasOwnProperty(Constants.BOOKMARKS_LOADED) ?
                             <div>
                                 <a className="btn btn-add fixed-bottom " onClick={this.openAddBookMarkModal}><i className="fa fa-plus-circle"></i></a>
+                                <a className="btn btn-undo fixed-bottom " onClick={this.undo}><i className="fa fa-undo"></i></a>
                                 {content}
                                 {this.props.state.flags[Constants.FIRST_VISIT_FLAG]
                                     ? <div className="helper-message fixed-bottom tooltip">Click here to add a new bookmark</div>

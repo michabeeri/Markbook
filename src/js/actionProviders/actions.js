@@ -3,7 +3,7 @@ define(['uuid', 'constants'], function (uuid, Constants) {
 
     var Actions = {
         addNewBookmarkToNewGroup: function (parentGroupId, groupName, title, url, tags) {
-            return databaseUpdateWrapper({
+            return {
                 type: Constants.ADD_BOOKMARK_AND_GROUP,
                 parentGroupId: parentGroupId,
                 bookmark: {
@@ -18,10 +18,10 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                     groupName: groupName,
                     date: new Date()
                 }
-            });
+            };
         },
         addBookmark: function (parentGroupId, title, url, tags) {
-            return databaseUpdateWrapper({
+            return {
                 type: Constants.ADD_BOOKMARK,
                 id: uuid.v4(),
                 parentGroupId: parentGroupId,
@@ -29,20 +29,20 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 url: url,
                 tags: tags,
                 date: new Date()
-            });
+            };
         },
         editBookmark: function (id, parentGroupId, title, url, tags) {
-            return databaseUpdateWrapper({
+            return {
                 type: Constants.EDIT_BOOKMARK,
                 id: id,
                 parentGroupId: parentGroupId,
                 title: title,
                 url: url,
                 tags: tags
-            });
+            };
         },
         editBookmarkAndCreateNewGroup: function (id, parentGroupId, groupName, title, url, tags) {
-            return databaseUpdateWrapper({
+            return {
                 type: Constants.EDIT_BOOKMARK_AND_CREATE_GROUP,
                 parentGroupId: parentGroupId,
                 bookmark: {
@@ -56,7 +56,7 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                     groupName: groupName,
                     date: new Date()
                 }
-            });
+            };
         },
         toggleBookmarkSelection: function (id, isMultiSelect) {
             return {
@@ -66,16 +66,16 @@ define(['uuid', 'constants'], function (uuid, Constants) {
             };
         },
         removeBookmark: function (ids) {
-            return databaseUpdateWrapper({
+            return {
                 type: Constants.REMOVE_BOOKMARK,
                 ids: ids
-            });
+            };
         },
         removeAndReparent: function (id) {
-            return databaseUpdateWrapper({
+            return {
                 type: Constants.REMOVE_REPARENT_CHILDREN,
                 id: id
-            });
+            };
         },
         logout: function () {
             return {
@@ -109,12 +109,12 @@ define(['uuid', 'constants'], function (uuid, Constants) {
             };
         },
         dragReorder: function (draggedId, draggedOverId, currentGroupId) {
-            return databaseUpdateWrapper({
+            return {
                 type: Constants.DRAG_REORDER,
                 draggedId: draggedId,
                 draggedOverId: draggedOverId,
                 currentGroupId: currentGroupId
-            });
+            };
         },
         openBookmarkGroup: function (id) {
             return {
@@ -194,23 +194,24 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 type: Constants.REMOVE_FLAG,
                 flag: flagName
             };
+        },
+        undo: function () {
+            return {
+                type: Constants.UNDO
+            };
+        },
+        set: function (state) {
+            return {
+                type: Constants.SET,
+                prevState: state
+            };
+        },
+        nop: function () {
+            return {
+                type: Constants.NOP
+            };
         }
     };
-
-    function databaseUpdateWrapper(action) {
-        if (action.type === Constants.UPDATE_DATABASE) {
-            throw ({message: 'NO NO NO NO NO NO NO !!!!!'});
-        }
-
-        return function (dispatch) {
-            return (new Promise(function (resolve) {
-                dispatch(action);
-                resolve();
-            })).then(function () {
-                dispatch(Actions.updateDatabase());
-            });
-        };
-    }
 
     return Actions;
 });

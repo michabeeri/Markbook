@@ -20,6 +20,9 @@ define(['lodash', 'constants'], function (_, Constants) {
             case Constants.LOGOUT:
                 return initialState;
 
+            case Constants.SET:
+                return action.prevState.currentBookmarkPath;
+
             default:
                 return state;
         }
