@@ -17,6 +17,10 @@ define(['react'], function (React) {
             var line = event.target;
             this.props.onLineClick(line.dataset.type, line.dataset.value);
         },
+        onMouseOver: function (event) {
+            event.preventDefault();
+            this.props.setSelected(Number(event.target.dataset.id));
+        },
         renderGroup: function () {
             var self = this;
             return this.props.data.items.map(function (filteredGroup, groupIndex) {
@@ -40,6 +44,7 @@ define(['react'], function (React) {
                     var id = self.counter++;
                     var selectedClass = (id === self.props.selected) ? ' selected' : '';
                     return (<li className={'btn-list-item dropdown-item' + selectedClass} onMouseDown={self.onClick}
+                                onMouseOver={self.onMouseOver}
                                 data-value={line} key={Math.random()} data-id={id}
                                 data-type={filteredGroup.groupType}
                                 ref={filteredGroup.groupType + itemIndex}>

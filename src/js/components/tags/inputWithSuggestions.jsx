@@ -80,18 +80,19 @@ define(['React', 'lodash', 'components/dropdown/dropdown'],
                 });
                 if (this.state.selectedDropdownItemIndex < maxIndex - 1) {
                     var nextItemIndex = this.state.selectedDropdownItemIndex + 1;
-                    this.setState({
-                        selectedDropdownItemIndex: nextItemIndex
-                    });
+                    this.setSelected(nextItemIndex);
                 }
             },
             setPrevSelected: function () {
                 if (this.state.selectedDropdownItemIndex > 0) {
                     var nextItemIndex = this.state.selectedDropdownItemIndex - 1;
-                    this.setState({
-                        selectedDropdownItemIndex: nextItemIndex
-                    });
+                    this.setSelected(nextItemIndex);
                 }
+            },
+            setSelected: function (selectedIndex) {
+                this.setState({
+                    selectedDropdownItemIndex: selectedIndex
+                });
             },
             render: function () {
                 return (
@@ -102,6 +103,7 @@ define(['React', 'lodash', 'components/dropdown/dropdown'],
                         {this.state.isEditing && this.props.valueLink.value ?
                             <DropDown ref="dropdown" data={this.props.suggestions}
                                       selected={this.state.selectedDropdownItemIndex}
+                                      setSelected={this.setSelected}
                                       onLineClick={this.onInputSelected}/> :
                             null
                         }
