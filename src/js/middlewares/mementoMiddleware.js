@@ -18,6 +18,10 @@ define(['lodash', 'constants', 'actionProviders/actions'], function (_, Constant
                             step = states.pop().step;
                             store.dispatch(ActionProvider.set(_.last(states)));
                             console.log('%c' + step, 'background: #EBAC78; color: #000');
+
+                            //if(step.indexOf(Constants.UPDATE_DATABASE) !== -1) {
+                            //    store.dispatch(Object.assign({}, ActionProvider.updateDatabase(), {undoing: true}));
+                            //}
                         }
                         return next(action);
 
