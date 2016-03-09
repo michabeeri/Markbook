@@ -48,10 +48,6 @@ body {
     display: none;
 }
 
-.inline {
-    display: inline-block;
-}
-
 .fixed-center {
   position: fixed;
   top: 0;
@@ -105,5 +101,12 @@ body {
 .search-term {
     font-style: italic;
     font-weight: bold;
+}
+
+
+@media all and (min-width: 600px) {
+    .inline {
+        display: inline-block;
+    }
 }
 

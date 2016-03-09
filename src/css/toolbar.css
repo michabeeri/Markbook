@@ -38,7 +38,7 @@
 
 .search-box {
   border-radius: 30px;
-  width: 350px;
+  width: 300px;
 }
 
 .search-box .input,
@@ -50,7 +50,7 @@
 .search-box .input {
   background: transparent;
   border: none;
-  width: 305px;
+  width: 255px;
 }
 
 .action-controls {
@@ -72,3 +72,14 @@
     visibility: hidden;
   }
 }
+
+@media all and (min-width: 600px) {
+  .search-box {
+    width: 350px;
+  }
+
+  .search-box .input {
+    width: 305px;
+  }
+}
+
