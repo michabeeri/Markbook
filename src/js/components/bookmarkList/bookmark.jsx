@@ -78,8 +78,12 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
                     </div>
                 );
             },
+            getFavicon: function () {
+                return <img className='title-favicon' height="20" width="20" src={GetFaviconUtil.getFaviconUrlOf(this.props.bookmarkData.url)}/>;
+            },
             render: function () {
                 var isGroup = this.isGroup();
+                var favicon = !isGroup ? this.getFavicon() : null;
                 return (
                     <div className={this.getClassString()}
                          data-id={this.props.dataId}
@@ -91,8 +95,10 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
                         <div className="bookmark-content">
                             <span draggable="true" className={this.isGrid() ? 'hidden' : 'drag-area fa fa-bars'}></span>
                             <div className="bookmark-internal">
-                                {!isGroup ? <img height="20" width="20" src={GetFaviconUtil.getFaviconUrlOf(this.props.bookmarkData.url)} className="favicon" /> : null}
-                                <span className='title-small'>{this.props.bookmarkData.title}</span>
+                                <div className='title-wrapper'>
+                                    {favicon}
+                                    <span className='title-small'>{this.props.bookmarkData.title}</span>
+                                </div>
                                 <div>
                                     <span className='title-small title-info'>{isGroup
                                         ? this.props.bookmarkData.children.length + ' items inside'

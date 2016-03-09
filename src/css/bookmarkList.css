@@ -280,6 +280,21 @@
 
 }
 
-.favicon {
-  opacity: 0.2;
+.title-wrapper {
+  display: inline-flex;
 }
+
+.grid .title-wrapper {
+  align-self: center;
+}
+
+.title-wrapper .title-small {
+  margin: 0;
+  line-height: 20px;
+}
+
+.title-favicon {
+  opacity: 0.5;
+  margin-right: 5px;
+}
+
