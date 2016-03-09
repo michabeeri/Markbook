@@ -40,7 +40,6 @@ define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsConta
                     tags: tags,
                     groupName: groupName,
                     errorMessage: ''
-
                 };
             },
             addNewBookmarkToNewGroup: function () {
@@ -133,6 +132,13 @@ define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsConta
                     tags: this.state.tags
                 });
             },
+            makeAction: function () {
+                if (this.isEditMode()) {
+                    this.editBookmark();
+                } else {
+                    this.addBookmark();
+                }
+            },
             render: function () {
                 var titleText, buttonText, bookmarkUrlShow, bookmarkUrlContent = '';
 
@@ -153,14 +159,12 @@ define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsConta
                                                 className="input input-with-label" required/></label>);
                 }
 
-                var onClickCallback = (this.isEditMode()) ? this.editBookmark : this.addBookmark;
-
                 return (<div className="content-long">
                         <header className='header'>
                             <h1 className='title title-large'>{titleText}</h1>
                         </header>
                         <ErrorMessage errorMessage={this.state.errorMessage}/>
-                        <form onSubmit={onClickCallback} className='form'>
+                        <div className='form'>
                             <label className="label">
                                 <span>Name:</span><input name="BookmarkName" type="text"
                                                          valueLink={this.linkState('bookmarkName')}
@@ -172,10 +176,10 @@ define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsConta
                             <TagsContainer tags={this.state.tags} addTag={this.addTag} removeTag={this.removeTag}
                                            bookmarks={this.props.state.bookmarks}/>
                             <div className="action-list">
-                                <button onClick={onClickCallback} className="btn btn-modal"
+                                <button onClick={this.makeAction} className="btn btn-modal"
                                         type='submit'>{buttonText}</button>
                             </div>
-                        </form>
+                        </div>
                     </div>
 
                 );

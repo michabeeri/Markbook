@@ -1,8 +1,8 @@
-define(['constants'], function (Constants) {
+define(['constants', 'utils/localStorageUtil'], function (Constants, LocalStorageUtil) {
     'use strict';
 
     var initialState = {
-        sortType: Constants.DEFAULT_SORT_TYPE
+        sortType: LocalStorageUtil.getDefaultSortType()
     };
 
     return function sort(state, action) {
