@@ -17,13 +17,13 @@ define(['lodash', 'react', 'components/toolbar/orderBy', 'constants'],
             });
 
             it ('should select the selectedSortType by default', function () {
-                var reaorderSelecetNode = testUtils.findRenderedDOMComponentWithClass(orderBy, 'order-by');
+                var reaorderSelecetNode = testUtils.findRenderedDOMComponentWithClass(orderBy, 'reorder');
 
                 expect(reaorderSelecetNode.value).toEqual(Constants.sortTypes.DATE_DESC.value);
             });
 
             it ('should call setSortType with the sortType', function () {
-                var reaorderSelecetNode = testUtils.findRenderedDOMComponentWithClass(orderBy, 'order-by');
+                var reaorderSelecetNode = testUtils.findRenderedDOMComponentWithClass(orderBy, 'reorder');
 
                 reaorderSelecetNode.value = Constants.sortTypes.TYPE.value;
                 testUtils.Simulate.change(reaorderSelecetNode);
@@ -32,7 +32,7 @@ define(['lodash', 'react', 'components/toolbar/orderBy', 'constants'],
             });
 
             it ('should create option for each sort type', function () {
-                var reaorderSelecetNode = testUtils.findRenderedDOMComponentWithClass(orderBy, 'order-by');
+                var reaorderSelecetNode = testUtils.findRenderedDOMComponentWithClass(orderBy, 'reorder');
 
                 var selectNodes = reaorderSelecetNode.children;
 

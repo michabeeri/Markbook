@@ -1,5 +1,5 @@
-define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'utils/bookmarksUtil', 'components/bookmarkList/bookmarkList', 'moment'],
-    function (React, Constants, draggable, ActionProvider, BookmarksUtil, BookmarkList, moment) {
+define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'utils/bookmarksUtil', 'components/bookmarkList/bookmarkList', 'moment', 'utils/getFaviconUtil'],
+    function (React, Constants, draggable, ActionProvider, BookmarksUtil, BookmarkList, moment, GetFaviconUtil) {
 
         'use strict';
         var Bookmark = React.createClass({
@@ -87,15 +87,16 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
                          onDoubleClick={isGroup ? this.onOpen : this.onView}
                         {...this.getDragAttr()}
                         draggable = {this.isGrid()}>
+
                         <div className="bookmark-content">
                             <span draggable="true" className={this.isGrid() ? 'hidden' : 'drag-area fa fa-bars'}></span>
                             <div className="bookmark-internal">
+                                {!isGroup ? <img height="20" width="20" src={GetFaviconUtil.getFaviconUrlOf(this.props.bookmarkData.url)} className="favicon" /> : null}
                                 <span className='title-small'>{this.props.bookmarkData.title}</span>
                                 <div>
                                     <span className='title-small title-info'>{isGroup
                                         ? this.props.bookmarkData.children.length + ' items inside'
                                         : moment(this.props.bookmarkData.date).format('ll')}</span>
-
                                     <ul className="btn-list style-less-list">
                                         {isGroup
                                             ? <li className="btn-list-item" ><a className="btn bookmark-btn" onClick={this.onOpen}><i className="fa fa-folder-open-o"></i></a></li>

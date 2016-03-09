@@ -11,8 +11,7 @@ define(
                 return (
                     <header className='header'>
                         <img src={Constants.APP_LOGO_SRC} alt='markbook logo' width='150px'/>
-
-                        <h1 className='title-large'>{Constants.APP_NAME}</h1>
+                        <h1 className='title title-large'>{Constants.APP_NAME}</h1>
                     </header>
                 );
             }
@@ -62,7 +61,7 @@ define(
                             <li><EmailInput ref='email'/></li>
                             <li><PasswordInput ref='password'/></li>
                         </ul>
-                        <button className='btn login' type='submit' onClick={this.onLogin}>Login</button>
+                        <button className='btn' type='submit' onClick={this.onLogin}>Login</button>
                     </form>
                 );
             }
@@ -72,7 +71,7 @@ define(
             displayName: 'Login', render: function () {
                 return (
                     <section className='main login'>
-                        <div className='login-container'>
+                        <div className='form-container'>
                             <LoginHeader />
                             <LoginForm className='login-form' {...this.props}/>
                             <LoginFooter {...this.props}/>

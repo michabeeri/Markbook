@@ -21,7 +21,7 @@ body {
     min-height: 700px;
     margin: auto;
     color: #333333;
-    font-size: 1.4em;
+    font-size: 1.7em;
     /*background: linear-gradient(to bottom, rgba(234, 231, 226, 0.75) 0, rgba(247, 244, 238, 0.31) 100%);*/
     position: relative;
     z-index: 1;
@@ -32,7 +32,7 @@ body {
 }
 
 .app-line-container {
-    margin: 15px;
+    margin: 13px 25px;
     padding: 5px;
     height: 45px;
     line-height: 35px;
@@ -40,7 +40,7 @@ body {
 }
 
 .contained {
-    margin-left: 10px;
+    margin-right: 25px;
     height: 35px;
 }
 

@@ -9,25 +9,15 @@
   box-sizing: border-box;
 }
 
-.login-container {
-  max-width: 500px;
-  padding: 15px;
-  margin: 75px auto;
-  background: linear-gradient(to bottom,rgba(234, 231, 226, 0.63) 0,rgba(247,244,238,.31) 100%);
-  box-shadow: inset 0px 0px 0px #00336c,0px 0px 3px #00336c;
-  border-radius: 15px;
-}
-
-.login .header .title-large {
+.login .header .title,
+.signup .header .title {
   color: #697FA4;
 }
 
-.login-container .footer {
-  margin: 10px;
+.signup .password ~ .tooltip {
+  visibility: hidden;
 }
 
-/*.pass-dont-match {*/
-  /*visibility: visible;*/
-  /*font: 17px 'Open Sans Condensed', sans-serif;*/
-  /*margin: 0;*/
-  /*color: red;*/
+.signup .password:focus ~ .tooltip {
+  visibility: visible;
+}

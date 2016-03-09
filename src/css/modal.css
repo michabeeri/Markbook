@@ -1,15 +1,10 @@
 
 .modal {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 99999;
+    z-index: 10;
     -webkit-transition: opacity 400ms ease-in;
     -moz-transition: opacity 400ms ease-in;
     transition: opacity 400ms ease-in;
+    margin: 10% auto;
 }
 
 .modal-closed {
@@ -17,23 +12,17 @@
     pointer-events: none;
 }
 
-
-.modal-opened  {
-    opacity:1;
+.modal-opened {
+    opacity: 1;
     pointer-events: auto;
 }
 
-.modal-content  {
-    width: 400px;
-    position: relative;
-    margin: 10% auto;
-    padding: 10px;
-    border-radius: 10px;
+.modal-content {
+    width: 750px;
     background: #fff;
 }
 
-.modal .btn-close
-{
+.modal .btn-close {
     float: right;
 }
 
@@ -44,4 +33,10 @@
 
 .modal .btn:hover {
     background-color: #c3c3c3;
+}
+
+.overlay {
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.65);
 }

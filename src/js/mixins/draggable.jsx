@@ -18,7 +18,6 @@ define([], function () {
         },
         getDragAttr: function () {
             return {
-                //draggable: 'true',
                 onDragStart: this.onDragStart,
                 onDragEnd: this.onDragEnd,
                 onDragOver: this.onDragOver,

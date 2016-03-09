@@ -1,5 +1,5 @@
-define(['react', 'constants', 'components/modals/Modal', 'components/modals/modalData', 'lodash', 'actionProviders/actions'],
-    function (React, Constants, Modal, modalData, _, actions) {
+define(['react', 'constants', 'components/modals/Modal', 'components/modals/modalData', 'lodash', 'actionProviders/actions', 'components/modals/Overlay'],
+    function (React, Constants, Modal, modalData, _, actions, Overlay) {
         'use strict';
 
         return React.createClass({
@@ -27,10 +27,6 @@ define(['react', 'constants', 'components/modals/Modal', 'components/modals/moda
                 this.props.dispatch(actions.closeModal());
             },
             render: function () {
-                //prevent scrolling of web page when modal is opened
-                //TODO: change to component Overlay
-                document.body.style.overflow = (this.props.openedModal !== Constants.eModalType.NONE) ? 'hidden' : 'none';
-
                 var contentClass = this.getModalContent();
                 if (contentClass) {
                     var contentComponent = React.createElement(
@@ -43,9 +39,11 @@ define(['react', 'constants', 'components/modals/Modal', 'components/modals/moda
                     );
 
                     return (
-                        <Modal className='modal modal-opened' close={this.close} dispatch={this.props.dispatch}>
-                            {contentComponent}
-                        </Modal>);
+                        <Overlay>
+                            <Modal className='modal modal-opened' close={this.close} dispatch={this.props.dispatch}>
+                                {contentComponent}
+                            </Modal>
+                        </Overlay>);
                 }
 
                 return (<div></div>);

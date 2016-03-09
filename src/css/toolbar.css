@@ -1,14 +1,62 @@
-.order-by {
+.reorder-wrapper {
+  display: inline-flex;
+}
+
+.reorder {
   font: 14px 'Helvetica Neue Regular', 'Helvetica Neue';
   font-weight: 200;
-  height: 30px;
-  width: 150px;
-  border: 1px solid #cccccc;
+  height: 35px;
+  outline: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  color: #404448;
+  background: transparent;
+  border: none;
+  flex-grow: 1;
+}
+
+.reorder-select-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  width: 180px;
+
+}
+
+.reorder-select-wrapper .fa {
+  flex-grow: 1;
+  text-align: center;
+  line-height: 33px;
+  padding: 0 5px;
+  border-left: 1px solid #ccc;
+}
+
+.reorder-select-wrapper .fa:hover {
+  color: #ffffff;
+}
+
+.search-box {
+  border-radius: 30px;
+  width: 350px;
+}
+
+.search-box .input,
+.reorder-select-wrapper {
+  border-radius: 30px;
+  padding-left: 15px;
+}
+
+.search-box .input {
+  background: transparent;
+  border: none;
+  width: 305px;
 }
 
 .action-controls {
   position: absolute;
   right: 0;
+  margin-right: 0;
 }
 
 .action-controls .btn {
@@ -19,9 +67,8 @@
   background-color: transparent;
 }
 
-.search-box .input {
-  height: 35px;
-  border: 1px solid #96938E;
-  border-radius: 30px;
-  background-color: rgba(222, 218, 211, 0.5);
+@media screen and (max-width: 960px) {
+  .action-controls.btn-group .btn {
+    visibility: hidden;
+  }
 }

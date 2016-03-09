@@ -1,9 +1,14 @@
+.bookmarks-container {
+  max-width: 832px;
+  margin: 40px auto;
+}
+
 .bookmark-drill-down-spacer {
   padding-left: 55px;
 }
 
 .bookmark-list-container{
-  padding: 15px;
+  margin: 15px;
 }
 
 .bookmark-content {
@@ -69,7 +74,8 @@
 
 .bookmark-base.selected .bookmark-internal,
 .bookmark-base.selected .drag-area {
-  box-shadow: inset 0 0 2px #00336c,0 0 1px #00336c;
+  border: 1px solid #00336c;
+  box-shadow: inset 0 0 5px #00336c,0 0 5px #00336c;
 }
 
 .bookmark-base.dragged {
@@ -272,4 +278,8 @@
 
 .list .bookmark-internal .btn-list {
 
+}
+
+.favicon {
+  opacity: 0.2;
 }

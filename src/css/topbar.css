@@ -1,4 +1,6 @@
 .top-bar {
+  z-index: 30;
+  position: relative;
   display: flex;
   justify-content: space-between;
   background: linear-gradient(to bottom,rgba(199,189,175,0.5) 0,rgba(199,189,175,0.2) 100%);
@@ -20,7 +22,7 @@
 
 .top-bar-username,
 .btn-logout {
-  padding: 3px 21px;
+  padding: 3px 21px 3px 31px;
   line-height: 56px;
 }
 
