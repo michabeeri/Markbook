@@ -74,7 +74,7 @@ define(['lodash',
                 this.props.dispatch(ReduxSimpleRouter.routeActions.push('/'));
                 this.props.dispatch(ActionProvider.turnOnFlag(Constants.FIRST_VISIT_FLAG));
             },
-            failureLogin: function (errorValue) {
+            failureSignup: function (errorValue) {
                 this.setState({errorMessage: errorValue});
             },
             onSignup: function (event) {
