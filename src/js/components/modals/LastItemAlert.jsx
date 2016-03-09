@@ -16,12 +16,21 @@ define(['react', 'actionProviders/actions'],
                 }
             },
             render: function () {
-                return (<div>
-                        <h1>Note!</h1>
-                        <p>This is the only item in the group.</p>
-                        <p>Deleting it will romove the group as well</p>
-                        <button id="lastBookmarkDelete" onClick={this.DeleteEmptyGroups} className="btn">Delete</button>
-                        <button id="lastBookmarkCancelDelete" onClick={this.props.close} className="btn">Cancel</button>
+                return (<div className="content-short">
+                        <header className='header'>
+                            <h1 className='title title-large'>Note!</h1>
+                        </header>
+
+                        <p className="modal-text">This is the only item in the group.</p>
+                        <p className="modal-text"> Deleting it will romove the group as well</p>
+                        <form className='form'>
+                            <div className="action-list">
+                                <button id="lastBookmarkDelete" onClick={this.DeleteEmptyGroups} className="btn">Delete
+                                </button>
+                                <button id="lastBookmarkCancelDelete" onClick={this.props.close} className="btn">Cancel
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 );
             }

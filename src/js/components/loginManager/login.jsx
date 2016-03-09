@@ -71,7 +71,7 @@ define(
             displayName: 'Login', render: function () {
                 return (
                     <section className='main login'>
-                        <div className='form-container'>
+                        <div className='form-container login-container'>
                             <LoginHeader />
                             <LoginForm className='login-form' {...this.props}/>
                             <LoginFooter {...this.props}/>
