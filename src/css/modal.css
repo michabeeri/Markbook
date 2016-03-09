@@ -21,7 +21,7 @@
 }
 
 .modal-content {
-    background: #fff;
+    background: url('../img/fabric.png');
 }
 
 .content-long {
@@ -34,12 +34,19 @@
 
 .modal .btn-close {
     float: right;
+    font-size: 20px;
+    color: #4D5C75;
 }
 
-.modal .btn {
-    width: 100px;
-    height: 30px;
+.modal .btn-close:hover {
+    color: #0b97c4;
+    cursor: pointer;
 }
+
+/*.modal .btn {*/
+    /*width: 100px;*/
+    /*height: 30px;*/
+/*}*/
 
 .modal .btn-long {
     width: 300px;
@@ -80,3 +87,8 @@
     justify-content: flex-end;
 }
 
+@media all and (min-width: 600px) {
+    .modal .form {
+        padding: 15px;
+    }
+}
