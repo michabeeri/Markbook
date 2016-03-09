@@ -10,12 +10,14 @@ define(['lodash', 'constants', 'actionProviders/actions'], function (_, Constant
         return function (next) {
             return function (action) {
 
+                var step;
                 switch (action.type) {
 
                     case Constants.UNDO:
                         if (states.length > 1) {
-                            states.pop();
+                            step = states.pop().step;
                             store.dispatch(ActionProvider.set(_.last(states)));
+                            console.log('%c' + step, 'background: #EBAC78; color: #000');
                         }
                         return next(action);
 
@@ -55,8 +57,9 @@ define(['lodash', 'constants', 'actionProviders/actions'], function (_, Constant
                         }
 
                         if (!action.incomplete && !openModal) {
-                            states.push(_.cloneDeep(store.getState()));
-                            console.log('{ ' + batchActions.map(function (a) {return a.type; }).join(', ') + ' }');
+                            step = '{ ' + batchActions.map(function (a) {return a.type; }).join(', ') + ' }';
+                            states.push(_.cloneDeep(Object.assign({}, store.getState(), {step: step} )));
+                            console.log('%c' + step, 'background: #B8CCE4; color: #003366');
                             batchActions = [];
                         }
 
