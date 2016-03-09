@@ -31,14 +31,21 @@ define(['react', 'actionProviders/actions', 'utils/bookmarksUtil'],
                 }
 
                 return (<div>
-                        <h1>Wait!</h1>
-                        <p>You are deleting a group with {numOfBookmarks} items</p>
-                        <p>Hmmm...</p>
-                        <button id="reparentChildren" onClick={this.DeleteGroupAndReparentChildren} className="btn">
-                            Delete group, Keep Children
-                        </button>
-                        <p>I know, don't care</p>
-                        <button id="deleteAll" onClick={this.DeleteGroup} className="btn">Delete it all</button>
+                        <header className='header'>
+                            <h1 className='title title-large'>Wait!</h1>
+                        </header>
+                        <form className='form'>
+                            <p className="modal-text">You are deleting a group with {numOfBookmarks} items</p>
+                            <div className="action-with-lead"><span className="lead">Hmmm...</span>
+                                <button id="reparentChildren" onClick={this.DeleteGroupAndReparentChildren}
+                                        className="btn btn-long action">
+                                    Delete group, Keep Children
+                                </button>
+                            </div>
+                            <div className="action-with-lead"><span className="lead">I know, don't care</span>
+                                <button id="deleteAll" onClick={this.DeleteGroup} className="btn btn-long action">Delete it all</button>
+                            </div>
+                        </form>
                     </div>
                 );
             }
