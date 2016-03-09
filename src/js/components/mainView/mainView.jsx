@@ -1,6 +1,6 @@
 define(
-    ['lodash', 'react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmarkList', 'components/bookmarkList/bookmark', 'components/breadcrumbs/breadCrumbs', 'components/modals/ModalContainer', 'constants', 'actionProviders/actions', 'utils/bookmarksUtil', 'utils/localStorageUtil', 'components/mainView/FilterResultsTitle', 'components/spinner/spinner'],
-    function (_, React, ToolBar, BookmarkList, Bookmark, BreadCrumbs, ModalContainer, Constants, actions, BookmarksUtil, LocalStorageUtil, FilterResultsTitle, Spinner) {
+    ['lodash', 'react', 'components/toolbar/toolbar', 'components/bookmarkList/bookmarkList', 'components/bookmarkList/bookmark', 'components/breadcrumbs/breadCrumbs', 'components/modals/ModalContainer', 'constants', 'actionProviders/actions', 'utils/bookmarksUtil', 'utils/localStorageUtil', 'components/mainView/FilterResultsTitle', 'components/spinner/spinner', 'components/mainView/mainViewEmptyState'],
+    function (_, React, ToolBar, BookmarkList, Bookmark, BreadCrumbs, ModalContainer, Constants, actions, BookmarksUtil, LocalStorageUtil, FilterResultsTitle, Spinner, MainViewEmptyState) {
         'use strict';
         return React.createClass({
             displayName: 'MainView',
@@ -70,12 +70,7 @@ define(
                 var layout = this.props.state.layout.layoutType;
 
                 if (this.props.state.bookmarks.length === 1) { //root group
-                    content = (
-                        <div className = 'empty-state-container fixed-center'>
-                            <h1 className = 'empty-state-container-title'>Welcome</h1>
-                            <img src='img/bookmark.png' alt='bookmark' width='200' height='200'/>
-                            <p>Add your first bookmark</p>
-                        </div>);
+                    content = <MainViewEmptyState />;
                 } else {
                     content = (
                         <div>
