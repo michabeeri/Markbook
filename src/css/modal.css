@@ -17,9 +17,17 @@
     pointer-events: auto;
 }
 
+
 .modal-content {
-    width: 750px;
     background: #fff;
+}
+
+.content-long {
+    width: 600px;
+}
+
+.content-short {
+    width: 400px;
 }
 
 .modal .btn-close {

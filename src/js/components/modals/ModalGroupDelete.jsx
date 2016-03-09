@@ -30,7 +30,7 @@ define(['react', 'actionProviders/actions', 'utils/bookmarksUtil'],
                     numOfBookmarks = bookmark.children.length;
                 }
 
-                return (<div>
+                return (<div className="content-short">
                         <header className='header'>
                             <h1 className='title title-large'>Wait!</h1>
                         </header>

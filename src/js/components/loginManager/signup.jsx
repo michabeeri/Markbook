@@ -112,7 +112,7 @@ define(['lodash',
             render: function () {
                 return (
                     <section className='main signup'>
-                        <div className='form-container'>
+                        <div className='form-container sign-up-container'>
                             <SignupHeader />
                             <SignupForm {...this.props}/>
                             <SignupFooter {...this.props}/>
