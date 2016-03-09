@@ -4,6 +4,7 @@
 
 .toolbar-item {
     display: block;
+    margin: 10px;
 }
 
 .reorder {
@@ -81,7 +82,7 @@
 
 @media screen and (max-width: 960px) {
     .action-controls.btn-group .btn {
-        visibility: hidden;
+        display: none;
     }
 }
 
