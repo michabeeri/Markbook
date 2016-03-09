@@ -17,7 +17,6 @@
     pointer-events: auto;
 }
 
-
 .modal-content {
     background: #fff;
 }
@@ -27,7 +26,7 @@
 }
 
 .content-short {
-    width: 400px;
+    width: 450px;
 }
 
 .modal .btn-close {
@@ -35,7 +34,7 @@
 }
 
 .modal .btn {
-    width: 195px;
+    width: 100px;
     height: 30px;
 }
 
@@ -43,7 +42,6 @@
     width: 300px;
     height: 30px;
 }
-
 
 .overlay {
     display: flex;
@@ -55,17 +53,24 @@
     font-size: 2rem;
 }
 
-.modal .action-with-lead
-{
+.modal .action-with-lead {
     display: flex;
     width: 100%;
     margin: 5px;
 }
 
-.modal .action-with-lead .lead{
-    width: 30%;
+.modal .action-with-lead .lead {
+    width: 35%;
 }
 
-.modal .action-with-lead .action{
+.modal .action-with-lead .action {
     width: 60%;
 }
+
+.modal .action-list {
+    display: flex;
+    width: 100%;
+    margin: 5px;
+    justify-content: flex-end;
+}
+

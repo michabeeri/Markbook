@@ -50,6 +50,18 @@
   background-position: 5% center;
 }
 
+.search-box .dropdown-container {
+  border-radius: 16px;
+}
+
+.search-box .dropdown-item {
+  padding: 0px 10px !important
+}
+
+.search-box .dropdown-items-title {
+  padding: 0px 5px;
+}
+
 .action-controls {
   position: absolute;
   right: 0;
