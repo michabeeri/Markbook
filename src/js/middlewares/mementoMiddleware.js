@@ -19,9 +19,9 @@ define(['lodash', 'constants', 'actionProviders/actions'], function (_, Constant
                             store.dispatch(ActionProvider.set(_.last(states)));
                             console.log('%c' + step, 'background: #EBAC78; color: #000');
 
-                            //if(step.indexOf(Constants.UPDATE_DATABASE) !== -1) {
-                            //    store.dispatch(Object.assign({}, ActionProvider.updateDatabase(), {undoing: true}));
-                            //}
+                            if (step.indexOf(Constants.UPDATE_DATABASE) !== -1) {
+                                store.dispatch(Object.assign({}, ActionProvider.updateDatabase(), {undoing: true}));
+                            }
                         }
                         return next(action);
 
@@ -44,11 +44,18 @@ define(['lodash', 'constants', 'actionProviders/actions'], function (_, Constant
                     case Constants.REMOVE_FLAG:
                     case Constants.OPEN_MODAL:
                     case Constants.CLOSE_MODAL:
+                    case Constants.LOGIN:
+                    case Constants.LOGOUT:
                     //case Constants.SELECT_DESELECT_ALL:
+
+                        if (action.undoing) {
+                            return next(action);
+                        }
+
                         next(action);
                         batchActions.push(action);
 
-                        if (action.type === Constants.STORE_DATA) {
+                        if (action.type === Constants.STORE_DATA || action.type === Constants.LOGOUT) {
                             states = [];
                         }
 
