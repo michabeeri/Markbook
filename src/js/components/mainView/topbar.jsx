@@ -13,11 +13,14 @@ define(['react', 'constants', 'actionProviders/actions', 'components/loginManage
                 this.props.dispatch(ActionProvider.logout());
                 this.props.dispatch(ReduxSimpleRouter.routeActions.push('/login'));
             },
+            goBack: function () {
+                this.props.dispatch(ActionProvider.navigateToPreviousGroup(Constants.ROOT_GROUP_ID));
+            },
             render: function () {
                 return (
                     <header className='header top-bar border-bottom'>
                         <div className='top-bar-section'>
-                            <img className='logo logo-img' src={Constants.APP_LOGO_SRC} alt='app logo' width='60' height='60'/>
+                            <img className='logo logo-img' onClick={this.goBack} src={Constants.APP_LOGO_SRC} alt='app logo' width='60' height='60'/>
                             <span className='logo logo-name'>{Constants.APP_NAME}</span>
                         </div>
                         <div className='btn-group top-bar-section'>

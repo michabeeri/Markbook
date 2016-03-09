@@ -9,10 +9,6 @@ define(
                     minGridLayoutExceeded: document.body.clientWidth < Constants.GRID_MIN_WIDTH
                 };
             },
-            componentWillMount: function () {
-                this.props.dispatch(actions.setLayout(this.getDefaultLayout()));
-                this.props.dispatch(actions.setSortType(this.getDefaultSortType()));
-            },
             componentDidMount: function () {
                 window.addEventListener('throttledResize', this.resizeHandler);
             },
@@ -21,15 +17,13 @@ define(
             },
             resizeHandler: function () {
                 if (document.body.clientWidth < Constants.GRID_MIN_WIDTH) {
-                    this.props.dispatch(actions.setLayout(Constants.layoutType.LIST));
-                    this.setState({
-                        minGridLayoutExceeded: true
-                    });
+                    if (this.props.state.layout.layoutType === Constants.layoutType.GRID) {
+                        this.props.dispatch(actions.setLayout(Constants.layoutType.LIST));
+                        this.setState({minGridLayoutExceeded: true});
+                    }
                 } else if (this.state.minGridLayoutExceeded) {
-                    this.props.dispatch(actions.setLayout(this.getDefaultLayout()));
-                    this.setState({
-                        minGridLayoutExceeded: false
-                    });
+                    this.props.dispatch(actions.setLayout(Constants.layoutType.GRID));
+                    this.setState({minGridLayoutExceeded: false});
                 }
             },
             openAddBookMarkModal: function () {
@@ -37,9 +31,6 @@ define(
             },
             undo: function () {
                 this.props.dispatch(actions.undo());
-            },
-            goBack: function () {
-                this.props.dispatch(actions.navigateToPreviousGroup(this.props.state.currentBookmarkPath[this.props.state.currentBookmarkPath.length - 2]));
             },
             shouldRenderBreadCrumbs: function (layout) {
                 var filterExists = this.props.state.filter && (this.props.state.filter.title || this.props.state.filter.tag);
@@ -72,22 +63,6 @@ define(
             switchLayout: function () {
                 var newLayout = this.props.state.layout.layoutType === Constants.layoutType.GRID ? Constants.layoutType.LIST : Constants.layoutType.GRID;
                 this.props.dispatch(actions.setLayout(newLayout));
-            },
-            getDefaultLayout: function () {
-                var defaultLayout = Constants.layoutType.GRID;
-                var localStorage = LocalStorageUtil.getItem(Constants.LOCAL_STORAGE_KEY);
-                if (localStorage && localStorage.hasOwnProperty(Constants.LOCAL_STORAGE_LAYOUT)) {
-                    defaultLayout = localStorage[Constants.LOCAL_STORAGE_LAYOUT];
-                }
-                return defaultLayout;
-            },
-            getDefaultSortType: function () {
-                var defaultSort = Constants.sortTypes.DATE_ASC;
-                var localStorage = LocalStorageUtil.getItem(Constants.LOCAL_STORAGE_KEY);
-                if (localStorage && localStorage.hasOwnProperty(Constants.LOCAL_STORAGE_SORT)) {
-                    defaultSort = localStorage[Constants.LOCAL_STORAGE_SORT];
-                }
-                return defaultSort;
             },
             render: function () {
                 var content;
