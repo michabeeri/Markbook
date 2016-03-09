@@ -20,6 +20,9 @@ define(['constants'], function (Constants) {
             case Constants.LOGOUT:
                 return initialState;
 
+            case Constants.SET:
+                return action.prevState.layout;
+
             default:
                 return state;
         }

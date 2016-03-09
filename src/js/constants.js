@@ -86,6 +86,11 @@ define([],
             LOGOUT: 'LOGOUT',
             LOGIN: 'LOGIN',
 
+            //App
+            UNDO: 'UNDO',
+            SET: 'SET',
+            NOP: 'NOP',
+
             // tool bar
             SET_FILTER: 'SET_FILTER',
             SET_SORT_TYPE: 'SET_SORT_TYPE',

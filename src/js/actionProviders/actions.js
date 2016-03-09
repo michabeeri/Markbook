@@ -194,6 +194,22 @@ define(['uuid', 'constants'], function (uuid, Constants) {
                 type: Constants.REMOVE_FLAG,
                 flag: flagName
             };
+        },
+        undo: function () {
+            return {
+                type: Constants.UNDO
+            };
+        },
+        set: function (state) {
+            return {
+                type: Constants.SET,
+                prevState: state
+            };
+        },
+        nop: function () {
+            return {
+                type: Constants.NOP
+            };
         }
     };
 

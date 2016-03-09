@@ -35,11 +35,15 @@ define(['lodash', 'constants', 'actionProviders/actions', 'dataBaseApi/dataBaseA
                                 (data && data.sort)
                                     ? data.sort
                                     : {sortType: Constants.DEFAULT_SORT_TYPE}));
-
-                            store.dispatch(ActionProvider.turnOnFlag(Constants.BOOKMARKS_LOADED));
                         });
 
-                        return next(action);
+                        return next(Object.assign(action, {incomplete: true}));
+
+                    case Constants.STORE_DATA:
+                        next(Object.assign(action, {incomplete: true}));
+                        store.dispatch(ActionProvider.turnOnFlag(Constants.BOOKMARKS_LOADED));
+                        return next(ActionProvider.nop());
+
 
                     case Constants.UPDATE_DATABASE:
                         state = store.getState();

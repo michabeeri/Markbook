@@ -10,7 +10,7 @@ define(['lodash', 'constants', 'actionProviders/actions'], function (_, Constant
                     case Constants.ADD_BOOKMARK_AND_GROUP:
                     case Constants.ADD_BOOKMARK:
                         store.dispatch(ActionProvider.turnOffFlag(Constants.FIRST_VISIT_FLAG));
-                        return next(action);
+                        return next(Object.assign(action, {incomplete: true}));
 
                     default:
                         return next(action);

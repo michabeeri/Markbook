@@ -131,6 +131,7 @@
   border: 2px solid #f6f6f6;
 }
 
+.btn-undo,
 .btn-add {
   position: fixed;
   bottom: 3%;
@@ -140,10 +141,16 @@
   transition: color .5s ease;
 }
 
+.btn-undo {
+  margin-left: 779px;
+}
+
+.btn-undo:hover,
 .btn-add:hover {
   color: rgba(199, 189, 175, 1);
 }
 
+.btn-undo > .fa,
 .btn-add > .fa {
   font-size: 50px;
 }

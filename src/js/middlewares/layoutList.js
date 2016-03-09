@@ -17,7 +17,7 @@ define(['lodash', 'constants', 'actionProviders/actions'], function (_, Constant
                 })[0].children;
                 store.dispatch(ActionProvider.selectDeselectAll(itemsToDeselect, false));
 
-                return next(action);
+                return next(Object.assign(action, {incomplete: true}));
             };
         };
     };
