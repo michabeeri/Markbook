@@ -38,9 +38,6 @@ define(
             undo: function () {
                 this.props.dispatch(actions.undo());
             },
-            goBack: function () {
-                this.props.dispatch(actions.navigateToPreviousGroup(this.props.state.currentBookmarkPath[this.props.state.currentBookmarkPath.length - 2]));
-            },
             shouldRenderBreadCrumbs: function (layout) {
                 var filterExists = this.props.state.filter && (this.props.state.filter.title || this.props.state.filter.tag);
                 return !filterExists && layout === Constants.layoutType.GRID;
