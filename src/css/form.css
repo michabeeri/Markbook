@@ -41,7 +41,7 @@
 }
 
 .input.input-with-label {
-    width: 350px;
+    width: 250px;
 }
 
 .input:hover {
@@ -109,7 +109,7 @@
         border-radius: 15px;
     }
 
-    .input-long {
+    .input.input-with-label {
         width: 350px;
     }
 }

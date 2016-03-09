@@ -30,7 +30,7 @@ define(['react', 'constants'],
                 var deleteDisabled = this.props.totalSelected === 0;
                 var selectDeselectIsHidden = this.props.layoutType === Constants.layoutType.LIST;
                 return (
-                    <div className='action-controls btn-group contained inline'>
+                    <div className='action-controls toolbar-item btn-group contained'>
                         <button className={'btn select-deselect-all' + (selectDeselectIsHidden ? ' hidden' : '')}
                                 onClick={this.onSelectDeselectAll}>{this.props.isAllSelected ? 'Deselect All' : 'Select All'}</button>
                         <button className={this.calcBtnClassName(editDisabled) + ' edit'} disabled={editDisabled}
