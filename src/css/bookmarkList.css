@@ -18,7 +18,7 @@
 
 .bookmark-internal {
   font-weight: 200;
-  color: white;
+  color: #00336c;
   padding: 10px;
   overflow: hidden;
 }
@@ -103,6 +103,7 @@
 .bookmark-base.grid {
   display: inline-block;
   cursor: all-scroll;
+  vertical-align: top;
 }
 
 .bookmark-base.grid .bookmark-internal {
@@ -217,7 +218,6 @@
   align-items: center;
   height: 45px;
   flex-grow: 1;
-  color: #333333;
 }
 
 .bookmark-base.list .bookmark-internal:hover .btn-list {
