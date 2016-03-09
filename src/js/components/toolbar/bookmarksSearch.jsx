@@ -44,7 +44,7 @@ define(['lodash', 'react', 'components/dropdown/dropdown', 'utils/bookmarksUtil'
             },
             render: function () {
                 return (
-                    <div className="search-box contained inline">
+                    <div className="search-box toolbar-item contained">
                         <InputWithSuggestions suggestions={this.getSearchResult()}
                                               onInputSelected={this.filterBookmarksByTerm}
                                               valueLink={this.linkState('searchTerm')}

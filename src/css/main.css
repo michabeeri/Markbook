@@ -33,7 +33,6 @@ body {
 .app-line-container {
     margin: 13px 25px;
     padding: 5px;
-    height: 45px;
     line-height: 35px;
     position: relative;
 }
@@ -102,10 +101,14 @@ body {
     font-weight: bold;
 }
 
-
-@media all and (min-width: 600px) {
-    .inline {
-        display: inline-block;
-    }
+.inline {
+    display: inline-block;
 }
+
+
+/*@media all and (min-width: 600px) {*/
+    /*.inline {*/
+        /*display: inline-block;*/
+    /*}*/
+/*}*/
 

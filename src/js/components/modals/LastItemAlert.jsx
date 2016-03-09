@@ -23,14 +23,14 @@ define(['react', 'actionProviders/actions'],
 
                         <p className="modal-text">This is the only item in the group.</p>
                         <p className="modal-text"> Deleting it will romove the group as well</p>
-                        <form className='form'>
+                        <div className='form'>
                             <div className="action-list">
                                 <button id="lastBookmarkDelete" onClick={this.DeleteEmptyGroups} className="btn">Delete
                                 </button>
                                 <button id="lastBookmarkCancelDelete" onClick={this.props.close} className="btn">Cancel
                                 </button>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 );
             }

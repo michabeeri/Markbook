@@ -2,6 +2,9 @@ define(['react'],
     function (React) {
         'use strict';
 
+
+        //var CSSTransitionGroup = React.addons.CSSTransitionGroup;
+
         return React.createClass({
             displayName: 'Modal',
             propTypes: {

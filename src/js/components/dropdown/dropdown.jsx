@@ -44,7 +44,7 @@ define(['react'], function (React) {
                     var id = self.counter++;
                     var selectedClass = (id === self.props.selected) ? ' selected' : '';
                     return (<li className={'btn-list-item dropdown-item' + selectedClass} onMouseDown={self.onClick}
-                                onMouseOver={self.onMouseOver}
+                                onMouseEnter={self.onMouseOver}
                                 data-value={line} key={Math.random()} data-id={id}
                                 data-type={filteredGroup.groupType}
                                 ref={filteredGroup.groupType + itemIndex}>

@@ -44,6 +44,7 @@ define(['react', 'constants', 'mixins/draggable', 'actionProviders/actions', 'ut
                 evt.stopPropagation();
             },
             onSelect: function (evt) {
+                evt.stopPropagation();
                 this.props.dispatch(ActionProvider.toggleBookmarkSelection(this.props.bookmarkData.id, evt.shiftKey));
             },
             isGrid: function () {

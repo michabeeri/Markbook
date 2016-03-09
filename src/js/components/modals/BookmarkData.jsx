@@ -132,8 +132,7 @@ define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsConta
                     tags: this.state.tags
                 });
             },
-            makeAction: function (event) {
-                console.log(event);
+            makeAction: function () {
                 if (this.isEditMode()) {
                     this.editBookmark();
                 } else {
@@ -165,7 +164,7 @@ define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsConta
                             <h1 className='title title-large'>{titleText}</h1>
                         </header>
                         <ErrorMessage errorMessage={this.state.errorMessage}/>
-                        <form className='form'>
+                        <div className='form'>
                             <label className="label">
                                 <span>Name:</span><input name="BookmarkName" type="text"
                                                          valueLink={this.linkState('bookmarkName')}
@@ -180,7 +179,7 @@ define(['lodash', 'react', 'actionProviders/actions', 'components/tags/tagsConta
                                 <button onClick={this.makeAction} className="btn btn-modal"
                                         type='submit'>{buttonText}</button>
                             </div>
-                        </form>
+                        </div>
                     </div>
 
                 );
