@@ -34,7 +34,7 @@ define(['react', 'actionProviders/actions', 'utils/bookmarksUtil'],
                         <header className='header'>
                             <h1 className='title title-large'>Wait!</h1>
                         </header>
-                        <form className='form'>
+                        <div className='form'>
                             <p className="modal-text">You are deleting a group with {numOfBookmarks} items</p>
                             <div className="action-with-lead"><span className="lead">Hmmm...</span>
                                 <button id="reparentChildren" onClick={this.DeleteGroupAndReparentChildren}
@@ -45,7 +45,7 @@ define(['react', 'actionProviders/actions', 'utils/bookmarksUtil'],
                             <div className="action-with-lead"><span className="lead">I know, don't care</span>
                                 <button id="deleteAll" onClick={this.DeleteGroup} className="btn btn-long action">Delete it all</button>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 );
             }
