@@ -2,6 +2,8 @@ define(['react', 'constants', 'components/modals/Modal', 'components/modals/moda
     function (React, Constants, Modal, modalData, _, actions, Overlay) {
         'use strict';
 
+        var CSSTransitionGroup = React.addons.CSSTransitionGroup;
+
         return React.createClass({
             displayName: 'Modal container',
             contentProps: {},
@@ -28,6 +30,7 @@ define(['react', 'constants', 'components/modals/Modal', 'components/modals/moda
             },
             render: function () {
                 var contentClass = this.getModalContent();
+                var renderedComponent = null;
                 if (contentClass) {
                     var contentComponent = React.createElement(
                         contentClass,
@@ -38,15 +41,22 @@ define(['react', 'constants', 'components/modals/Modal', 'components/modals/moda
                         }
                     );
 
-                    return (
-                        <Overlay>
-                            <Modal className='modal modal-opened' close={this.close} dispatch={this.props.dispatch}>
-                                {contentComponent}
-                            </Modal>
-                        </Overlay>);
+                    renderedComponent = (<Overlay>
+                        <Modal className='modal modal-opened' close={this.close} dispatch={this.props.dispatch}>
+                            {contentComponent}
+                        </Modal>
+                    </Overlay>);
                 }
 
-                return (<div></div>);
+
+                return ( <CSSTransitionGroup
+                        component="div"
+                        transitionName="modal-animation"
+                        transitionEnterTimeout={500}
+                        transitionLeaveTimeout={500}>
+                        {renderedComponent}
+                    </CSSTransitionGroup>
+                );
             }
         });
     }
