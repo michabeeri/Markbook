@@ -66,3 +66,11 @@
     border-bottom: 8px solid transparent;
 }
 
+.clr-fltr {
+    background: transparent;
+    font-weight: 200;
+}
+
+.clr-fltr:hover {
+    background: -webkit-linear-gradient(top, rgba(222, 218, 211, .7) 0, rgba(222, 218, 211, .2) 100%);
+}
