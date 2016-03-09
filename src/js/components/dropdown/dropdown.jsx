@@ -51,7 +51,7 @@ define(['react'], function (React) {
         },
         render: function () {
             return (
-                <ul className='dropdown-container style-less-list' ref="dropdownList">{this.renderGroup()}</ul>
+                <ul className='style-less-list dropdown-container' ref="dropdownList">{this.renderGroup()}</ul>
             );
         }
     });
