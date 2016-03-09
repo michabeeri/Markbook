@@ -46,7 +46,8 @@ define(['lodash', 'constants', 'actionProviders/actions'], function (_, Constant
                     case Constants.CLOSE_MODAL:
                     case Constants.LOGIN:
                     case Constants.LOGOUT:
-                    //case Constants.SELECT_DESELECT_ALL:
+                    case Constants.SET_LAYOUT:
+                    case Constants.SELECT_DESELECT_ALL:
 
                         if (action.undoing) {
                             return next(action);

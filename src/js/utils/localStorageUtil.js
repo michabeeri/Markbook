@@ -1,4 +1,4 @@
-define(['lodash'], function (_) {
+define(['lodash', 'constants'], function (_, Constants) {
     'use strict';
 
     function getItem(key) {
@@ -37,9 +37,29 @@ define(['lodash'], function (_) {
         localStorage.removeItem(key);
     }
 
+    function getDefaultLayout() {
+        var defaultLayout = Constants.layoutType.GRID;
+        var localStorage = getItem(Constants.LOCAL_STORAGE_KEY);
+        if (localStorage && localStorage.hasOwnProperty(Constants.LOCAL_STORAGE_LAYOUT)) {
+            defaultLayout = localStorage[Constants.LOCAL_STORAGE_LAYOUT];
+        }
+        return defaultLayout;
+    }
+
+    function getDefaultSortType() {
+        var defaultSort = Constants.sortTypes.DATE_ASC;
+        var localStorage = getItem(Constants.LOCAL_STORAGE_KEY);
+        if (localStorage && localStorage.hasOwnProperty(Constants.LOCAL_STORAGE_SORT)) {
+            defaultSort = localStorage[Constants.LOCAL_STORAGE_SORT];
+        }
+        return defaultSort;
+    }
+
     return {
         getItem: getItem,
         setItem: setItem,
-        removeItem: removeItem
+        removeItem: removeItem,
+        getDefaultLayout: getDefaultLayout,
+        getDefaultSortType: getDefaultSortType
     };
 });

@@ -1,8 +1,8 @@
-define(['constants'], function (Constants) {
+define(['constants', 'utils/localStorageUtil'], function (Constants, LocalStorageUtil) {
     'use strict';
 
     var initialState = {
-        layoutType: Constants.layoutType.GRID
+        layoutType: LocalStorageUtil.getDefaultLayout()
     };
 
     return function sort(state, action) {
