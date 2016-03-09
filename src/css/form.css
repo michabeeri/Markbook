@@ -34,7 +34,7 @@
     text-align: left;
     height: 35px;
     width: 220px;
-    padding: 15px;
+    padding: 0 15px;
     outline: none;
     border-radius: 10px;
     background: -webkit-linear-gradient(top, rgba(222, 218, 211, .7) 0, rgba(222, 218, 211, .2) 100%);

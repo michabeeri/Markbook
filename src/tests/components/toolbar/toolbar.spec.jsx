@@ -22,10 +22,10 @@ define(['react', 'components/toolbar/toolbar', 'constants', 'utils/bookmarksUtil
                 expect(inputNode.placeholder).toEqual('Search');
             });
 
-            it('should show an order by input', function () {
+            it('should show the reorder input', function () {
                 toolBar = renderToolBar([], true);
 
-                var orderByNode = testUtils.findRenderedDOMComponentWithClass(toolBar, 'order-by');
+                var orderByNode = testUtils.findRenderedDOMComponentWithClass(toolBar, 'reorder');
 
                 expect(orderByNode).toBeTruthy();
             });
