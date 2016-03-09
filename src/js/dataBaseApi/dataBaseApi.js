@@ -11,11 +11,8 @@ define(['Firebase', 'constants'], function (Firebase, Constants) {
             fireBaseRef.set(data, function (error) {
                 if (error) {
                     console.log('Synchronization failed');
-                } else {
-                    console.log('Synchronization succeeded');
-                    if (callback) {
-                        callback();
-                    }
+                } else if (callback) {
+                    callback();
                 }
             });
         },
@@ -23,7 +20,7 @@ define(['Firebase', 'constants'], function (Firebase, Constants) {
         readUserData: function (username, callback) {
             var fireBaseRef = new Firebase(Constants.APP_ROOT_DATA + 'users/' + username);
             var dataReceived;
-            fireBaseRef.on('value', function (snapshot) {
+            fireBaseRef.once('value', function (snapshot) {
                 dataReceived = snapshot.exportVal();
                 callback(dataReceived);
             }, function (errorObject) {

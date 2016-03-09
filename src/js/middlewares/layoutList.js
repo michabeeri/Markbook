@@ -15,9 +15,11 @@ define(['lodash', 'constants', 'actionProviders/actions'], function (_, Constant
                 var itemsToDeselect = _.filter(state.bookmarks, function isCurrentGroup(item) {
                     return item.id === currentGroupId;
                 })[0].children;
+                next(Object.assign(action, {incomplete: true}));
                 store.dispatch(ActionProvider.selectDeselectAll(itemsToDeselect, false));
 
-                return next(Object.assign(action, {incomplete: true}));
+                return ActionProvider.nop();
+
             };
         };
     };

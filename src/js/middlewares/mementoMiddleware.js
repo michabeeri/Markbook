@@ -4,6 +4,7 @@ define(['lodash', 'constants', 'actionProviders/actions'], function (_, Constant
 
     var states = [];
     var batchActions = [];
+    var openModal = false;
 
     return function memento(store) {
         return function (next) {
@@ -12,7 +13,7 @@ define(['lodash', 'constants', 'actionProviders/actions'], function (_, Constant
                 switch (action.type) {
 
                     case Constants.UNDO:
-                        if(states.length > 1) {
+                        if (states.length > 1) {
                             states.pop();
                             store.dispatch(ActionProvider.set(_.last(states)));
                         }
@@ -20,6 +21,7 @@ define(['lodash', 'constants', 'actionProviders/actions'], function (_, Constant
 
                     case Constants.LOAD_DATA:
                     case Constants.STORE_DATA:
+                    case Constants.UPDATE_DATABASE:
                     case Constants.ADD_BOOKMARK:
                     case Constants.ADD_BOOKMARK_AND_GROUP:
                     case Constants.OPEN_BOOKMARK_GROUP:
@@ -34,13 +36,25 @@ define(['lodash', 'constants', 'actionProviders/actions'], function (_, Constant
                     case Constants.SET_FILTER:
                     case Constants.ADD_FLAG:
                     case Constants.REMOVE_FLAG:
-                    //case Constants.OPEN_MODAL:
-                    //case Constants.CLOSE_MODAL:
+                    case Constants.OPEN_MODAL:
+                    case Constants.CLOSE_MODAL:
                     //case Constants.SELECT_DESELECT_ALL:
                         next(action);
                         batchActions.push(action);
 
-                        if (!action.incomplete) {
+                        if (action.type === Constants.LOAD_DATA) {
+                            states = [];
+                        }
+
+                        if (action.type === Constants.OPEN_MODAL) {
+                            openModal = true;
+                        }
+
+                        if (action.type === Constants.CLOSE_MODAL) {
+                            openModal = false;
+                        }
+
+                        if (!action.incomplete && !openModal) {
                             states.push(_.cloneDeep(store.getState()));
                             console.log('{ ' + batchActions.map(function (a) {return a.type; }).join(', ') + ' }');
                             batchActions = [];
