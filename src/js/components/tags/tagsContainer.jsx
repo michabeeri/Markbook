@@ -55,8 +55,7 @@ define(['React', 'lodash', 'components/tags/inputWithSuggestions', 'components/t
             },
             render: function () {
                 return (
-                    <div><label className="label">
-                        <span>Tags:</span>
+                    <div><label className="label"><span>Tags:</span>
                         <InputWithSuggestions onInputSelected={this.addTag}
                                               input={this.state.input}
                                               suggestions={this.getFilteredUserTags(this.state.input)}

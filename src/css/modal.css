@@ -24,12 +24,8 @@
     background: #fff;
 }
 
-.content-long {
-    width: 600px;
-}
-
-.content-short {
-    width: 450px;
+.content-long, .content-short {
+    width: 100%;
 }
 
 .modal .btn-close {
@@ -37,7 +33,7 @@
 }
 
 .modal .btn {
-    width: 100px;
+    width: 150px;
     height: 30px;
 }
 
@@ -80,3 +76,12 @@
     justify-content: flex-end;
 }
 
+@media all and (min-width: 600px) {
+    .content-long {
+        width: 600px;
+    }
+
+    .content-short {
+        width: 450px;
+    }
+}

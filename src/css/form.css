@@ -21,7 +21,7 @@
 }
 
 .label > span {
-    display: inline-block;
+    display: block;
     width: 200px;
     font-size: 2rem;
 }
@@ -115,5 +115,9 @@
 
     .input.input-with-label {
         width: 350px;
+    }
+
+    .label > span {
+        display: inline-block;
     }
 }

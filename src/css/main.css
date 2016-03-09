@@ -67,7 +67,7 @@ body {
 }
 
 .title-small {
-    font-size: 17px;
+    font-size: 14px;
     font-weight: 200;
     margin: 5px;
 }
@@ -103,4 +103,10 @@ body {
 
 .inline {
     display: inline-block;
+}
+
+@media all and (min-width: 600px) {
+    .title-small {
+        font-size: 17px;
+    }
 }
