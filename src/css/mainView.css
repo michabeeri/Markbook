@@ -24,6 +24,7 @@
 
 .helper-message {
     font-size: 1.2em;
+    right: 8.5%;
 }
 
 .empty-state-container {
@@ -41,18 +42,14 @@
     background-color: #ffffff;
     padding: 10px;
     border-radius: 8px;
-    margin-left: 550px;
-    width:300px;
-    hight: 50px;
     border: 1px solid #c7bdaf;
-    position: absolute;
-
+    /*position: absolute;*/
 }
 
 .tooltip::after
 {
     content:"";
-    left: 295px;
+    left: 322px;
     position: absolute;
     border-top: 8px solid transparent;
     border-left: 16px solid #ffffff;
@@ -63,7 +60,7 @@
 {
     content:"";
     position: absolute;
-    left:297px;
+    left: 324px;
     border-top: 8px solid transparent;
     border-left: 16px solid #c7bdaf;
     border-bottom: 8px solid transparent;
