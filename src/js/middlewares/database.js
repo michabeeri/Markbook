@@ -50,6 +50,7 @@ define(['lodash', 'constants', 'actionProviders/actions', 'dataBaseApi/dataBaseA
                         state = store.getState();
                         DataBaseApi.writeUserData(state.userInfo.uid, {
                             bookmarks: state.bookmarks.map(function (bm) {
+                                delete bm.selected;
                                 return Object.assign({}, bm, {
                                     date: {
                                         year: bm.date.getFullYear(),
@@ -76,7 +77,6 @@ define(['lodash', 'constants', 'actionProviders/actions', 'dataBaseApi/dataBaseA
                         var updateAction = ActionProvider.updateDatabase();
                         if (action.incomplete) {
                             Object.assign(updateAction, {incomplete: true});
-
                         }
 
                         next(Object.assign(action, {incomplete: true}));
