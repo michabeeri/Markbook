@@ -44,7 +44,7 @@ define(['lodash', 'constants', 'actionProviders/actions'], function (_, Constant
                         next(action);
                         batchActions.push(action);
 
-                        if (action.type === Constants.LOAD_DATA) {
+                        if (action.type === Constants.STORE_DATA) {
                             states = [];
                         }
 
