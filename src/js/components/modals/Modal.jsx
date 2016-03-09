@@ -2,9 +2,6 @@ define(['react'],
     function (React) {
         'use strict';
 
-
-        //var CSSTransitionGroup = React.addons.CSSTransitionGroup;
-
         return React.createClass({
             displayName: 'Modal',
             propTypes: {
@@ -15,12 +12,14 @@ define(['react'],
             },
             render: function () {
                 return (
+
                     <div className={this.props.className}>
                         <div className="modal-content form-container">
                             <i className='fa fa-times btn-close' id='modalCloser' onClick={this.props.close}></i>
                             {this.props.children}
                         </div>
                     </div>
+
                 );
             }
         });
