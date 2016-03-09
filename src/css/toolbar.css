@@ -36,10 +36,21 @@
   color: #ffffff;
 }
 
+.search-box {
+  border-radius: 30px;
+  width: 350px;
+}
+
 .search-box .input,
 .reorder-select-wrapper {
   border-radius: 30px;
   padding-left: 15px;
+}
+
+.search-box .input {
+  background: transparent;
+  border: none;
+  width: 305px;
 }
 
 .action-controls {

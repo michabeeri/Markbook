@@ -18,7 +18,8 @@ define(['react', 'components/toolbar/toolbar', 'constants', 'utils/bookmarksUtil
 
             it('should show a search box with Search placeholder', function () {
                 var searchNode = testUtils.renderIntoDocument(<BookmarksSearch setFilter={function(){}} items={{id: '1'}}/>);
-                var inputNode = testUtils.findRenderedDOMComponentWithClass(searchNode, 'input');
+                var inputNode = testUtils.findRenderedDOMComponentWithTag(searchNode, 'input');
+
                 expect(inputNode.placeholder).toEqual('Search');
             });
 
