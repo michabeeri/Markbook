@@ -24,12 +24,8 @@
     background: url('../img/fabric.png');
 }
 
-.content-long {
-    width: 600px;
-}
-
-.content-short {
-    width: 450px;
+.content-long, .content-short {
+    width: 100%;
 }
 
 .modal .btn-close {
@@ -43,10 +39,10 @@
     cursor: pointer;
 }
 
-/*.modal .btn {*/
-    /*width: 100px;*/
-    /*height: 30px;*/
-/*}*/
+.modal .btn {
+    width: 150px;
+    height: 30px;
+}
 
 .modal .btn-long {
     width: 300px;
@@ -68,16 +64,9 @@
 
 .modal .action-with-lead {
     display: flex;
+    flex-direction: column;
     width: 100%;
     margin: 5px;
-}
-
-.modal .action-with-lead .lead {
-    width: 35%;
-}
-
-.modal .action-with-lead .action {
-    width: 60%;
 }
 
 .modal .action-list {
@@ -88,6 +77,26 @@
 }
 
 @media all and (min-width: 600px) {
+    .content-long {
+        width: 600px;
+    }
+
+    .content-short {
+        width: 450px;
+    }
+
+    .modal .action-with-lead {
+        flex-direction: row;
+    }
+
+    .modal .action-with-lead .lead {
+        width: 35%;
+    }
+
+    .modal .action-with-lead .action {
+        width: 60%;
+    }
+
     .modal .form {
         padding: 15px;
     }

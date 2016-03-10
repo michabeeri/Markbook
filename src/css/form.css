@@ -16,12 +16,11 @@
 }
 
 .label {
-    padding-right: 5px;
     vertical-align: sub;
 }
 
 .label > span {
-    display: inline-block;
+    display: block;
     width: 200px;
     font-size: 2rem;
 }
@@ -120,5 +119,9 @@
 
     .modal-content.form-container {
         box-shadow: inset 0px 0px 5px #151515,0px 0px 0px #151515;
+    }
+
+    .label > span {
+        display: inline-block;
     }
 }

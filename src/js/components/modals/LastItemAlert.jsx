@@ -22,7 +22,7 @@ define(['react', 'actionProviders/actions'],
                         </header>
 
                         <p className="modal-text">This is the only item in the group.</p>
-                        <p className="modal-text"> Deleting it will romove the group as well</p>
+                        <p className="modal-text"> Deleting it will remove the group as well</p>
                         <div className='form'>
                             <div className="action-list">
                                 <button id="lastBookmarkDelete" onClick={this.DeleteEmptyGroups} className="btn">Delete

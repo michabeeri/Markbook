@@ -71,7 +71,7 @@ body {
 }
 
 .title-small {
-    font-size: 17px;
+    font-size: 14px;
     font-weight: 200;
     margin: 5px;
 }
@@ -105,14 +105,17 @@ body {
     font-weight: bold;
 }
 
-
-@media all and (min-width: 600px) {
-    .inline {
-        display: inline-block;
-    }
+.inline {
+    display: inline-block;
 }
 
 .spinner {
     margin-top: 300px;
 }
 
+
+@media all and (min-width: 600px) {
+    .title-small {
+        font-size: 17px;
+    }
+}
