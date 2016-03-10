@@ -80,6 +80,7 @@ define(['lodash', 'constants', 'actionProviders/actions'], function (_, Constant
 
                     case Constants.SET:
                     case Constants.NOP:
+                    case '@@router/UPDATE_LOCATION':
                         return next(action);
 
                     default:
