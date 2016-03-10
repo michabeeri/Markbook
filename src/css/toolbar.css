@@ -97,5 +97,6 @@
 
     .reorder-wrapper > .label {
         display: inline;
+        padding-right: 10px;
     }
 }

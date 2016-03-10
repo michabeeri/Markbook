@@ -20,7 +20,7 @@ define(['lodash', 'react', 'components/dropdown/dropdown', 'utils/bookmarksUtil'
 
                 var searchResults = {items: []};
                 searchResults.items.push({
-                    title: 'Bookmarks',
+                    title: 'Titles',
                     groupType: 'title',
                     lines: filterResults.title
                 });
