@@ -46,6 +46,10 @@ body {
     display: none;
 }
 
+.relative {
+    position: relative;
+}
+
 .fixed-center {
   position: fixed;
   top: 0;
@@ -104,6 +108,11 @@ body {
 .inline {
     display: inline-block;
 }
+
+.spinner {
+    margin-top: 100px;
+}
+
 
 @media all and (min-width: 600px) {
     .title-small {

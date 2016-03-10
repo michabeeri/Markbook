@@ -70,10 +70,11 @@ define(
                 var layout = this.props.state.layout.layoutType;
 
                 if (this.props.state.bookmarks.length === 1) { //root group
-                    content = <MainViewEmptyState />;
+                    content = <MainViewEmptyState openAddBookMarkModal={this.openAddBookMarkModal}/>;
                 } else {
                     content = (
                         <div>
+                            <a className="btn btn-add fixed-bottom" onClick={this.openAddBookMarkModal}><i className="fa fa-plus-circle"></i></a>
                             <ToolBar
                                 items={this.props.state.bookmarks}
                                 currentGroupId={currentBookmarkPath[currentBookmarkPath.length - 1]}
@@ -99,8 +100,7 @@ define(
                 return (
                     <div>
                         {this.props.state.flags.hasOwnProperty(Constants.BOOKMARKS_LOADED) ?
-                            <div>
-                                <a className="btn btn-add fixed-bottom " onClick={this.openAddBookMarkModal}><i className="fa fa-plus-circle"></i></a>
+                            <div class='relative'>
                                 <a className="btn btn-undo fixed-bottom " onClick={this.undo}><i className="fa fa-undo"></i></a>
                                 {content}
                                 {this.props.state.flags[Constants.FIRST_VISIT_FLAG]
