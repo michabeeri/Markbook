@@ -28,13 +28,12 @@
 }
 
 .empty-state-container {
-    width: 200px;
-    height: 400px;
-    text-align:center;
+    text-align: center;
 }
 
 .empty-state-container-title {
     font-size: 4rem;
+    margin-top: 80px;
 }
 
 .tooltip
@@ -43,7 +42,6 @@
     padding: 10px;
     border-radius: 8px;
     border: 1px solid #c7bdaf;
-    /*position: absolute;*/
 }
 
 .tooltip::after

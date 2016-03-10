@@ -47,6 +47,10 @@ body {
     display: none;
 }
 
+.relative {
+    position: relative;
+}
+
 .fixed-center {
   position: fixed;
   top: 0;
