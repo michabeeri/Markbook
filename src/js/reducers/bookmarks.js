@@ -93,14 +93,19 @@ define(['lodash', 'uuid', 'constants', 'utils/bookmarksUtil'], function (_, uuid
 
                     var editedBookmark = _.filter(state, {id: editedBookmarkId})[0];
 
-                    var newState = bookmarksExcludingEditedBookmark.concat({
+                    var newEditedBookmark = {
                         id: editedBookmarkId,
                         title: action.title,
                         date: editedBookmark.date,
-                        url: action.url,
                         tags: action.tags,
-                        children: null
-                    });
+                        children: editedBookmark.children
+                    };
+
+                    if (!_.isUndefined(action.url)) {
+                        newEditedBookmark.url = action.url;
+                    }
+
+                    var newState = bookmarksExcludingEditedBookmark.concat(newEditedBookmark);
 
                     var destinationGroup = _.find(newState, {id: action.parentGroupId});
                     var sourceGroup = bookmarksUtil.getParent(newState, editedBookmarkId);
