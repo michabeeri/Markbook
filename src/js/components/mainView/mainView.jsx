@@ -100,7 +100,7 @@ define(
                 return (
                     <div>
                         {this.props.state.flags.hasOwnProperty(Constants.BOOKMARKS_LOADED) ?
-                            <div class='relative'>
+                            <div className='relative'>
                                 <a className="btn btn-undo fixed-bottom " onClick={this.undo}><i className="fa fa-undo"></i></a>
                                 {content}
                                 {this.props.state.flags[Constants.FIRST_VISIT_FLAG]
