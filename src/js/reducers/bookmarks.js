@@ -64,21 +64,27 @@ define(['lodash', 'uuid', 'constants', 'utils/bookmarksUtil'], function (_, uuid
 
                     var editedBookmark = _.filter(state, {id: action.bookmark.id})[0];
 
+                    var newEditedBookmark = {
+                        id: action.bookmark.id,
+                        title: action.bookmark.title,
+                        date: editedBookmark.date,
+                        tags: action.bookmark.tags,
+                        children: editedBookmark.children
+                    };
+
+
+                    if (!_.isUndefined(action.url)) {
+                        newEditedBookmark.url = action.url;
+                    }
+
                     var newState = bookmarksExcludingEditedBookmark.concat({
                             id: action.group.id,
                             title: action.group.groupName,
                             date: action.group.date,
                             tags: [],
                             children: [action.bookmark.id]
-                        },
-                        {
-                            id: action.bookmark.id,
-                            title: action.bookmark.title,
-                            date: editedBookmark.date,
-                            url: action.bookmark.url,
-                            tags: action.bookmark.tags,
-                            children: editedBookmark.children
-                        });
+                        }, newEditedBookmark
+                    );
 
                     var parentId = action.parentGroupId || Constants.ROOT_GROUP_ID;
                     _.find(newState, {id: parentId}).children.push(action.group.id);
