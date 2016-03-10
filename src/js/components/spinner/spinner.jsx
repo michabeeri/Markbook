@@ -28,7 +28,7 @@ define(['react', 'spin'], function (React, Spinner) {
 
         render: function () {
             return (
-                <span ref="container"/>
+                <span ref="container" className="spinner"/>
             );
         }
     });
