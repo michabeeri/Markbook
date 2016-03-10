@@ -162,20 +162,20 @@
 }
 
 .empty-state-container .btn-add {
-  right: 42.8%;
-  bottom: 34.8%;
+  left: 325px;
+  top: 184px;
   position: absolute;
-  animation: jump 0.5s 1s 3 ease-out;
+  animation: jump 0.4s 1s 3 ease-out;
 }
 
 @keyframes jump {
   0%, 100% {
-    right: 42.8%;
-    bottom: 34.8%;
+    left: 325px;
+    top: 184px;
     position: absolute;
   }
   50% {
-    bottom: 47%;
+    top: 140px;
   }
 }
 
