@@ -35,7 +35,6 @@ define(['react', 'components/mainView/topbar', 'constants'],
             it('should show a log out button', function () {
                 var logoutNode = testUtils.findRenderedDOMComponentWithClass(topBar, 'btn-logout');
                 expect(logoutNode).toBeTruthy();
-                expect(logoutNode.innerHTML).toEqual('Log out');
             });
 
             xit('should not show username if there is no connected user', function () {

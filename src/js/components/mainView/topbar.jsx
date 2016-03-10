@@ -25,7 +25,7 @@ define(['react', 'constants', 'actionProviders/actions', 'components/loginManage
                         </div>
                         <div className='btn-group top-bar-section'>
                             <span className='top-bar-username'>{this.props.state.userInfo.username || ''}</span>
-                            <span className='btn btn-logout' onClick={this.onLogout}>Log out</span>
+                            <i className='fa fa-sign-out btn-logout' onClick={this.onLogout}></i>
                         </div>
                     </header>
                 );

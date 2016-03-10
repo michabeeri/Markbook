@@ -2,6 +2,10 @@
     display: inline-flex;
 }
 
+.reorder-wrapper > .label {
+    display: none;
+}
+
 .toolbar-item {
     display: block;
     margin: 10px;
@@ -89,5 +93,9 @@
 @media all and (min-width: 600px) {
     .toolbar-item {
         display: inline-block;
+    }
+
+    .reorder-wrapper > .label {
+        display: inline;
     }
 }
