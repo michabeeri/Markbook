@@ -25,8 +25,14 @@
   line-height: 56px;
 }
 
+.top-bar-username {
+  padding: 0 8px 0 0;
+}
+
 .btn-logout {
   border-left: 1px solid #cccccc;
+  cursor: pointer;
+  padding: 0 0 0 8px;
 }
 
 .logo-img:hover {
