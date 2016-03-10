@@ -1,83 +1,93 @@
 .reorder-wrapper {
-  display: inline-flex;
+    display: inline-flex;
+}
+
+.toolbar-item {
+    display: block;
+    margin: 10px;
 }
 
 .reorder {
-  font: 14px 'Helvetica Neue Regular', 'Helvetica Neue';
-  font-weight: 200;
-  height: 35px;
-  outline: 0;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  color: #404448;
-  background: transparent;
-  border: none;
-  flex-grow: 1;
+    font: 14px 'Helvetica Neue Regular', 'Helvetica Neue';
+    font-weight: 200;
+    height: 35px;
+    outline: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    color: #404448;
+    background: transparent;
+    border: none;
+    flex-grow: 1;
 }
 
 .reorder-select-wrapper {
-  display: flex;
-  align-items: center;
-  padding: 0;
-  width: 180px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+    width: 180px;
 
 }
 
 .reorder-select-wrapper .fa {
-  flex-grow: 1;
-  text-align: center;
-  line-height: 33px;
-  padding: 0 5px;
-  border-left: 1px solid #ccc;
+    flex-grow: 1;
+    text-align: center;
+    line-height: 33px;
+    padding: 0 5px;
+    border-left: 1px solid #ccc;
 }
 
 .reorder-select-wrapper .fa:hover {
-  color: #ffffff;
+    color: #ffffff;
 }
-
 
 .search-box .input,
 .reorder-select-wrapper {
-  border-radius: 30px;
-  padding-left: 15px;
+    border-radius: 30px;
+    padding-left: 15px;
 }
 
 .search-box .input {
-  padding-left: 47px;
-  background-image: url(../img/search-icon.png) ,-webkit-linear-gradient(top,rgba(222,218,211,.7) 0,rgba(222,218,211,.2) 100%);
-  background-repeat: no-repeat;
-  background-position: 5% center;
+    padding-left: 47px;
+    background-image: url(../img/search-icon.png), -webkit-linear-gradient(top, rgba(222, 218, 211, .7) 0, rgba(222, 218, 211, .2) 100%);
+    background-repeat: no-repeat;
+    background-position: 5% center;
 }
 
 .search-box .dropdown-container {
-  border-radius: 16px;
+    border-radius: 16px;
 }
 
 .search-box .dropdown-item {
-  padding: 0px 10px !important
+    padding: 0px 10px !important
 }
 
 .search-box .dropdown-items-title {
-  padding: 0px 5px;
+    padding: 0px 5px;
 }
 
 .action-controls {
-  position: absolute;
-  right: 0;
-  margin-right: 0;
+    position: absolute;
+    right: 0;
+    margin-right: 0;
 }
 
 .action-controls .btn {
-  font-weight: 200;
-  border: none;
-  height: 30px;
-  text-align: right;
-  background-color: transparent;
+    font-weight: 200;
+    border: none;
+    height: 30px;
+    text-align: right;
+    background-color: transparent;
 }
 
 @media screen and (max-width: 960px) {
-  .action-controls.btn-group .btn {
-    visibility: hidden;
-  }
+    .action-controls.btn-group .btn {
+        display: none;
+    }
+}
+
+@media all and (min-width: 600px) {
+    .toolbar-item {
+        display: inline-block;
+    }
 }

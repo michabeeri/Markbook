@@ -1,15 +1,18 @@
 
 .modal {
     z-index: 10;
-    -webkit-transition: opacity 400ms ease-in;
-    -moz-transition: opacity 400ms ease-in;
-    transition: opacity 400ms ease-in;
     margin: 10% auto;
 }
 
-.modal-closed {
+.modal-animation-enter,
+.modal-animation-leave.modal-animation-leave-active
+{
     opacity: 0;
-    pointer-events: none;
+}
+
+.modal-animation-leave,
+.modal-animation-enter.modal-animation-enter-active{
+    opacity: 1;
 }
 
 .modal-opened {
@@ -18,7 +21,7 @@
 }
 
 .modal-content {
-    background: #fff;
+    background: url('../img/fabric.png');
 }
 
 .content-long {
@@ -31,12 +34,19 @@
 
 .modal .btn-close {
     float: right;
+    font-size: 20px;
+    color: #4D5C75;
 }
 
-.modal .btn {
-    width: 100px;
-    height: 30px;
+.modal .btn-close:hover {
+    color: #0b97c4;
+    cursor: pointer;
 }
+
+/*.modal .btn {*/
+    /*width: 100px;*/
+    /*height: 30px;*/
+/*}*/
 
 .modal .btn-long {
     width: 300px;
@@ -47,6 +57,9 @@
     display: flex;
     align-items: center;
     background: rgba(0, 0, 0, 0.65);
+    -webkit-transition: opacity 500ms ease-in;
+    -moz-transition: opacity 500ms ease-in;
+    transition: opacity 500ms ease-in;
 }
 
 .modal-text {
@@ -74,3 +87,8 @@
     justify-content: flex-end;
 }
 
+@media all and (min-width: 600px) {
+    .modal .form {
+        padding: 15px;
+    }
+}

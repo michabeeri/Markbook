@@ -41,7 +41,7 @@
 }
 
 .input.input-with-label {
-    width: 350px;
+    width: 250px;
 }
 
 .input:hover {
@@ -71,6 +71,7 @@
     color: #FFFFFF;
     font-size: 15px;
     margin: 3px;
+    width: 25%;
 }
 
 .form .btn-modal {
@@ -113,7 +114,11 @@
         border-radius: 15px;
     }
 
-    .input-long {
+    .input.input-with-label {
         width: 350px;
+    }
+
+    .modal-content.form-container {
+        box-shadow: inset 0px 0px 5px #151515,0px 0px 0px #151515;
     }
 }

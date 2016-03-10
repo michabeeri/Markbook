@@ -3,7 +3,7 @@
     background: rgb(243, 241, 238);
     z-index: 1;
     position: absolute;
-    width: 350px;
+    width: 250px;
     margin: 2px !important;
     padding: 2px 5px !important;
     border-radius: 10px;
@@ -28,4 +28,10 @@
 
 .dropdown-item.selected {
     background: rgba(188, 208, 234, 0.48);
+}
+
+@media all and (min-width: 600px) {
+    .dropdown-container {
+        width: 350px;
+    }
 }

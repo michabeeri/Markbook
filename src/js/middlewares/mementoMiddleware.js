@@ -48,6 +48,7 @@ define(['lodash', 'constants', 'actionProviders/actions'], function (_, Constant
                     case Constants.LOGOUT:
                     case Constants.SET_LAYOUT:
                     case Constants.SELECT_DESELECT_ALL:
+                    case Constants.SET_SORT_TYPE:
 
                         if (action.undoing) {
                             return next(action);
@@ -77,7 +78,13 @@ define(['lodash', 'constants', 'actionProviders/actions'], function (_, Constant
 
                         return ActionProvider.nop();
 
+                    case Constants.SET:
+                    case Constants.NOP:
+                    case '@@router/UPDATE_LOCATION':
+                        return next(action);
+
                     default:
+                        console.log('%c' + action.type + ' is untracked for undo, Please tell someone', 'color: #F00');
                         return next(action);
                 }
             };

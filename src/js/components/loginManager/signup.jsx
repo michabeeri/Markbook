@@ -70,7 +70,7 @@ define(['lodash',
             successSignup: function (username, uid, token) {
                 this.props.dispatch(ActionProvider.login(username, uid, token));
                 this.props.dispatch(
-                    ActionProvider.addBookmark(Constants.ROOT_GROUP_ID, 'My First Bookmark', 'www.google.com', []));
+                    ActionProvider.addBookmark(Constants.ROOT_GROUP_ID, 'My First Bookmark', 'http://garbuz.com/blog/wp-content/uploads/2013/02/dilbert-on-agile.gif', []));
                 this.props.dispatch(ReduxSimpleRouter.routeActions.push('/'));
                 this.props.dispatch(ActionProvider.turnOnFlag(Constants.FIRST_VISIT_FLAG));
             },

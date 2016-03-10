@@ -27,7 +27,7 @@ define(['lodash', 'constants', 'utils/relationshipTreeUtil', 'utils/bookmarksUti
                             });
 
                             var currentOpenGroupId = _.last(fixBookmarksPath(idsToRemove, state.currentBookmarkPath.slice()));
-                            next(Object.assign(action, {ids: idsToRemove}));
+                            Object.assign(action, {ids: idsToRemove});
 
                             if (currentOpenGroupId !== _.last(state.currentBookmarkPath)) {
                                 next(Object.assign(action, {incomplete: true}));

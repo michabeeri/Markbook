@@ -151,6 +151,11 @@
   color: rgba(199, 189, 175, 0.7);
 }
 
+.btn-undo:hover > .fa,
+.btn-add:hover > .fa {
+  text-shadow: 1px 1px 3px black;
+}
+
 .btn-undo > .fa,
 .btn-add > .fa {
   font-size: 50px;

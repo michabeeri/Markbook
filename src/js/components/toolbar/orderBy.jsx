@@ -27,7 +27,7 @@ define(['lodash', 'react', 'uuid'],
             render: function () {
                 var renderOption = this.renderOption;
                 return (
-                    <div className='reorder-wrapper contained inline'>
+                    <div className='reorder-wrapper toolbar-item contained'>
                         <span className='label'>Reorder:</span>
                         <div className='reorder-select-wrapper input inline'>
                             <select ref='select' className='reorder' onChange={this.onSelectOrderBy}
